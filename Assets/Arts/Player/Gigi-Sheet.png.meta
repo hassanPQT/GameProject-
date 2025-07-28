@@ -1,0 +1,884 @@
+fileFormatVersion: 2
+guid: 185dab048282e654c8f2e42fd8561d32
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -4109224754837267520
+    second: Gigi-Sheet_0
+  - first:
+      213: -1126851982790169470
+    second: Gigi-Sheet_1
+  - first:
+      213: 1756921034219491655
+    second: Gigi-Sheet_2
+  - first:
+      213: 9112544495507596273
+    second: Gigi-Sheet_3
+  - first:
+      213: 3974354519968584293
+    second: Gigi-Sheet_4
+  - first:
+      213: -5679329129967355197
+    second: Gigi-Sheet_5
+  - first:
+      213: 4166060573922358976
+    second: Gigi-Sheet_6
+  - first:
+      213: 2184003078627293156
+    second: Gigi-Sheet_7
+  - first:
+      213: -3117701563044854052
+    second: Gigi-Sheet_8
+  - first:
+      213: 7003289133108196911
+    second: Gigi-Sheet_9
+  - first:
+      213: -7272434375274707583
+    second: Gigi-Sheet_10
+  - first:
+      213: -4617205211730889104
+    second: Gigi-Sheet_11
+  - first:
+      213: 505638216785392758
+    second: Gigi-Sheet_12
+  - first:
+      213: 6856823165451606948
+    second: Gigi-Sheet_13
+  - first:
+      213: 2659470413540505060
+    second: Gigi-Sheet_14
+  - first:
+      213: 8140595598875445768
+    second: Gigi-Sheet_15
+  - first:
+      213: -1154079612428187692
+    second: Gigi-Sheet_16
+  - first:
+      213: -9157360604141558142
+    second: Gigi-Sheet_17
+  - first:
+      213: 3657976258035484233
+    second: Gigi-Sheet_18
+  - first:
+      213: -6350776941649679543
+    second: Gigi-Sheet_19
+  - first:
+      213: 5148480837652882870
+    second: Gigi-Sheet_20
+  - first:
+      213: 5806906414149906097
+    second: Gigi-Sheet_21
+  - first:
+      213: -8275959859048534935
+    second: Gigi-Sheet_22
+  - first:
+      213: -6664242626184267576
+    second: Gigi-Sheet_23
+  - first:
+      213: -8330886710195201411
+    second: Gigi-Sheet_24
+  - first:
+      213: 8386680386685748644
+    second: Gigi-Sheet_25
+  - first:
+      213: 1634695971641725081
+    second: Gigi-Sheet_26
+  - first:
+      213: 85755581090510881
+    second: Gigi-Sheet_27
+  - first:
+      213: -9120277650080691327
+    second: Gigi-Sheet_28
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: Gigi-Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 108
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0cbdea96bd919f6c0800000000000000
+      internalID: -4109224754837267520
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 91
+        width: 13
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28ce85b871e9c50f0800000000000000
+      internalID: -1126851982790169470
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 108
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 741901f3f56d16810800000000000000
+      internalID: 1756921034219491655
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 108
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1f3eba630f2467e70800000000000000
+      internalID: 9112544495507596273
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 108
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 562123ef06eb72730800000000000000
+      internalID: 3974354519968584293
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 90
+        width: 14
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3ca74c52f38fe21b0800000000000000
+      internalID: -5679329129967355197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 90
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0c6f66de402d0d930800000000000000
+      internalID: 4166060573922358976
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 33
+        y: 72
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e770f98a332f4e10800000000000000
+      internalID: 2184003078627293156
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 90
+        width: 12
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd6080b52f2bbb4d0800000000000000
+      internalID: -3117701563044854052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 49
+        y: 72
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f26744e8c5ea03160800000000000000
+      internalID: 7003289133108196911
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 90
+        width: 13
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1854969777f131b90800000000000000
+      internalID: -7272434375274707583
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 72
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 076b2bba2546cefb0800000000000000
+      internalID: -4617205211730889104
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 54
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 674fa587743640700800000000000000
+      internalID: 505638216785392758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 72
+        width: 12
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4ab99680754582f50800000000000000
+      internalID: 6856823165451606948
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 36
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4e53eb9204658e420800000000000000
+      internalID: 2659470413540505060
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 17
+        y: 54
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 80a4413019439f070800000000000000
+      internalID: 8140595598875445768
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 36
+        width: 12
+        height: 17
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d782b205b2ebffe0800000000000000
+      internalID: -1154079612428187692
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 37
+        width: 14
+        height: 14
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2866cfd5c058ae080800000000000000
+      internalID: -9157360604141558142
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 47
+        y: 36
+        width: 15
+        height: 11
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9468401a60eb3c230800000000000000
+      internalID: 3657976258035484233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 36
+        width: 15
+        height: 10
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 94baa39f4028dd7a0800000000000000
+      internalID: -6350776941649679543
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_20
+      rect:
+        serializedVersion: 2
+        x: 1
+        y: 18
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6b5a4354b04137740800000000000000
+      internalID: 5148480837652882870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_21
+      rect:
+        serializedVersion: 2
+        x: 4
+        y: 0
+        width: 8
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1bea75b0e96469050800000000000000
+      internalID: 5806906414149906097
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_22
+      rect:
+        serializedVersion: 2
+        x: 18
+        y: 18
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96c250a2b52e52d80800000000000000
+      internalID: -8275959859048534935
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_23
+      rect:
+        serializedVersion: 2
+        x: 19
+        y: 0
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8c83541e3aad383a0800000000000000
+      internalID: -6664242626184267576
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_24
+      rect:
+        serializedVersion: 2
+        x: 35
+        y: 0
+        width: 12
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d7adace0daeb26c80800000000000000
+      internalID: -8330886710195201411
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_25
+      rect:
+        serializedVersion: 2
+        x: 36
+        y: 18
+        width: 8
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4a5c32d8069736470800000000000000
+      internalID: 8386680386685748644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_26
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 18
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9909771435b9fa610800000000000000
+      internalID: 1634695971641725081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_27
+      rect:
+        serializedVersion: 2
+        x: 51
+        y: 0
+        width: 10
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 12838642f3aa03100800000000000000
+      internalID: 85755581090510881
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Gigi-Sheet_28
+      rect:
+        serializedVersion: 2
+        x: 66
+        y: 18
+        width: 11
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18b810e6cc34e6180800000000000000
+      internalID: -9120277650080691327
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: 
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      Gigi-Sheet_0: -4109224754837267520
+      Gigi-Sheet_1: -1126851982790169470
+      Gigi-Sheet_10: -7272434375274707583
+      Gigi-Sheet_11: -4617205211730889104
+      Gigi-Sheet_12: 505638216785392758
+      Gigi-Sheet_13: 6856823165451606948
+      Gigi-Sheet_14: 2659470413540505060
+      Gigi-Sheet_15: 8140595598875445768
+      Gigi-Sheet_16: -1154079612428187692
+      Gigi-Sheet_17: -9157360604141558142
+      Gigi-Sheet_18: 3657976258035484233
+      Gigi-Sheet_19: -6350776941649679543
+      Gigi-Sheet_2: 1756921034219491655
+      Gigi-Sheet_20: 5148480837652882870
+      Gigi-Sheet_21: 5806906414149906097
+      Gigi-Sheet_22: -8275959859048534935
+      Gigi-Sheet_23: -6664242626184267576
+      Gigi-Sheet_24: -8330886710195201411
+      Gigi-Sheet_25: 8386680386685748644
+      Gigi-Sheet_26: 1634695971641725081
+      Gigi-Sheet_27: 85755581090510881
+      Gigi-Sheet_28: -9120277650080691327
+      Gigi-Sheet_3: 9112544495507596273
+      Gigi-Sheet_4: 3974354519968584293
+      Gigi-Sheet_5: -5679329129967355197
+      Gigi-Sheet_6: 4166060573922358976
+      Gigi-Sheet_7: 2184003078627293156
+      Gigi-Sheet_8: -3117701563044854052
+      Gigi-Sheet_9: 7003289133108196911
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
