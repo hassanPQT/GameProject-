@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Gameplay
 {
-    public class Player : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         private static readonly int IsJump = Animator.StringToHash("isJump");
         private static readonly int IsRun = Animator.StringToHash("isRun");

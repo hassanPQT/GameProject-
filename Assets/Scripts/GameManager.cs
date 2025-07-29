@@ -5,7 +5,8 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private Player player;
+    [SerializeField] private PlayerController player;
+    [SerializeField] private SongWheelController songWheelController;
     private int _userPositivePoint = 3;
     private bool _isGameEnd;
     private bool _isGamePaused;
@@ -23,17 +24,39 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
+        // Ẩn và khóa con trỏ chuột trong cửa sổ game
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         _userPositivePoint = 3;
     }
 
-    private void Update()
+    void Update()
     {
         if (_isGamePaused) return;
         if (_isGameEnd) return;
 
         HandleKeyboardInput();
+        HandleMouseInput();
+    }
+
+    private void HandleMouseInput()
+    {
+        // Khi nhấn giữ chuột phải (hoặc trái tuỳ bạn)
+        if (Input.GetMouseButtonDown(1))
+        {
+            Cursor.lockState = CursorLockMode.None; // Mở khóa con trỏ chuột
+            Cursor.visible = true;
+            songWheelController.ActivateWheel();
+        }
+        if (Input.GetMouseButtonUp(1))
+        {
+            Cursor.lockState = CursorLockMode.Locked; // Khóa con trỏ chuột
+            Cursor.visible = false;
+            songWheelController.ReleaseWheel();
+        }
     }
 
     private void HandleKeyboardInput()
