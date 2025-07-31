@@ -5,27 +5,28 @@ using System.Collections;
 
 public enum SongDirection
 {
-    Up = 0,
-    UpRight = 7,
-    Right = 6,
-    DownRight = 5,
-    Down = 4,
-    DownLeft = 3,
-    Left = 2,
-    UpLeft = 1
+	Up = 0,
+	UpRight = 7,
+	Right = 6,
+	DownRight = 5,
+	Down = 4,
+	DownLeft = 3,
+	Left = 2,
+	UpLeft = 1
 }
 
 public class EnemyController : MonoBehaviour
 {
-    public float moveDistance = 2f;
-    public float moveDuration = 0.5f;
+	public float moveDistance = 2f;
+	public float moveDuration = 0.2f;
 
 	private Vector3 leftPos;
 	private Vector3 rightPos;
+	private Coroutine moveRoutine;
 	// Sự kiện đưa ra hướng mới  
 	public event Action<SongDirection[]> OnSignalDirection;
 
-    private SongDirection[] currentDir;
+	private SongDirection[] currentDir;
 
 	void Start()
 	{
@@ -36,6 +37,14 @@ public class EnemyController : MonoBehaviour
 
 		// Bắt đầu di chuyển qua lại
 		StartCoroutine(MoveBackAndForth());
+
+	}
+
+	private void Update()
+	{
+		DetectPlayer();
+
+
 	}
 
 	private IEnumerator MoveBackAndForth()
@@ -64,61 +73,79 @@ public class EnemyController : MonoBehaviour
 		transform.position = target;
 	}
 
+	private void DetectPlayer()
+	{
+		float detectRadius = 3.5f; // Bán kính phát hiện enemy
+		LayerMask playerLayer = LayerMask.GetMask("Player"); // Đảm bảo bạn đã gán layer "Player" cho player
+															 // Draw detection circle in Scene view for debugging
+		Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, playerLayer);
+
+		foreach (var hit in hits)
+		{
+			// Có thể kiểm tra thêm nếu cần, ví dụ: tag hoặc component
+			if (hit.CompareTag("Player"))
+			{
+				StopAllCoroutines();
+				return;
+			}
+		}
+	}
+
+
 	public bool SignalRandomDirection()
-    {
-        currentDir = new SongDirection[2];
+	{
+		currentDir = new SongDirection[2];
 
-        for (int i = 0; i < currentDir.Length; i++)
-        {
-            // Chọn ngẫu nhiên một hướng từ SongDirection  
-            currentDir[i] = (SongDirection)Random.Range(0, 7);
-        }
+		for (int i = 0; i < currentDir.Length; i++)
+		{
+			// Chọn ngẫu nhiên một hướng từ SongDirection  
+			currentDir[i] = (SongDirection)Random.Range(0, 7);
+		}
 
-        OnSignalDirection?.Invoke(currentDir);
-        // Khởi động hành động (di chuyển hoặc effect) theo hướng đó  
-        StartCoroutine(MoveInDirection(currentDir));
+		OnSignalDirection?.Invoke(currentDir);
+		// Khởi động hành động (di chuyển hoặc effect) theo hướng đó  
+		StartCoroutine(MoveInDirection(currentDir));
 
-        return true;
-    }
+		return true;
+	}
+	public void StopMovement()
+	{
+		this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+	}
 
-    private IEnumerator MoveInDirection(SongDirection[] dir)
-    {
-        for (int i = 0; i < dir.Length; i++)
-        {
-            Vector3 dirVec = DirectionToVector(dir[i]);
-            Vector3 start = transform.position;
-            Vector3 end = start + dirVec * moveDistance;
+	private IEnumerator MoveInDirection(SongDirection[] dir)
+	{
+		for (int i = 0; i < dir.Length; i++)
+		{
+			Vector3 dirVec = DirectionToVector(dir[i]);
+			Vector3 start = transform.position;
+			Vector3 end = start + dirVec * moveDistance;
 
-            float t = 0f;
-            while (t < moveDuration)
-            {
-                t += Time.deltaTime * 1.8f;
-                transform.position = Vector3.Lerp(start, end, t / moveDuration);
-                yield return null;
-            }
+			float t = 0f;
+			while (t < moveDuration)
+			{
+				t += Time.deltaTime;
+				transform.position = Vector3.Lerp(start, end, t / moveDuration);
+				yield return null;
+			}
 
-            t = 0;
-            while (t < moveDuration)
-            {
-                t += Time.deltaTime * 1.8f;
-                transform.position = Vector3.Lerp(end, start, t / moveDuration);
-                yield return null;
-            }
-            // Đợi một chút trước khi di chuyển tiếp  
-            yield return new WaitForSeconds(0.5f);
-        }
-    }
+			t = 0;
+			while (t < moveDuration)
+			{
+				t += Time.deltaTime;
+				transform.position = Vector3.Lerp(end, start, t / moveDuration);
+				yield return null;
+			}
+			// Đợi một chút trước khi di chuyển tiếp  
+			yield return new WaitForSeconds(0.5f);
+		}
+	}
 
-    private Vector3 DirectionToVector(SongDirection dir)
-    {
-        // mỗi dir cách nhau 45°, và bạn muốn dir=0 là 90°  
-        float angleDeg = (int)dir * 45f + 90f;
-        float angleRad = angleDeg * Mathf.Deg2Rad;
-        return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f).normalized;
-    }
-
-    public void StopMovement()
-    {
-        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-    }
+	private Vector3 DirectionToVector(SongDirection dir)
+	{
+		// mỗi dir cách nhau 45°, và bạn muốn dir=0 là 90°  
+		float angleDeg = (int)dir * 45f + 90f;
+		float angleRad = angleDeg * Mathf.Deg2Rad;
+		return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f).normalized;
+	}
 }
