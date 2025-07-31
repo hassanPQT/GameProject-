@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
+using Random = UnityEngine.Random;
 
 public class SongWheelController : MonoBehaviour
 {
@@ -50,10 +51,15 @@ public class SongWheelController : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 selectSlices.Add(currentSlice);
+                //loop debug
+                for (int i = 0; i < selectSlices.Count; i++)
+                {
+                    Debug.Log("SongWheelController: ActivateWheel - selectSlices[" + i + "]: " + selectSlices[i]);
+                }
                 if (gameManager != null && selectSlices.Count == 2)
                 {
-                    Debug.Log("SongWheelController: ActivateWheel - OnPlayerSelect called with currentSlice: " + currentSlice);
                     gameManager.OnPlayerSelect(selectSlices.ToArray());
+                    selectSlices.Clear(); // Xoá danh sách đã chọn sau khi gửi
                 }
             }
 
