@@ -20,12 +20,51 @@ public class EnemyController : MonoBehaviour
     public float moveDistance = 2f;
     public float moveDuration = 0.2f;
 
-    // Sự kiện đưa ra hướng mới  
-    public event Action<SongDirection[]> OnSignalDirection;
+	private Vector3 leftPos;
+	private Vector3 rightPos;
+	// Sự kiện đưa ra hướng mới  
+	public event Action<SongDirection[]> OnSignalDirection;
 
     private SongDirection[] currentDir;
 
-    public bool SignalRandomDirection()
+	void Start()
+	{
+		// Xác định vị trí ban đầu, trái và phải dựa trên vị trí hiện tại
+		Vector3 startPos = transform.position;
+		leftPos = startPos + Vector3.left * moveDistance;
+		rightPos = startPos + Vector3.right * moveDistance;
+
+		// Bắt đầu di chuyển qua lại
+		StartCoroutine(MoveBackAndForth());
+	}
+
+	private IEnumerator MoveBackAndForth()
+	{
+		while (true)
+		{
+			// Đi sang trái
+			yield return StartCoroutine(MoveToPosition(leftPos));
+			// Đi sang phải
+			yield return StartCoroutine(MoveToPosition(rightPos));
+		}
+	}
+
+	private IEnumerator MoveToPosition(Vector3 target)
+	{
+		Vector3 start = transform.position;
+		float elapsed = 0f;
+
+		while (elapsed < moveDuration)
+		{
+			transform.position = Vector3.Lerp(start, target, elapsed / moveDuration);
+			elapsed += Time.deltaTime;
+			yield return null;
+		}
+
+		transform.position = target;
+	}
+
+	public bool SignalRandomDirection()
     {
         currentDir = new SongDirection[2];
 
