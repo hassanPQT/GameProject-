@@ -1,24 +1,16 @@
-using UnityEngine;
 using System;
-using Random = UnityEngine.Random;
 using System.Collections;
+using UnityEngine;
+using Random = UnityEngine.Random;
 
-public enum SongDirection
-{
-    Up = 0,
-    UpRight = 7,
-    Right = 6,
-    DownRight = 5,
-    Down = 4,
-    DownLeft = 3,
-    Left = 2,
-    UpLeft = 1
-}
-
-public class EnemyController : MonoBehaviour
+public class BirdController : MonoBehaviour
 {
     public float moveDistance = 2f;
     public float moveDuration = 0.5f;
+    public float flySpeed = 5f;
+    public float hoverHeight = 3f;
+    public float stayDuration =10f;
+
 
     // Sự kiện đưa ra hướng mới  
     public event Action<SongDirection[]> OnSignalDirection;
@@ -70,6 +62,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    public void StopMovement()
+    {
+        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+    }
+
     private Vector3 DirectionToVector(SongDirection dir)
     {
         // mỗi dir cách nhau 45°, và bạn muốn dir=0 là 90°  
@@ -78,8 +75,51 @@ public class EnemyController : MonoBehaviour
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f).normalized;
     }
 
-    public void StopMovement()
+    public void FlyIntoPlayer()
     {
-        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
+        StartCoroutine(FlyCoroutine());
+    }
+
+    private IEnumerator FlyCoroutine()
+    {
+        Vector3 offset = Vector3.up * hoverHeight;
+        Vector3 targetPos = GameManager.Instance.player.gameObject.transform.position + offset;
+
+        // 1. Fly tới vị trí hover trên Player
+        while (Vector3.Distance(transform.position, targetPos) > 0.05f)
+        {
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                targetPos,
+                flySpeed * Time.deltaTime
+            );
+            yield return null;
+        }
+
+        // 2. Ở lại "bám theo" Player trong stayDuration
+        float elapsed = 0f;
+        while (elapsed < stayDuration)
+        {
+            // Cập nhật vị trí mục tiêu liên tục
+            targetPos = GameManager.Instance.player.gameObject.transform.position + offset;
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                targetPos,
+                flySpeed * Time.deltaTime
+            );
+
+            elapsed += Time.deltaTime;
+            yield return null;
+        }
+
+        // 3. Sau khi kết thúc stayDuration, có thể chuyển sang trạng thái khác
+        OnStayFinished();
+    }
+
+    private void OnStayFinished()
+    {
+        // Ví dụ: bay đi chỗ khác hoặc hạ cánh
+        Debug.Log("Bird stay time ended.");
+        // TODO: logic tiếp theo
     }
 }

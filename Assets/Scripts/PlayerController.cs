@@ -23,7 +23,7 @@ namespace Game.Scripts.Gameplay
         private bool _isGrounded;
         private int _jumpCount = 0;
 
-        private const int _maxJumpCount = 0;
+        private int _maxJumpCount = 0;
 
         // invicible
         [SerializeField] private GameObject visualObject;
@@ -45,6 +45,7 @@ namespace Game.Scripts.Gameplay
         private void CheckGround()
         {
             _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            Debug.Log("IsGrounded: " + _isGrounded);
             if (_isGrounded)
             {
                 _jumpCount = 0;
@@ -72,7 +73,31 @@ namespace Game.Scripts.Gameplay
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 _jumpCount++;
-                Debug.Log(_jumpCount + " " + _maxJumpCount);
+                Debug.Log(_jumpCount + " " + _maxJumpCount);   
+            }
+            //debug isground and iswin
+            Debug.Log("IsGrounded: " + _isGrounded + ", IsWin: " + GameManager.Instance.IsWin);
+            if (GameManager.Instance.IsWin)
+            {
+                StartCoroutine(DoubleJump());
+            }
+        }
+
+        public IEnumerator DoubleJump()
+        {
+            yield return new WaitForSeconds(0.5f);
+            if (!_isGrounded)
+            {
+                _maxJumpCount++; // Cho phép nhảy đôi
+                Debug.Log("Double Jump Enabled: " + _maxJumpCount);
+                if (_jumpCount <= _maxJumpCount)
+                {
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                    Debug.Log("Double Jump: " + _jumpCount + " " + _maxJumpCount);
+                }
+                _maxJumpCount--; // Reset lại số lần nhảy đôi sau khi thực hiện
+                isSignaling = false; // Reset trạng thái signaling của player
+                GameManager.Instance.IsWin = false;
             }
         }
 
@@ -109,18 +134,46 @@ namespace Game.Scripts.Gameplay
         private void DetectEnemy()
         {
             float detectRadius = 3.5f; // Bán kính phát hiện enemy
-            LayerMask enemyLayer = LayerMask.GetMask("Enemy"); // Đảm bảo bạn đã gán layer "Enemy" cho các enemy
-                                                               // Draw detection circle in Scene view for debugging
+            LayerMask enemyLayer = LayerMask.GetMask("Flying"); // Đảm bảo bạn đã gán layer "Enemy" cho các enemy
+                                                                // Draw detection circle in Scene view for debugging
             DrawDebugCircle(transform.position, detectRadius, Color.red);
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, enemyLayer);
 
             foreach (var hit in hits)
             {
                 // Có thể kiểm tra thêm nếu cần, ví dụ: tag hoặc component
-                if (hit.CompareTag("Enemy") && !isSignaling)
+                if (hit.CompareTag("Enemy"))
                 {
-                    isSignaling = GameManager.Instance.enemyController.SignalRandomDirection();
-                    return;
+                    if (!isSignaling)
+                    {
+                        Debug.Log("Enemy detected: " + hit.gameObject.name);
+                        hit.gameObject.GetComponent<EnemyController>().OnSignalDirection += GameManager.Instance.OnEnemySignal;
+                        isSignaling = hit.gameObject.GetComponent<EnemyController>().SignalRandomDirection();
+                    }
+                    else
+                    {
+                        hit.gameObject.GetComponent<EnemyController>().StopMovement();
+                        isSignaling = false;
+                        Debug.Log("Enemy signaling stopped: " + hit.gameObject.name);
+                    }
+                }
+                else if (hit.CompareTag("Bird"))
+                {
+                    if (GameManager.Instance.IsWin)
+                    {
+                        Debug.Log("isWin: " + GameManager.Instance.IsWin);
+                        if (hit.gameObject.GetComponent<BirdController>() != null)
+                            hit.gameObject.GetComponent<BirdController>().FlyIntoPlayer();
+                        hit.gameObject.GetComponent<BirdController>().StopMovement();
+                        isSignaling = false;
+                    }
+                    else
+                    if (!isSignaling)
+                    {
+                        Debug.Log("Bird detected: " + hit.gameObject.name);
+                        hit.gameObject.GetComponent<BirdController>().OnSignalDirection += GameManager.Instance.OnEnemySignal;
+                        isSignaling = hit.gameObject.GetComponent<BirdController>().SignalRandomDirection();
+                    }
                 }
             }
         }

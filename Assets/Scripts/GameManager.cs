@@ -6,8 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] public EnemyController enemyController;
-    [SerializeField] private PlayerController player;
+    public PlayerController player;
     [SerializeField] private SongWheelController songWheelController;
     private float inputTimeout = 5f;
     private bool awaitingInput = false;
@@ -15,6 +14,7 @@ public class GameManager : MonoBehaviour
     private int _userPositivePoint = 3;
     private bool _isGameEnd;
     private bool _isGamePaused;
+    public bool IsWin;
 
     void Awake()
     {
@@ -31,12 +31,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        enemyController.OnSignalDirection += OnEnemySignal;
-
         // Ẩn và khóa con trỏ chuột trong cửa sổ game
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
+        IsWin = false;
         _userPositivePoint = 3;
     }
 
@@ -48,7 +47,7 @@ public class GameManager : MonoBehaviour
         HandleKeyboardInput();
     }
 
-    private void OnEnemySignal(SongDirection[] dir)
+    public void OnEnemySignal(SongDirection[] dir)
     {
         targetDir = dir;
         // Mở Song Wheel tại vị trí nào đó hoặc ở giữa màn hình
@@ -105,15 +104,15 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Đúng! Enemy bị cảm hóa.");
             // TODO: hiệu ứng cảm hóa, thưởng điểm…
+            IsWin = true;
+            player.isSignaling = false; // Reset trạng thái signaling của player
         }
         else
         {
+            IsWin = false;
             Debug.Log("Sai! Bị trượt.");
             // TODO: xử lý thất bại (giảm HP, replay…)
         }
-
-        // Chuẩn bị lượt tiếp theo
-        Invoke(nameof(enemyController.SignalRandomDirection), 1f);
     }
 
     private void HandleKeyboardInput()
