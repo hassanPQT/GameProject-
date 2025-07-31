@@ -105,7 +105,6 @@ public class GameManager : MonoBehaviour
             Debug.Log("Đúng! Enemy bị cảm hóa.");
             // TODO: hiệu ứng cảm hóa, thưởng điểm…
             IsWin = true;
-            player.isSignaling = false; // Reset trạng thái signaling của player
         }
         else
         {

@@ -45,7 +45,6 @@ namespace Game.Scripts.Gameplay
         private void CheckGround()
         {
             _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-            Debug.Log("IsGrounded: " + _isGrounded);
             if (_isGrounded)
             {
                 _jumpCount = 0;
@@ -73,11 +72,11 @@ namespace Game.Scripts.Gameplay
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
                 _jumpCount++;
-                Debug.Log(_jumpCount + " " + _maxJumpCount);   
+                Debug.Log(_jumpCount + " " + _maxJumpCount);
             }
             //debug isground and iswin
             Debug.Log("IsGrounded: " + _isGrounded + ", IsWin: " + GameManager.Instance.IsWin);
-            if (GameManager.Instance.IsWin)
+            if (GameManager.Instance.IsWin && isSignaling)
             {
                 StartCoroutine(DoubleJump());
             }
@@ -85,14 +84,14 @@ namespace Game.Scripts.Gameplay
 
         public IEnumerator DoubleJump()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
             if (!_isGrounded)
             {
                 _maxJumpCount++; // Cho phép nhảy đôi
                 Debug.Log("Double Jump Enabled: " + _maxJumpCount);
                 if (_jumpCount <= _maxJumpCount)
                 {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce + 5);
                     Debug.Log("Double Jump: " + _jumpCount + " " + _maxJumpCount);
                 }
                 _maxJumpCount--; // Reset lại số lần nhảy đôi sau khi thực hiện
