@@ -7,9 +7,9 @@ public class BirdController : MonoBehaviour
 {
     public float moveDistance = 2f;
     public float moveDuration = 0.5f;
-    public float flySpeed = 5f;
-    public float hoverHeight = 3f;
-    public float stayDuration =10f;
+    public float flySpeed = 10f;
+    private float hoverHeight = 1.5f;
+    public float stayDuration = 10f;
 
 
     // Sự kiện đưa ra hướng mới  
@@ -86,7 +86,7 @@ public class BirdController : MonoBehaviour
         Vector3 targetPos = GameManager.Instance.player.gameObject.transform.position + offset;
 
         // 1. Fly tới vị trí hover trên Player
-        while (Vector3.Distance(transform.position, targetPos) > 0.05f)
+        while (Vector3.Distance(transform.position, targetPos) > 0.01f)
         {
             transform.position = Vector3.MoveTowards(
                 transform.position,
