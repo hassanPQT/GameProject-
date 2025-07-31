@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System;
+using System.Collections.Generic;
 
 public class SongWheelController : MonoBehaviour
 {
@@ -10,17 +11,20 @@ public class SongWheelController : MonoBehaviour
     public RectTransform wheelRect;       // RectTransform của SongWheelBackground
     public Image[] slices;                // Mảng 8 Image Slice0…Slice7
 
+    [SerializeField] private GameManager gameManager; // Tham chiếu đến GameManager
     [SerializeField] private Animator animator;
     //[Header("Audio")]
     //public AudioClip[] noteClips;         // 8 nốt nhạc tương ứng
     //public AudioSource audioSource;
 
+    private List<int> selectSlices;
     private bool wheelActive = false;
     private int currentSlice = -1;
     private Vector2[] sliceSize;
 
     void Start()
     {
+        selectSlices = new List<int>();
         sliceSize = new Vector2[slices.Length];
         // Lưu kích thước ban đầu của từng slice
         for (int i = 0; i < slices.Length; i++)
@@ -31,9 +35,34 @@ public class SongWheelController : MonoBehaviour
 
     void Update()
     {
+        // Khi nhấn giữ chuột phải (hoặc trái tuỳ bạn)
+        if (!wheelActive && Input.GetMouseButtonDown(1))
+        {
+            Cursor.lockState = CursorLockMode.None; // Mở khóa con trỏ chuột
+            Cursor.visible = true;
+            ActivateWheel();
+        }
+
         if (wheelActive)
         {
             UpdateSelection();
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                selectSlices.Add(currentSlice);
+                if (gameManager != null && selectSlices.Count == 2)
+                {
+                    Debug.Log("SongWheelController: ActivateWheel - OnPlayerSelect called with currentSlice: " + currentSlice);
+                    gameManager.OnPlayerSelect(selectSlices.ToArray());
+                }
+            }
+
+            if (Input.GetMouseButtonUp(1))
+            {
+                Cursor.lockState = CursorLockMode.Locked; // Khóa con trỏ chuột
+                Cursor.visible = false;
+                ReleaseWheel();
+            }
         }
     }
 
@@ -46,6 +75,8 @@ public class SongWheelController : MonoBehaviour
         wheelRect.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
     }
 
+
+
     public void ReleaseWheel()
     {
         animator.SetBool(isSing, false);
@@ -53,7 +84,10 @@ public class SongWheelController : MonoBehaviour
         wheelRect.gameObject.SetActive(false);
 
         //if (currentSlice >= 0)
-        //    PlayNote(currentSlice);
+        //{
+        //    //    PlayNote(currentSlice);
+        //    // Thông báo cho GameManager
+        //}
 
         ResetHighlight();
         currentSlice = -1;
@@ -69,7 +103,6 @@ public class SongWheelController : MonoBehaviour
 
         // Tính góc
         float angle = Mathf.Atan2(localPoint.y, localPoint.x) * Mathf.Rad2Deg;
-        Debug.Log($"Mouse Angle: {angle}");
         if (angle < 0) angle += 360f;
 
         // Xác định slice (360°/8 = 45° mỗi slice)
