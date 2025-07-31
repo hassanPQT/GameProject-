@@ -1,11 +1,17 @@
 using Game.Scripts.Gameplay;
+using System.Collections;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] private Player player;
+    [SerializeField] public EnemyController enemyController;
+    [SerializeField] private PlayerController player;
+    [SerializeField] private SongWheelController songWheelController;
+    private float inputTimeout = 5f;
+    private bool awaitingInput = false;
+    private SongDirection[] targetDir;
     private int _userPositivePoint = 3;
     private bool _isGameEnd;
     private bool _isGamePaused;
@@ -23,17 +29,91 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
+    void Start()
     {
+        enemyController.OnSignalDirection += OnEnemySignal;
+
+        // Ẩn và khóa con trỏ chuột trong cửa sổ game
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+
         _userPositivePoint = 3;
     }
 
-    private void Update()
+    void Update()
     {
         if (_isGamePaused) return;
         if (_isGameEnd) return;
 
         HandleKeyboardInput();
+    }
+
+    private void OnEnemySignal(SongDirection[] dir)
+    {
+        targetDir = dir;
+        // Mở Song Wheel tại vị trí nào đó hoặc ở giữa màn hình
+        awaitingInput = true;
+        StartCoroutine(WaitForInput());
+    }
+
+    private IEnumerator WaitForInput()
+    {
+        float timer = 0f;
+        while (awaitingInput && timer < inputTimeout)
+        {
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        if (awaitingInput)
+        {
+            // Timeout, xem như chọn sai
+            OnPlayerResult(false);
+        }
+    }
+
+    // Gọi từ SongWheelController khi người chơi nhả chuột
+    public void OnPlayerSelect(int[] sliceIndex)
+    {
+        if (!awaitingInput) return;
+
+        awaitingInput = false;
+        bool correct = false;
+        //check sliceindex có bằng targetDir không, nếu có 1 cái sai thì trả về false luôn
+        if (sliceIndex.Length != targetDir.Length)
+        {
+            correct = false;
+        }
+        else
+        {
+            correct = true;
+            for (int i = 0; i < sliceIndex.Length; i++)
+            {
+                if (sliceIndex[i] != (int)targetDir[i])
+                {
+                    correct = false;
+                    break;
+                }
+            }
+        }
+        OnPlayerResult(correct);
+    }
+
+    private void OnPlayerResult(bool success)
+    {
+        if (success)
+        {
+            Debug.Log("Đúng! Enemy bị cảm hóa.");
+            // TODO: hiệu ứng cảm hóa, thưởng điểm…
+        }
+        else
+        {
+            Debug.Log("Sai! Bị trượt.");
+            // TODO: xử lý thất bại (giảm HP, replay…)
+        }
+
+        // Chuẩn bị lượt tiếp theo
+        Invoke(nameof(enemyController.SignalRandomDirection), 1f);
     }
 
     private void HandleKeyboardInput()

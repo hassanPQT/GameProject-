@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Gameplay
 {
-    public class Player : MonoBehaviour
+    public class PlayerController : MonoBehaviour
     {
         private static readonly int IsJump = Animator.StringToHash("isJump");
         private static readonly int IsRun = Animator.StringToHash("isRun");
@@ -13,6 +13,7 @@ namespace Game.Scripts.Gameplay
         public float moveSpeed = 5f;
         public float jumpForce = 10f;
         public Transform groundCheck;
+        public bool isSignaling = false;
         public float groundCheckRadius = 0.2f;
         public LayerMask groundLayer;
 
@@ -36,12 +37,18 @@ namespace Game.Scripts.Gameplay
 
         private void Update()
         {
-            _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-
-            if (_isGrounded)
-                _jumpCount = 0;
-
+            DetectEnemy();
+            CheckGround();
             animator.SetBool(IsJump, !_isGrounded);
+        }
+
+        private void CheckGround()
+        {
+            _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
+            if (_isGrounded)
+            {
+                _jumpCount = 0;
+            }
         }
 
 
@@ -97,6 +104,39 @@ namespace Game.Scripts.Gameplay
                 visualObject.SetActive(true);
 
             _isInvincible = false;
+        }
+
+        private void DetectEnemy()
+        {
+            float detectRadius = 3.5f; // Bán kính phát hiện enemy
+            LayerMask enemyLayer = LayerMask.GetMask("Enemy"); // Đảm bảo bạn đã gán layer "Enemy" cho các enemy
+                                                               // Draw detection circle in Scene view for debugging
+            DrawDebugCircle(transform.position, detectRadius, Color.red);
+            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, enemyLayer);
+
+            foreach (var hit in hits)
+            {
+                // Có thể kiểm tra thêm nếu cần, ví dụ: tag hoặc component
+                if (hit.CompareTag("Enemy") && !isSignaling)
+                {
+                    isSignaling = GameManager.Instance.enemyController.SignalRandomDirection();
+                    return;
+                }
+            }
+        }
+
+        // Helper method to draw a circle in the Scene view
+        private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
+        {
+            float angle = 0f;
+            Vector3 lastPoint = center + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
+            for (int i = 1; i <= segments; i++)
+            {
+                angle += 2 * Mathf.PI / segments;
+                Vector3 nextPoint = center + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
+                Debug.DrawLine(lastPoint, nextPoint, color, 0.01f);
+                lastPoint = nextPoint;
+            }
         }
 
         private void OnTriggerEnter2D(Collider2D other)
