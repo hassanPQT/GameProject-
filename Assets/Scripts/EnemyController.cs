@@ -79,6 +79,7 @@ public class EnemyController : MonoBehaviour
 
     private void MoveBackToFirstPosition()
     {
+        isMovingInDirection = true;
         Vector3 start = transform.position;
         Vector3 endpos = startPos;
         float elapsed = 0f;
@@ -100,6 +101,7 @@ public class EnemyController : MonoBehaviour
             if (hit.CompareTag("Player"))
             {
                 isMoving = false; // Dừng di chuyển khi phát hiện player
+                StopCoroutine(MoveBackAndForth()); // Dừng coroutine di chuyển qua lại
                 MoveBackToFirstPosition(); // Trở về vị trí ban đầu
                 return;
             }

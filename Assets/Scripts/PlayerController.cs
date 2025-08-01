@@ -34,6 +34,7 @@ namespace Game.Scripts.Gameplay
         [SerializeField] private float invincibleDuration = 1f;
         private bool _isInvincible = false;
         private bool _isPaused = false;
+        private bool _endCouroutine = false;
 
         public void Stop()
         {
@@ -164,6 +165,10 @@ namespace Game.Scripts.Gameplay
                     }
                     if (!isSignaling)
                     {
+                        if (!_endCouroutine)
+                        {
+                            StartCoroutine(PausePlayer(2f));
+                        }
                         Debug.Log("Enemy detected: " + hit.gameObject.name);
                         hit.gameObject.GetComponent<EnemyController>().OnSignalDirection += GameManager.Instance.OnEnemySignal;
                         isSignaling = hit.gameObject.GetComponent<EnemyController>().SignalRandomDirection();
@@ -184,6 +189,10 @@ namespace Game.Scripts.Gameplay
                     else
                     if (!isSignaling)
                     {
+                        if(!_endCouroutine)
+                        {
+                            StartCoroutine(PausePlayer(2f));
+                        }
                         Debug.Log("Bird detected: " + hit.gameObject.name);
                         hit.gameObject.GetComponent<BirdController>().OnSignalDirection += GameManager.Instance.OnEnemySignal;
                         isSignaling = hit.gameObject.GetComponent<BirdController>().SignalRandomDirection();
@@ -230,11 +239,15 @@ namespace Game.Scripts.Gameplay
         }
         private IEnumerator PausePlayer(float duration)
         {
+            yield return new WaitForSeconds(0.2f);
             _isPaused = true;
             rb.linearVelocity = Vector2.zero; // Stop movement immediately
             animator.SetBool(IsRun, false);
             yield return new WaitForSeconds(duration);
             _isPaused = false;
+            _endCouroutine = true; // Set flag to indicate coroutine has ended
+            yield return new WaitForSeconds(5f); // Small delay to ensure state is reset
+            _endCouroutine = false; // Reset flag after coroutine ends
         }
 
 

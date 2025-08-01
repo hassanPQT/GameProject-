@@ -6999,7 +6999,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2657942440411875817, guid: 26eb0db211b84264caeeaec10a507b0a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 146.56372
+      value: 153.5
       objectReference: {fileID: 0}
     - target: {fileID: 2657942440411875817, guid: 26eb0db211b84264caeeaec10a507b0a, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7125,9 +7125,7 @@ MonoBehaviour:
   _sceneToLoad:
   - _sceneAsset: {fileID: 102900000, guid: 6ee95af2df5043a4e9106aca8ffa4cf0, type: 3}
     _sceneName: MapDesign4
-  _sceneToUnLoad:
-  - _sceneAsset: {fileID: 102900000, guid: d4590982eae495746aac521c68793d0e, type: 3}
-    _sceneName: MapDesign
+  _sceneToUnLoad: []
 --- !u!4 &1243975806
 Transform:
   m_ObjectHideFlags: 0

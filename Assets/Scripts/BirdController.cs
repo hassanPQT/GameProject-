@@ -16,6 +16,7 @@ public class BirdController : MonoBehaviour
     public event Action<SongDirection[]> OnSignalDirection;
 
     private SongDirection[] currentDir;
+    private Vector3 smoothVelocity = Vector3.zero;
 
     public bool SignalRandomDirection()
     {
@@ -108,12 +109,12 @@ public class BirdController : MonoBehaviour
         float elapsed = 0f;
         while (elapsed < stayDuration)
         {
-            // Cập nhật vị trí mục tiêu liên tục
             targetPos = GameManager.Instance.player.gameObject.transform.position + offset;
-            transform.position = Vector3.MoveTowards(
+            transform.position = Vector3.SmoothDamp(
                 transform.position,
                 targetPos,
-                flySpeed * Time.deltaTime
+                ref smoothVelocity,
+                0.15f
             );
 
             elapsed += Time.deltaTime;

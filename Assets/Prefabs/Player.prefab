@@ -253,7 +253,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3310e7a38ec0a3e4780fe37f9f6dd5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
+  moveSpeed: 3
   jumpForce: 20
   groundCheck: {fileID: 3938350930498520604}
   isSignaling: 0
