@@ -24,10 +24,10 @@ namespace Game.Scripts.Gameplay
 
         private bool _isGrounded;
         private int _jumpCount = 0;
+        public bool CheckDoubleJump = false;
         private Vector2 _lastMoveInput = Vector2.right;
         private int _maxJumpCount = 0;
 
-     
 
         // invicible
         [SerializeField] private GameObject visualObject;
@@ -43,9 +43,9 @@ namespace Game.Scripts.Gameplay
         {
             DetectEnemy();
             CheckGround();
-          
+
             animator.SetBool(IsJump, !_isGrounded);
-           
+
         }
 
         private void CheckGround()
@@ -54,7 +54,7 @@ namespace Game.Scripts.Gameplay
             if (_isGrounded)
             {
                 _jumpCount = 0;
-                
+
             }
 
 
@@ -89,8 +89,7 @@ namespace Game.Scripts.Gameplay
                 Debug.Log(_jumpCount + " " + _maxJumpCount);
             }
             //debug isground and iswin
-            Debug.Log("IsGrounded: " + _isGrounded + ", IsWin: " + GameManager.Instance.IsWin);
-            if (GameManager.Instance.IsWin && isSignaling)
+            if (GameManager.Instance.IsWin && isSignaling && CheckDoubleJump)
             {
                 StartCoroutine(DoubleJump());
             }
@@ -98,7 +97,7 @@ namespace Game.Scripts.Gameplay
 
         public IEnumerator DoubleJump()
         {
-            yield return new WaitForSeconds(0.7f);
+            yield return new WaitForSeconds(0.5f);
             if (!_isGrounded)
             {
                 _maxJumpCount++; // Cho phép nhảy đôi
@@ -111,6 +110,7 @@ namespace Game.Scripts.Gameplay
                 _maxJumpCount--; // Reset lại số lần nhảy đôi sau khi thực hiện
                 isSignaling = false; // Reset trạng thái signaling của player
                 GameManager.Instance.IsWin = false;
+                CheckDoubleJump = false; // Reset trạng thái nhảy đôi
             }
         }
 
@@ -157,28 +157,30 @@ namespace Game.Scripts.Gameplay
                 // Có thể kiểm tra thêm nếu cần, ví dụ: tag hoặc component
                 if (hit.CompareTag("Enemy"))
                 {
+                    if (GameManager.Instance.IsWin && isSignaling)
+                    {
+                        hit.gameObject.GetComponent<EnemyController>().StopMovement();
+                        GameManager.Instance.IsWin = false;
+                        isSignaling = false;
+                    }
                     if (!isSignaling)
                     {
                         Debug.Log("Enemy detected: " + hit.gameObject.name);
                         hit.gameObject.GetComponent<EnemyController>().OnSignalDirection += GameManager.Instance.OnEnemySignal;
                         isSignaling = hit.gameObject.GetComponent<EnemyController>().SignalRandomDirection();
                     }
-                    else
-                    {
-                        hit.gameObject.GetComponent<EnemyController>().StopMovement();
-                        isSignaling = false;
-                        Debug.Log("Enemy signaling stopped: " + hit.gameObject.name);
-                    }
+
                 }
                 else if (hit.CompareTag("Bird"))
                 {
-                    if (GameManager.Instance.IsWin)
+                    //debug is win and signaling
+                    if (GameManager.Instance.IsWin && isSignaling)
                     {
+                        CheckDoubleJump = true; // Set trạng thái nhảy đôi
                         Debug.Log("isWin: " + GameManager.Instance.IsWin);
                         if (hit.gameObject.GetComponent<BirdController>() != null)
                             hit.gameObject.GetComponent<BirdController>().FlyIntoPlayer();
                         hit.gameObject.GetComponent<BirdController>().StopMovement();
-                        isSignaling = false;
                     }
                     else
                     if (!isSignaling)
@@ -190,6 +192,8 @@ namespace Game.Scripts.Gameplay
                 }
             }
         }
+
+
 
         // Helper method to draw a circle in the Scene view
         private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
@@ -219,16 +223,15 @@ namespace Game.Scripts.Gameplay
             //    GameController.Instance.EarnCoin();
             //}
 
-            if (other.CompareTag("Trap") && !_isInvincible)
-            {
-                GameManager.Instance.TakeDamage(1);
-                StartInvincibility();
-                Debug.Log("Player hit by trap. Invincibility started.");
-            }
+            //if (other.CompareTag("Trap") && !_isInvincible)
+            //{
+            //    GameManager.Instance.TakeDamage(1);
+            //    StartInvincibility();
+            //}
         }
 
-    
-       
+
+
 
     }
 
