@@ -153,9 +153,9 @@ GameObject:
   - component: {fileID: 56709050551967339}
   - component: {fileID: 108943612536164267}
   - component: {fileID: 2738988328621163954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -254,7 +254,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
-  jumpForce: 15
+  jumpForce: 20
   groundCheck: {fileID: 3938350930498520604}
   isSignaling: 0
   groundCheckRadius: 0.2
@@ -263,5 +263,6 @@ MonoBehaviour:
     m_Bits: 8
   rb: {fileID: 56709050551967339}
   animator: {fileID: 3801703037524951286}
+  CheckDoubleJump: 0
   visualObject: {fileID: 1918560305597965766}
   invincibleDuration: 1

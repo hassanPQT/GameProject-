@@ -33,6 +33,7 @@ namespace Game.Scripts.Gameplay
         [SerializeField] private GameObject visualObject;
         [SerializeField] private float invincibleDuration = 1f;
         private bool _isInvincible = false;
+        private bool _isPaused = false;
 
         public void Stop()
         {
@@ -63,13 +64,11 @@ namespace Game.Scripts.Gameplay
 
         public void Move(Vector2 input)
         {
+            if (_isPaused) return; // Prevent movement when paused
             rb.linearVelocity = new Vector2(input.x * moveSpeed, rb.linearVelocity.y);
-
 
             if (input != Vector2.zero)
                 _lastMoveInput = input.normalized;
-
-            bool check = Mathf.Abs(input.x) > 0.01f && _isGrounded;
 
             animator.SetBool(IsRun, Mathf.Abs(input.x) > 0.01f && _isGrounded);
 
@@ -77,11 +76,11 @@ namespace Game.Scripts.Gameplay
             {
                 transform.localScale = new Vector3(Mathf.Sign(input.x), 1, 1);
             }
-
         }
 
         public void Jump()
         {
+            if (_isPaused) return; // Prevent jumping when paused
             if (_jumpCount <= _maxJumpCount && _isGrounded)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -97,14 +96,14 @@ namespace Game.Scripts.Gameplay
 
         public IEnumerator DoubleJump()
         {
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(0.7f);
             if (!_isGrounded)
             {
                 _maxJumpCount++; // Cho phép nhảy đôi
                 Debug.Log("Double Jump Enabled: " + _maxJumpCount);
                 if (_jumpCount <= _maxJumpCount)
                 {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce + 5);
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce + 2.5f);
                     Debug.Log("Double Jump: " + _jumpCount + " " + _maxJumpCount);
                 }
                 _maxJumpCount--; // Reset lại số lần nhảy đôi sau khi thực hiện
@@ -228,6 +227,14 @@ namespace Game.Scripts.Gameplay
             //    GameManager.Instance.TakeDamage(1);
             //    StartInvincibility();
             //}
+        }
+        private IEnumerator PausePlayer(float duration)
+        {
+            _isPaused = true;
+            rb.linearVelocity = Vector2.zero; // Stop movement immediately
+            animator.SetBool(IsRun, false);
+            yield return new WaitForSeconds(duration);
+            _isPaused = false;
         }
 
 
