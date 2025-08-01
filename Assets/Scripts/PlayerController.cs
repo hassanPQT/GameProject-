@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.Gameplay
 {
@@ -9,6 +10,7 @@ namespace Game.Scripts.Gameplay
     {
         private static readonly int IsJump = Animator.StringToHash("isJump");
         private static readonly int IsRun = Animator.StringToHash("isRun");
+
 
         public float moveSpeed = 5f;
         public float jumpForce = 10f;
@@ -22,13 +24,17 @@ namespace Game.Scripts.Gameplay
 
         private bool _isGrounded;
         private int _jumpCount = 0;
-
+        public bool CheckDoubleJump = false;
+        private Vector2 _lastMoveInput = Vector2.right;
         private int _maxJumpCount = 0;
+
 
         // invicible
         [SerializeField] private GameObject visualObject;
         [SerializeField] private float invincibleDuration = 1f;
         private bool _isInvincible = false;
+        private bool _isPaused = false;
+        private bool _endCouroutine = false;
 
         public void Stop()
         {
@@ -39,7 +45,9 @@ namespace Game.Scripts.Gameplay
         {
             DetectEnemy();
             CheckGround();
+
             animator.SetBool(IsJump, !_isGrounded);
+
         }
 
         private void CheckGround()
@@ -48,15 +56,20 @@ namespace Game.Scripts.Gameplay
             if (_isGrounded)
             {
                 _jumpCount = 0;
+
             }
+
+
         }
 
 
         public void Move(Vector2 input)
         {
+            if (_isPaused) return; // Prevent movement when paused
             rb.linearVelocity = new Vector2(input.x * moveSpeed, rb.linearVelocity.y);
 
-            bool check = Mathf.Abs(input.x) > 0.01f && _isGrounded;
+            if (input != Vector2.zero)
+                _lastMoveInput = input.normalized;
 
             animator.SetBool(IsRun, Mathf.Abs(input.x) > 0.01f && _isGrounded);
 
@@ -68,6 +81,7 @@ namespace Game.Scripts.Gameplay
 
         public void Jump()
         {
+            if (_isPaused) return; // Prevent jumping when paused
             if (_jumpCount <= _maxJumpCount && _isGrounded)
             {
                 rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
@@ -75,8 +89,7 @@ namespace Game.Scripts.Gameplay
                 Debug.Log(_jumpCount + " " + _maxJumpCount);
             }
             //debug isground and iswin
-            Debug.Log("IsGrounded: " + _isGrounded + ", IsWin: " + GameManager.Instance.IsWin);
-            if (GameManager.Instance.IsWin && isSignaling)
+            if (GameManager.Instance.IsWin && isSignaling && CheckDoubleJump)
             {
                 StartCoroutine(DoubleJump());
             }
@@ -91,12 +104,13 @@ namespace Game.Scripts.Gameplay
                 Debug.Log("Double Jump Enabled: " + _maxJumpCount);
                 if (_jumpCount <= _maxJumpCount)
                 {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce + 5);
+                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce + 2.5f);
                     Debug.Log("Double Jump: " + _jumpCount + " " + _maxJumpCount);
                 }
                 _maxJumpCount--; // Reset lại số lần nhảy đôi sau khi thực hiện
                 isSignaling = false; // Reset trạng thái signaling của player
                 GameManager.Instance.IsWin = false;
+                CheckDoubleJump = false; // Reset trạng thái nhảy đôi
             }
         }
 
@@ -143,32 +157,42 @@ namespace Game.Scripts.Gameplay
                 // Có thể kiểm tra thêm nếu cần, ví dụ: tag hoặc component
                 if (hit.CompareTag("Enemy"))
                 {
+                    if (GameManager.Instance.IsWin && isSignaling)
+                    {
+                        hit.gameObject.GetComponent<EnemyController>().StopMovement();
+                        GameManager.Instance.IsWin = false;
+                        isSignaling = false;
+                    }
                     if (!isSignaling)
                     {
+                        if (!_endCouroutine)
+                        {
+                            StartCoroutine(PausePlayer(2f));
+                        }
                         Debug.Log("Enemy detected: " + hit.gameObject.name);
                         hit.gameObject.GetComponent<EnemyController>().OnSignalDirection += GameManager.Instance.OnEnemySignal;
                         isSignaling = hit.gameObject.GetComponent<EnemyController>().SignalRandomDirection();
                     }
-                    else
-                    {
-                        hit.gameObject.GetComponent<EnemyController>().StopMovement();
-                        isSignaling = false;
-                        Debug.Log("Enemy signaling stopped: " + hit.gameObject.name);
-                    }
+
                 }
                 else if (hit.CompareTag("Bird"))
                 {
-                    if (GameManager.Instance.IsWin)
+                    //debug is win and signaling
+                    if (GameManager.Instance.IsWin && isSignaling)
                     {
+                        CheckDoubleJump = true; // Set trạng thái nhảy đôi
                         Debug.Log("isWin: " + GameManager.Instance.IsWin);
                         if (hit.gameObject.GetComponent<BirdController>() != null)
                             hit.gameObject.GetComponent<BirdController>().FlyIntoPlayer();
                         hit.gameObject.GetComponent<BirdController>().StopMovement();
-                        isSignaling = false;
                     }
                     else
                     if (!isSignaling)
                     {
+                        if(!_endCouroutine)
+                        {
+                            StartCoroutine(PausePlayer(2f));
+                        }
                         Debug.Log("Bird detected: " + hit.gameObject.name);
                         hit.gameObject.GetComponent<BirdController>().OnSignalDirection += GameManager.Instance.OnEnemySignal;
                         isSignaling = hit.gameObject.GetComponent<BirdController>().SignalRandomDirection();
@@ -176,6 +200,8 @@ namespace Game.Scripts.Gameplay
                 }
             }
         }
+
+
 
         // Helper method to draw a circle in the Scene view
         private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
@@ -205,11 +231,29 @@ namespace Game.Scripts.Gameplay
             //    GameController.Instance.EarnCoin();
             //}
 
-            if (other.CompareTag("Trap") && !_isInvincible)
-            {
-                GameManager.Instance.TakeDamage(1);
-                StartInvincibility();
-            }
+            //if (other.CompareTag("Trap") && !_isInvincible)
+            //{
+            //    GameManager.Instance.TakeDamage(1);
+            //    StartInvincibility();
+            //}
         }
+        private IEnumerator PausePlayer(float duration)
+        {
+            yield return new WaitForSeconds(0.2f);
+            _isPaused = true;
+            rb.linearVelocity = Vector2.zero; // Stop movement immediately
+            animator.SetBool(IsRun, false);
+            yield return new WaitForSeconds(duration);
+            _isPaused = false;
+            _endCouroutine = true; // Set flag to indicate coroutine has ended
+            yield return new WaitForSeconds(5f); // Small delay to ensure state is reset
+            _endCouroutine = false; // Reset flag after coroutine ends
+        }
+
+
+
+
     }
+
+
 }

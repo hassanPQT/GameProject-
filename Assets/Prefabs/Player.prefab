@@ -153,9 +153,9 @@ GameObject:
   - component: {fileID: 56709050551967339}
   - component: {fileID: 108943612536164267}
   - component: {fileID: 2738988328621163954}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -169,7 +169,7 @@ Transform:
   m_GameObject: {fileID: 8390359257631525335}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.17308, y: 0.48, z: 0}
+  m_LocalPosition: {x: -5.17308, y: 0.633, z: 0}
   m_LocalScale: {x: -1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -238,7 +238,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0.56}
+  m_Offset: {x: 0, y: 0.5}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
 --- !u!114 &2738988328621163954
@@ -253,8 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3310e7a38ec0a3e4780fe37f9f6dd5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpForce: 15
+  moveSpeed: 3
+  jumpForce: 20
   groundCheck: {fileID: 3938350930498520604}
   isSignaling: 0
   groundCheckRadius: 0.2
@@ -263,5 +263,6 @@ MonoBehaviour:
     m_Bits: 8
   rb: {fileID: 56709050551967339}
   animator: {fileID: 3801703037524951286}
+  CheckDoubleJump: 0
   visualObject: {fileID: 1918560305597965766}
   invincibleDuration: 1
