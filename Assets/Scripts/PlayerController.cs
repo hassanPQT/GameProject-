@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.Gameplay
 {
@@ -222,6 +223,7 @@ namespace Game.Scripts.Gameplay
             {
                 GameManager.Instance.TakeDamage(1);
                 StartInvincibility();
+                Debug.Log("Player hit by trap. Invincibility started.");
             }
         }
 
