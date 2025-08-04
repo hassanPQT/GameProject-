@@ -33,7 +33,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         // Xác định vị trí ban đầu, trái và phải dựa trên vị trí hiện tại
-        Vector3 startPos = transform.position;
+        startPos = transform.position;
         leftPos = startPos + Vector3.left * moveDistance;
         rightPos = startPos + Vector3.right * moveDistance;
 
@@ -62,8 +62,6 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator MoveToPosition(Vector3 target)
     {
-
-        startPos = transform.position;
         Vector3 start = transform.position;
         float elapsed = 0f;
 
@@ -92,7 +90,7 @@ public class EnemyController : MonoBehaviour
 
     private void DetectPlayer()
     {
-        float detectRadius = 3.5f;
+        float detectRadius = 5f;
         LayerMask playerLayer = LayerMask.GetMask("Player");
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, playerLayer);
 
@@ -106,6 +104,12 @@ public class EnemyController : MonoBehaviour
                 return;
             }
         }
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, 5);
     }
 
 

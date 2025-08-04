@@ -165,7 +165,7 @@ namespace Game.Scripts.Gameplay
                     }
                     if (!isSignaling)
                     {
-                        if (!_endCouroutine)
+                        if (!_endCouroutine && hit.gameObject.GetComponent<EnemyController>().enabled)
                         {
                             StartCoroutine(PausePlayer(2f));
                         }
