@@ -153,6 +153,7 @@ GameObject:
   - component: {fileID: 56709050551967339}
   - component: {fileID: 108943612536164267}
   - component: {fileID: 2738988328621163954}
+  - component: {fileID: 2581708416205064966}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -253,16 +254,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3310e7a38ec0a3e4780fe37f9f6dd5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
-  jumpForce: 20
-  groundCheck: {fileID: 3938350930498520604}
-  isSignaling: 0
-  groundCheckRadius: 0.2
-  groundLayer:
+  _moveSpeed: 5
+  _jumpForce: 10
+  _groundCheck: {fileID: 3938350930498520604}
+  _groundCheckRadius: 0.2
+  _groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  rb: {fileID: 56709050551967339}
-  animator: {fileID: 3801703037524951286}
-  CheckDoubleJump: 0
-  visualObject: {fileID: 1918560305597965766}
-  invincibleDuration: 1
+  IsSignaling: 0
+  _visualObject: {fileID: 8390359257631525335}
+  _invincibleDuration: 1
+--- !u!95 &2581708416205064966
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390359257631525335}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0

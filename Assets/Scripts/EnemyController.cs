@@ -1,6 +1,5 @@
 using UnityEngine;
 using System;
-using Random = UnityEngine.Random;
 using System.Collections;
 
 public enum SongDirection
@@ -17,46 +16,41 @@ public enum SongDirection
 
 public class EnemyController : MonoBehaviour
 {
-    public float moveDistance = 2f;
-    public float moveDuration = 0.2f;
+    [SerializeField] private float moveDistance = 2f;
+    [SerializeField] private float moveDuration = 0.2f;
 
-    private Vector3 leftPos;
-    private Vector3 rightPos;
-    private Vector3 startPos;
-    public bool isMoving = true;
-    // Sự kiện đưa ra hướng mới  
     public event Action<SongDirection[]> OnSignalDirection;
 
-    private SongDirection[] currentDir;
-    private bool isMovingInDirection = false;
+    private Vector3 _leftPos, _rightPos, _startPos;
+    private bool _isMoving = true;
+    private bool _isMovingInDirection = false;
+    private SongDirection[] _currentDir;
 
-    void Start()
+    private void Start()
     {
-        // Xác định vị trí ban đầu, trái và phải dựa trên vị trí hiện tại
-        startPos = transform.position;
-        leftPos = startPos + Vector3.left * moveDistance;
-        rightPos = startPos + Vector3.right * moveDistance;
-
-        // Bắt đầu di chuyển qua lại
+        SetPositionToMove();
         StartCoroutine(MoveBackAndForth());
+    }
+
+    private void SetPositionToMove()
+    {
+        _startPos = transform.position;
+        _leftPos = _startPos + Vector3.left * moveDistance;
+        _rightPos = _startPos + Vector3.right * moveDistance;
     }
 
     private void Update()
     {
-        if (!isMovingInDirection)
-        {
+        if (!_isMovingInDirection)
             DetectPlayer();
-        }
     }
 
     private IEnumerator MoveBackAndForth()
     {
-        while (isMoving)
+        while (_isMoving)
         {
-            // Đi sang trái
-            yield return StartCoroutine(MoveToPosition(leftPos));
-            // Đi sang phải
-            yield return StartCoroutine(MoveToPosition(rightPos));
+            yield return MoveToPosition(_leftPos);
+            yield return MoveToPosition(_rightPos);
         }
     }
 
@@ -64,33 +58,31 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 start = transform.position;
         float elapsed = 0f;
-
         while (elapsed < moveDuration)
         {
             transform.position = Vector3.Lerp(start, target, elapsed / moveDuration);
             elapsed += Time.deltaTime / 1.5f;
             yield return null;
         }
-
         transform.position = target;
     }
 
     private void MoveBackToFirstPosition()
     {
-        isMovingInDirection = true;
+        _isMovingInDirection = true;
         Vector3 start = transform.position;
-        Vector3 endpos = startPos;
+        Vector3 end = _startPos;
         float elapsed = 0f;
         while (elapsed < moveDuration)
         {
-            transform.position = Vector3.Lerp(start, endpos, elapsed / moveDuration);
+            transform.position = Vector3.Lerp(start, end, elapsed / moveDuration);
             elapsed += Time.deltaTime / 1.5f;
         }
     }
 
     private void DetectPlayer()
     {
-        float detectRadius = 5f;
+        float detectRadius = 5.5f;
         LayerMask playerLayer = LayerMask.GetMask("Player");
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, playerLayer);
 
@@ -98,9 +90,9 @@ public class EnemyController : MonoBehaviour
         {
             if (hit.CompareTag("Player"))
             {
-                isMoving = false; // Dừng di chuyển khi phát hiện player
-                StopCoroutine(MoveBackAndForth()); // Dừng coroutine di chuyển qua lại
-                MoveBackToFirstPosition(); // Trở về vị trí ban đầu
+                _isMoving = false;
+                StopCoroutine(MoveBackAndForth());
+                MoveBackToFirstPosition();
                 return;
             }
         }
@@ -112,48 +104,46 @@ public class EnemyController : MonoBehaviour
         Gizmos.DrawWireSphere(transform.position, 5);
     }
 
-
     public bool SignalRandomDirection()
     {
-        if (!this.enabled)
+        if (!enabled)
         {
             Debug.LogWarning("EnemyController is not enabled. Cannot signal random direction.");
             return false;
         }
 
-        currentDir = new SongDirection[2];
+        _currentDir = new SongDirection[2];
+        for (int i = 0; i < _currentDir.Length; i++)
+            _currentDir[i] = (SongDirection)UnityEngine.Random.Range(0, 7);
 
-        for (int i = 0; i < currentDir.Length; i++)
-        {
-            currentDir[i] = (SongDirection)Random.Range(0, 7);
-        }
+        OnSignalDirection?.Invoke(_currentDir);
 
-        OnSignalDirection?.Invoke(currentDir);
-
-        isMovingInDirection = true; // Set flag before starting coroutine
-        StartCoroutine(MoveInDirection(currentDir));
-
+        _isMovingInDirection = true;
+        StartCoroutine(MoveInDirection(_currentDir));
         return true;
     }
+
     public void StopMovement()
     {
-        this.gameObject.GetComponent<CircleCollider2D>().enabled = false;
-        this.gameObject.GetComponent<EnemyController>().enabled = false;
+        var collider = GetComponent<CircleCollider2D>();
+        if (collider) collider.enabled = false;
+        enabled = false;
     }
 
     public void MakeMovement()
     {
-        this.gameObject.GetComponent<CircleCollider2D>().enabled = true;
-        this.gameObject.GetComponent<EnemyController>().enabled = true;
+        var collider = GetComponent<CircleCollider2D>();
+        if (collider) collider.enabled = true;
+        enabled = true;
     }
 
     private IEnumerator MoveInDirection(SongDirection[] dir)
     {
         yield return new WaitForSeconds(2f);
 
-        for (int i = 0; i < dir.Length; i++)
+        foreach (var d in dir)
         {
-            Vector3 dirVec = DirectionToVector(dir[i]);
+            Vector3 dirVec = DirectionToVector(d);
             Vector3 start = transform.position;
             Vector3 end = start + dirVec * moveDistance;
 
@@ -175,13 +165,12 @@ public class EnemyController : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
 
-        yield return new WaitForSeconds(10f); // Đợi một chút trước khi kết thúc
-        isMovingInDirection = false; // Reset flag after movement
+        yield return new WaitForSeconds(10f);
+        _isMovingInDirection = false;
     }
 
     private Vector3 DirectionToVector(SongDirection dir)
     {
-        // mỗi dir cách nhau 45°, và bạn muốn dir=0 là 90°  
         float angleDeg = (int)dir * 45f + 90f;
         float angleRad = angleDeg * Mathf.Deg2Rad;
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f).normalized;
