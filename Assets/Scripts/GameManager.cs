@@ -112,6 +112,7 @@ public class GameManager : MonoBehaviour
             // TODO: hiệu ứng cảm hóa, thưởng điểm…
             IsWin = true;
             IsWinToStopEnemy = true; // Đặt trạng thái thắng để dừng enemy
+
         }
         else
         {

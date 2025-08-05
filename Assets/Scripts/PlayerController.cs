@@ -11,9 +11,10 @@ namespace Game.Scripts.Gameplay
         private static readonly int IsJump = Animator.StringToHash("isJump");
         private static readonly int IsRun = Animator.StringToHash("isRun");
 
-       /* [Header("Camera Stuff")]
-        [SerializeField] private GameObject _cameraFollowGO;
-*/
+        /* [Header("Camera Stuff")]
+         [SerializeField] private GameObject _cameraFollowGO;
+ */
+       
         public float moveSpeed = 5f;
         public float jumpForce = 10f;
         public Transform groundCheck;
@@ -37,12 +38,14 @@ namespace Game.Scripts.Gameplay
         private bool _isInvincible = false;
         private bool _isPaused = false;
         private bool _endCouroutine = false;
+       
 
-      //  private CameraFollowObject _cameraFollowObject;
+        //  private CameraFollowObject _cameraFollowObject;
 
         private void Start()
         {
-           // _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
+            // _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
+           
         }
         public void Stop()
         {
@@ -170,6 +173,7 @@ namespace Game.Scripts.Gameplay
                         hit.gameObject.GetComponent<EnemyController>().StopMovement();
                         GameManager.Instance.IsWin = false;
                         isSignaling = false;
+                       
                     }
                     if (!isSignaling)
                     {
@@ -258,47 +262,49 @@ namespace Game.Scripts.Gameplay
             _endCouroutine = false; // Reset flag after coroutine ends
         }
 
-       /* private void TurnCheck()
-        {
-            if (Input.x > 0 && !IsFacingRight)
-            {
-                Turn();
-            }
-            else if(Input.x > 0 && IsFacingRight)
-            {
-                Turn();
-            }
-        }
+        /* private void TurnCheck()
+         {
+             if (Input.x > 0 && !IsFacingRight)
+             {
+                 Turn();
+             }
+             else if(Input.x > 0 && IsFacingRight)
+             {
+                 Turn();
+             }
+         }
 
-        private void Turn()
-        {
-            if (IsFacingRight)
-            {
-                Vector3 rotator = new Vector3(transform.rotation.x,180f, transform.rotation.z);
-                transform.rotation = Quaternion.Euler(rotator);
-                IsFacingRight = !IsFacingRight;
-                _cameraFollowObject.CallTurn();
-            }
-            else
-            {
-                Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
-                transform.rotation = Quaternion.Euler(rotator);
-                IsFacingRight = !IsFacingRight;
-                _cameraFollowObject.CallTurn();
-            }
-        }
+         private void Turn()
+         {
+             if (IsFacingRight)
+             {
+                 Vector3 rotator = new Vector3(transform.rotation.x,180f, transform.rotation.z);
+                 transform.rotation = Quaternion.Euler(rotator);
+                 IsFacingRight = !IsFacingRight;
+                 _cameraFollowObject.CallTurn();
+             }
+             else
+             {
+                 Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
+                 transform.rotation = Quaternion.Euler(rotator);
+                 IsFacingRight = !IsFacingRight;
+                 _cameraFollowObject.CallTurn();
+             }
+         }
 
-        private void FixedUpdate()
-        {
-           rb.linearVelocity = new Vector2(rb.linearVelocity.x,Mathf.Clamp( -_maxFallSpeed, _maxFallSpeed *5));
-            
-            if (moveInput > 0 || moveInput < 0)  
-            {
-                TurnCheck();
-            }
-        }*/
-  //  }
+         private void FixedUpdate()
+         {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x,Mathf.Clamp( -_maxFallSpeed, _maxFallSpeed *5));
 
+             if (moveInput > 0 || moveInput < 0)  
+             {
+                 TurnCheck();
+             }
+         }*/
+        //  }
+
+
+       
 
     }
 
