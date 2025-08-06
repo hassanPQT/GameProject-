@@ -1,63 +1,56 @@
 using UnityEngine;
 using UnityEngine.UI;
-using System;
 using System.Collections.Generic;
-using Random = UnityEngine.Random;
 using DG.Tweening;
 
 public class SongWheelController : MonoBehaviour
 {
-    private static readonly int isSing = Animator.StringToHash("isSing");
+    private static readonly int IsSing = Animator.StringToHash("isSing");
 
     [Header("UI")]
-    public RectTransform wheelRect;       // RectTransform của SongWheel
-    public Image[] slices;                // Mảng 8 Image Slice0…Slice7
+    [SerializeField] private RectTransform _wheelRect;
+    [SerializeField] private Image[] _slices;
 
-    [SerializeField] private GameManager gameManager; // Tham chiếu đến GameManager
-    [SerializeField] private Animator animator;
+    [SerializeField] private GameManager _gameManager;
+    [SerializeField] private Animator _animator;
 
-    private List<int> selectSlices;
-    private bool wheelActive = false;
-    private int currentSlice = -1;
-    private Vector2[] sliceSize;
+    private List<int> _selectSlices = new();
+    private bool _wheelActive;
+    private int _currentSlice = -1;
+    private Vector2[] _sliceSize;
 
-    void Awake()
+    private void Awake()
     {
-        // Khởi tạo scale cho animation
-        wheelRect.localScale = Vector3.zero;
+        _wheelRect.localScale = Vector3.zero;
     }
 
-    void Start()
+    private void Start()
     {
-        selectSlices = new List<int>();
-        sliceSize = new Vector2[slices.Length];
-        // Lưu kích thước ban đầu của từng slice
-        for (int i = 0; i < slices.Length; i++)
-        {
-            sliceSize[i] = slices[i].GetComponent<RectTransform>().sizeDelta;
-        }
+        _sliceSize = new Vector2[_slices.Length];
+        for (int i = 0; i < _slices.Length; i++)
+            _sliceSize[i] = _slices[i].GetComponent<RectTransform>().sizeDelta;
     }
 
-    void Update()
+    private void Update()
     {
-        if (!wheelActive && Input.GetMouseButtonDown(1))
+        if (!_wheelActive && Input.GetMouseButtonDown(1))
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             ActivateWheel();
         }
 
-        if (wheelActive)
+        if (_wheelActive)
         {
             UpdateSelection();
 
             if (Input.GetMouseButtonDown(0))
             {
-                selectSlices.Add(currentSlice);
-                if (gameManager != null && selectSlices.Count == 2)
+                _selectSlices.Add(_currentSlice);
+                if (_gameManager != null && _selectSlices.Count == 2)
                 {
-                    gameManager.OnPlayerSelect(selectSlices.ToArray());
-                    selectSlices.Clear();
+                    _gameManager.OnPlayerSelect(_selectSlices.ToArray());
+                    _selectSlices.Clear();
                 }
             }
 
@@ -72,69 +65,77 @@ public class SongWheelController : MonoBehaviour
 
     public void ActivateWheel()
     {
-        animator.SetBool(isSing, true);
-        wheelActive = true;
-        wheelRect.gameObject.SetActive(true);
-        wheelRect.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
-
-        // DOTween: scale pop-in
-        wheelRect.localScale = Vector3.zero;
-        wheelRect.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
+        _animator.SetBool(IsSing, true);
+        _wheelActive = true;
+        _wheelRect.gameObject.SetActive(true);
+        _wheelRect.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        _wheelRect.localScale = Vector3.zero;
+        _wheelRect.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
     }
 
     public void ReleaseWheel()
     {
-        animator.SetBool(isSing, false);
-        wheelActive = false;
-
-        // DOTween: scale pop-out then deactivate
-        wheelRect.DOScale(0f, 0.15f).SetEase(Ease.InBack)
-            .OnComplete(() => wheelRect.gameObject.SetActive(false));
-
+        _animator.SetBool(IsSing, false);
+        _wheelActive = false;
+        _wheelRect.DOScale(0f, 0.15f).SetEase(Ease.InBack)
+            .OnComplete(() => _wheelRect.gameObject.SetActive(false));
         ResetHighlight();
-        currentSlice = -1;
+        _currentSlice = -1;
     }
 
-    void UpdateSelection()
+    private void UpdateSelection()
     {
         Vector2 mousePos = Input.mousePosition;
-        Vector2 localPoint;
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
-            wheelRect, mousePos, null, out localPoint);
+            _wheelRect, mousePos, null, out Vector2 localPoint);
 
         float angle = Mathf.Atan2(localPoint.y, localPoint.x) * Mathf.Rad2Deg;
         if (angle < 0) angle += 360f;
 
         int slice = 0;
         if (angle >= 20 && angle < 70) slice = 7;
-        if (angle >= 70 && angle < 110) slice = 0;
-        if (angle >= 110 && angle < 160) slice = 1;
-        if (angle >= 160 && angle < 200) slice = 2;
-        if (angle >= 200 && angle < 250) slice = 3;
-        if (angle >= 250 && angle < 290) slice = 4;
-        if (angle >= 290 && angle < 340) slice = 5;
-        if (angle >= 340 || angle < 20) slice = 6;
+        else if (angle >= 70 && angle < 110) slice = 0;
+        else if (angle >= 110 && angle < 160) slice = 1;
+        else if (angle >= 160 && angle < 200) slice = 2;
+        else if (angle >= 200 && angle < 250) slice = 3;
+        else if (angle >= 250 && angle < 290) slice = 4;
+        else if (angle >= 290 && angle < 340) slice = 5;
+        else if (angle >= 340 || angle < 20) slice = 6;
 
-        if (slice != currentSlice)
+        if (slice != _currentSlice)
         {
             HighlightSlice(slice);
-            currentSlice = slice;
+            _currentSlice = slice;
         }
     }
 
-    void HighlightSlice(int slice)
+    private void HighlightSlice(int slice)
     {
-        for (int i = 0; i < slices.Length; i++)
-            slices[i].GetComponent<RectTransform>().sizeDelta = sliceSize[i];
+        for (int i = 0; i < _slices.Length; i++)
+        {
+            if (_slices[i].gameObject.activeSelf)
+            {
+                _slices[i].transform.GetChild(0).gameObject.SetActive(false);
+                _slices[i].GetComponent<RectTransform>().sizeDelta = _sliceSize[i];
+            }
+        }
 
-        slices[slice].GetComponent<RectTransform>().sizeDelta = new Vector2(
-            sliceSize[slice].x + 10,
-            sliceSize[slice].y + 10);
+        if(!_slices[slice].gameObject.activeSelf)
+        {
+            return;
+        }
+
+        _slices[slice].GetComponent<RectTransform>().sizeDelta = _sliceSize[slice] + new Vector2(10, 10);
+
+        _slices[slice].transform.GetChild(0).gameObject.SetActive(true);
     }
 
-    void ResetHighlight()
+    private void ResetHighlight()
     {
-        for (int i = 0; i < slices.Length; i++)
-            slices[i].GetComponent<RectTransform>().sizeDelta = sliceSize[i];
+        for (int i = 0; i < _slices.Length; i++)
+        {
+            if (_slices[i].gameObject.activeSelf)
+                _slices[i].GetComponent<RectTransform>().sizeDelta = _sliceSize[i];
+        }
     }
 }

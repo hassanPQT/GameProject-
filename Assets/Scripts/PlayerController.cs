@@ -1,44 +1,46 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace Game.Scripts.Gameplay
 {
+    [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
     public class PlayerController : MonoBehaviour
     {
         private static readonly int IsJump = Animator.StringToHash("isJump");
         private static readonly int IsRun = Animator.StringToHash("isRun");
 
+
+        [Header("Movement")]
+        [SerializeField] private float _moveSpeed = 5f;
+        [SerializeField] private float _jumpForce = 10f;
+        [SerializeField] private Transform _groundCheck;
+        [SerializeField] private float _groundCheckRadius = 0.2f;
+        [SerializeField] private LayerMask _groundLayer;
+
         /* [Header("Camera Stuff")]
          [SerializeField] private GameObject _cameraFollowGO;
  */
        
-        public float moveSpeed = 5f;
-        public float jumpForce = 10f;
-        public Transform groundCheck;
-        public bool isSignaling = false;
-        public float groundCheckRadius = 0.2f;
-        public LayerMask groundLayer;
+ 
 
-        [SerializeField] private Rigidbody2D rb;
-        [SerializeField] private Animator animator;
+        [Header("State")]
+        public bool IsSignaling = false;
+        private bool _checkDoubleJump = false;
 
+
+        [Header("Invincibility")]
+        [SerializeField] private GameObject _visualObject;
+        [SerializeField] private float _invincibleDuration = 1f;
+
+        [SerializeField] private Rigidbody2D _rb;
+        [SerializeField] private Animator _animator;
         private bool _isGrounded;
-        private int _jumpCount = 0;
-        public bool CheckDoubleJump = false;
-        private Vector2 _lastMoveInput = Vector2.right;
-        private int _maxJumpCount = 0;
+        private int _jumpCount;
+        private int _maxJumpCount;
+        private bool _isInvincible;
+        private bool _isPaused;
+        private bool _endCoroutine;
 
-
-        // invicible
-        [SerializeField] private GameObject visualObject;
-        [SerializeField] private float invincibleDuration = 1f;
-        private bool _isInvincible = false;
-        private bool _isPaused = false;
-        private bool _endCouroutine = false;
-       
 
         //  private CameraFollowObject _cameraFollowObject;
 
@@ -52,58 +54,40 @@ namespace Game.Scripts.Gameplay
             rb.linearVelocity = Vector2.zero;
         }
 
+
         private void Update()
         {
             DetectEnemy();
             CheckGround();
-
-            animator.SetBool(IsJump, !_isGrounded);
-
+            _animator.SetBool(IsJump, !_isGrounded);
         }
 
         private void CheckGround()
         {
-            _isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-            if (_isGrounded)
-            {
-                _jumpCount = 0;
-
-            }
-
-
+            _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _groundLayer);
+            if (_isGrounded) _jumpCount = 0;
         }
-
 
         public void Move(Vector2 input)
         {
-            if (_isPaused) return; // Prevent movement when paused
-            rb.linearVelocity = new Vector2(input.x * moveSpeed, rb.linearVelocity.y);
-
-            if (input != Vector2.zero)
-                _lastMoveInput = input.normalized;
-
-            animator.SetBool(IsRun, Mathf.Abs(input.x) > 0.01f && _isGrounded);
+            if (_isPaused) return;
+            _rb.linearVelocity = new Vector2(input.x * _moveSpeed, _rb.linearVelocity.y);
+            _animator.SetBool(IsRun, Mathf.Abs(input.x) > 0.01f && _isGrounded);
 
             if (Mathf.Abs(input.x) > 0.01f)
-            {
                 transform.localScale = new Vector3(Mathf.Sign(input.x), 1, 1);
-            }
         }
 
         public void Jump()
         {
-            if (_isPaused) return; // Prevent jumping when paused
+            if (_isPaused) return;
             if (_jumpCount <= _maxJumpCount && _isGrounded)
             {
-                rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce);
+                _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
                 _jumpCount++;
-                Debug.Log(_jumpCount + " " + _maxJumpCount);
             }
-            //debug isground and iswin
-            if (GameManager.Instance.IsWin && isSignaling && CheckDoubleJump)
-            {
+            if (GameManager.Instance.IsWin && IsSignaling && _checkDoubleJump)
                 StartCoroutine(DoubleJump());
-            }
         }
 
         public IEnumerator DoubleJump()
@@ -111,111 +95,106 @@ namespace Game.Scripts.Gameplay
             yield return new WaitForSeconds(0.7f);
             if (!_isGrounded)
             {
-                _maxJumpCount++; // Cho phép nhảy đôi
-                Debug.Log("Double Jump Enabled: " + _maxJumpCount);
+                _maxJumpCount++;
                 if (_jumpCount <= _maxJumpCount)
-                {
-                    rb.linearVelocity = new Vector2(rb.linearVelocity.x, jumpForce + 2.5f);
-                    Debug.Log("Double Jump: " + _jumpCount + " " + _maxJumpCount);
-                }
-                _maxJumpCount--; // Reset lại số lần nhảy đôi sau khi thực hiện
-                isSignaling = false; // Reset trạng thái signaling của player
+                    _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce + 2.5f);
+                _maxJumpCount--;
+                IsSignaling = false;
                 GameManager.Instance.IsWin = false;
-                CheckDoubleJump = false; // Reset trạng thái nhảy đôi
+                _checkDoubleJump = false;
             }
         }
 
         public void StartInvincibility()
         {
             if (_isInvincible) return;
-
             StartCoroutine(InvincibilityCoroutine());
         }
 
         private IEnumerator InvincibilityCoroutine()
         {
             _isInvincible = true;
-
             float timer = 0f;
             bool visible = true;
-
-            while (timer < invincibleDuration)
+            while (timer < _invincibleDuration)
             {
                 visible = !visible;
-                if (visualObject != null)
-                    visualObject.SetActive(visible);
-
+                if (_visualObject != null) _visualObject.SetActive(visible);
                 yield return new WaitForSeconds(0.1f);
                 timer += 0.1f;
             }
-
-            if (visualObject != null)
-                visualObject.SetActive(true);
-
+            if (_visualObject != null) _visualObject.SetActive(true);
             _isInvincible = false;
         }
 
         private void DetectEnemy()
         {
-            float detectRadius = 3.5f; // Bán kính phát hiện enemy
-            LayerMask enemyLayer = LayerMask.GetMask("Flying"); // Đảm bảo bạn đã gán layer "Enemy" cho các enemy
-                                                                // Draw detection circle in Scene view for debugging
+            float detectRadius = 3.5f;
+            LayerMask enemyLayer = LayerMask.GetMask("Flying");
             DrawDebugCircle(transform.position, detectRadius, Color.red);
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, enemyLayer);
 
             foreach (var hit in hits)
             {
-                // Có thể kiểm tra thêm nếu cần, ví dụ: tag hoặc component
                 if (hit.CompareTag("Enemy"))
                 {
-                    if (GameManager.Instance.IsWin && isSignaling)
-                    {
-                        hit.gameObject.GetComponent<EnemyController>().StopMovement();
-                        GameManager.Instance.IsWin = false;
-                        isSignaling = false;
-                       
-                    }
-                    if (!isSignaling)
-                    {
-                        if (!_endCouroutine && hit.gameObject.GetComponent<EnemyController>().enabled)
-                        {
-                            StartCoroutine(PausePlayer(2f));
-                        }
-                        Debug.Log("Enemy detected: " + hit.gameObject.name);
-                        hit.gameObject.GetComponent<EnemyController>().OnSignalDirection += GameManager.Instance.OnEnemySignal;
-                        isSignaling = hit.gameObject.GetComponent<EnemyController>().SignalRandomDirection();
-                    }
+
+                    HandleEnemyDetection(hit.GetComponent<EnemyController>());
 
                 }
                 else if (hit.CompareTag("Bird"))
                 {
-                    //debug is win and signaling
-                    if (GameManager.Instance.IsWin && isSignaling)
-                    {
-                        CheckDoubleJump = true; // Set trạng thái nhảy đôi
-                        Debug.Log("isWin: " + GameManager.Instance.IsWin);
-                        if (hit.gameObject.GetComponent<BirdController>() != null)
-                            hit.gameObject.GetComponent<BirdController>().FlyIntoPlayer();
-                        hit.gameObject.GetComponent<BirdController>().StopMovement();
-                    }
-                    else
-                    if (!isSignaling)
-                    {
-                        if(!_endCouroutine)
-                        {
-                            StartCoroutine(PausePlayer(2f));
-                        }
-                        Debug.Log("Bird detected: " + hit.gameObject.name);
-                        hit.gameObject.GetComponent<BirdController>().OnSignalDirection += GameManager.Instance.OnEnemySignal;
-                        isSignaling = hit.gameObject.GetComponent<BirdController>().SignalRandomDirection();
-                    }
+                    HandleBirdDetection(hit.GetComponent<BirdController>());
                 }
             }
         }
 
+        private void HandleEnemyDetection(EnemyController enemy)
+        {
+            if (enemy == null) return;
+            if (GameManager.Instance.IsWin && IsSignaling)
+            {
+                enemy.StopMovement();
+                GameManager.Instance.IsWin = false;
+                IsSignaling = false;
+            }
+            else if(!GameManager.Instance.IsWin && IsSignaling)
+            {
+                if (!_endCoroutine && enemy.enabled)
+                    PausePlayer();
+            }
+            else if (!IsSignaling)
+            {
+                if (!_endCoroutine && enemy.enabled)
+                    PausePlayer();
+                enemy.OnSignalDirection += GameManager.Instance.OnEnemySignal;
+                IsSignaling = enemy.SignalRandomDirection();
+            }
+        }
 
+        private void HandleBirdDetection(BirdController bird)
+        {
+            if (bird == null) return;
+            if (GameManager.Instance.IsWin && IsSignaling)
+            {
+                _checkDoubleJump = true;
+                bird.FlyIntoPlayer();
+                bird.StopMovement();
+            }
+            else if (!GameManager.Instance.IsWin && IsSignaling)
+            {
+                if (!_endCoroutine && bird.enabled)
+                    PausePlayer();
+            }
+            else if (!IsSignaling)
+            {
+                if (!_endCoroutine && bird.enabled)
+                    PausePlayer();
+                bird.OnSignalDirection += GameManager.Instance.OnEnemySignal;
+                IsSignaling = bird.SignalRandomDirection();
+            }
+        }
 
-        // Helper method to draw a circle in the Scene view
         private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
         {
             float angle = 0f;
@@ -231,35 +210,23 @@ namespace Game.Scripts.Gameplay
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            //if (other.CompareTag("EndPoint"))
-            //{
-            //    Destroy(other.gameObject);
-            //    GameController.Instance.ShowEndGame();
-            //}
-
-            //if (other.CompareTag("Coin"))
-            //{
-            //    Destroy(other.gameObject);
-            //    GameController.Instance.EarnCoin();
-            //}
-
-            //if (other.CompareTag("Trap") && !_isInvincible)
-            //{
-            //    GameManager.Instance.TakeDamage(1);
-            //    StartInvincibility();
-            //}
+            // Add trigger logic here if needed
         }
-        private IEnumerator PausePlayer(float duration)
+
+
+        private void PausePlayer()
         {
-            yield return new WaitForSeconds(0.2f);
-            _isPaused = true;
-            rb.linearVelocity = Vector2.zero; // Stop movement immediately
-            animator.SetBool(IsRun, false);
-            yield return new WaitForSeconds(duration);
-            _isPaused = false;
-            _endCouroutine = true; // Set flag to indicate coroutine has ended
-            yield return new WaitForSeconds(5f); // Small delay to ensure state is reset
-            _endCouroutine = false; // Reset flag after coroutine ends
+            //yield return new WaitForSeconds(0.2f);
+            //_isPaused = true;
+            _rb.linearVelocity = Vector2.zero;
+            _animator.SetBool(IsRun, false);
+            //yield return new WaitForSeconds(duration);
+            //_isPaused = false;
+        }
+
+        public void Stop()
+        {
+            _rb.linearVelocity = Vector2.zero;
         }
 
         /* private void TurnCheck()
