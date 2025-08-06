@@ -112,7 +112,10 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Đúng! Enemy bị cảm hóa.");
             IsWin = true;
-            IsWinToStopEnemy = true;
+
+            IsWinToStopEnemy = true; // Đặt trạng thái thắng để dừng enemy
+
+
         }
         else
         {

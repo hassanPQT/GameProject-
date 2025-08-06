@@ -9,6 +9,7 @@ namespace Game.Scripts.Gameplay
         private static readonly int IsJump = Animator.StringToHash("isJump");
         private static readonly int IsRun = Animator.StringToHash("isRun");
 
+
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 5f;
         [SerializeField] private float _jumpForce = 10f;
@@ -16,9 +17,16 @@ namespace Game.Scripts.Gameplay
         [SerializeField] private float _groundCheckRadius = 0.2f;
         [SerializeField] private LayerMask _groundLayer;
 
+        /* [Header("Camera Stuff")]
+         [SerializeField] private GameObject _cameraFollowGO;
+ */
+       
+ 
+
         [Header("State")]
         public bool IsSignaling = false;
         private bool _checkDoubleJump = false;
+
 
         [Header("Invincibility")]
         [SerializeField] private GameObject _visualObject;
@@ -32,6 +40,20 @@ namespace Game.Scripts.Gameplay
         private bool _isInvincible;
         private bool _isPaused;
         private bool _endCoroutine;
+
+
+        //  private CameraFollowObject _cameraFollowObject;
+
+        private void Start()
+        {
+            // _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
+           
+        }
+        public void Stop()
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+
 
         private void Update()
         {
@@ -116,7 +138,9 @@ namespace Game.Scripts.Gameplay
             {
                 if (hit.CompareTag("Enemy"))
                 {
+
                     HandleEnemyDetection(hit.GetComponent<EnemyController>());
+
                 }
                 else if (hit.CompareTag("Bird"))
                 {
@@ -189,6 +213,7 @@ namespace Game.Scripts.Gameplay
             // Add trigger logic here if needed
         }
 
+
         private void PausePlayer()
         {
             //yield return new WaitForSeconds(0.2f);
@@ -203,6 +228,51 @@ namespace Game.Scripts.Gameplay
         {
             _rb.linearVelocity = Vector2.zero;
         }
+
+        /* private void TurnCheck()
+         {
+             if (Input.x > 0 && !IsFacingRight)
+             {
+                 Turn();
+             }
+             else if(Input.x > 0 && IsFacingRight)
+             {
+                 Turn();
+             }
+         }
+
+         private void Turn()
+         {
+             if (IsFacingRight)
+             {
+                 Vector3 rotator = new Vector3(transform.rotation.x,180f, transform.rotation.z);
+                 transform.rotation = Quaternion.Euler(rotator);
+                 IsFacingRight = !IsFacingRight;
+                 _cameraFollowObject.CallTurn();
+             }
+             else
+             {
+                 Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
+                 transform.rotation = Quaternion.Euler(rotator);
+                 IsFacingRight = !IsFacingRight;
+                 _cameraFollowObject.CallTurn();
+             }
+         }
+
+         private void FixedUpdate()
+         {
+            rb.linearVelocity = new Vector2(rb.linearVelocity.x,Mathf.Clamp( -_maxFallSpeed, _maxFallSpeed *5));
+
+             if (moveInput > 0 || moveInput < 0)  
+             {
+                 TurnCheck();
+             }
+         }*/
+        //  }
+
+
+       
+
     }
 
 
