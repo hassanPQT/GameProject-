@@ -1,14 +1,20 @@
+using DG.Tweening;
 using System;
 using System.Collections;
 using UnityEngine;
 
 public class BirdController : MonoBehaviour
 {
-    [SerializeField] private float moveDistance = 2f;
+    [SerializeField] private float moveDistance = 0.35f;
     [SerializeField] private float moveDuration = 0.5f;
     [SerializeField] private float flySpeed = 10f;
     [SerializeField] private float stayDuration = 10f;
     [SerializeField] private float hoverHeight = 1.5f;
+
+    [Header("Signal Effect")]
+    [SerializeField] private GameObject[] signalEffectPrefab;
+    [SerializeField] private float _effectDuration = 0.5f;
+    [SerializeField] private float _effectMaxScale = 1.5f;
 
     public event Action<SongDirection[]> OnSignalDirection;
 
@@ -19,7 +25,7 @@ public class BirdController : MonoBehaviour
     {
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)
-            _currentDir[i] = (SongDirection)UnityEngine.Random.Range(0, 7);
+            _currentDir[i] = (SongDirection)GameManager.Instance.DirectionNumber[UnityEngine.Random.Range(0, GameManager.Instance.DirectionNumber.Length)];
 
         OnSignalDirection?.Invoke(_currentDir);
         StartCoroutine(MoveInDirection(_currentDir));
@@ -31,6 +37,9 @@ public class BirdController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         foreach (var d in dir)
         {
+            ShowSignalEffect(d);
+            yield return new WaitForSeconds(_effectDuration * 0.5f);
+
             Vector3 dirVec = DirectionToVector(d);
             Vector3 start = transform.position;
             Vector3 end = start + dirVec * moveDistance;
@@ -108,5 +117,26 @@ public class BirdController : MonoBehaviour
     {
         Debug.Log("Bird stay time ended.");
         // Add next logic here
+    }
+
+    private void ShowSignalEffect(SongDirection dir)
+    {
+        if (signalEffectPrefab == null || signalEffectPrefab.Length == 0) return;
+
+        Vector3 spawnPos = transform.position + DirectionToVector(dir) * (moveDistance + 1);
+        GameObject fx = Instantiate(signalEffectPrefab[UnityEngine.Random.Range(0, signalEffectPrefab.Length)], spawnPos, Quaternion.identity);
+
+        // Reset scale and alpha
+        fx.transform.localScale = Vector3.zero;
+        var sr = fx.GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.color = new Color(1f, 1f, 1f, 1f);
+
+        // Tween pop-in and fade-out
+        Sequence seq = DOTween.Sequence();
+        seq.Append(fx.transform.DOScale(_effectMaxScale, _effectDuration * 0.4f).SetEase(Ease.OutBack));
+        seq.Append(fx.transform.DOScale(_effectMaxScale * 1.2f, _effectDuration * 0.2f).SetEase(Ease.Linear));
+        seq.Join(sr.DOFade(0f, _effectDuration).SetEase(Ease.Linear));
+        seq.OnComplete(() => Destroy(fx));
     }
 }

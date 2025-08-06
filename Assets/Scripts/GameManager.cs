@@ -2,6 +2,18 @@ using Game.Scripts.Gameplay;
 using System.Collections;
 using UnityEngine;
 
+public enum SongDirection
+{
+    Up = 0,
+    UpRight = 7,
+    Right = 6,
+    DownRight = 5,
+    Down = 4,
+    DownLeft = 3,
+    Left = 2,
+    UpLeft = 1
+}
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -16,6 +28,7 @@ public class GameManager : MonoBehaviour
     private bool _isGameEnd;
     private bool _isGamePaused;
 
+    public int[] DirectionNumber;
     public bool IsWin;
     public bool IsWinToStopEnemy;
 
@@ -39,6 +52,14 @@ public class GameManager : MonoBehaviour
         IsWinToStopEnemy = false;
         IsWin = false;
         _userPositivePoint = 3;
+        SetupDirectionNumbers();
+    }
+
+    private void SetupDirectionNumbers()
+    {
+        DirectionNumber = new int[2];
+        DirectionNumber[0] = 0;
+        DirectionNumber[1] = 7;
     }
 
     private void Update()

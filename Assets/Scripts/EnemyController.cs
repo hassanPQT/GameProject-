@@ -1,29 +1,27 @@
 using UnityEngine;
 using System;
 using System.Collections;
-
-public enum SongDirection
-{
-    Up = 0,
-    UpRight = 7,
-    Right = 6,
-    DownRight = 5,
-    Down = 4,
-    DownLeft = 3,
-    Left = 2,
-    UpLeft = 1
-}
+using DG.Tweening;
+using Unity.Mathematics;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] private float moveDistance = 2f;
-    [SerializeField] private float moveDuration = 0.2f;
+    [SerializeField] private float _moveDistance = 2f;
+    [SerializeField] private float _moveDuration = 0.5f;
+    [SerializeField] private float _moveDurationForSongWheel = 0.25f;
+    [SerializeField] private float _moveDistanceForSongWheel = 1f;
+
+    [Header("Signal Effect")]
+    [SerializeField] private GameObject[] signalEffectPrefab;
+    [SerializeField] private float _effectDuration = 0.5f;
+    [SerializeField] private float _effectMaxScale = 1.5f;
 
     public event Action<SongDirection[]> OnSignalDirection;
 
     private Vector3 _leftPos, _rightPos, _startPos;
     private bool _isMoving = true;
     private bool _isMovingInDirection = false;
+    private bool _hasDetectedPlayer = false;
     private SongDirection[] _currentDir;
 
     private void Start()
@@ -35,13 +33,13 @@ public class EnemyController : MonoBehaviour
     private void SetPositionToMove()
     {
         _startPos = transform.position;
-        _leftPos = _startPos + Vector3.left * moveDistance;
-        _rightPos = _startPos + Vector3.right * moveDistance;
+        _leftPos = _startPos + Vector3.left * _moveDistance;
+        _rightPos = _startPos + Vector3.right * _moveDistance;
     }
 
     private void Update()
     {
-        if (!_isMovingInDirection)
+        if (!_isMovingInDirection && !_hasDetectedPlayer)
             DetectPlayer();
     }
 
@@ -58,9 +56,9 @@ public class EnemyController : MonoBehaviour
     {
         Vector3 start = transform.position;
         float elapsed = 0f;
-        while (elapsed < moveDuration)
+        while (elapsed < _moveDuration)
         {
-            transform.position = Vector3.Lerp(start, target, elapsed / moveDuration);
+            transform.position = Vector3.Lerp(start, target, elapsed / _moveDuration);
             elapsed += Time.deltaTime / 1.5f;
             yield return null;
         }
@@ -70,14 +68,21 @@ public class EnemyController : MonoBehaviour
     private void MoveBackToFirstPosition()
     {
         _isMovingInDirection = true;
+        StartCoroutine(_MoveBackCoroutine());
+    }
+
+    private IEnumerator _MoveBackCoroutine()
+    {
         Vector3 start = transform.position;
         Vector3 end = _startPos;
         float elapsed = 0f;
-        while (elapsed < moveDuration)
+        while (elapsed < _moveDuration)
         {
-            transform.position = Vector3.Lerp(start, end, elapsed / moveDuration);
+            transform.position = Vector3.Lerp(start, end, elapsed / _moveDuration);
             elapsed += Time.deltaTime / 1.5f;
+            yield return null;
         }
+        transform.position = end;
     }
 
     private void DetectPlayer()
@@ -93,6 +98,7 @@ public class EnemyController : MonoBehaviour
                 _isMoving = false;
                 StopCoroutine(MoveBackAndForth());
                 MoveBackToFirstPosition();
+                _hasDetectedPlayer = true;
                 return;
             }
         }
@@ -114,7 +120,7 @@ public class EnemyController : MonoBehaviour
 
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)
-            _currentDir[i] = (SongDirection)UnityEngine.Random.Range(0, 7);
+            _currentDir[i] = (SongDirection)GameManager.Instance.DirectionNumber[UnityEngine.Random.Range(0,GameManager.Instance.DirectionNumber.Length)];
 
         OnSignalDirection?.Invoke(_currentDir);
 
@@ -143,30 +149,54 @@ public class EnemyController : MonoBehaviour
 
         foreach (var d in dir)
         {
+            // Hiệu ứng signal trước khi di chuyển
+            ShowSignalEffect(d);
+            yield return new WaitForSeconds(_effectDuration * 0.5f);
+
             Vector3 dirVec = DirectionToVector(d);
             Vector3 start = transform.position;
-            Vector3 end = start + dirVec * moveDistance;
+            Vector3 end = start + dirVec * _moveDistanceForSongWheel;
 
             float t = 0f;
-            while (t < moveDuration)
+            while (t < _moveDurationForSongWheel)
             {
                 t += Time.deltaTime;
-                transform.position = Vector3.Lerp(start, end, t / moveDuration);
+                transform.position = Vector3.Lerp(start, end, t / _moveDurationForSongWheel);
                 yield return null;
             }
 
             t = 0;
-            while (t < moveDuration)
+            while (t < _moveDurationForSongWheel)
             {
                 t += Time.deltaTime;
-                transform.position = Vector3.Lerp(end, start, t / moveDuration);
+                transform.position = Vector3.Lerp(end, start, t / _moveDurationForSongWheel);
                 yield return null;
             }
-            yield return new WaitForSeconds(0.5f);
         }
 
         yield return new WaitForSeconds(10f);
         _isMovingInDirection = false;
+    }
+
+    private void ShowSignalEffect(SongDirection dir)
+    {
+        if (signalEffectPrefab == null || signalEffectPrefab.Length == 0) return;
+
+        Vector3 spawnPos = transform.position + DirectionToVector(dir) * (_moveDistanceForSongWheel + 1);
+        GameObject fx = Instantiate(signalEffectPrefab[UnityEngine.Random.Range(0, signalEffectPrefab.Length)], spawnPos, Quaternion.identity);
+
+        // Reset scale and alpha
+        fx.transform.localScale = Vector3.zero;
+        var sr = fx.GetComponent<SpriteRenderer>();
+        if (sr != null)
+            sr.color = new Color(1f, 1f, 1f, 1f);
+
+        // Tween pop-in and fade-out
+        Sequence seq = DOTween.Sequence();
+        seq.Append(fx.transform.DOScale(_effectMaxScale, _effectDuration * 0.4f).SetEase(Ease.OutBack));
+        seq.Append(fx.transform.DOScale(_effectMaxScale * 1.2f, _effectDuration * 0.2f).SetEase(Ease.Linear));
+        seq.Join(sr.DOFade(0f, _effectDuration).SetEase(Ease.Linear));
+        seq.OnComplete(() => Destroy(fx));
     }
 
     private Vector3 DirectionToVector(SongDirection dir)

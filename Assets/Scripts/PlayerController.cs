@@ -134,10 +134,15 @@ namespace Game.Scripts.Gameplay
                 GameManager.Instance.IsWin = false;
                 IsSignaling = false;
             }
+            else if(!GameManager.Instance.IsWin && IsSignaling)
+            {
+                if (!_endCoroutine && enemy.enabled)
+                    PausePlayer();
+            }
             else if (!IsSignaling)
             {
                 if (!_endCoroutine && enemy.enabled)
-                    StartCoroutine(PausePlayer(2f));
+                    PausePlayer();
                 enemy.OnSignalDirection += GameManager.Instance.OnEnemySignal;
                 IsSignaling = enemy.SignalRandomDirection();
             }
@@ -152,10 +157,15 @@ namespace Game.Scripts.Gameplay
                 bird.FlyIntoPlayer();
                 bird.StopMovement();
             }
+            else if (!GameManager.Instance.IsWin && IsSignaling)
+            {
+                if (!_endCoroutine && bird.enabled)
+                    PausePlayer();
+            }
             else if (!IsSignaling)
             {
-                if (!_endCoroutine)
-                    StartCoroutine(PausePlayer(2f));
+                if (!_endCoroutine && bird.enabled)
+                    PausePlayer();
                 bird.OnSignalDirection += GameManager.Instance.OnEnemySignal;
                 IsSignaling = bird.SignalRandomDirection();
             }
@@ -179,17 +189,14 @@ namespace Game.Scripts.Gameplay
             // Add trigger logic here if needed
         }
 
-        private IEnumerator PausePlayer(float duration)
+        private void PausePlayer()
         {
-            yield return new WaitForSeconds(0.2f);
-            _isPaused = true;
+            //yield return new WaitForSeconds(0.2f);
+            //_isPaused = true;
             _rb.linearVelocity = Vector2.zero;
             _animator.SetBool(IsRun, false);
-            yield return new WaitForSeconds(duration);
-            _isPaused = false;
-            _endCoroutine = true;
-            yield return new WaitForSeconds(5f);
-            _endCoroutine = false;
+            //yield return new WaitForSeconds(duration);
+            //_isPaused = false;
         }
 
         public void Stop()

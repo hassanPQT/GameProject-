@@ -112,14 +112,30 @@ public class SongWheelController : MonoBehaviour
     private void HighlightSlice(int slice)
     {
         for (int i = 0; i < _slices.Length; i++)
-            _slices[i].GetComponent<RectTransform>().sizeDelta = _sliceSize[i];
+        {
+            if (_slices[i].gameObject.activeSelf)
+            {
+                _slices[i].transform.GetChild(0).gameObject.SetActive(false);
+                _slices[i].GetComponent<RectTransform>().sizeDelta = _sliceSize[i];
+            }
+        }
+
+        if(!_slices[slice].gameObject.activeSelf)
+        {
+            return;
+        }
 
         _slices[slice].GetComponent<RectTransform>().sizeDelta = _sliceSize[slice] + new Vector2(10, 10);
+
+        _slices[slice].transform.GetChild(0).gameObject.SetActive(true);
     }
 
     private void ResetHighlight()
     {
         for (int i = 0; i < _slices.Length; i++)
-            _slices[i].GetComponent<RectTransform>().sizeDelta = _sliceSize[i];
+        {
+            if (_slices[i].gameObject.activeSelf)
+                _slices[i].GetComponent<RectTransform>().sizeDelta = _sliceSize[i];
+        }
     }
 }
