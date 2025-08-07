@@ -10,6 +10,7 @@ public class BirdController : MonoBehaviour
     [SerializeField] private float flySpeed = 10f;
     [SerializeField] private float stayDuration = 10f;
     [SerializeField] private float hoverHeight = 1.5f;
+    [SerializeField] private GameObject happyMood; 
 
     [Header("Signal Effect")]
     [SerializeField] private GameObject[] signalEffectPrefab;
@@ -21,7 +22,22 @@ public class BirdController : MonoBehaviour
     private SongDirection[] _currentDir;
     private Vector3 _smoothVelocity = Vector3.zero;
 
-    public bool SignalRandomDirection()
+    public void SetActiveMood() { 
+        if (happyMood != null)
+        {
+            happyMood.SetActive(true);
+        }
+	}
+
+    public void SetInactiveMood() { 
+        if (happyMood != null)
+        {
+            happyMood.SetActive(false);
+        }
+    }
+  
+
+	public bool SignalRandomDirection()
     {
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)

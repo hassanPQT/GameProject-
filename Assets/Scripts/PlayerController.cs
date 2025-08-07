@@ -151,7 +151,9 @@ namespace Game.Scripts.Gameplay
             if (GameManager.Instance.IsWin && IsSignaling)
             {
                 enemy.StopMovement();
-                GameManager.Instance.IsWin = false;
+				enemy.SetInactiveAngryMood();
+				enemy.SetActiveMood();             
+				GameManager.Instance.IsWin = false;
                 IsSignaling = false;
             }
             else if(!GameManager.Instance.IsWin && IsSignaling)
@@ -175,7 +177,8 @@ namespace Game.Scripts.Gameplay
             {
                 _checkDoubleJump = true;
                 bird.FlyIntoPlayer();
-                bird.StopMovement();
+                bird.SetActiveMood();
+				bird.StopMovement();
             }
             else if (!GameManager.Instance.IsWin && IsSignaling)
             {
