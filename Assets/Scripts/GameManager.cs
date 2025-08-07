@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public int[] DirectionNumber;
     public bool IsWin;
+    public float Timer;
     public bool IsWinToStopEnemy;
 
     private void Awake()
@@ -93,12 +94,13 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitForInput()
     {
-        float timer = 0f;
-        while (_awaitingInput && timer < _inputTimeout)
+        Timer = 0f;
+        while (_awaitingInput && Timer < _inputTimeout)
         {
-            timer += Time.deltaTime;
+            Timer += Time.deltaTime;
             yield return null;
         }
+
         if (_awaitingInput)
             OnPlayerResult(false);
     }

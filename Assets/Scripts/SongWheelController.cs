@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using DG.Tweening;
+using System;
 
 public class SongWheelController : MonoBehaviour
 {
@@ -44,6 +45,11 @@ public class SongWheelController : MonoBehaviour
         {
             UpdateSelection();
 
+            if(GameManager.Instance.Player.IsSignaling)
+            {
+                PlayerCountDownAnimation();
+            }
+
             if (Input.GetMouseButtonDown(0))
             {
                 _selectSlices.Add(_currentSlice);
@@ -60,6 +66,18 @@ public class SongWheelController : MonoBehaviour
                 Cursor.visible = false;
                 ReleaseWheel();
             }
+        }
+    }
+
+    private void PlayerCountDownAnimation()
+    {
+        if (_currentSlice != -1 && _slices[_currentSlice].gameObject.activeSelf)
+        {
+            Image timerImage = _slices[_currentSlice].transform.GetChild(1).gameObject.GetComponent<Image>();
+            float targetFill = GameManager.Instance.Timer;
+            timerImage.DOKill();
+            timerImage.DOFillAmount(targetFill, 3f)
+                .OnComplete(() => timerImage.fillAmount = 0f);
         }
     }
 
@@ -116,6 +134,7 @@ public class SongWheelController : MonoBehaviour
             if (_slices[i].gameObject.activeSelf)
             {
                 _slices[i].transform.GetChild(0).gameObject.SetActive(false);
+                _slices[i].transform.GetChild(1).gameObject.SetActive(false);
                 _slices[i].GetComponent<RectTransform>().sizeDelta = _sliceSize[i];
             }
         }
@@ -128,6 +147,7 @@ public class SongWheelController : MonoBehaviour
         _slices[slice].GetComponent<RectTransform>().sizeDelta = _sliceSize[slice] + new Vector2(10, 10);
 
         _slices[slice].transform.GetChild(0).gameObject.SetActive(true);
+        _slices[slice].transform.GetChild(1).gameObject.SetActive(true);
     }
 
     private void ResetHighlight()

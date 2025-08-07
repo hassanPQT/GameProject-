@@ -20,8 +20,6 @@ namespace Game.Scripts.Gameplay
         /* [Header("Camera Stuff")]
          [SerializeField] private GameObject _cameraFollowGO;
  */
-       
- 
 
         [Header("State")]
         public bool IsSignaling = false;
