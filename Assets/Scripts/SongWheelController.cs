@@ -1,3 +1,9 @@
+﻿using DG.Tweening;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -15,14 +21,18 @@ public class SongWheelController : MonoBehaviour
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private Animator _animator;
 
+    private int _songWheelTime = 3000;
+    private CancellationTokenSource _cts;
     private List<int> _selectSlices = new();
     private bool _wheelActive;
     private int _currentSlice = -1;
+    private bool _mouseRightDelay = false;
     private Vector2[] _sliceSize;
 
     private void Awake()
     {
         _wheelRect.localScale = Vector3.zero;
+        GAME_STAT.SONG_WHEEL_TIME = _songWheelTime;
     }
 
     private void Start()
@@ -34,13 +44,16 @@ public class SongWheelController : MonoBehaviour
 
     private void Update()
     {
-        if (!_wheelActive && Input.GetMouseButtonDown(1))
+        if (!_wheelActive && !_mouseRightDelay  && Input.GetMouseButtonDown(1))
         {
+            _mouseRightDelay = true;
+            StartCoroutine(ResetLeftClickCooldown());
+
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
             ActivateWheel();
         }
-
+     
         if (_wheelActive)
         {
             UpdateSelection();
@@ -52,9 +65,12 @@ public class SongWheelController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
+                Debug.Log(_currentSlice);
                 _selectSlices.Add(_currentSlice);
                 if (_gameManager != null && _selectSlices.Count == 2)
                 {
+                    //OnPlayerResult(OnPlayerSelect(DirectionNumber));
+
                     _gameManager.OnPlayerSelect(_selectSlices.ToArray());
                     _selectSlices.Clear();
                 }
@@ -80,23 +96,45 @@ public class SongWheelController : MonoBehaviour
                 .OnComplete(() => timerImage.fillAmount = 0f);
         }
     }
-
+    private IEnumerator ResetLeftClickCooldown()
+    {
+        yield return new WaitForSeconds(0.2f);
+        _mouseRightDelay = false;
+    }
     public void ActivateWheel()
     {
-        _animator.SetBool(IsSing, true);
-        _wheelActive = true;
-        _wheelRect.gameObject.SetActive(true);
-        _wheelRect.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
-        _wheelRect.localScale = Vector3.zero;
-        _wheelRect.DOScale(1f, 0.2f).SetEase(Ease.OutBack);
-    }
 
+       
+            _animator.SetBool(IsSing, true);
+            _wheelActive = true;
+            _wheelRect.gameObject.SetActive(true);
+            _wheelRect.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
+            _wheelRect.localScale = Vector3.zero;
+
+            // Animation mở bánh xe
+            _wheelRect.DOScale(1f, 0.2f)
+                .SetEase(Ease.OutBack);
+
+        StartCoroutine(Delay3s());
+    }
+    public void ModifierSongWheelTime(float mult)
+    {
+        _songWheelTime = (int) (GAME_STAT.SONG_WHEEL_TIME * mult);
+    }
+    private IEnumerator Delay3s()
+    {
+        yield return new WaitForSeconds(_songWheelTime/1000);
+        if (_wheelActive)
+        ReleaseWheel() ;
+    }
     public void ReleaseWheel()
     {
+        
         _animator.SetBool(IsSing, false);
         _wheelActive = false;
         _wheelRect.DOScale(0f, 0.15f).SetEase(Ease.InBack)
             .OnComplete(() => _wheelRect.gameObject.SetActive(false));
+        
         ResetHighlight();
         _currentSlice = -1;
     }
@@ -158,4 +196,12 @@ public class SongWheelController : MonoBehaviour
                 _slices[i].GetComponent<RectTransform>().sizeDelta = _sliceSize[i];
         }
     }
+
+    private void OnDestroy()
+    {
+        _cts?.Cancel();
+        _cts?.Dispose();
+        _cts = null; // Tránh sử dụng lại
+    }
+
 }

@@ -155,4 +155,6 @@ public class BirdController : MonoBehaviour
         seq.Join(sr.DOFade(0f, _effectDuration).SetEase(Ease.Linear));
         seq.OnComplete(() => Destroy(fx));
     }
+
+  
 }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.Scripts.Gameplay
 {
-    [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerController : MonoBehaviour
     {
         private static readonly int IsJump = Animator.StringToHash("isJump");
@@ -12,14 +12,13 @@ namespace Game.Scripts.Gameplay
 
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 5f;
+        [SerializeField] private float _modifierSpeed = 1f;
+        [SerializeField] private float _runModifier = 1f;
         [SerializeField] private float _jumpForce = 10f;
         [SerializeField] private Transform _groundCheck;
         [SerializeField] private float _groundCheckRadius = 0.2f;
         [SerializeField] private LayerMask _groundLayer;
 
-        /* [Header("Camera Stuff")]
-         [SerializeField] private GameObject _cameraFollowGO;
- */
 
         [Header("State")]
         public bool IsSignaling = false;
@@ -33,22 +32,26 @@ namespace Game.Scripts.Gameplay
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private Animator _animator;
         private bool _isGrounded;
-        private int _jumpCount;
-        private int _maxJumpCount;
         private bool _isInvincible;
         private bool _isPaused;
         private bool _endCoroutine;
+        [SerializeField]  private bool _canRun;
+        [SerializeField] private bool _isRunning;
+        private int _jumpCount;
+        private int _maxJumpCount;
 
 
         //  private CameraFollowObject _cameraFollowObject;
 
         private void Start()
         {
-            // _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
-           
+            GAME_STAT.PLAYER_SPEED = _moveSpeed;  
+            _canRun = false;
         }
-
-
+        public void UnlockRun()
+        {
+            _canRun = true;
+        }
         private void Update()
         {
             DetectEnemy();
@@ -65,13 +68,23 @@ namespace Game.Scripts.Gameplay
         public void Move(Vector2 input)
         {
             if (_isPaused) return;
-            _rb.linearVelocity = new Vector2(input.x * _moveSpeed, _rb.linearVelocity.y);
+            _rb.linearVelocity = new Vector2(input.x * ModifierSpeed(),  _rb.linearVelocity.y);
             _animator.SetBool(IsRun, Mathf.Abs(input.x) > 0.01f && _isGrounded);
 
             if (Mathf.Abs(input.x) > 0.01f)
                 transform.localScale = new Vector3(Mathf.Sign(input.x), 1, 1);
         }
 
+        private float ModifierSpeed()
+        {
+            return _moveSpeed * _modifierSpeed * _runModifier;
+        }
+        public void Run(bool value)
+        {
+            if (!_canRun) return;
+
+            _runModifier *= value ? 2 : 1 ;
+        }
         public void Jump()
         {
             if (_isPaused) return;
@@ -226,7 +239,11 @@ namespace Game.Scripts.Gameplay
         {
             _rb.linearVelocity = Vector2.zero;
         }
-
+        public void SetModifierSpeed(float mult)
+        {
+            _modifierSpeed = mult;
+            Debug.Log("move speed" + _moveSpeed);
+        }
         /* private void TurnCheck()
          {
              if (Input.x > 0 && !IsFacingRight)
@@ -269,7 +286,7 @@ namespace Game.Scripts.Gameplay
         //  }
 
 
-       
+
 
     }
 

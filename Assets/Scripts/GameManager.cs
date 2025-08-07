@@ -1,19 +1,7 @@
 using Game.Scripts.Gameplay;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
-public enum SongDirection
-{
-    Up = 0,
-    UpRight = 7,
-    Right = 6,
-    DownRight = 5,
-    Down = 4,
-    DownLeft = 3,
-    Left = 2,
-    UpLeft = 1
-}
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -38,19 +26,29 @@ public class GameManager : MonoBehaviour
     public bool IsWinToStopEnemy;
     public bool IsInputEnable; 
 
+    private List<IListener> _listenerList = new List<IListener>();
     private void Awake()
     {
         if (Instance == null)
         {
+            
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        }
-        else
+        } else if (Instance != this)
         {
             Destroy(gameObject);
         }
     }
-
+    
+    public void AddListener(IListener listener)
+    {
+        _listenerList.Add(listener);
+    }
+    public void ReleaseListener(IListener listener)
+    {
+        if (_listenerList.Contains(listener)) 
+        _listenerList.Remove(listener);
+    }
     // khi player win một lượt đấu
     public void OnPlayerWinEncounter()
     {
@@ -104,12 +102,14 @@ public class GameManager : MonoBehaviour
         }
 
         if (_awaitingInput)
-            OnPlayerResult(false);
+        {
+            OnPlayerSelect(DirectionNumber);
+
+        }
     }
 
     public void OnPlayerSelect(int[] sliceIndex)
     {
-        if (!_awaitingInput) return;
         _awaitingInput = false;
         bool correct = sliceIndex.Length == 2 && _targetDir != null && sliceIndex.Length == _targetDir.Length;
         if (correct)
@@ -123,7 +123,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        OnPlayerResult(correct);
+        OnPlayerResult( correct);
     }
 
     private void OnPlayerResult(bool success)
@@ -148,6 +148,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleKeyboardInput()
     {
+        Player.Run(Input.GetKey(KeyCode.LeftShift));
         if (!IsInputEnable)
             return;
 
@@ -179,5 +180,9 @@ public class GameManager : MonoBehaviour
         _isGamePaused = true;
     }
 
+    public void LostGame()
+    {
+
+    }
     public void ResumeGame() => _isGamePaused = false;
 }
