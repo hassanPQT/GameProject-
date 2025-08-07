@@ -36,6 +36,7 @@ public class GameManager : MonoBehaviour
     public bool IsWin;
     public float Timer;
     public bool IsWinToStopEnemy;
+    public bool IsInputEnable; 
 
     private void Awake()
     {
@@ -67,6 +68,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         IsWinToStopEnemy = false;
+        IsInputEnable = true;
         IsWin = false;
         _userPositivePoint = 3;
         SetupDirectionNumbers();
@@ -131,12 +133,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("Đúng! Enemy bị cảm hóa.");
             IsWin = true;
             IsWinToStopEnemy = true;
+            IsInputEnable = true;
             OnPlayerWinEncounter();
         }
         else
         {
             IsWin = false;
             Player.IsSignaling = false;
+            IsInputEnable = true;
             OnPlayerLoseEncounter();
             Debug.Log("Sai! Bị trượt.");
         }
@@ -144,6 +148,9 @@ public class GameManager : MonoBehaviour
 
     private void HandleKeyboardInput()
     {
+        if (!IsInputEnable)
+            return;
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         Vector2 input = new Vector2(horizontal, 0f);
         Player.Move(input);

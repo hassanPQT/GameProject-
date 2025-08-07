@@ -157,12 +157,12 @@ namespace Game.Scripts.Gameplay
             else if(!GameManager.Instance.IsWin && IsSignaling)
             {
                 if (!_endCoroutine && enemy.enabled)
-                    PausePlayer();
+                    StopPlayer();
             }
             else if (!IsSignaling)
             {
                 if (!_endCoroutine && enemy.enabled)
-                    PausePlayer();
+                    StopPlayer();
                 enemy.OnSignalDirection += GameManager.Instance.OnEnemySignal;
                 IsSignaling = enemy.SignalRandomDirection();
             }
@@ -181,12 +181,12 @@ namespace Game.Scripts.Gameplay
             else if (!GameManager.Instance.IsWin && IsSignaling)
             {
                 if (!_endCoroutine && bird.enabled)
-                    PausePlayer();
+                    StopPlayer();
             }
             else if (!IsSignaling)
             {
                 if (!_endCoroutine && bird.enabled)
-                    PausePlayer();
+                    StopPlayer();
                 bird.OnSignalDirection += GameManager.Instance.OnEnemySignal;
                 IsSignaling = bird.SignalRandomDirection();
             }
@@ -211,10 +211,11 @@ namespace Game.Scripts.Gameplay
         }
 
 
-        private void PausePlayer()
+        private void StopPlayer()
         {
             //yield return new WaitForSeconds(0.2f);
             //_isPaused = true;
+            GameManager.Instance.IsInputEnable = false;
             _rb.linearVelocity = Vector2.zero;
             _animator.SetBool(IsRun, false);
             //yield return new WaitForSeconds(duration);
