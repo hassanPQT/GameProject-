@@ -241,4 +241,6 @@ public class EnemyController : MonoBehaviour
         float angleRad = angleDeg * Mathf.Deg2Rad;
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f).normalized;
     }
+
+  
 }
