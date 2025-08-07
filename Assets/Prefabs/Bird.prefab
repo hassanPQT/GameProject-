@@ -184,6 +184,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HappyEmotion
       objectReference: {fileID: 0}
+    - target: {fileID: 3891844263640882169, guid: 902cf2747496b1b459ef0cf551620fba, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7948271537373178227, guid: 902cf2747496b1b459ef0cf551620fba, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.19

@@ -22,7 +22,9 @@ public class GameManager : MonoBehaviour
 
     public int[] DirectionNumber;
     public bool IsWin;
+    public float Timer;
     public bool IsWinToStopEnemy;
+    public bool IsInputEnable; 
 
     private List<IListener> _listenerList = new List<IListener>();
     private void Awake()
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         IsWinToStopEnemy = false;
+        IsInputEnable = true;
         IsWin = false;
         _userPositivePoint = 3;
         SetupDirectionNumbers();
@@ -91,12 +94,13 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitForInput()
     {
-        float timer = 0f;
-        while (_awaitingInput && timer < _inputTimeout)
+        Timer = 0f;
+        while (_awaitingInput && Timer < _inputTimeout)
         {
-            timer += Time.deltaTime;
+            Timer += Time.deltaTime;
             yield return null;
         }
+
         if (_awaitingInput)
         {
             OnPlayerSelect(DirectionNumber);
@@ -129,12 +133,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("Đúng! Enemy bị cảm hóa.");
             IsWin = true;
             IsWinToStopEnemy = true;
+            IsInputEnable = true;
             OnPlayerWinEncounter();
         }
         else
         {
             IsWin = false;
             Player.IsSignaling = false;
+            IsInputEnable = true;
             OnPlayerLoseEncounter();
             Debug.Log("Sai! Bị trượt.");
         }
@@ -143,6 +149,9 @@ public class GameManager : MonoBehaviour
     private void HandleKeyboardInput()
     {
         Player.Run(Input.GetKey(KeyCode.LeftShift));
+        if (!IsInputEnable)
+            return;
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         Vector2 input = new Vector2(horizontal, 0f);
         Player.Move(input);
