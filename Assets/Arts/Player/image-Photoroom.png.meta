@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: dbcb70e3d58ecc14eaf88cc968a9fc29
+guid: 1bdc426a9e0058a4b98c841401c12c84
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8348678261534446244
-    second: GigiTest_0
+      213: 5675857372675088757
+    second: image-Photoroom_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -97,7 +97,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WindowsStoreApps
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -110,7 +110,7 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
-    buildTarget: WebGL
+    buildTarget: WindowsStoreApps
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: GigiTest_0
+      name: image-Photoroom_0
       rect:
         serializedVersion: 2
-        x: 1
+        x: 0
         y: 0
-        width: 12
-        height: 16
+        width: 275
+        height: 245
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -141,8 +141,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4a259ca45a67cd370800000000000000
-      internalID: 8348678261534446244
+      spriteID: 571a41e5532b4ce40800000000000000
+      internalID: 5675857372675088757
       vertices: []
       indices: 
       edges: []
@@ -161,7 +161,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      GigiTest_0: 8348678261534446244
+      image-Photoroom_0: 5675857372675088757
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

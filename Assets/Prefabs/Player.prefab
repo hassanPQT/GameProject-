@@ -254,8 +254,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3310e7a38ec0a3e4780fe37f9f6dd5c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 5
-  _jumpForce: 10
+  _moveSpeed: 4
+  _jumpForce: 20
   _groundCheck: {fileID: 3938350930498520604}
   _groundCheckRadius: 0.2
   _groundLayer:
@@ -264,6 +264,8 @@ MonoBehaviour:
   IsSignaling: 0
   _visualObject: {fileID: 8390359257631525335}
   _invincibleDuration: 1
+  _rb: {fileID: 56709050551967339}
+  _animator: {fileID: 3801703037524951286}
 --- !u!95 &2581708416205064966
 Animator:
   serializedVersion: 7

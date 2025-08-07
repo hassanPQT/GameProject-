@@ -21,6 +21,10 @@ public class GameManager : MonoBehaviour
     public PlayerController Player;
     [SerializeField] private SongWheelController _songWheelController;
 
+    [SerializeField] private MoodBarController moodBar;
+    [SerializeField] private float moodDeltaOnWin = 0.15f;
+    [SerializeField] private float moodDeltaOnLose = 0.15f;
+
     private float _inputTimeout = 10f;
     private bool _awaitingInput;
     private SongDirection[] _targetDir;
@@ -43,6 +47,18 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    // khi player win một lượt đấu
+    public void OnPlayerWinEncounter()
+    {
+        moodBar.IncreaseMood(moodDeltaOnWin);
+    }
+
+    // khi player lose một lượt đấu
+    public void OnPlayerLoseEncounter()
+    {
+        moodBar.DecreaseMood(moodDeltaOnLose);
     }
 
     private void Start()
@@ -112,15 +128,14 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("Đúng! Enemy bị cảm hóa.");
             IsWin = true;
-
-            IsWinToStopEnemy = true; // Đặt trạng thái thắng để dừng enemy
-
-
+            IsWinToStopEnemy = true;
+            OnPlayerWinEncounter();
         }
         else
         {
             IsWin = false;
             Player.IsSignaling = false;
+            OnPlayerLoseEncounter();
             Debug.Log("Sai! Bị trượt.");
         }
     }

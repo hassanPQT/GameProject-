@@ -49,10 +49,6 @@ namespace Game.Scripts.Gameplay
             // _cameraFollowObject = _cameraFollowGO.GetComponent<CameraFollowObject>();
            
         }
-        public void Stop()
-        {
-            rb.linearVelocity = Vector2.zero;
-        }
 
 
         private void Update()
