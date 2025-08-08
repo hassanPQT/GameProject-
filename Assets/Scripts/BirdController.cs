@@ -22,10 +22,10 @@ public class BirdController : MonoBehaviour
     private SongDirection[] _currentDir;
     private Vector3 _smoothVelocity = Vector3.zero;
 
-    void OnDisable()
-    {
-        DOTween.KillAll();
-    }
+    //void OnDisable()
+    //{
+    //    DOTween.KillAll();
+    //}
 
 
     //public bool IsMovingInDirection => _ismo

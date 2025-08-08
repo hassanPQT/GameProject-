@@ -25,13 +25,15 @@ public class GameManager : MonoBehaviour
     private bool _isGameEnd;
     private bool _isGamePaused;
 
-    public int[] DirectionNumber;
+    private List<int> _directionNumberList;
     public bool IsWin;
     public float Timer;
     public bool IsWinToStopEnemy;
     public bool IsInputEnable;
     public bool IsStop3s => _awaitingInput;
     public float ModifyTimeout = 1;
+    public int[] DirectionNumber => _directionNumberList.ToArray();
+    private int _currentDirectionIndex;
 
     private List<IListener> _listenerList = new List<IListener>();
     private void Awake()
@@ -96,15 +98,24 @@ public class GameManager : MonoBehaviour
         IsWinToStopEnemy = false;
         IsInputEnable = true;
         IsWin = false;
+        _currentDirectionIndex = 6;
         _userPositivePoint = 3;
         SetupDirectionNumbers();
     }
 
     private void SetupDirectionNumbers()
     {
-        DirectionNumber = new int[2];
-        DirectionNumber[0] = 0;
-        DirectionNumber[1] = 7;
+        _directionNumberList = new List<int>();
+        _directionNumberList.Add(0);
+        _directionNumberList.Add(7);
+    }
+
+    public void AddMoreRandomSongWheelNumbers()
+    {
+        if (_currentDirectionIndex == 0)
+            return;
+        _directionNumberList.Add(_currentDirectionIndex);
+        _currentDirectionIndex--;
     }
 
     private void Update()

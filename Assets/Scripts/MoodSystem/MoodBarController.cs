@@ -138,6 +138,7 @@ public class MoodBarController : MonoBehaviour
     {
         songWheelController.ModifierSongWheelTime(1 + _moodValue - 0.5f);
         GameManager.Instance.SongWheelController.ActivateNewSongWheel();
+        GameManager.Instance.AddMoreRandomSongWheelNumbers();
         //playerController.UnlockRun();
     }
 

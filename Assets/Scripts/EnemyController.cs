@@ -30,10 +30,10 @@ public class EnemyController : MonoBehaviour
 
     public bool IsMovingInDirection => _isMovingInDirection;
 
-    void OnDisable()
-    {
-        DOTween.KillAll();
-    }
+    //void OnDisable()
+    //{
+    //    DOTween.KillAll();
+    //}
 
     private void Start()
     {
