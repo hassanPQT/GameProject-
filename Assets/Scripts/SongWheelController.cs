@@ -54,8 +54,7 @@ public class SongWheelController : MonoBehaviour
             _mouseRightDelay = true;
             StartCoroutine(ResetLeftClickCooldown());
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            InputManager.Instance.UnlockCursor();
             ActivateWheel();
         }
 
@@ -86,8 +85,7 @@ public class SongWheelController : MonoBehaviour
 
             if (Input.GetMouseButtonUp(1))
             {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                InputManager.Instance.LockCursor();
                 ReleaseWheel();
             }
         }

@@ -304,7 +304,7 @@ GameObject:
   - component: {fileID: 184394013}
   - component: {fileID: 184394012}
   m_Layer: 0
-  m_Name: 525346846_1398221641242893_3004427836619753984_n
+  m_Name: BossTrgger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8258,7 +8258,7 @@ Transform:
   m_GameObject: {fileID: 1953515752}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 262.38, y: -12.81, z: 0}
+  m_LocalPosition: {x: 258.82, y: -12.81, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

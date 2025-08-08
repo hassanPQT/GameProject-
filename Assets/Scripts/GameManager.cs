@@ -1,10 +1,10 @@
 using Game.Scripts.Gameplay;
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -12,6 +12,10 @@ public class GameManager : MonoBehaviour
     public PlayerController Player;
     public SongWheelController SongWheelController;
 
+
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private PlayerController PlayerPrf;
+    [SerializeField] private Transform startPoint;
     [SerializeField] private MoodBarController moodBar;
     [SerializeField] private float moodDeltaOnWin = 0.15f;
     [SerializeField] private float moodDeltaOnLose = 0.15f;
@@ -30,6 +34,8 @@ public class GameManager : MonoBehaviour
     public float Timer;
     public bool IsWinToStopEnemy;
     public bool IsInputEnable;
+
+    public bool IsGameLose;
     public bool IsStop3s => _awaitingInput;
     public float ModifyTimeout = 1;
     public int[] DirectionNumber => _directionNumberList.ToArray();
@@ -48,8 +54,35 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Start()
+    {
+        InitializedStatus();
+        InitializedPlayer();
+        SetupDirectionNumbers();
+    }
 
-    
+    private void InitializedPlayer()
+    {
+        Player = FindFirstObjectByType<PlayerController>();
+        
+        if (Player == null)
+        {
+            Player = Instantiate(PlayerPrf);
+        }
+        Player.transform.position = startPoint.position;
+    }
+
+    private void InitializedStatus()
+    {
+        IsGameLose = false;
+        InputManager.Instance.LockCursor();
+        IsWinToStopEnemy = false;
+        IsInputEnable = true;
+        IsWin = false;
+        _currentDirectionIndex = 6;
+        _userPositivePoint = 3;
+    }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -64,7 +97,7 @@ public class GameManager : MonoBehaviour
     {
         // Giả sử Player, Canvas, MoodBar đều có tag hoặc có thể FindObjectOfType
         StopAllCoroutines();
-        Player = FindAnyObjectByType<PlayerController>();
+        InitializedPlayer();
         SongWheelController = FindAnyObjectByType<SongWheelController>();
         moodBar = FindAnyObjectByType<MoodBarController>();
         // Gán thêm nếu cần…
@@ -91,17 +124,7 @@ public class GameManager : MonoBehaviour
         moodBar.DecreaseMood(moodDeltaOnLose);
     }
 
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        IsWinToStopEnemy = false;
-        IsInputEnable = true;
-        IsWin = false;
-        _currentDirectionIndex = 6;
-        _userPositivePoint = 3;
-        SetupDirectionNumbers();
-    }
+    
 
     private void SetupDirectionNumbers()
     {
@@ -228,5 +251,18 @@ public class GameManager : MonoBehaviour
         Player.Stop();
         _isGamePaused = true;
     }
+    public void GameLose()
+    {
+        PauseGame();
+        IsGameLose = true;
+        InputManager.Instance.GameLose();
+        uiManager.ShowLoseUI();
+    }
     public void ResumeGame() => _isGamePaused = false;
+
+    internal void GameRestart()
+    {
+        Debug.Log("Restart scen");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }

@@ -144,9 +144,7 @@ public class MoodBarController : MonoBehaviour
 
     private void OnMoodMin()
     {
-        //StartCoroutine(GameManager.Instance.ExecutePlayAgain());
-        //GameManager.Instance.
-        Debug.Log("Mood empty: Rabbit state, disable Song Wheel");
-        // vắng quyền dùng song wheel, respawn player...
+        GameManager.Instance.GameLose();
+        
     }
 }
