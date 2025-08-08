@@ -63,20 +63,16 @@ public class GameManager : MonoBehaviour
 
     private void InitializedPlayer()
     {
+        Debug.Log("init player");
         if (PlayerPrf == null)
         {
             Debug.LogError("PlayerPrefab is not assigned in the Inspector!");
             return;
         }
 
-        if (startPoint == null)
-        {
-            //Debug.LogError("StartPoint is not assigned in the Inspector!");
-            startPoint = GameObject.Find("StartPoint").transform;
-            return;
-        }
+        startPoint = GameObject.FindWithTag("StartPoint").transform;
+        
         Debug.Log(startPoint.position.ToString());
-        Player = FindFirstObjectByType<PlayerController>();
 
         // Nếu không tìm thấy Player, tạo mới
         if (Player == null)
@@ -118,7 +114,9 @@ public class GameManager : MonoBehaviour
     {
         // Giả sử Player, Canvas, MoodBar đều có tag hoặc có thể FindObjectOfType
         StopAllCoroutines();
+        Player = FindAnyObjectByType<PlayerController>();
         InitializedPlayer();
+
         SongWheelController = FindAnyObjectByType<SongWheelController>();
         moodBar = FindAnyObjectByType<MoodBarController>();
         // Gán thêm nếu cần…
@@ -241,6 +239,8 @@ public class GameManager : MonoBehaviour
 
     private void HandleKeyboardInput()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            InputManager.Instance.UnlockCursor();
         Player.Run(Input.GetKey(KeyCode.LeftShift));
         if (!IsInputEnable)
             return;
