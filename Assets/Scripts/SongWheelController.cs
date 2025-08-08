@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Game.Scripts.Gameplay;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,7 +15,8 @@ public class SongWheelController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private RectTransform _wheelRect;
     [SerializeField] private Image[] _slices;
-
+    [SerializeField] PlayerController _playerController;
+    [SerializeField] private GameManager _gameManager;
     [SerializeField] private Animator _animator;
 
     private int _songWheelTime = 3000;
@@ -40,14 +42,22 @@ public class SongWheelController : MonoBehaviour
 
     private void Start()
     {
+        _playerController = FindAnyObjectByType<PlayerController>();
         newSongWheelNumber = 6;
         _sliceSize = new Vector2[_slices.Length];
         for (int i = 0; i < _slices.Length; i++)
             _sliceSize[i] = _slices[i].GetComponent<RectTransform>().sizeDelta;
     }
-
+    private void Synchron()
+    {
+        var positionOnScreen = Camera.main.WorldToScreenPoint(_playerController.transform.position);
+        var offset = Vector3.up;
+        _wheelRect.position = positionOnScreen + offset ;
+        //_playerController.transform.position
+    }
     private void Update()
     {
+        Synchron();
         if (!_wheelActive && !_mouseRightDelay && Input.GetMouseButtonDown(1))
         {
             _mouseRightDelay = true;
