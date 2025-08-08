@@ -153,7 +153,6 @@ GameObject:
   - component: {fileID: 56709050551967339}
   - component: {fileID: 108943612536164267}
   - component: {fileID: 2738988328621163954}
-  - component: {fileID: 2581708416205064966}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -255,6 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveSpeed: 4
+  _modifierSpeed: 1
+  _runModifier: 1
   _jumpForce: 20
   _groundCheck: {fileID: 3938350930498520604}
   _groundCheckRadius: 0.2
@@ -266,25 +267,5 @@ MonoBehaviour:
   _invincibleDuration: 1
   _rb: {fileID: 56709050551967339}
   _animator: {fileID: 3801703037524951286}
---- !u!95 &2581708416205064966
-Animator:
-  serializedVersion: 7
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8390359257631525335}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_AnimatePhysics: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  _canRun: 0
+  _isRunning: 0

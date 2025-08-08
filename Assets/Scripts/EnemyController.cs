@@ -10,8 +10,10 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _moveDuration = 0.5f;
     [SerializeField] private float _moveDurationForSongWheel = 0.25f;
     [SerializeField] private float _moveDistanceForSongWheel = 1f;
+	[SerializeField] private GameObject happyMood;
+    [SerializeField] private GameObject angryMood;
 
-    [Header("Signal Effect")]
+	[Header("Signal Effect")]
     [SerializeField] private GameObject[] signalEffectPrefab;
     [SerializeField] private float _effectDuration = 0.5f;
     [SerializeField] private float _effectMaxScale = 1.5f;
@@ -28,9 +30,43 @@ public class EnemyController : MonoBehaviour
     {
         SetPositionToMove();
         StartCoroutine(MoveBackAndForth());
+        SetAngryMood();
+	}
+    public void SetAngryMood()
+    {
+        if (angryMood != null)
+        {
+            angryMood.SetActive(true);
+        }
     }
+    public void SetInactiveAngryMood()
+    {
+        if (angryMood != null)
+        {
+            angryMood.SetActive(false);
+        }
+	}
+	public void SetActiveMood() { 
+        if (happyMood != null)
+        {
+            happyMood.SetActive(true);
+        }
+	}
+    public void SetInactiveMood() { 
+        if (happyMood != null)
+        {
+            happyMood.SetActive(false);
+        }
+    }
+    public void ResetEnemy()
+    {
+        _isMoving = true;
+        _hasDetectedPlayer = false;
+        SetPositionToMove();
+        StartCoroutine(MoveBackAndForth());
+	}
 
-    private void SetPositionToMove()
+	private void SetPositionToMove()
     {
         _startPos = transform.position;
         _leftPos = _startPos + Vector3.left * _moveDistance;
@@ -205,4 +241,6 @@ public class EnemyController : MonoBehaviour
         float angleRad = angleDeg * Mathf.Deg2Rad;
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f).normalized;
     }
+
+  
 }

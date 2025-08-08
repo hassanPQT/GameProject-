@@ -430,6 +430,7 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+
     - target: {fileID: 4033833043690538518, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -539,7 +540,15 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 122166020}
     - target: {fileID: 7010101619332661077, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 122166020}
+    - target: {fileID: 7010101619332661077, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: gameManager
+      value: 
+      objectReference: {fileID: 1198061057}
+    - target: {fileID: 7010101619332661077, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: _gameManager
       value: 
       objectReference: {fileID: 1198061057}
     m_RemovedComponents: []
@@ -7200,8 +7209,10 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+
 --- !u!60 &971280729
 PolygonCollider2D:
+
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -7302,9 +7313,11 @@ Transform:
   - {fileID: 1965628809}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
 --- !u!114 &1166388850 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 532351788404468127, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+
   m_PrefabInstance: {fileID: 297974541}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
@@ -7336,7 +7349,9 @@ PrefabInstance:
     - target: {fileID: 5325613520558738070, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
       propertyPath: moodBar
       value: 
+
       objectReference: {fileID: 1166388850}
+
     - target: {fileID: 5325613520558738070, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
       propertyPath: songWheelController
       value: 
@@ -7693,6 +7708,7 @@ GameObject:
   - component: {fileID: 1895360686}
   - component: {fileID: 1895360690}
   - component: {fileID: 1895360689}
+  - component: {fileID: 1895360691}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -7852,6 +7868,23 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1895360691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1895360685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sharedProfile: {fileID: 11400000, guid: 1108c836f5895dc47816dd28dd84eff7, type: 2}
+  isGlobal: 0
+  blendDistance: 0
+  weight: 0.683
+  priority: 0
 --- !u!1 &1947766940
 GameObject:
   m_ObjectHideFlags: 0
@@ -8026,6 +8059,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 995368367}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
+
 --- !u!1 &2082453268
 GameObject:
   m_ObjectHideFlags: 0
@@ -8070,6 +8105,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

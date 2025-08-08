@@ -1,19 +1,7 @@
 using Game.Scripts.Gameplay;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
-
-public enum SongDirection
-{
-    Up = 0,
-    UpRight = 7,
-    Right = 6,
-    DownRight = 5,
-    Down = 4,
-    DownLeft = 3,
-    Left = 2,
-    UpLeft = 1
-}
-
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -24,8 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MoodBarController moodBar;
     [SerializeField] private float moodDeltaOnWin = 0.15f;
     [SerializeField] private float moodDeltaOnLose = 0.15f;
+    [SerializeField] private float _inputTimeout = 10f;
 
-    private float _inputTimeout = 10f;
     private bool _awaitingInput;
     private SongDirection[] _targetDir;
     private int _userPositivePoint = 3;
@@ -34,21 +22,35 @@ public class GameManager : MonoBehaviour
 
     public int[] DirectionNumber;
     public bool IsWin;
+    public float Timer;
     public bool IsWinToStopEnemy;
+    public bool IsInputEnable;
+    public bool IsStop3s => _awaitingInput;
+    public float ModifyTimeout = 1;
 
+    private List<IListener> _listenerList = new List<IListener>();
     private void Awake()
     {
         if (Instance == null)
         {
+            
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        }
-        else
+        } else if (Instance != this)
         {
             Destroy(gameObject);
         }
     }
-
+    
+    public void AddListener(IListener listener)
+    {
+        _listenerList.Add(listener);
+    }
+    public void ReleaseListener(IListener listener)
+    {
+        if (_listenerList.Contains(listener)) 
+        _listenerList.Remove(listener);
+    }
     // khi player win một lượt đấu
     public void OnPlayerWinEncounter()
     {
@@ -66,6 +68,7 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         IsWinToStopEnemy = false;
+        IsInputEnable = true;
         IsWin = false;
         _userPositivePoint = 3;
         SetupDirectionNumbers();
@@ -93,19 +96,24 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator WaitForInput()
     {
-        float timer = 0f;
-        while (_awaitingInput && timer < _inputTimeout)
+        Timer = 0f;
+        var temp = _inputTimeout * ModifyTimeout;
+        while (_awaitingInput && Timer < temp)
         {
-            timer += Time.deltaTime;
+            Timer += Time.deltaTime;
             yield return null;
         }
+
         if (_awaitingInput)
+        {
             OnPlayerResult(false);
+        }
     }
 
     public void OnPlayerSelect(int[] sliceIndex)
     {
-        if (!_awaitingInput) return;
+        if (!_awaitingInput) return;//cẩn thận chỗ này
+
         _awaitingInput = false;
         bool correct = sliceIndex.Length == 2 && _targetDir != null && sliceIndex.Length == _targetDir.Length;
         if (correct)
@@ -119,7 +127,7 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        OnPlayerResult(correct);
+        OnPlayerResult( correct);
     }
 
     private void OnPlayerResult(bool success)
@@ -129,12 +137,14 @@ public class GameManager : MonoBehaviour
             Debug.Log("Đúng! Enemy bị cảm hóa.");
             IsWin = true;
             IsWinToStopEnemy = true;
+            IsInputEnable = true;
             OnPlayerWinEncounter();
         }
         else
         {
             IsWin = false;
             Player.IsSignaling = false;
+            IsInputEnable = true;
             OnPlayerLoseEncounter();
             Debug.Log("Sai! Bị trượt.");
         }
@@ -142,6 +152,10 @@ public class GameManager : MonoBehaviour
 
     private void HandleKeyboardInput()
     {
+        Player.Run(Input.GetKey(KeyCode.LeftShift));
+        if (!IsInputEnable)
+            return;
+
         float horizontal = Input.GetAxisRaw("Horizontal");
         Vector2 input = new Vector2(horizontal, 0f);
         Player.Move(input);
@@ -170,5 +184,9 @@ public class GameManager : MonoBehaviour
         _isGamePaused = true;
     }
 
+    public void LostGame()
+    {
+
+    }
     public void ResumeGame() => _isGamePaused = false;
 }
