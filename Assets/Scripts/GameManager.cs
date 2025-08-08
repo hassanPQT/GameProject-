@@ -63,13 +63,34 @@ public class GameManager : MonoBehaviour
 
     private void InitializedPlayer()
     {
+        if (PlayerPrf == null)
+        {
+            Debug.LogError("PlayerPrefab is not assigned in the Inspector!");
+            return;
+        }
+
+        if (startPoint == null)
+        {
+            //Debug.LogError("StartPoint is not assigned in the Inspector!");
+            startPoint = GameObject.Find("StartPoint").transform;
+            return;
+        }
+        Debug.Log(startPoint.position.ToString());
         Player = FindFirstObjectByType<PlayerController>();
-        
+
+        // Nếu không tìm thấy Player, tạo mới
         if (Player == null)
         {
-            Player = Instantiate(PlayerPrf);
+            Player = Instantiate(PlayerPrf, startPoint.position, startPoint.rotation);
+            Debug.Log("Player instantiated at: " + startPoint.position);
         }
-        Player.transform.position = startPoint.position;
+        else
+        {
+            // Nếu Player đã tồn tại, chỉ di chuyển đến startPoint
+            Player.transform.position = startPoint.position;
+            Player.transform.rotation = startPoint.rotation;
+            Debug.Log("Existing Player moved to: " + startPoint.position);
+        }
     }
 
     private void InitializedStatus()

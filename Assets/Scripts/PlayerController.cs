@@ -54,7 +54,7 @@ namespace Game.Scripts.Gameplay
         }
         private void Update()
         {
-            if (GameManager.Instance.IsGameLose) return;
+            //if (GameManager.Instance.IsGameLose) return;
             DetectEnemy();
             CheckGround();
             _animator.SetBool(IsJump, !_isGrounded);

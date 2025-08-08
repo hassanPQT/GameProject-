@@ -28,13 +28,13 @@ public class InputManager : MonoBehaviour
     {
         if (!IsCursor) return;
         Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = false;
+        Cursor.visible = true;
     }
-
+    [ContextMenu("a")]
     public void GameLose()
     {
-        IsCursor = false;
         
+        IsCursor = false;
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
     }
