@@ -91,6 +91,7 @@ public class MoodBarController : MonoBehaviour
         switch (_moodValue)
         {
             case var _ when Mathf.Approximately(_moodValue, 0f):
+                Debug.Log("Mood is empty");
                 HandleEmpty();
                 break;
             case <= 0.3f:
@@ -128,7 +129,7 @@ public class MoodBarController : MonoBehaviour
         MovementSpeedModifier = 0.5f + amount;        // max +50% speed
         SongWheelTimeModifier = 0.5f + amount;         // max +50% time
         Debug.Log(MovementSpeedModifier + " " + SongWheelTimeModifier);
-        GameManager.Instance.ModifyTimeout = SongWheelTimeModifier;
+        //GameManager.Instance.ModifyTimeout = SongWheelTimeModifier;
         playerController.SetModifierSpeed(MovementSpeedModifier);
         // Bạn có thể broadcast event hoặc gán trực tiếp cho player / UI
     }
@@ -136,12 +137,13 @@ public class MoodBarController : MonoBehaviour
     private void OnMoodMax()
     {
         songWheelController.ModifierSongWheelTime(1 + _moodValue - 0.5f);
+        GameManager.Instance.SongWheelController.ActivateNewSongWheel();
         //playerController.UnlockRun();
     }
 
     private void OnMoodMin()
     {
-        GameManager.Instance.LostGame();
+        //StartCoroutine(GameManager.Instance.ExecutePlayAgain());
         //GameManager.Instance.
         Debug.Log("Mood empty: Rabbit state, disable Song Wheel");
         // vắng quyền dùng song wheel, respawn player...

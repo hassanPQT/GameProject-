@@ -1222,7 +1222,7 @@ public class LTDescr
 	}
 
 	/**
-	* Delay the start of a tween
+	* AutoDelay the start of a tween
 	* 
 	* @method setDelay
 	* @param {float} float time The time to complete the tween in

@@ -3,17 +3,19 @@ using System;
 using System.Collections;
 using DG.Tweening;
 using Unity.Mathematics;
+using Game.Scripts.Gameplay;
 
 public class EnemyController : MonoBehaviour
 {
     [SerializeField] private float _moveDistance = 2f;
-    [SerializeField] private float _moveDuration = 0.5f;
+    [SerializeField] private float _moveDuration = 0.3f;
+    [SerializeField] private float _moveSpeed = 5f;
     [SerializeField] private float _moveDurationForSongWheel = 0.25f;
     [SerializeField] private float _moveDistanceForSongWheel = 1f;
-	[SerializeField] private GameObject happyMood;
+    [SerializeField] private GameObject happyMood;
     [SerializeField] private GameObject angryMood;
 
-	[Header("Signal Effect")]
+    [Header("Signal Effect")]
     [SerializeField] private GameObject[] signalEffectPrefab;
     [SerializeField] private float _effectDuration = 0.5f;
     [SerializeField] private float _effectMaxScale = 1.5f;
@@ -26,12 +28,20 @@ public class EnemyController : MonoBehaviour
     private bool _hasDetectedPlayer = false;
     private SongDirection[] _currentDir;
 
+    public bool IsMovingInDirection => _isMovingInDirection;
+
+    void OnDisable()
+    {
+        DOTween.KillAll();
+    }
+
     private void Start()
     {
+        OnSignalDirection += GameManager.Instance.OnEnemySignal;
         SetPositionToMove();
         StartCoroutine(MoveBackAndForth());
         SetAngryMood();
-	}
+    }
     public void SetAngryMood()
     {
         if (angryMood != null)
@@ -45,14 +55,16 @@ public class EnemyController : MonoBehaviour
         {
             angryMood.SetActive(false);
         }
-	}
-	public void SetActiveMood() { 
+    }
+    public void SetActiveMood()
+    {
         if (happyMood != null)
         {
             happyMood.SetActive(true);
         }
-	}
-    public void SetInactiveMood() { 
+    }
+    public void SetInactiveMood()
+    {
         if (happyMood != null)
         {
             happyMood.SetActive(false);
@@ -64,9 +76,9 @@ public class EnemyController : MonoBehaviour
         _hasDetectedPlayer = false;
         SetPositionToMove();
         StartCoroutine(MoveBackAndForth());
-	}
+    }
 
-	private void SetPositionToMove()
+    private void SetPositionToMove()
     {
         _startPos = transform.position;
         _leftPos = _startPos + Vector3.left * _moveDistance;
@@ -75,8 +87,9 @@ public class EnemyController : MonoBehaviour
 
     private void Update()
     {
-        if (!_isMovingInDirection && !_hasDetectedPlayer)
-            DetectPlayer();
+
+        DetectPlayer();
+
     }
 
     private IEnumerator MoveBackAndForth()
@@ -91,39 +104,31 @@ public class EnemyController : MonoBehaviour
     private IEnumerator MoveToPosition(Vector3 target)
     {
         Vector3 start = transform.position;
-        float elapsed = 0f;
-        while (elapsed < _moveDuration)
-        {
-            transform.position = Vector3.Lerp(start, target, elapsed / _moveDuration);
-            elapsed += Time.deltaTime / 1.5f;
-            yield return null;
-        }
-        transform.position = target;
+        transform.DOMove(target, _moveDuration).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(_moveDuration);
     }
 
     private void MoveBackToFirstPosition()
     {
-        _isMovingInDirection = true;
         StartCoroutine(_MoveBackCoroutine());
     }
 
     private IEnumerator _MoveBackCoroutine()
     {
-        Vector3 start = transform.position;
-        Vector3 end = _startPos;
-        float elapsed = 0f;
-        while (elapsed < _moveDuration)
-        {
-            transform.position = Vector3.Lerp(start, end, elapsed / _moveDuration);
-            elapsed += Time.deltaTime / 1.5f;
-            yield return null;
-        }
-        transform.position = end;
+        _isMovingInDirection = true;
+
+        Vector3 end = new Vector3(_startPos.x - 5f, _startPos.y, _startPos.z);
+        transform.DOMove(end, _moveDuration).SetEase(Ease.Linear);
+        yield return new WaitForSeconds(_moveDuration); 
+        _isMovingInDirection = false;
     }
 
     private void DetectPlayer()
     {
-        float detectRadius = 5.5f;
+        if (_hasDetectedPlayer)
+            return;
+
+        float detectRadius = 4f;
         LayerMask playerLayer = LayerMask.GetMask("Player");
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, playerLayer);
 
@@ -133,6 +138,7 @@ public class EnemyController : MonoBehaviour
             {
                 _isMoving = false;
                 StopCoroutine(MoveBackAndForth());
+
                 MoveBackToFirstPosition();
                 _hasDetectedPlayer = true;
                 return;
@@ -148,19 +154,24 @@ public class EnemyController : MonoBehaviour
 
     public bool SignalRandomDirection()
     {
+
         if (!enabled)
         {
             Debug.LogWarning("EnemyController is not enabled. Cannot signal random direction.");
             return false;
         }
 
+        if (_isMovingInDirection)
+        {
+            Debug.LogWarning("EnemyController is already moving in a direction. Cannot signal random direction.");
+            return true;
+        }
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)
-            _currentDir[i] = (SongDirection)GameManager.Instance.DirectionNumber[UnityEngine.Random.Range(0,GameManager.Instance.DirectionNumber.Length)];
+            _currentDir[i] = (SongDirection)GameManager.Instance.DirectionNumber[UnityEngine.Random.Range(0, GameManager.Instance.DirectionNumber.Length)];
 
         OnSignalDirection?.Invoke(_currentDir);
 
-        _isMovingInDirection = true;
         StartCoroutine(MoveInDirection(_currentDir));
         return true;
     }
@@ -181,7 +192,9 @@ public class EnemyController : MonoBehaviour
 
     private IEnumerator MoveInDirection(SongDirection[] dir)
     {
-        yield return new WaitForSeconds(2f);
+        _isMovingInDirection = true;
+
+        yield return new WaitForSeconds(1f);
 
         foreach (var d in dir)
         {
@@ -210,7 +223,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(1);
         _isMovingInDirection = false;
     }
 
@@ -242,5 +255,5 @@ public class EnemyController : MonoBehaviour
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f).normalized;
     }
 
-  
+
 }

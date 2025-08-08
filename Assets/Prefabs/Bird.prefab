@@ -141,7 +141,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveDistance: 1
   moveDuration: 0.5
-  flySpeed: 5
+  flySpeed: 10
   stayDuration: 5
   hoverHeight: 1.5
   happyMood: {fileID: 1266009361450674525}
@@ -150,6 +150,7 @@ MonoBehaviour:
   - {fileID: 1954892852599833047, guid: bc3c2edd9032bb947a3d729e5e5ca545, type: 3}
   _effectDuration: 0.5
   _effectMaxScale: 1.5
+  _isMoving: 1
 --- !u!95 &6413797091245560435
 Animator:
   serializedVersion: 7

@@ -1,18 +1,23 @@
 using Game.Scripts.Gameplay;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor.UIElements;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
     public PlayerController Player;
-    [SerializeField] private SongWheelController _songWheelController;
+    public SongWheelController SongWheelController;
 
     [SerializeField] private MoodBarController moodBar;
     [SerializeField] private float moodDeltaOnWin = 0.15f;
     [SerializeField] private float moodDeltaOnLose = 0.15f;
     [SerializeField] private float _inputTimeout = 10f;
+    [SerializeField] private float timerSpeed = 0.5f; // Thêm dòng này vào class
+
 
     private bool _awaitingInput;
     private SongDirection[] _targetDir;
@@ -41,7 +46,28 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
     
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        // Giả sử Player, Canvas, MoodBar đều có tag hoặc có thể FindObjectOfType
+        StopAllCoroutines();
+        Player = FindAnyObjectByType<PlayerController>();
+        SongWheelController = FindAnyObjectByType<SongWheelController>();
+        moodBar = FindAnyObjectByType<MoodBarController>();
+        // Gán thêm nếu cần…
+    }
+
     public void AddListener(IListener listener)
     {
         _listenerList.Add(listener);
@@ -100,7 +126,7 @@ public class GameManager : MonoBehaviour
         var temp = _inputTimeout * ModifyTimeout;
         while (_awaitingInput && Timer < temp)
         {
-            Timer += Time.deltaTime;
+            Timer += Time.deltaTime ;
             yield return null;
         }
 
@@ -145,10 +171,18 @@ public class GameManager : MonoBehaviour
             IsWin = false;
             Player.IsSignaling = false;
             IsInputEnable = true;
+            
             OnPlayerLoseEncounter();
             Debug.Log("Sai! Bị trượt.");
         }
     }
+
+    //public IEnumerator ExecutePlayAgain()
+    //{
+    //    Player.PlayGiveUpAnimation();
+    //    yield return new WaitForSeconds(2f); // Thời gian chờ trước khi chơi lại
+    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    //}
 
     private void HandleKeyboardInput()
     {
@@ -182,11 +216,6 @@ public class GameManager : MonoBehaviour
     {
         Player.Stop();
         _isGamePaused = true;
-    }
-
-    public void LostGame()
-    {
-
     }
     public void ResumeGame() => _isGamePaused = false;
 }

@@ -6,9 +6,6 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
-using System.Collections.Generic;
-using DG.Tweening;
-using System;
 
 public class SongWheelController : MonoBehaviour
 {
@@ -28,6 +25,13 @@ public class SongWheelController : MonoBehaviour
     private int _currentSlice = -1;
     private bool _mouseRightDelay = false;
     private Vector2[] _sliceSize;
+    private int newSongWheelNumber;
+
+    void OnDisable()
+    {
+        DOTween.KillAll();
+    }
+
 
     private void Awake()
     {
@@ -37,6 +41,7 @@ public class SongWheelController : MonoBehaviour
 
     private void Start()
     {
+        newSongWheelNumber = 6;
         _sliceSize = new Vector2[_slices.Length];
         for (int i = 0; i < _slices.Length; i++)
             _sliceSize[i] = _slices[i].GetComponent<RectTransform>().sizeDelta;
@@ -66,11 +71,14 @@ public class SongWheelController : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 Debug.Log(_currentSlice);
-                _selectSlices.Add(_currentSlice);
+                if (_slices[_currentSlice].gameObject.activeSelf)
+                {
+                    _selectSlices.Add(_currentSlice);
+                }
                 if (_gameManager != null && _selectSlices.Count == 2)
                 {
                     //OnPlayerResult(OnPlayerSelect(DirectionNumber));
-
+                    Debug.Log($"Selected slices: {string.Join(", ", _selectSlices)}");
                     _gameManager.OnPlayerSelect(_selectSlices.ToArray());
                     _selectSlices.Clear();
                 }
@@ -96,6 +104,16 @@ public class SongWheelController : MonoBehaviour
                 .OnComplete(() => timerImage.fillAmount = 0f);
         }
     }
+
+
+    public void ActivateNewSongWheel()
+    {
+        if (newSongWheelNumber < 1)
+            return;
+        _slices[newSongWheelNumber].gameObject.SetActive(true);
+        newSongWheelNumber--;
+    }
+
     private IEnumerator ResetLeftClickCooldown()
     {
         yield return new WaitForSeconds(0.2f);

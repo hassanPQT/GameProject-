@@ -1968,12 +1968,12 @@ public class LeanTween : MonoBehaviour {
     }
 
     public static LTDescr delayedSound( AudioClip audio, Vector3 pos, float volume ){
-        //Debug.LogError("Delay sound??");
+        //Debug.LogError("AutoDelay sound??");
         return pushNewTween( tweenEmpty, pos, 0f, options().setDelayedSound().setTo( pos ).setFrom( new Vector3(volume,0,0) ).setAudio( audio ) );
     }
 
     public static LTDescr delayedSound( GameObject gameObject, AudioClip audio, Vector3 pos, float volume ){
-        //Debug.LogError("Delay sound??");
+        //Debug.LogError("AutoDelay sound??");
         return pushNewTween( gameObject, pos, 0f, options().setDelayedSound().setTo( pos ).setFrom( new Vector3(volume,0,0) ).setAudio( audio ) );
     }
 

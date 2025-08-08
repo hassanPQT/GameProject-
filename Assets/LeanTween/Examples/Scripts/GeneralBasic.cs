@@ -22,7 +22,7 @@ public class GeneralBasic : MonoBehaviour {
 		// Move Example
 		LeanTween.move( avatarMove, avatarMove.transform.position + new Vector3(-9f, 0f, 1f), 2f).setEase(LeanTweenType.easeInQuad);
 
-		// Delay
+		// AutoDelay
 		LeanTween.move( avatarMove, avatarMove.transform.position + new Vector3(-6f, 0f, 1f), 2f).setDelay(3f);
 
 		// Chain properties (delay, easing with a set repeating of type ping pong)

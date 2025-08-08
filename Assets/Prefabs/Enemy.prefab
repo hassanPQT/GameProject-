@@ -127,7 +127,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveDistance: 2
-  _moveDuration: 0.5
+  _moveDuration: 0.8
+  _moveSpeed: 5
   _moveDurationForSongWheel: 0.3
   _moveDistanceForSongWheel: 1
   happyMood: {fileID: 8865363520394706316}

@@ -16,18 +16,38 @@ public class BirdController : MonoBehaviour
     [SerializeField] private GameObject[] signalEffectPrefab;
     [SerializeField] private float _effectDuration = 0.5f;
     [SerializeField] private float _effectMaxScale = 1.5f;
-
+    [SerializeField] private bool _isMoving = true;
     public event Action<SongDirection[]> OnSignalDirection;
-
+    public bool IsMoving => _isMoving;  
     private SongDirection[] _currentDir;
     private Vector3 _smoothVelocity = Vector3.zero;
 
+    void OnDisable()
+    {
+        DOTween.KillAll();
+    }
+
+
+    //public bool IsMovingInDirection => _ismo
+    public void Start()
+    {
+        // restart signal direction when player false
+        OnSignalDirection += GameManager.Instance.OnEnemySignal;
+        _isMoving = false;
+    }
     public void SetActiveMood() { 
         if (happyMood != null)
         {
             happyMood.SetActive(true);
+            AutoDelay();
         }
-	}
+    }
+
+    private async void AutoDelay()
+    {
+            await System.Threading.Tasks.Task.Delay(7000);
+            happyMood.SetActive(false);
+    }
 
     public void SetInactiveMood() { 
         if (happyMood != null)
@@ -39,7 +59,9 @@ public class BirdController : MonoBehaviour
 
 	public bool SignalRandomDirection()
     {
+        if (_isMoving) return true;
         Debug.Log("`  SignalRandomDirection` called in BirdController.");
+
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)
             _currentDir[i] = (SongDirection)GameManager.Instance.DirectionNumber[UnityEngine.Random.Range(0, GameManager.Instance.DirectionNumber.Length)];
@@ -51,6 +73,7 @@ public class BirdController : MonoBehaviour
 
     private IEnumerator MoveInDirection(SongDirection[] dir)
     {
+        _isMoving = true;
         yield return new WaitForSeconds(2f);
         foreach (var d in dir)
         {
@@ -78,13 +101,14 @@ public class BirdController : MonoBehaviour
             }
             yield return new WaitForSeconds(0.5f);
         }
+        _isMoving = false;
     }
 
     public void StopMovement()
     {
         var collider = GetComponent<CircleCollider2D>();
         if (collider) collider.enabled = false;
-        enabled = false;
+        //enabled = false;
     }
 
     public void MakeMovement()
@@ -100,34 +124,20 @@ public class BirdController : MonoBehaviour
         float angleRad = angleDeg * Mathf.Deg2Rad;
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f).normalized;
     }
-
+    private void Update()
+    {
+        FlyIntoPlayer();
+    }
     public void FlyIntoPlayer()
     {
-        StartCoroutine(FlyCoroutine());
-    }
-
-    private IEnumerator FlyCoroutine()
-    {
+        Debug.Log("FlyIntoPlayer called in BirdController." + happyMood.activeSelf);
+        if (!happyMood.activeSelf) return;
         Vector3 offset = Vector3.up * hoverHeight;
         var player = GameManager.Instance.Player;
         Vector3 targetPos = player.transform.position + offset;
 
-        while (Vector3.Distance(transform.position, targetPos) > 0.01f)
-        {
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, flySpeed * Time.deltaTime);
-            yield return null;
-        }
+        transform.position = Vector3.MoveTowards(transform.position, targetPos, flySpeed * Time.deltaTime);
 
-        float elapsed = 0f;
-        while (elapsed < stayDuration)
-        {
-            targetPos = player.transform.position + offset;
-            transform.position = Vector3.SmoothDamp(transform.position, targetPos, ref _smoothVelocity, 0.15f);
-            elapsed += Time.deltaTime;
-            yield return null;
-        }
-
-        OnStayFinished();
     }
 
     private void OnStayFinished()

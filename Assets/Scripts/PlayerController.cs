@@ -8,6 +8,7 @@ namespace Game.Scripts.Gameplay
     {
         private static readonly int IsJump = Animator.StringToHash("isJump");
         private static readonly int IsRun = Animator.StringToHash("isRun");
+        private static readonly int IsGiveUp = Animator.StringToHash("isGiveUp");
 
 
         [Header("Movement")]
@@ -40,7 +41,6 @@ namespace Game.Scripts.Gameplay
         private int _jumpCount;
         private int _maxJumpCount;
 
-
         //  private CameraFollowObject _cameraFollowObject;
 
         private void Start()
@@ -59,6 +59,12 @@ namespace Game.Scripts.Gameplay
             _animator.SetBool(IsJump, !_isGrounded);
         }
 
+        public void PlayGiveUpAnimation()
+        {
+            _animator.SetTrigger(IsGiveUp);
+            _isPaused = true;
+        }
+
         private void CheckGround()
         {
             _isGrounded = Physics2D.OverlapCircle(_groundCheck.position, _groundCheckRadius, _groundLayer);
@@ -68,6 +74,9 @@ namespace Game.Scripts.Gameplay
         public void Move(Vector2 input)
         {
             if (_isPaused) return;
+
+            if (float.IsNaN(input.x) || float.IsNaN(input.y)) return; // Không hợp lệ
+
             _rb.linearVelocity = new Vector2(input.x * ModifierSpeed(),  _rb.linearVelocity.y);
             _animator.SetBool(IsRun, Mathf.Abs(input.x) > 0.01f && _isGrounded);
 
@@ -75,7 +84,7 @@ namespace Game.Scripts.Gameplay
                 transform.localScale = new Vector3(Mathf.Sign(input.x), 1, 1);
         }
 
-        private float ModifierSpeed()
+        public float ModifierSpeed()
         {
             return _moveSpeed * _modifierSpeed * _runModifier;
         }
@@ -83,7 +92,7 @@ namespace Game.Scripts.Gameplay
         {
             if (!_canRun) return;
 
-            _runModifier *= value ? 2 : 1 ;
+            _runModifier = value ? 1.5f : 1 ;
         }
         public void Jump()
         {
@@ -93,7 +102,7 @@ namespace Game.Scripts.Gameplay
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
                 _jumpCount++;
             }
-            if (GameManager.Instance.IsWin && IsSignaling && _checkDoubleJump)
+            if (_checkDoubleJump)
                 StartCoroutine(DoubleJump());
         }
 
@@ -106,8 +115,8 @@ namespace Game.Scripts.Gameplay
                 if (_jumpCount <= _maxJumpCount)
                     _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce + 2.5f);
                 _maxJumpCount--;
-                IsSignaling = false;
-                GameManager.Instance.IsWin = false;
+                //IsSignaling = false;
+                //GameManager.Instance.IsWin = false;
                 _checkDoubleJump = false;
             }
         }
@@ -161,6 +170,17 @@ namespace Game.Scripts.Gameplay
         private void HandleEnemyDetection(EnemyController enemy)
         {
             if (enemy == null) return;
+            else if (!IsSignaling)
+            {
+                var distance = Vector2.Distance(transform.position, enemy.transform.position);
+                Debug.Log(""+ enemy.IsMovingInDirection);    
+                if ((!enemy.IsMovingInDirection && enemy.enabled))
+                {
+                    Debug.Log("Enemy is not signaling, stopping player movement.");
+                    StopPlayer();
+                    IsSignaling = enemy.SignalRandomDirection();
+                }
+            } else
             if (GameManager.Instance.IsWin && IsSignaling)
             {
                 enemy.StopMovement();
@@ -169,44 +189,37 @@ namespace Game.Scripts.Gameplay
 				GameManager.Instance.IsWin = false;
                 IsSignaling = false;
             }
-            else if(!GameManager.Instance.IsWin && IsSignaling)
-            {
-                if (!_endCoroutine && enemy.enabled)
-                    StopPlayer();
-            }
-            else if (!IsSignaling)
-            {
-                if (!_endCoroutine && enemy.enabled)
-                    StopPlayer();
-                enemy.OnSignalDirection += GameManager.Instance.OnEnemySignal;
-                IsSignaling = enemy.SignalRandomDirection();
-            }
         }
 
         private void HandleBirdDetection(BirdController bird)
         {
             Debug.Log("Detected Bird");
             if (bird == null) return;
+            if (!IsSignaling)
+            {
+                Debug.Log("Bird is not signaling" + 
+                    bird.IsMoving);
+                if (!bird.IsMoving && bird.enabled)
+                {
+                    StopPlayer();
+                    IsSignaling = bird.SignalRandomDirection();
+                }
+            } else
             if (GameManager.Instance.IsWin && IsSignaling)
             {
                 _checkDoubleJump = true;
-                bird.FlyIntoPlayer();
+                //bird.SetInactiveMood();
                 bird.SetActiveMood();
-				bird.StopMovement();
+                bird.StopMovement();
+                IsSignaling = false;
+                GameManager.Instance.IsWin = false;
             }
-            else if (!GameManager.Instance.IsWin && IsSignaling)
-            {
-                if (!_endCoroutine && bird.enabled)
-                    StopPlayer();
-            }
-            else if (!IsSignaling)
-            {
-                Debug.Log("Bird is not signaling");
-                if (!_endCoroutine && bird.enabled)
-                    StopPlayer();
-                bird.OnSignalDirection += GameManager.Instance.OnEnemySignal;
-                IsSignaling = bird.SignalRandomDirection();
-            }
+            //else if (!GameManager.Instance.IsWin && IsSignaling)
+            //{
+            //    if (!_endCoroutine && bird.enabled)
+            //        StopPlayer();
+            //}
+
         }
 
         private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
@@ -230,13 +243,13 @@ namespace Game.Scripts.Gameplay
 
         private void StopPlayer()
         {
-            //yield return new WaitForSeconds(0.2f);
-            //_isPaused = true;
+          
             GameManager.Instance.IsInputEnable = false;
-            _rb.linearVelocity = Vector2.zero;
+            //if (!_groundCheck)
+                //_rb.linearVelocityY = 10f;
+            _rb.linearVelocityX = 0f;
             _animator.SetBool(IsRun, false);
-            //yield return new WaitForSeconds(duration);
-            //_isPaused = false;
+           
         }
 
         public void Stop()
