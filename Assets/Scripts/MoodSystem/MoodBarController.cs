@@ -128,7 +128,7 @@ public class MoodBarController : MonoBehaviour
         MovementSpeedModifier = 0.5f + amount;        // max +50% speed
         SongWheelTimeModifier = 0.5f + amount;         // max +50% time
         Debug.Log(MovementSpeedModifier + " " + SongWheelTimeModifier);
-        songWheelController.ModifierSongWheelTime(Mathf.Clamp01(SongWheelTimeModifier));
+        GameManager.Instance.ModifyTimeout = SongWheelTimeModifier;
         playerController.SetModifierSpeed(MovementSpeedModifier);
         // Bạn có thể broadcast event hoặc gán trực tiếp cho player / UI
     }

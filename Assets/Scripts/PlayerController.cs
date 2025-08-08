@@ -141,6 +141,8 @@ namespace Game.Scripts.Gameplay
             DrawDebugCircle(transform.position, detectRadius, Color.red);
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, enemyLayer);
 
+            Debug.Log($"Detected {hits.Length} enemies within radius {detectRadius}");
+
             foreach (var hit in hits)
             {
                 if (hit.CompareTag("Enemy"))
@@ -183,6 +185,7 @@ namespace Game.Scripts.Gameplay
 
         private void HandleBirdDetection(BirdController bird)
         {
+            Debug.Log("Detected Bird");
             if (bird == null) return;
             if (GameManager.Instance.IsWin && IsSignaling)
             {
@@ -198,6 +201,7 @@ namespace Game.Scripts.Gameplay
             }
             else if (!IsSignaling)
             {
+                Debug.Log("Bird is not signaling");
                 if (!_endCoroutine && bird.enabled)
                     StopPlayer();
                 bird.OnSignalDirection += GameManager.Instance.OnEnemySignal;

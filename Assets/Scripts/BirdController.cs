@@ -35,10 +35,11 @@ public class BirdController : MonoBehaviour
             happyMood.SetActive(false);
         }
     }
-  
+
 
 	public bool SignalRandomDirection()
     {
+        Debug.Log("`  SignalRandomDirection` called in BirdController.");
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)
             _currentDir[i] = (SongDirection)GameManager.Instance.DirectionNumber[UnityEngine.Random.Range(0, GameManager.Instance.DirectionNumber.Length)];

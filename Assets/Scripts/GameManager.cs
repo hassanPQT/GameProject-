@@ -12,8 +12,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MoodBarController moodBar;
     [SerializeField] private float moodDeltaOnWin = 0.15f;
     [SerializeField] private float moodDeltaOnLose = 0.15f;
+    [SerializeField] private float _inputTimeout = 10f;
 
-    private float _inputTimeout = 10f;
     private bool _awaitingInput;
     private SongDirection[] _targetDir;
     private int _userPositivePoint = 3;
@@ -24,7 +24,9 @@ public class GameManager : MonoBehaviour
     public bool IsWin;
     public float Timer;
     public bool IsWinToStopEnemy;
-    public bool IsInputEnable; 
+    public bool IsInputEnable;
+    public bool IsStop3s => _awaitingInput;
+    public float ModifyTimeout = 1;
 
     private List<IListener> _listenerList = new List<IListener>();
     private void Awake()
@@ -95,7 +97,8 @@ public class GameManager : MonoBehaviour
     private IEnumerator WaitForInput()
     {
         Timer = 0f;
-        while (_awaitingInput && Timer < _inputTimeout)
+        var temp = _inputTimeout * ModifyTimeout;
+        while (_awaitingInput && Timer < temp)
         {
             Timer += Time.deltaTime;
             yield return null;
@@ -103,13 +106,14 @@ public class GameManager : MonoBehaviour
 
         if (_awaitingInput)
         {
-            OnPlayerSelect(DirectionNumber);
-
+            OnPlayerResult(false);
         }
     }
 
     public void OnPlayerSelect(int[] sliceIndex)
     {
+        if (!_awaitingInput) return;//cẩn thận chỗ này
+
         _awaitingInput = false;
         bool correct = sliceIndex.Length == 2 && _targetDir != null && sliceIndex.Length == _targetDir.Length;
         if (correct)

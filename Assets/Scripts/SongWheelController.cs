@@ -44,7 +44,7 @@ public class SongWheelController : MonoBehaviour
 
     private void Update()
     {
-        if (!_wheelActive && !_mouseRightDelay  && Input.GetMouseButtonDown(1))
+        if (!_wheelActive && !_mouseRightDelay && Input.GetMouseButtonDown(1))
         {
             _mouseRightDelay = true;
             StartCoroutine(ResetLeftClickCooldown());
@@ -53,12 +53,12 @@ public class SongWheelController : MonoBehaviour
             Cursor.visible = true;
             ActivateWheel();
         }
-     
+
         if (_wheelActive)
         {
             UpdateSelection();
 
-            if(GameManager.Instance.Player.IsSignaling)
+            if (GameManager.Instance.Player.IsSignaling)
             {
                 PlayerCountDownAnimation();
             }
@@ -103,38 +103,37 @@ public class SongWheelController : MonoBehaviour
     }
     public void ActivateWheel()
     {
+        _animator.SetBool(IsSing, true);
+        _wheelActive = true;
+        _wheelRect.gameObject.SetActive(true);
+        _wheelRect.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        _wheelRect.localScale = Vector3.zero;
 
-       
-            _animator.SetBool(IsSing, true);
-            _wheelActive = true;
-            _wheelRect.gameObject.SetActive(true);
-            _wheelRect.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
-            _wheelRect.localScale = Vector3.zero;
+        // Animation mở bánh xe
+        _wheelRect.DOScale(1f, 0.2f)
+            .SetEase(Ease.OutBack);
 
-            // Animation mở bánh xe
-            _wheelRect.DOScale(1f, 0.2f)
-                .SetEase(Ease.OutBack);
-
-        StartCoroutine(Delay3s());
+        if (!GameManager.Instance.IsStop3s)// Cẩn thận chỗ này
+            StartCoroutine(Delay3s());
     }
     public void ModifierSongWheelTime(float mult)
     {
-        _songWheelTime = (int) (GAME_STAT.SONG_WHEEL_TIME * mult);
+        _songWheelTime = (int)(GAME_STAT.SONG_WHEEL_TIME * mult);
     }
     private IEnumerator Delay3s()
     {
-        yield return new WaitForSeconds(_songWheelTime/1000);
+        yield return new WaitForSeconds(_songWheelTime / 1000);
         if (_wheelActive)
-        ReleaseWheel() ;
+            ReleaseWheel();
     }
     public void ReleaseWheel()
     {
-        
+
         _animator.SetBool(IsSing, false);
         _wheelActive = false;
         _wheelRect.DOScale(0f, 0.15f).SetEase(Ease.InBack)
             .OnComplete(() => _wheelRect.gameObject.SetActive(false));
-        
+
         ResetHighlight();
         _currentSlice = -1;
     }
@@ -177,7 +176,7 @@ public class SongWheelController : MonoBehaviour
             }
         }
 
-        if(!_slices[slice].gameObject.activeSelf)
+        if (!_slices[slice].gameObject.activeSelf)
         {
             return;
         }
