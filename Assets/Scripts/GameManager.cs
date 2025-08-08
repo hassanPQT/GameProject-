@@ -92,6 +92,7 @@ public class GameManager : MonoBehaviour
     private void InitializedStatus()
     {
         IsGameLose = false;
+        _isGamePaused = false;
         InputManager.Instance.LockCursor();
         IsWinToStopEnemy = false;
         IsInputEnable = true;
@@ -116,6 +117,9 @@ public class GameManager : MonoBehaviour
         StopAllCoroutines();
         Player = FindAnyObjectByType<PlayerController>();
         InitializedPlayer();
+        InitializedStatus();
+        SetupDirectionNumbers();
+        uiManager = FindAnyObjectByType<UIManager>();
 
         SongWheelController = FindAnyObjectByType<SongWheelController>();
         moodBar = FindAnyObjectByType<MoodBarController>();
@@ -266,6 +270,8 @@ public class GameManager : MonoBehaviour
         _isGameEnd = true;
         PauseGame();
     }
+
+
 
     public void PauseGame()
     {

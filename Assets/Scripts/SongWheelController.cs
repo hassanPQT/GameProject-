@@ -15,7 +15,6 @@ public class SongWheelController : MonoBehaviour
     [SerializeField] private RectTransform _wheelRect;
     [SerializeField] private Image[] _slices;
 
-    [SerializeField] private GameManager _gameManager;
     [SerializeField] private Animator _animator;
 
     private int _songWheelTime = 3000;
@@ -69,16 +68,16 @@ public class SongWheelController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log(_currentSlice);
+                Debug.Log("Clicked: "+ _currentSlice);
                 if (_slices[_currentSlice].gameObject.activeSelf)
                 {
                     _selectSlices.Add(_currentSlice);
                 }
-                if (_gameManager != null && _selectSlices.Count == 2)
+                if (GameManager.Instance != null && _selectSlices.Count == 2)
                 {
                     //OnPlayerResult(OnPlayerSelect(DirectionNumber));
                     Debug.Log($"Selected slices: {string.Join(", ", _selectSlices)}");
-                    _gameManager.OnPlayerSelect(_selectSlices.ToArray());
+                    GameManager.Instance.OnPlayerSelect(_selectSlices.ToArray());
                     _selectSlices.Clear();
                 }
             }
