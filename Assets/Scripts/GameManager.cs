@@ -283,6 +283,7 @@ public class GameManager : MonoBehaviour
         PauseGame();
         IsGameLose = true;
         InputManager.Instance.GameLose();
+        Player.PlayGiveUpAnimation();
         uiManager.ShowLoseUI();
     }
     public void ResumeGame() => _isGamePaused = false;

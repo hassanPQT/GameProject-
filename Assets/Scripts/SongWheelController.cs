@@ -18,6 +18,7 @@ public class SongWheelController : MonoBehaviour
     [SerializeField] PlayerController _playerController;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private Animator _animator;
+    [SerializeField] private float _offsetY = 60f; // Khoảng cách dọc từ vị trí của người chơi đến bánh xe
 
     private int _songWheelTime = 3000;
     private CancellationTokenSource _cts;
@@ -51,13 +52,17 @@ public class SongWheelController : MonoBehaviour
     private void Synchron()
     {
         var positionOnScreen = Camera.main.WorldToScreenPoint(_playerController.transform.position);
-        var offset = Vector3.up;
-        _wheelRect.position = positionOnScreen + offset ;
+        _wheelRect.position = positionOnScreen + Vector3.up * _offsetY;
         //_playerController.transform.position
     }
-    private void Update()
+
+    private void FixedUpdate()
     {
         Synchron();
+    }
+
+    private void Update()
+    {
         if (!_wheelActive && !_mouseRightDelay && Input.GetMouseButtonDown(1))
         {
             _mouseRightDelay = true;
@@ -78,7 +83,7 @@ public class SongWheelController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log("Clicked: "+ _currentSlice);
+                Debug.Log("Clicked: " + _currentSlice);
                 if (_slices[_currentSlice].gameObject.activeSelf)
                 {
                     _selectSlices.Add(_currentSlice);

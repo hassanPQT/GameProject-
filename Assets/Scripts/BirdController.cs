@@ -45,8 +45,8 @@ public class BirdController : MonoBehaviour
 
     private async void AutoDelay()
     {
-            await System.Threading.Tasks.Task.Delay(7000);
-            happyMood.SetActive(false);
+            await System.Threading.Tasks.Task.Delay(6000);
+        happyMood.SetActive(false);
     }
 
     public void SetInactiveMood() { 

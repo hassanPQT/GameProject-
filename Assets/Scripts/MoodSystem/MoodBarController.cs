@@ -43,21 +43,23 @@ public class MoodBarController : MonoBehaviour
 
     private void HandleHigh()
     {
+        ChangeMoodImage.sprite = moodFillImage[1]; // 90% mood
         playerController.UnlockRun();
         ApplyEffects(_moodValue);
-
     }
+
+
 
     private void HandleMedium()
     {
         //ChangeMoodImage.sprite = moodFillImage[2]; // 50% mood
-        ChangeMoodImage.sprite = moodFillImage[3]; // 50% mood
+        ChangeMoodImage.sprite = moodFillImage[2]; // 50% mood
         ApplyEffects(_moodValue);
 
     }
     private void HandleLow()
     {
-        ChangeMoodImage.sprite = moodFillImage[moodFillImage.Length - 1]; // 30% mood
+        ChangeMoodImage.sprite = moodFillImage[3]; // 30% mood
         ApplyEffects(_moodValue);
 
     }

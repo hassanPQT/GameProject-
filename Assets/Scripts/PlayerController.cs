@@ -253,6 +253,8 @@ namespace Game.Scripts.Gameplay
            
         }
 
+
+
         public void Stop()
         {
             _rb.linearVelocity = Vector2.zero;
