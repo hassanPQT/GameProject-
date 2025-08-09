@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7790496745125373883}
   - component: {fileID: 5325613520558738070}
+  - component: {fileID: 4194468556478216098}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -45,10 +46,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
-  _songWheelController: {fileID: 0}
+  SongWheelController: {fileID: 0}
+  uiManager: {fileID: 0}
+  PlayerPrf: {fileID: 2738988328621163954, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
+  startPoint: {fileID: 0}
   moodBar: {fileID: 0}
   moodDeltaOnWin: 0.1
   moodDeltaOnLose: 0.2
-  DirectionNumber: 
+  _inputTimeout: 10
+  timerSpeed: 0.5
   IsWin: 0
+  Timer: 0
   IsWinToStopEnemy: 0
+  IsInputEnable: 0
+  IsGameLose: 0
+  ModifyTimeout: 1
+--- !u!114 &4194468556478216098
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1890319897790228435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 19aae91fbf6b6ca4baa03d4ed8d3cfec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

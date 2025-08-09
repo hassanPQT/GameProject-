@@ -17,7 +17,7 @@ public class CameraZoneTrigger : MonoBehaviour
     {
         nextSceneCamera.SetActive(false);
         player = GameObject.FindGameObjectWithTag("Player");
-        currentCamera = FindObjectOfType<CinemachineVirtualCamera>().gameObject;
+        currentCamera = FindFirstObjectByType<CinemachineVirtualCamera>().gameObject;
       
     }
 

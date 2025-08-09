@@ -1,4 +1,5 @@
 ﻿using DG.Tweening;
+using Game.Scripts.Gameplay;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -14,9 +15,10 @@ public class SongWheelController : MonoBehaviour
     [Header("UI")]
     [SerializeField] private RectTransform _wheelRect;
     [SerializeField] private Image[] _slices;
-
+    [SerializeField] PlayerController _playerController;
     [SerializeField] private GameManager _gameManager;
     [SerializeField] private Animator _animator;
+    [SerializeField] private float _offsetY = 60f; // Khoảng cách dọc từ vị trí của người chơi đến bánh xe
 
     private int _songWheelTime = 3000;
     private CancellationTokenSource _cts;
@@ -41,10 +43,22 @@ public class SongWheelController : MonoBehaviour
 
     private void Start()
     {
+        _playerController = FindAnyObjectByType<PlayerController>();
         newSongWheelNumber = 6;
         _sliceSize = new Vector2[_slices.Length];
         for (int i = 0; i < _slices.Length; i++)
             _sliceSize[i] = _slices[i].GetComponent<RectTransform>().sizeDelta;
+    }
+    private void Synchron()
+    {
+        var positionOnScreen = Camera.main.WorldToScreenPoint(_playerController.transform.position);
+        _wheelRect.position = positionOnScreen + Vector3.up * _offsetY;
+        //_playerController.transform.position
+    }
+
+    private void FixedUpdate()
+    {
+        Synchron();
     }
 
     private void Update()
@@ -54,8 +68,7 @@ public class SongWheelController : MonoBehaviour
             _mouseRightDelay = true;
             StartCoroutine(ResetLeftClickCooldown());
 
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            InputManager.Instance.UnlockCursor();
             ActivateWheel();
         }
 
@@ -70,24 +83,23 @@ public class SongWheelController : MonoBehaviour
 
             if (Input.GetMouseButtonDown(0))
             {
-                Debug.Log(_currentSlice);
+                Debug.Log("Clicked: " + _currentSlice);
                 if (_slices[_currentSlice].gameObject.activeSelf)
                 {
                     _selectSlices.Add(_currentSlice);
                 }
-                if (_gameManager != null && _selectSlices.Count == 2)
+                if (GameManager.Instance != null && _selectSlices.Count == 2)
                 {
                     //OnPlayerResult(OnPlayerSelect(DirectionNumber));
                     Debug.Log($"Selected slices: {string.Join(", ", _selectSlices)}");
-                    _gameManager.OnPlayerSelect(_selectSlices.ToArray());
+                    GameManager.Instance.OnPlayerSelect(_selectSlices.ToArray());
                     _selectSlices.Clear();
                 }
             }
 
             if (Input.GetMouseButtonUp(1))
             {
-                Cursor.lockState = CursorLockMode.Locked;
-                Cursor.visible = false;
+                InputManager.Instance.LockCursor();
                 ReleaseWheel();
             }
         }

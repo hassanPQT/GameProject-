@@ -54,6 +54,7 @@ namespace Game.Scripts.Gameplay
         }
         private void Update()
         {
+            //if (GameManager.Instance.IsGameLose) return;
             DetectEnemy();
             CheckGround();
             _animator.SetBool(IsJump, !_isGrounded);
@@ -251,6 +252,8 @@ namespace Game.Scripts.Gameplay
             _animator.SetBool(IsRun, false);
            
         }
+
+
 
         public void Stop()
         {
