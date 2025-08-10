@@ -4,11 +4,15 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using Cinemachine;
+using UnityEditor.Rendering;
+using Unity.Play.Publisher.Editor;
+using Game.Scripts.Gameplay;
 public class CutsceneController : MonoBehaviour
 {
     [Header("References")]
     public GameObject player;
     public MonoBehaviour playerController; // script điều khiển player (enable/disable)
+
     [Header("Cinemachine Cameras")]
     public CinemachineVirtualCamera playerCamera;
     public CinemachineVirtualCamera enemyCamera;
@@ -22,10 +26,12 @@ public class CutsceneController : MonoBehaviour
     [Header("Dialog UI")]
     public CanvasGroup dialogCanvasGroup;   // CanvasGroup for fade in/out
     public TMP_Text dialogText;                 // or use TMPro
+    public TMP_Text dialogText2;               // optional second text
 
     [Header("Timings")]
     public float pickupRiseTime = 2f;
     public float pickupDropTime = 0.6f;
+    public float holdSwordTime = 10f; // time to hold sword before dropping
     public float dialogShowTime = 2.5f;
 
     [Header("Options")]
@@ -79,6 +85,7 @@ public class CutsceneController : MonoBehaviour
 
     private IEnumerator CutsceneRoutine()
     {
+        StartCoroutine(player.GetComponent<PlayerController>().PausePlayer(5));
         _isPlaying = true;
 
         // 1. Switch camera to enemy
@@ -113,22 +120,60 @@ public class CutsceneController : MonoBehaviour
         if (pauseEnemiesDuringCutscene)
             PauseAllEnemies(true);
 
-        // 3. Sword pick up attempt
         if (sword != null && playerHandPoint != null)
         {
             yield return new WaitForSeconds(2f); // wait a bit before picking up
-            // raise sword slightly (simulate lifting), then drop
-            // record ground drop position (you can set where sword should fall)
-            Vector3 groundPos = _swordOriginalPos; // or sword.transform.position if moved
-            // sequence: quick up to hand, then heavy drop to ground
+
+            Vector3 groundPos = _swordOriginalPos;
+
             Sequence s = DOTween.Sequence();
             s.Append(sword.transform.DOMove(playerHandPoint.position, pickupRiseTime).SetEase(Ease.OutCubic));
-            // small hold so player sees weight
             s.AppendInterval(1f);
-            // drop: jump-like heavy fall to groundPos
-            s.Append(sword.transform.DOMove(groundPos, pickupDropTime).SetEase(Ease.InBounce));
             yield return s.WaitForCompletion();
+
+            // Attach sword to player's hand
+            dialogText2.gameObject.SetActive(true); // hide second text if not used
+            sword.transform.SetParent(playerHandPoint, true);
+            sword.transform.localPosition = Vector3.zero;
+
+            // Wait until you want to drop the sword (replace with your own condition)
+            // Example: wait for dialog to finish
+            float holdTime = 20f;
+            float timer = 0f;
+            bool reduced = false;
+
+            while (timer < holdTime)
+            {
+                // Giữ chuột phải để giảm thời gian
+                if (!reduced && Input.GetMouseButton(1))
+                {
+                    dialogText2.text = "Now hold right move and click left mouse to any direction you want:D";
+
+                    if (holdTime - timer > 1f)
+                    {
+                        holdTime = timer + 10f;
+                    }
+                    reduced = true;
+                }
+
+                // Nếu đang giữ chuột phải và bấm chuột trái ở bất kỳ frame nào
+                if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0))
+                {
+                    break;
+                }
+
+                timer += Time.deltaTime;
+                yield return null;
+            }
+
+
+            // Drop the sword
+            dialogText2.gameObject.SetActive(false); // hide second text if not used
+            sword.transform.SetParent(null, true);
+            sword.transform.DOMove(groundPos, pickupDropTime).SetEase(Ease.InBounce);
+            yield return new WaitForSeconds(pickupDropTime);
         }
+
 
         // 4. Show dialog
         if (dialogCanvasGroup != null && dialogText != null)
@@ -162,9 +207,9 @@ public class CutsceneController : MonoBehaviour
         if (_playerRb != null) _playerRb.isKinematic = false;
         if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
 
-        // 7. resume enemies
-        if (pauseEnemiesDuringCutscene)
-            PauseAllEnemies(false);
+        //// 7. resume enemies
+        //if (pauseEnemiesDuringCutscene)
+        //    PauseAllEnemies(false);
 
         _isPlaying = false;
     }

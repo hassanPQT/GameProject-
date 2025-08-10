@@ -253,12 +253,22 @@ namespace Game.Scripts.Gameplay
            
         }
 
-
-
         public void Stop()
         {
-            _rb.linearVelocity = Vector2.zero;
+            _rb.linearVelocityX = 0f;
         }
+
+        public IEnumerator PausePlayer(float duration)
+        {
+            _isPaused = true;
+            GameManager.Instance.IsInputEnable = false;
+            _rb.linearVelocity = Vector2.zero;
+            _animator.SetBool(IsRun, false);
+            yield return new WaitForSeconds(duration);
+            _isPaused = false;
+            GameManager.Instance.IsInputEnable = true;
+        }
+
         public void SetModifierSpeed(float mult)
         {
             _modifierSpeed = mult;
