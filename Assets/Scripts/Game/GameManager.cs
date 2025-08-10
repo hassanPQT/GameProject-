@@ -20,7 +20,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float moodDeltaOnWin = 0.15f;
     [SerializeField] private float moodDeltaOnLose = 0.15f;
     [SerializeField] private float _inputTimeout = 10f;
-    [SerializeField] private float timerSpeed = 0.5f; // Thêm dòng này vào class
 
 
     private bool _awaitingPlayerSelect;
@@ -87,12 +86,9 @@ public class GameManager : MonoBehaviour
 
     private void InitializedStatus()
     {
-        IsGameLose = false;
         _isGamePaused = false;
         InputManager.Instance.LockCursor();
-        IsWinToStopEnemy = false;
         IsInputEnable = true;
-        IsWin = false;
         _currentDirectionIndex = 6;
         _userPositivePoint = 3;
     }
@@ -117,7 +113,6 @@ public class GameManager : MonoBehaviour
         SetupDirectionNumbers();
         uiManager = FindAnyObjectByType<UIManager>();
 
-        SongWheelController = FindAnyObjectByType<SongWheelController>();
         songWheelController = FindAnyObjectByType<SongWheelController>();
         moodBar = FindAnyObjectByType<MoodBarController>();
         // Gán thêm nếu cần…
@@ -142,16 +137,6 @@ public class GameManager : MonoBehaviour
     public void OnPlayerLoseEncounter()
     {
         moodBar.DecreaseMood(moodDeltaOnLose);
-    }
-
-    private void Start()
-    {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
-        IsInputEnable = true;
-        _currentDirectionIndex = 6;
-        _userPositivePoint = 3;
-        SetupDirectionNumbers();
     }
 
     private void SetupDirectionNumbers()
@@ -292,7 +277,6 @@ public class GameManager : MonoBehaviour
     public void GameLose()
     {
         PauseGame();
-        IsGameLose = true;
         InputManager.Instance.GameLose();
         Player.PlayGiveUpAnimation();
         uiManager.ShowLoseUI();

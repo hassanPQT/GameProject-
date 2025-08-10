@@ -25,7 +25,6 @@ public class SongWheelController : MonoBehaviour
     private List<int> _selectSlices = new();
     private bool _wheelActive;
     private int _currentSlice = -1;
-    private bool _mouseRightDelay = false;
     private Vector2[] _sliceSize;
     private int newSongWheelNumber;
 
@@ -65,11 +64,7 @@ public class SongWheelController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
-            _mouseRightDelay = true;
-            StartCoroutine(ResetLeftClickCooldown());
-
             InputManager.Instance.UnlockCursor();
-            ActivateWheel();
             OpenSongWheel();
         }
 
@@ -93,10 +88,10 @@ public class SongWheelController : MonoBehaviour
     private void UpdateAnimation()
     {
         UpdateSelection();
-        //if (GameManager.Instance.Player.IsPlaying)
-        //{
-        //    PlayerCountDownAnimation();
-        //}
+        if (GameManager.Instance.Player.detection.IsPlaying)
+        {
+            PlayerCountDownAnimation();
+        }
     }
 
     private void OnSelectSongWheel()
