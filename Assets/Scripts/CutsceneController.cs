@@ -85,7 +85,7 @@ public class CutsceneController : MonoBehaviour
 
     private IEnumerator CutsceneRoutine()
     {
-        StartCoroutine(player.GetComponent<PlayerController>().PausePlayer(5));
+player.GetComponent<PlayerController>().StopPlayer();
         _isPlaying = true;
 
         // 1. Switch camera to enemy
@@ -172,6 +172,7 @@ public class CutsceneController : MonoBehaviour
             sword.transform.SetParent(null, true);
             sword.transform.DOMove(groundPos, pickupDropTime).SetEase(Ease.InBounce);
             yield return new WaitForSeconds(pickupDropTime);
+            player.GetComponent<PlayerController>().UnStop();
         }
 
 

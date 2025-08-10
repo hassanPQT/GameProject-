@@ -116,14 +116,17 @@ namespace Game.Scripts.Gameplay
                 _checkDoubleJump = false;
             }
         }
+
         public void StopPlayer()
         {
             _isStop = true;
             GameManager.Instance.IsInputEnable = false;
             _rb.linearVelocityX = 0f;
             _animator.SetBool(IsRun, false);
-           
         }
+
+
+        
         public void SetModifierSpeed(float mult)
         {
             _modifierSpeed = mult;
@@ -133,6 +136,7 @@ namespace Game.Scripts.Gameplay
         public void UnStop()
         {
             _isStop = false;
+            GameManager.Instance.IsInputEnable = true;
         }
 
         public void CanDoubleJump()
