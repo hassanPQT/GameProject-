@@ -22,7 +22,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float _inputTimeout = 10f;
 
 
-    private bool _awaitingPlayerSelect;
+    public bool _awaitingPlayerSelect;
     private SongDirection[] _targetDir;
     private int _userPositivePoint = 3;
     private bool _isGameEnd;

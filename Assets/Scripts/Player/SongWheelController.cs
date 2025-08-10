@@ -21,18 +21,14 @@ public class SongWheelController : MonoBehaviour
     [SerializeField] private float _offsetY = 60f; // Khoảng cách dọc từ vị trí của người chơi đến bánh xe
 
     private int _songWheelTime = 3000;
+    public int _songWheelTimeForDisplay = 3000;
     private CancellationTokenSource _cts;
     private List<int> _selectSlices = new();
     private bool _wheelActive;
     private int _currentSlice = -1;
     private Vector2[] _sliceSize;
     private int newSongWheelNumber;
-
-    void OnDisable()
-    {
-        DOTween.KillAll();
-    }
-
+    private float _currentFillAmount = 1f; // Add this field to your class
 
     private void Awake()
     {
@@ -68,6 +64,14 @@ public class SongWheelController : MonoBehaviour
             OpenSongWheel();
         }
 
+        if (GameManager.Instance._awaitingPlayerSelect && GameManager.Instance.Timer != _songWheelTime)
+        {
+            if (_songWheelTimeForDisplay <= 0)
+                _songWheelTimeForDisplay = 4950;
+            _songWheelTimeForDisplay -= (int)(Time.deltaTime * 1000f * 0.5f);
+        }
+
+
         if (_wheelActive)
         {
             UpdateAnimation();
@@ -82,13 +86,13 @@ public class SongWheelController : MonoBehaviour
         {
             CloseSongWheel();
         }
-        
+
     }
 
     private void UpdateAnimation()
     {
         UpdateSelection();
-        if (GameManager.Instance.Player.detection.IsPlaying)
+        if (GameManager.Instance._awaitingPlayerSelect && GameManager.Instance.Timer != _songWheelTime)
         {
             PlayerCountDownAnimation();
         }
@@ -126,10 +130,10 @@ public class SongWheelController : MonoBehaviour
         if (_currentSlice != -1 && _slices[_currentSlice].gameObject.activeSelf)
         {
             Image timerImage = _slices[_currentSlice].transform.GetChild(1).gameObject.GetComponent<Image>();
-            float targetFill = GameManager.Instance.Timer;
-            timerImage.DOKill();
-            timerImage.DOFillAmount(targetFill, 3f)
-                .OnComplete(() => timerImage.fillAmount = 0f);
+            float targetFill = Mathf.Clamp01((float)_songWheelTimeForDisplay / 4950f);
+            _currentFillAmount = Mathf.Lerp(_currentFillAmount, targetFill, Time.deltaTime * 8f); // 8f is smoothing speed
+            timerImage.fillAmount = _currentFillAmount;
+            Debug.Log($"Timer for fillAmount: {_songWheelTimeForDisplay} ms");
         }
     }
 
@@ -238,10 +242,24 @@ public class SongWheelController : MonoBehaviour
 
     public void OnPlayerWin()
     {
-        //throw new NotImplementedException();
+        _songWheelTimeForDisplay = 4950;
+        for (int i = 0; i < _slices.Length; i++)
+        {
+            if (_slices[i].gameObject.activeSelf)
+            {
+                _slices[i].transform.GetChild(1).gameObject.GetComponent<Image>().fillAmount = 0;
+            }
+        }
     }
     public void OnPlayerLose()
     {
-
+        _songWheelTimeForDisplay = 4950;
+        for (int i = 0; i < _slices.Length; i++)
+        {
+            if (_slices[i].gameObject.activeSelf)
+            {
+                _slices[i].transform.GetChild(1).gameObject.GetComponent<Image>().fillAmount = 0;
+            }
+        }
     }
 }

@@ -258,6 +258,38 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'SceneLoadTrigger '
       objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToUnLoad.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[0]._sceneName
+      value: MapDesign4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[1]._sceneName
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[0]._sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 0483df73a822c5c4ead89a8e6db22ef5, type: 3}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[1]._sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: cb2816bfc9470e74ab17a9119a856cc6, type: 3}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToUnLoad.Array.data[0]._sceneName
+      value: MapDesign 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToUnLoad.Array.data[0]._sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: c4d4eba511e800448b073ffbb6690055, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -6135,7 +6167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875cbaae7db056d408d2a6baafb01fd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LoseUI: {fileID: 0}
+  LoseUI: {fileID: 8947968171588526567, guid: 45e7c00bd3fd17b458ae54bff328c04d, type: 3}
 --- !u!4 &778482346
 Transform:
   m_ObjectHideFlags: 0

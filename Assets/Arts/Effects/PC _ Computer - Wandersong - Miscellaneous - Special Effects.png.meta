@@ -1226,10 +1226,10 @@ TextureImporter:
       name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_26
       rect:
         serializedVersion: 2
-        x: 651
-        y: 3184
-        width: 14
-        height: 20
+        x: 643
+        y: 3167
+        width: 57
+        height: 9
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1240,28 +1240,6 @@ TextureImporter:
       bones: []
       spriteID: eeb1b84ec754a8060800000000000000
       internalID: 6956448977139735534
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_27
-      rect:
-        serializedVersion: 2
-        x: 678
-        y: 3184
-        width: 14
-        height: 20
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 9d01260b9942dbf10800000000000000
-      internalID: 2287024428281893081
       vertices: []
       indices: 
       edges: []
@@ -1471,7 +1449,7 @@ TextureImporter:
         x: 643
         y: 3071
         width: 136
-        height: 102
+        height: 89
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

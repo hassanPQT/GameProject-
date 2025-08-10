@@ -14,6 +14,7 @@ public class CutsceneController : MonoBehaviour
     public MonoBehaviour playerController; // script điều khiển player (enable/disable)
 
     [Header("Cinemachine Cameras")]
+    public Camera _camera;
     public CinemachineVirtualCamera playerCamera;
     public CinemachineVirtualCamera enemyCamera;
 
@@ -85,7 +86,8 @@ public class CutsceneController : MonoBehaviour
 
     private IEnumerator CutsceneRoutine()
     {
-player.GetComponent<PlayerController>().StopPlayer();
+        _camera.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, 2f);
+        player.GetComponent<PlayerController>().StopPlayer();
         _isPlaying = true;
 
         // 1. Switch camera to enemy
@@ -97,12 +99,6 @@ player.GetComponent<PlayerController>().StopPlayer();
             yield return new WaitForSeconds(5f); // Focus on enemy for 5 seconds
         }
 
-        // 2. Switch camera back to player
-        if (playerCamera != null && player != null)
-        {
-            playerCamera.Priority = 20;
-            if (enemyCamera != null) enemyCamera.Priority = 10;
-        }
 
         // 1. disable player input and freeze physics
         if (playerController != null)
@@ -113,7 +109,14 @@ player.GetComponent<PlayerController>().StopPlayer();
         if (_playerRb != null)
         {
             _playerRb.linearVelocity = Vector2.zero;
-            _playerRb.isKinematic = true;
+            _playerRb.bodyType = RigidbodyType2D.Kinematic;
+        }
+
+        // 2. Switch camera back to player
+        if (playerCamera != null && player != null)
+        {
+            playerCamera.Priority = 20;
+            if (enemyCamera != null) enemyCamera.Priority = 10;
         }
 
         // 2. pause enemies if needed
@@ -205,13 +208,14 @@ player.GetComponent<PlayerController>().StopPlayer();
             player.transform.position = positionAfter.position;
 
         // 6. restore player control and physics
-        if (_playerRb != null) _playerRb.isKinematic = false;
+        if (_playerRb != null) _playerRb.bodyType = RigidbodyType2D.Dynamic;
         if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
 
         //// 7. resume enemies
         //if (pauseEnemiesDuringCutscene)
         //    PauseAllEnemies(false);
 
+        _camera.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.Cut, 0f);
         _isPlaying = false;
     }
 

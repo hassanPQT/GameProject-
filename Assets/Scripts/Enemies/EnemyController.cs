@@ -117,7 +117,7 @@ public class EnemyController : MonoBehaviour, IEnemy
     {
         _isMovingInDirection = true;
 
-        Vector3 end = new Vector3(_startPos.x - 5f, _startPos.y, _startPos.z);
+        Vector3 end = new Vector3(_startPos.x + 5f, _startPos.y, _startPos.z);
         transform.DOMove(end, _moveDuration).SetEase(Ease.Linear);
         yield return new WaitForSeconds(_moveDuration); 
         _isMovingInDirection = false;
@@ -177,7 +177,7 @@ public class EnemyController : MonoBehaviour, IEnemy
     {
         _isMovingInDirection = true;
 
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(2f);
 
         foreach (var d in dir)
         {
@@ -241,7 +241,7 @@ public class EnemyController : MonoBehaviour, IEnemy
     {
         _isMoving = false;
         StopCoroutine(MoveBackAndForth());
-
+        Debug.Log("Enemy detected player, stopping movement.");
         MoveBackToFirstPosition();
         _hasDetectedPlayer = true;
     }
@@ -261,6 +261,5 @@ public class EnemyController : MonoBehaviour, IEnemy
 
     public void OnPlayerMissed()
     {
-        throw new NotImplementedException();
     }
 }

@@ -577,9 +577,17 @@ PrefabInstance:
       value: MapDesign3
       objectReference: {fileID: 0}
     - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[1]._sceneName
+      value: MapDesign4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
       propertyPath: _sceneToLoad.Array.data[0]._sceneAsset
       value: 
       objectReference: {fileID: 102900000, guid: f28980fad78cb7e45929f8f0254cf3a7, type: 3}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[1]._sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 0483df73a822c5c4ead89a8e6db22ef5, type: 3}
     - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
       propertyPath: _sceneToUnLoad.Array.data[0]._sceneName
       value: MapDesign
