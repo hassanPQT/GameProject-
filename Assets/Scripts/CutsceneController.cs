@@ -2,6 +2,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using TMPro;
 #if CINEMACHINE
 using Cinemachine;
 using UnityEngine.Playables;
@@ -27,7 +28,7 @@ public class CutsceneController : MonoBehaviour
 
     [Header("Dialog UI")]
     public CanvasGroup dialogCanvasGroup;   // CanvasGroup for fade in/out
-    public Text dialogText;                 // or use TMPro
+    public TMP_Text dialogText;                 // or use TMPro
 
     [Header("Timings")]
     public float camMoveTime = 0.7f;
