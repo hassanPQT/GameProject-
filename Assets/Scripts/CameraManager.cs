@@ -16,7 +16,7 @@ public class CameraManager : MonoBehaviour
   */
     private void Start()
     {
-        cameras = new List<CinemachineVirtualCamera>(FindObjectsOfType<CinemachineVirtualCamera>());
+        cameras = new List<CinemachineVirtualCamera>(FindObjectsByType<CinemachineVirtualCamera>(FindObjectsSortMode.None));
       
     }
     public static void SwitchCamera(CinemachineVirtualCamera newCamera)

@@ -1,8 +1,10 @@
 using Game.Scripts.Gameplay;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -10,6 +12,10 @@ public class GameManager : MonoBehaviour
     public PlayerController Player;
     public SongWheelController songWheelController;
 
+
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private PlayerController PlayerPrf;
+    [SerializeField] private Transform startPoint;
     [SerializeField] private MoodBarController moodBar;
     [SerializeField] private float moodDeltaOnWin = 0.15f;
     [SerializeField] private float moodDeltaOnLose = 0.15f;
@@ -44,8 +50,53 @@ public class GameManager : MonoBehaviour
             Destroy(gameObject);
         }
     }
+    private void Start()
+    {
+        InitializedStatus();
+        InitializedPlayer();
+        SetupDirectionNumbers();
+    }
 
-    
+    private void InitializedPlayer()
+    {
+        Debug.Log("init player");
+        if (PlayerPrf == null)
+        {
+            Debug.LogError("PlayerPrefab is not assigned in the Inspector!");
+            return;
+        }
+
+        startPoint = GameObject.FindWithTag("StartPoint").transform;
+        
+        Debug.Log(startPoint.position.ToString());
+
+        // Nếu không tìm thấy Player, tạo mới
+        if (Player == null)
+        {
+            Player = Instantiate(PlayerPrf, startPoint.position, startPoint.rotation);
+            Debug.Log("Player instantiated at: " + startPoint.position);
+        }
+        else
+        {
+            // Nếu Player đã tồn tại, chỉ di chuyển đến startPoint
+            Player.transform.position = startPoint.position;
+            Player.transform.rotation = startPoint.rotation;
+            Debug.Log("Existing Player moved to: " + startPoint.position);
+        }
+    }
+
+    private void InitializedStatus()
+    {
+        IsGameLose = false;
+        _isGamePaused = false;
+        InputManager.Instance.LockCursor();
+        IsWinToStopEnemy = false;
+        IsInputEnable = true;
+        IsWin = false;
+        _currentDirectionIndex = 6;
+        _userPositivePoint = 3;
+    }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -61,6 +112,12 @@ public class GameManager : MonoBehaviour
         // Giả sử Player, Canvas, MoodBar đều có tag hoặc có thể FindObjectOfType
         StopAllCoroutines();
         Player = FindAnyObjectByType<PlayerController>();
+        InitializedPlayer();
+        InitializedStatus();
+        SetupDirectionNumbers();
+        uiManager = FindAnyObjectByType<UIManager>();
+
+        SongWheelController = FindAnyObjectByType<SongWheelController>();
         songWheelController = FindAnyObjectByType<SongWheelController>();
         moodBar = FindAnyObjectByType<MoodBarController>();
         // Gán thêm nếu cần…
@@ -198,6 +255,8 @@ public class GameManager : MonoBehaviour
 
     private void HandleKeyboardInput()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+            InputManager.Instance.UnlockCursor();
         Player.Run(Input.GetKey(KeyCode.LeftShift));
         if (!IsInputEnable)
             return;
@@ -224,9 +283,25 @@ public class GameManager : MonoBehaviour
         PauseGame();
     }
 
+
+
     public void PauseGame()
     {
         _isGamePaused = true;
     }
+    public void GameLose()
+    {
+        PauseGame();
+        IsGameLose = true;
+        InputManager.Instance.GameLose();
+        Player.PlayGiveUpAnimation();
+        uiManager.ShowLoseUI();
+    }
     public void ResumeGame() => _isGamePaused = false;
+
+    internal void GameRestart()
+    {
+        Debug.Log("Restart scen");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
 }
