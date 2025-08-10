@@ -3,22 +3,15 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
-#if CINEMACHINE
 using Cinemachine;
-using UnityEngine.Playables;
-#endif
-
 public class CutsceneController : MonoBehaviour
 {
     [Header("References")]
     public GameObject player;
     public MonoBehaviour playerController; // script điều khiển player (enable/disable)
-    public Camera mainCamera;
-    public bool useCinemachine = false;
-#if CINEMACHINE
-    public CinemachineVirtualCamera vCam;
-    private Transform _prevVCamFollow;
-#endif
+    [Header("Cinemachine Cameras")]
+    public CinemachineVirtualCamera playerCamera;
+    public CinemachineVirtualCamera enemyCamera;
 
     [Header("Cutscene Targets")]
     public Transform enemyTransform;        // optional, or pass in method
@@ -31,9 +24,7 @@ public class CutsceneController : MonoBehaviour
     public TMP_Text dialogText;                 // or use TMPro
 
     [Header("Timings")]
-    public float camMoveTime = 0.7f;
-    public float lookAtDuration = 1.2f;
-    public float pickupRiseTime = 0.25f;
+    public float pickupRiseTime = 2f;
     public float pickupDropTime = 0.6f;
     public float dialogShowTime = 2.5f;
 
@@ -45,8 +36,6 @@ public class CutsceneController : MonoBehaviour
     private Rigidbody2D _playerRb;
     private bool _wasPlayerControllerEnabled;
     private bool _isPlaying = false;
-    private Vector3 _mainCamOriginalPos;
-    private float _mainCamZ;
     private Vector3 _swordOriginalPos;
     private Quaternion _swordOriginalRot;
 
@@ -54,9 +43,6 @@ public class CutsceneController : MonoBehaviour
     {
         if (player != null)
             _playerRb = player.GetComponent<Rigidbody2D>();
-
-        if (mainCamera != null)
-            _mainCamZ = mainCamera.transform.position.z;
 
         if (sword != null)
         {
@@ -95,6 +81,22 @@ public class CutsceneController : MonoBehaviour
     {
         _isPlaying = true;
 
+        // 1. Switch camera to enemy
+        if (enemyCamera != null && enemyTransform != null)
+        {
+            enemyCamera.Priority = 20; // Higher than playerCamera
+            Debug.Log($"Switching camera to enemy: {enemyCamera.Priority}");
+            if (playerCamera != null) playerCamera.Priority = 10;
+            yield return new WaitForSeconds(5f); // Focus on enemy for 5 seconds
+        }
+
+        // 2. Switch camera back to player
+        if (playerCamera != null && player != null)
+        {
+            playerCamera.Priority = 20;
+            if (enemyCamera != null) enemyCamera.Priority = 10;
+        }
+
         // 1. disable player input and freeze physics
         if (playerController != null)
         {
@@ -111,47 +113,10 @@ public class CutsceneController : MonoBehaviour
         if (pauseEnemiesDuringCutscene)
             PauseAllEnemies(true);
 
-        // store camera original pos
-        _mainCamOriginalPos = mainCamera.transform.position;
-
-#if CINEMACHINE
-        if (useCinemachine && vCam != null)
-        {
-            // store previous follow and set to enemy to focus
-            _prevVCamFollow = vCam.Follow;
-            vCam.Follow = enemyTransform;
-            // wait a bit for vcam to blend in
-            yield return new WaitForSeconds(camMoveTime);
-        }
-        else
-#endif
-        {
-            // move main camera to enemy
-            Vector3 enemyCamPos = new Vector3(enemyTransform.position.x, enemyTransform.position.y, _mainCamZ);
-            yield return mainCamera.transform.DOMove(enemyCamPos, camMoveTime).SetEase(Ease.OutQuad).WaitForCompletion();
-        }
-
-        // small look time so player sees enemy
-        yield return new WaitForSeconds(lookAtDuration);
-
-#if CINEMACHINE
-        if (useCinemachine && vCam != null)
-        {
-            // restore follow to player
-            vCam.Follow = player.transform;
-            yield return new WaitForSeconds(camMoveTime);
-        }
-        else
-#endif
-        {
-            // move camera back to player
-            Vector3 playerCamPos = new Vector3(player.transform.position.x, player.transform.position.y, _mainCamZ);
-            yield return mainCamera.transform.DOMove(playerCamPos, camMoveTime).SetEase(Ease.InQuad).WaitForCompletion();
-        }
-
         // 3. Sword pick up attempt
         if (sword != null && playerHandPoint != null)
         {
+            yield return new WaitForSeconds(2f); // wait a bit before picking up
             // raise sword slightly (simulate lifting), then drop
             // record ground drop position (you can set where sword should fall)
             Vector3 groundPos = _swordOriginalPos; // or sword.transform.position if moved
@@ -159,7 +124,7 @@ public class CutsceneController : MonoBehaviour
             Sequence s = DOTween.Sequence();
             s.Append(sword.transform.DOMove(playerHandPoint.position, pickupRiseTime).SetEase(Ease.OutCubic));
             // small hold so player sees weight
-            s.AppendInterval(0.25f);
+            s.AppendInterval(1f);
             // drop: jump-like heavy fall to groundPos
             s.Append(sword.transform.DOMove(groundPos, pickupDropTime).SetEase(Ease.InBounce));
             yield return s.WaitForCompletion();
@@ -168,7 +133,6 @@ public class CutsceneController : MonoBehaviour
         // 4. Show dialog
         if (dialogCanvasGroup != null && dialogText != null)
         {
-            dialogText.text = "Tôi chỉ biết hát thôi… giờ làm sao 😨";
             dialogCanvasGroup.DOKill();
             // fade in
             dialogCanvasGroup.DOFade(1f, 0.2f);
@@ -194,25 +158,11 @@ public class CutsceneController : MonoBehaviour
         if (positionAfter != null)
             player.transform.position = positionAfter.position;
 
-        // 6. restore camera to player (if not already)
-#if CINEMACHINE
-        if (useCinemachine && vCam != null)
-        {
-            vCam.Follow = player.transform;
-            yield return new WaitForSeconds(0.1f);
-        }
-        else
-#endif
-        {
-            Vector3 restored = new Vector3(player.transform.position.x, player.transform.position.y, _mainCamZ);
-            yield return mainCamera.transform.DOMove(restored, camMoveTime / 1.5f).SetEase(Ease.OutQuad).WaitForCompletion();
-        }
-
-        // 7. restore player control and physics
+        // 6. restore player control and physics
         if (_playerRb != null) _playerRb.isKinematic = false;
         if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
 
-        // 8. resume enemies
+        // 7. resume enemies
         if (pauseEnemiesDuringCutscene)
             PauseAllEnemies(false);
 
@@ -235,18 +185,6 @@ public class CutsceneController : MonoBehaviour
 
     private void EndCutsceneImmediate()
     {
-        // restore camera
-#if CINEMACHINE
-        if (useCinemachine && vCam != null)
-        {
-            vCam.Follow = player.transform;
-        }
-        else
-#endif
-        {
-            mainCamera.transform.position = new Vector3(player.transform.position.x, player.transform.position.y, _mainCamZ);
-        }
-
         // restore sword
         if (sword != null)
         {

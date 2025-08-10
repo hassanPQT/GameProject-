@@ -8,6 +8,7 @@ TagManager:
   - Bird
   - Trap
   - StartPoint
+  - AfterPoint
   layers:
   - Default
   - TransparentFX
