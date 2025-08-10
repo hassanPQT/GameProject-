@@ -119,6 +119,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &5 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4758379652309843232, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
+  m_PrefabInstance: {fileID: 1781910632}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 780e8caae18ba4f4e8001d59bb99e7d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1804327
 GameObject:
   m_ObjectHideFlags: 0
@@ -620,17 +631,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &300226983 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5325613520558738070, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
-  m_PrefabInstance: {fileID: 1781910632}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db01cb2f8ce0ad64f8d45769c20a0f37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &339366715
 GameObject:
   m_ObjectHideFlags: 0
@@ -11312,6 +11312,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8390359257631525335, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
   m_PrefabInstance: {fileID: 1388807684}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1388807687 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8229706812272110659, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
+  m_PrefabInstance: {fileID: 1388807684}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388807685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92d80099bc25cac47ba504ca64346c1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1513798181
 GameObject:
   m_ObjectHideFlags: 0
@@ -11561,6 +11572,11 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!224 &1596180951 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 5667466533476282462, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+  m_PrefabInstance: {fileID: 1950995144}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1600907529
 GameObject:
   m_ObjectHideFlags: 0
@@ -11887,10 +11903,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4758379652309843232, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
+      propertyPath: Player
+      value: 
+      objectReference: {fileID: 1388807687}
+    - target: {fileID: 4758379652309843232, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
+      propertyPath: moodBar
+      value: 
+      objectReference: {fileID: 1764309871}
+    - target: {fileID: 4758379652309843232, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
+      propertyPath: PlayerPrf
+      value: 
+      objectReference: {fileID: 1388807687}
+    - target: {fileID: 4758379652309843232, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
+      propertyPath: uiManager
+      value: 
+      objectReference: {fileID: 778482345}
+    - target: {fileID: 4758379652309843232, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
+      propertyPath: startPoint
+      value: 
+      objectReference: {fileID: 7276426050938312471, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
+    - target: {fileID: 4758379652309843232, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
+      propertyPath: songWheelController
+      value: 
+      objectReference: {fileID: 2046783321}
     - target: {fileID: 5325613520558738070, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
       propertyPath: Player
       value: 
-      objectReference: {fileID: 1335458609}
+      objectReference: {fileID: 0}
     - target: {fileID: 5325613520558738070, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
       propertyPath: moodBar
       value: 
@@ -11906,7 +11946,7 @@ PrefabInstance:
     - target: {fileID: 5325613520558738070, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
       propertyPath: SongWheelController
       value: 
-      objectReference: {fileID: 2046783319}
+      objectReference: {fileID: 0}
     - target: {fileID: 7790496745125373883, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
       propertyPath: m_LocalPosition.x
       value: 119.79629
@@ -12562,7 +12602,11 @@ PrefabInstance:
     - target: {fileID: 532351788404468127, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: playerController
       value: 
-      objectReference: {fileID: 1335458609}
+      objectReference: {fileID: 1388807687}
+    - target: {fileID: 532351788404468127, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: songWheelController
+      value: 
+      objectReference: {fileID: 2046783321}
     - target: {fileID: 1796868253812900833, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -12711,6 +12755,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6822992963829865169, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: _animator
+      value: 
+      objectReference: {fileID: 1951916106}
+    - target: {fileID: 6822992963829865169, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: _wheelRect
+      value: 
+      objectReference: {fileID: 1596180951}
+    - target: {fileID: 6822992963829865169, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: _gameManager
+      value: 
+      objectReference: {fileID: 5}
+    - target: {fileID: 6822992963829865169, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: _playerController
+      value: 
+      objectReference: {fileID: 1388807687}
     - target: {fileID: 7010101619332661077, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: _offsetY
       value: 150
@@ -12722,11 +12782,11 @@ PrefabInstance:
     - target: {fileID: 7010101619332661077, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: _gameManager
       value: 
-      objectReference: {fileID: 300226983}
+      objectReference: {fileID: 0}
     - target: {fileID: 7010101619332661077, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: _playerController
       value: 
-      objectReference: {fileID: 1335458609}
+      objectReference: {fileID: 0}
     - target: {fileID: 8748550977126810581, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -12743,7 +12803,8 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7010101619332661077, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 5068327529507054692, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
@@ -12855,20 +12916,15 @@ Transform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2046783319 stripped
 MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 7010101619332661077, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+  m_CorrespondingSourceObject: {fileID: 6822992963829865169, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
   m_PrefabInstance: {fileID: 1950995144}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b0e96779bd4996448cef1fe5a3c3f1a, type: 3}
+  m_Script: {fileID: 11500000, guid: 49d3e9ba939912648afb1ad13f978b94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!224 &2046783320 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5068327529507054692, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
-  m_PrefabInstance: {fileID: 1950995144}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2082453268
 GameObject:
   m_ObjectHideFlags: 0

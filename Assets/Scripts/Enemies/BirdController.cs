@@ -1,9 +1,10 @@
 using DG.Tweening;
+using Game.Scripts.Gameplay;
 using System;
 using System.Collections;
 using UnityEngine;
 
-public class BirdController : MonoBehaviour
+public class BirdController : MonoBehaviour, IEnemy
 {
     [SerializeField] private float moveDistance = 0.35f;
     [SerializeField] private float moveDuration = 0.5f;
@@ -17,23 +18,20 @@ public class BirdController : MonoBehaviour
     [SerializeField] private float _effectDuration = 0.5f;
     [SerializeField] private float _effectMaxScale = 1.5f;
     [SerializeField] private bool _isMoving = true;
-    public event Action<SongDirection[]> OnSignalDirection;
+
+    private int _canDoubleJumpCount = 2;
+    public bool IsWin { get; set; }
     public bool IsMoving => _isMoving;  
     private SongDirection[] _currentDir;
-    private Vector3 _smoothVelocity = Vector3.zero;
-
-    //void OnDisable()
-    //{
-    //    DOTween.KillAll();
-    //}
-
-
-    //public bool IsMovingInDirection => _ismo
+    //private Vector3 _smoothVelocity = Vector3.zero;
+    private bool _detectedPlayer;
+    private Vector3 startPoint;
     public void Start()
     {
-        // restart signal direction when player false
-        OnSignalDirection += GameManager.Instance.OnEnemySignal;
+        _canDoubleJumpCount = 0;
+        startPoint = transform.position;
         _isMoving = false;
+        IsWin = false;
     }
     public void SetActiveMood() { 
         if (happyMood != null)
@@ -66,7 +64,7 @@ public class BirdController : MonoBehaviour
         for (int i = 0; i < _currentDir.Length; i++)
             _currentDir[i] = (SongDirection)GameManager.Instance.DirectionNumber[UnityEngine.Random.Range(0, GameManager.Instance.DirectionNumber.Length)];
 
-        OnSignalDirection?.Invoke(_currentDir);
+        GameManager.Instance.OnEnemySignal(_currentDir);
         StartCoroutine(MoveInDirection(_currentDir));
         return true;
     }
@@ -104,10 +102,10 @@ public class BirdController : MonoBehaviour
         _isMoving = false;
     }
 
-    public void StopMovement()
+    public void CloseCollider()
     {
         var collider = GetComponent<CircleCollider2D>();
-        if (collider) collider.enabled = false;
+        if (collider) collider.isTrigger = true;
         //enabled = false;
     }
 
@@ -126,26 +124,78 @@ public class BirdController : MonoBehaviour
     }
     private void Update()
     {
-        FlyIntoPlayer();
+        DetectPlayer();
     }
-    public void FlyIntoPlayer()
+   
+    private IEnumerator CheckPlayerStay()
     {
-        Debug.Log("FlyIntoPlayer called in BirdController." + happyMood.activeSelf);
-        if (!happyMood.activeSelf) return;
+        bool isStay = true;
+        float timer = 0f;
+        var temp = 3;
+        while (timer < temp)
+        {
+            if (!_detectedPlayer)
+            {
+                isStay = false;
+            }
+            timer += Time.deltaTime;
+            yield return null;
+        }
+        
+        if (isStay)
+        {
+            SignalRandomDirection();
+        }
+        else
+        {
+            _isMoving = true;
+        }
+    }
+
+    private void DetectPlayer()
+    {
+        
+        float detectRadius = 4f;
+        LayerMask playerLayer = LayerMask.GetMask("Player");
+        Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, playerLayer);
+
+        foreach (var hit in hits)
+        {
+            if (hit.CompareTag("Player"))
+            {
+                _detectedPlayer = true;
+                OnDetectPlayer();
+                return;
+            }
+        }
+        _detectedPlayer = false;
+    }
+    public IEnumerator FlyIntoPlayer()
+    {
         Vector3 offset = Vector3.up * hoverHeight;
         var player = GameManager.Instance.Player;
-        Vector3 targetPos = player.transform.position + offset;
+        player.CanDoubleJump();
+        
+        float timer = 0f;
+        while(timer < 5f)
+        {
+            timer += Time.deltaTime;
+            Vector3 targetPos = player.transform.position + offset;
+            if (!player.CheckDoubleJump)
+                break;
+            transform.position = Vector3.Lerp(transform.position, targetPos, flySpeed * Time.deltaTime);
+            yield return null;
+        }
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPos, flySpeed * Time.deltaTime);
-
+        player.LockDoubleJump();
+        StartCoroutine(ReturnToStartPoint());
     }
-
-    private void OnStayFinished()
+    private IEnumerator ReturnToStartPoint()
     {
-        Debug.Log("Bird stay time ended.");
-        // Add next logic here
+        transform.DOMove(startPoint, 2f).SetEase(Ease.InSine);
+        yield return new WaitForSeconds(2f);
+        IsWin = false;
     }
-
     private void ShowSignalEffect(SongDirection dir)
     {
         if (signalEffectPrefab == null || signalEffectPrefab.Length == 0) return;
@@ -167,5 +217,37 @@ public class BirdController : MonoBehaviour
         seq.OnComplete(() => Destroy(fx));
     }
 
-  
+    public void OnDetectPlayer()
+    {
+        
+    }
+
+    public void OnPlayerRequest(PlayerController playerController)
+    {
+        if (_canDoubleJumpCount > 0)
+        {
+            _canDoubleJumpCount--;
+            StartCoroutine(FlyIntoPlayer());
+        } else
+        {
+            _isMoving = false;
+            StartCoroutine(CheckPlayerStay());
+        }
+    }
+
+    public void OnWinning()
+    {
+        IsWin = true;
+        SetActiveMood();
+        CloseCollider();
+        _canDoubleJumpCount = 1;
+        //player.CanDoubleJump();
+        StartCoroutine(FlyIntoPlayer());
+    }
+
+    public void OnPlayerMissed()
+    {
+        _isMoving = false;
+    }
+
 }

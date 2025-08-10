@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance { get; private set; }
 
     public PlayerController Player;
-    public SongWheelController SongWheelController;
+    public SongWheelController songWheelController;
 
 
     [SerializeField] private UIManager uiManager;
@@ -20,23 +20,18 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float moodDeltaOnWin = 0.15f;
     [SerializeField] private float moodDeltaOnLose = 0.15f;
     [SerializeField] private float _inputTimeout = 10f;
-    [SerializeField] private float timerSpeed = 0.5f; // Thêm dòng này vào class
 
 
-    private bool _awaitingInput;
+    private bool _awaitingPlayerSelect;
     private SongDirection[] _targetDir;
     private int _userPositivePoint = 3;
     private bool _isGameEnd;
     private bool _isGamePaused;
 
     private List<int> _directionNumberList;
-    public bool IsWin;
     public float Timer;
-    public bool IsWinToStopEnemy;
     public bool IsInputEnable;
-
-    public bool IsGameLose;
-    public bool IsStop3s => _awaitingInput;
+    public bool IsStop3s => _awaitingPlayerSelect;
     public float ModifyTimeout = 1;
     public int[] DirectionNumber => _directionNumberList.ToArray();
     private int _currentDirectionIndex;
@@ -91,12 +86,9 @@ public class GameManager : MonoBehaviour
 
     private void InitializedStatus()
     {
-        IsGameLose = false;
         _isGamePaused = false;
         InputManager.Instance.LockCursor();
-        IsWinToStopEnemy = false;
         IsInputEnable = true;
-        IsWin = false;
         _currentDirectionIndex = 6;
         _userPositivePoint = 3;
     }
@@ -121,7 +113,7 @@ public class GameManager : MonoBehaviour
         SetupDirectionNumbers();
         uiManager = FindAnyObjectByType<UIManager>();
 
-        SongWheelController = FindAnyObjectByType<SongWheelController>();
+        songWheelController = FindAnyObjectByType<SongWheelController>();
         moodBar = FindAnyObjectByType<MoodBarController>();
         // Gán thêm nếu cần…
     }
@@ -147,8 +139,6 @@ public class GameManager : MonoBehaviour
         moodBar.DecreaseMood(moodDeltaOnLose);
     }
 
-    
-
     private void SetupDirectionNumbers()
     {
         _directionNumberList = new List<int>();
@@ -173,31 +163,33 @@ public class GameManager : MonoBehaviour
     public void OnEnemySignal(SongDirection[] dir)
     {
         _targetDir = dir;
-        _awaitingInput = true;
+        Player.detection.IsPlaying = true;
         StartCoroutine(WaitForInput());
     }
 
     private IEnumerator WaitForInput()
     {
+        _awaitingPlayerSelect = true;
         Timer = 0f;
         var temp = _inputTimeout * ModifyTimeout;
-        while (_awaitingInput && Timer < temp)
+        while (Timer < temp)
         {
             Timer += Time.deltaTime ;
             yield return null;
         }
 
-        if (_awaitingInput)
+        // het count down ma player chua select
+        if (_awaitingPlayerSelect)
         {
             OnPlayerResult(false);
+            _awaitingPlayerSelect = false;
         }
     }
 
-    public void OnPlayerSelect(int[] sliceIndex)
+    public bool OnSongWheelSelect(int[] sliceIndex)
     {
-        if (!_awaitingInput) return;//cẩn thận chỗ này
+        if (!_awaitingPlayerSelect) return false;
 
-        _awaitingInput = false;
         bool correct = sliceIndex.Length == 2 && _targetDir != null && sliceIndex.Length == _targetDir.Length;
         if (correct)
         {
@@ -210,36 +202,41 @@ public class GameManager : MonoBehaviour
                 }
             }
         }
-        OnPlayerResult( correct);
+
+
+        OnPlayerResult(correct);
+        _awaitingPlayerSelect = false;
+
+        return correct;
     }
 
     private void OnPlayerResult(bool success)
     {
+        _awaitingPlayerSelect = false;
+        IsInputEnable = true;
+
         if (success)
         {
-            Debug.Log("Đúng! Enemy bị cảm hóa.");
-            IsWin = true;
-            IsWinToStopEnemy = true;
-            IsInputEnable = true;
-            OnPlayerWinEncounter();
+            OnPlayerWin();
         }
         else
         {
-            IsWin = false;
-            Player.IsSignaling = false;
-            IsInputEnable = true;
-            
-            OnPlayerLoseEncounter();
-            Debug.Log("Sai! Bị trượt.");
+            OnPlayerLose();
         }
     }
 
-    //public IEnumerator ExecutePlayAgain()
-    //{
-    //    Player.PlayGiveUpAnimation();
-    //    yield return new WaitForSeconds(2f); // Thời gian chờ trước khi chơi lại
-    //    SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    //}
+    private void OnPlayerLose()
+    {
+        songWheelController.OnPlayerLose();
+        Player.detection.OnPayerLose();
+    }
+
+    private void OnPlayerWin()
+    {
+        Debug.Log("Đúng! Enemy bị cảm hóa.");
+        Player.detection.OnPlayerWin();
+        songWheelController.OnPlayerWin();
+    }
 
     private void HandleKeyboardInput()
     {
@@ -275,13 +272,11 @@ public class GameManager : MonoBehaviour
 
     public void PauseGame()
     {
-        Player.Stop();
         _isGamePaused = true;
     }
     public void GameLose()
     {
         PauseGame();
-        IsGameLose = true;
         InputManager.Instance.GameLose();
         Player.PlayGiveUpAnimation();
         uiManager.ShowLoseUI();

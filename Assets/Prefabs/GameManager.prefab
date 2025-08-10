@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7790496745125373883}
   - component: {fileID: 5325613520558738070}
   - component: {fileID: 4194468556478216098}
+  - component: {fileID: 4758379652309843232}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5325613520558738070
+--- !u!114 &4758379652309843232
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,7 +43,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1890319897790228435}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db01cb2f8ce0ad64f8d45769c20a0f37, type: 3}
+  m_Script: {fileID: 11500000, guid: 780e8caae18ba4f4e8001d59bb99e7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Player: {fileID: 0}
@@ -50,12 +51,18 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   PlayerPrf: {fileID: 2738988328621163954, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
   startPoint: {fileID: 0}
+  songWheelController: {fileID: 0}
   moodBar: {fileID: 0}
   moodDeltaOnWin: 0.1
   moodDeltaOnLose: 0.2
   _inputTimeout: 10
   timerSpeed: 0.5
   IsWin: 0
+  Timer: 0
+  moodDeltaOnWin: 0.15
+  moodDeltaOnLose: 0.15
+  _inputTimeout: 10
+  timerSpeed: 0.5
   Timer: 0
   IsWinToStopEnemy: 0
   IsInputEnable: 0
@@ -73,3 +80,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19aae91fbf6b6ca4baa03d4ed8d3cfec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  IsInputEnable: 0
+  ModifyTimeout: 1
