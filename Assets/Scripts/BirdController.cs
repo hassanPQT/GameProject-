@@ -3,7 +3,7 @@ using System;
 using System.Collections;
 using UnityEngine;
 
-public class BirdController : MonoBehaviour
+public class BirdController : MonoBehaviour, IEnemy
 {
     [SerializeField] private float moveDistance = 0.35f;
     [SerializeField] private float moveDuration = 0.5f;
@@ -17,7 +17,9 @@ public class BirdController : MonoBehaviour
     [SerializeField] private float _effectDuration = 0.5f;
     [SerializeField] private float _effectMaxScale = 1.5f;
     [SerializeField] private bool _isMoving = true;
-    public event Action<SongDirection[]> OnSignalDirection;
+    public event Action<SongDirection[], IEnemy> OnSignalDirection;
+
+    public bool IsWin { get; set; }
     public bool IsMoving => _isMoving;  
     private SongDirection[] _currentDir;
     private Vector3 _smoothVelocity = Vector3.zero;
@@ -34,6 +36,7 @@ public class BirdController : MonoBehaviour
         // restart signal direction when player false
         OnSignalDirection += GameManager.Instance.OnEnemySignal;
         _isMoving = false;
+        IsWin = false;
     }
     public void SetActiveMood() { 
         if (happyMood != null)
@@ -66,7 +69,7 @@ public class BirdController : MonoBehaviour
         for (int i = 0; i < _currentDir.Length; i++)
             _currentDir[i] = (SongDirection)GameManager.Instance.DirectionNumber[UnityEngine.Random.Range(0, GameManager.Instance.DirectionNumber.Length)];
 
-        OnSignalDirection?.Invoke(_currentDir);
+        OnSignalDirection?.Invoke(_currentDir, this);
         StartCoroutine(MoveInDirection(_currentDir));
         return true;
     }
@@ -107,7 +110,7 @@ public class BirdController : MonoBehaviour
     public void StopMovement()
     {
         var collider = GetComponent<CircleCollider2D>();
-        if (collider) collider.enabled = false;
+        if (collider) collider.isTrigger = true;
         //enabled = false;
     }
 
@@ -126,7 +129,6 @@ public class BirdController : MonoBehaviour
     }
     private void Update()
     {
-        FlyIntoPlayer();
     }
     public void FlyIntoPlayer()
     {
@@ -138,12 +140,6 @@ public class BirdController : MonoBehaviour
 
         transform.position = Vector3.MoveTowards(transform.position, targetPos, flySpeed * Time.deltaTime);
 
-    }
-
-    private void OnStayFinished()
-    {
-        Debug.Log("Bird stay time ended.");
-        // Add next logic here
     }
 
     private void ShowSignalEffect(SongDirection dir)
@@ -167,5 +163,26 @@ public class BirdController : MonoBehaviour
         seq.OnComplete(() => Destroy(fx));
     }
 
-  
+    public void OnDetectPlayer()
+    {
+        throw new NotImplementedException();
+    }
+
+    public void OnPlayerRequest()
+    {
+        _isMoving = false;
+        //StopAllCoroutines();
+        SignalRandomDirection();
+    }
+
+    public void OnWinning()
+    {
+        SetActiveMood();
+        StopMovement();
+    }
+
+    public void OnPlayerMissed()
+    {
+        throw new NotImplementedException();
+    }
 }

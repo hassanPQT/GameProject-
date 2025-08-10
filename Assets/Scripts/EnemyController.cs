@@ -1,11 +1,11 @@
-using UnityEngine;
+using DG.Tweening;
 using System;
 using System.Collections;
-using DG.Tweening;
-using Unity.Mathematics;
-using Game.Scripts.Gameplay;
+using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
-public class EnemyController : MonoBehaviour
+
+public class EnemyController : MonoBehaviour, IEnemy
 {
     [SerializeField] private float _moveDistance = 2f;
     [SerializeField] private float _moveDuration = 0.3f;
@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] private float _effectDuration = 0.5f;
     [SerializeField] private float _effectMaxScale = 1.5f;
 
-    public event Action<SongDirection[]> OnSignalDirection;
+    public event Action<SongDirection[], IEnemy> OnSignalDirection;
 
     private Vector3 _leftPos, _rightPos, _startPos;
     private bool _isMoving = true;
@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
     private SongDirection[] _currentDir;
 
     public bool IsMovingInDirection => _isMovingInDirection;
-
+    public bool IsWin { get; set; }
     //void OnDisable()
     //{
     //    DOTween.KillAll();
@@ -38,6 +38,7 @@ public class EnemyController : MonoBehaviour
     private void Start()
     {
         OnSignalDirection += GameManager.Instance.OnEnemySignal;
+        IsWin = false;
         SetPositionToMove();
         StartCoroutine(MoveBackAndForth());
         SetAngryMood();
@@ -136,11 +137,7 @@ public class EnemyController : MonoBehaviour
         {
             if (hit.CompareTag("Player"))
             {
-                _isMoving = false;
-                StopCoroutine(MoveBackAndForth());
-
-                MoveBackToFirstPosition();
-                _hasDetectedPlayer = true;
+                OnDetectPlayer();
                 return;
             }
         }
@@ -155,22 +152,22 @@ public class EnemyController : MonoBehaviour
     public bool SignalRandomDirection()
     {
 
-        if (!enabled)
-        {
-            Debug.LogWarning("EnemyController is not enabled. Cannot signal random direction.");
-            return false;
-        }
+        //if (!enabled)
+        //{
+        //    Debug.LogWarning("EnemyController is not enabled. Cannot signal random direction.");
+        //    return false;
+        //}
 
-        if (_isMovingInDirection)
-        {
-            Debug.LogWarning("EnemyController is already moving in a direction. Cannot signal random direction.");
-            return true;
-        }
+        //if (_isMovingInDirection)
+        //{
+        //    Debug.LogWarning("EnemyController is already moving in a direction. Cannot signal random direction.");
+        //    return true;
+        //}
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)
             _currentDir[i] = (SongDirection)GameManager.Instance.DirectionNumber[UnityEngine.Random.Range(0, GameManager.Instance.DirectionNumber.Length)];
 
-        OnSignalDirection?.Invoke(_currentDir);
+        OnSignalDirection?.Invoke(_currentDir, this);
 
         StartCoroutine(MoveInDirection(_currentDir));
         return true;
@@ -255,5 +252,29 @@ public class EnemyController : MonoBehaviour
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f).normalized;
     }
 
+    public void OnDetectPlayer()
+    {
+        _isMoving = false;
+        StopCoroutine(MoveBackAndForth());
 
+        MoveBackToFirstPosition();
+        _hasDetectedPlayer = true;
+    }
+
+    public void OnPlayerRequest()
+    {
+        SignalRandomDirection();
+    }
+
+    public void OnWinning()
+    {
+        StopMovement();
+        SetInactiveAngryMood();
+        SetActiveMood();
+    }
+
+    public void OnPlayerMissed()
+    {
+        throw new NotImplementedException();
+    }
 }

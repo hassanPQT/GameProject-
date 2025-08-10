@@ -22,7 +22,7 @@ namespace Game.Scripts.Gameplay
 
 
         [Header("State")]
-        public bool IsSignaling = false;
+        public bool IsPlaying = false;
         private bool _checkDoubleJump = false;
 
 
@@ -41,6 +41,7 @@ namespace Game.Scripts.Gameplay
         private int _jumpCount;
         private int _maxJumpCount;
 
+        private IEnemy currentEnemy;
         //  private CameraFollowObject _cameraFollowObject;
 
         private void Start()
@@ -121,107 +122,48 @@ namespace Game.Scripts.Gameplay
             }
         }
 
-        public void StartInvincibility()
-        {
-            if (_isInvincible) return;
-            StartCoroutine(InvincibilityCoroutine());
-        }
-
-        private IEnumerator InvincibilityCoroutine()
-        {
-            _isInvincible = true;
-            float timer = 0f;
-            bool visible = true;
-            while (timer < _invincibleDuration)
-            {
-                visible = !visible;
-                if (_visualObject != null) _visualObject.SetActive(visible);
-                yield return new WaitForSeconds(0.1f);
-                timer += 0.1f;
-            }
-            if (_visualObject != null) _visualObject.SetActive(true);
-            _isInvincible = false;
-        }
 
         private void DetectEnemy()
+        {
+            if (IsPlaying) return;
+            Collider2D[] hits = GetEnemies();
+
+            foreach (var hit in hits)
+            {
+                var enemy = hit.GetComponent<IEnemy>();
+                if (enemy != null)
+                {
+                    if (enemy.IsWin) continue;
+                    currentEnemy = enemy;
+                    StartPlay();
+                }
+            }
+        }
+
+        private Collider2D[] GetEnemies()
         {
             float detectRadius = 3.5f;
             LayerMask enemyLayer = LayerMask.GetMask("Flying");
             DrawDebugCircle(transform.position, detectRadius, Color.red);
             Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, enemyLayer);
-
-            Debug.Log($"Detected {hits.Length} enemies within radius {detectRadius}");
-
-            foreach (var hit in hits)
-            {
-                if (hit.CompareTag("Enemy"))
-                {
-
-                    HandleEnemyDetection(hit.GetComponent<EnemyController>());
-
-                }
-                else if (hit.CompareTag("Bird"))
-                {
-                    HandleBirdDetection(hit.GetComponent<BirdController>());
-                }
-            }
+            return hits;
         }
 
-        private void HandleEnemyDetection(EnemyController enemy)
+        private void StartPlay()
         {
-            if (enemy == null) return;
-            else if (!IsSignaling)
-            {
-                var distance = Vector2.Distance(transform.position, enemy.transform.position);
-                Debug.Log(""+ enemy.IsMovingInDirection);    
-                if ((!enemy.IsMovingInDirection && enemy.enabled))
-                {
-                    Debug.Log("Enemy is not signaling, stopping player movement.");
-                    StopPlayer();
-                    IsSignaling = enemy.SignalRandomDirection();
-                }
-            } else
-            if (GameManager.Instance.IsWin && IsSignaling)
-            {
-                enemy.StopMovement();
-				enemy.SetInactiveAngryMood();
-				enemy.SetActiveMood();             
-				GameManager.Instance.IsWin = false;
-                IsSignaling = false;
-            }
+            IsPlaying = true;
+            StopPlayer();
+            currentEnemy.OnPlayerRequest();
         }
-
-        private void HandleBirdDetection(BirdController bird)
+        public void OnPlayerWin()
         {
-            Debug.Log("Detected Bird");
-            if (bird == null) return;
-            if (!IsSignaling)
-            {
-                Debug.Log("Bird is not signaling" + 
-                    bird.IsMoving);
-                if (!bird.IsMoving && bird.enabled)
-                {
-                    StopPlayer();
-                    IsSignaling = bird.SignalRandomDirection();
-                }
-            } else
-            if (GameManager.Instance.IsWin && IsSignaling)
-            {
-                _checkDoubleJump = true;
-                //bird.SetInactiveMood();
-                bird.SetActiveMood();
-                bird.StopMovement();
-                IsSignaling = false;
-                GameManager.Instance.IsWin = false;
-            }
-            //else if (!GameManager.Instance.IsWin && IsSignaling)
-            //{
-            //    if (!_endCoroutine && bird.enabled)
-            //        StopPlayer();
-            //}
-
+            IsPlaying = false;
+            currentEnemy.IsWin = true;
         }
-
+        public void OnPayerLose()
+        {
+            IsPlaying = false;
+        }
         private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
         {
             float angle = 0f;
@@ -251,58 +193,13 @@ namespace Game.Scripts.Gameplay
             _animator.SetBool(IsRun, false);
            
         }
-
-        public void Stop()
-        {
-            _rb.linearVelocity = Vector2.zero;
-        }
         public void SetModifierSpeed(float mult)
         {
             _modifierSpeed = mult;
             Debug.Log("move speed" + _moveSpeed);
         }
-        /* private void TurnCheck()
-         {
-             if (Input.x > 0 && !IsFacingRight)
-             {
-                 Turn();
-             }
-             else if(Input.x > 0 && IsFacingRight)
-             {
-                 Turn();
-             }
-         }
 
-         private void Turn()
-         {
-             if (IsFacingRight)
-             {
-                 Vector3 rotator = new Vector3(transform.rotation.x,180f, transform.rotation.z);
-                 transform.rotation = Quaternion.Euler(rotator);
-                 IsFacingRight = !IsFacingRight;
-                 _cameraFollowObject.CallTurn();
-             }
-             else
-             {
-                 Vector3 rotator = new Vector3(transform.rotation.x, 0f, transform.rotation.z);
-                 transform.rotation = Quaternion.Euler(rotator);
-                 IsFacingRight = !IsFacingRight;
-                 _cameraFollowObject.CallTurn();
-             }
-         }
-
-         private void FixedUpdate()
-         {
-            rb.linearVelocity = new Vector2(rb.linearVelocity.x,Mathf.Clamp( -_maxFallSpeed, _maxFallSpeed *5));
-
-             if (moveInput > 0 || moveInput < 0)  
-             {
-                 TurnCheck();
-             }
-         }*/
-        //  }
-
-
+       
 
 
     }
