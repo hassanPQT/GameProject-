@@ -19,6 +19,7 @@ public class BirdController : MonoBehaviour, IEnemy
     [SerializeField] private float _effectMaxScale = 1.5f;
     [SerializeField] private bool _isMoving = true;
 
+    private int _canDoubleJumpCount = 2;
     public bool IsWin { get; set; }
     public bool IsMoving => _isMoving;  
     private SongDirection[] _currentDir;
@@ -27,6 +28,7 @@ public class BirdController : MonoBehaviour, IEnemy
     private Vector3 startPoint;
     public void Start()
     {
+        _canDoubleJumpCount = 0;
         startPoint = transform.position;
         _isMoving = false;
         IsWin = false;
@@ -123,8 +125,6 @@ public class BirdController : MonoBehaviour, IEnemy
     private void Update()
     {
         DetectPlayer();
-
-        
     }
    
     private IEnumerator CheckPlayerStay()
@@ -219,13 +219,20 @@ public class BirdController : MonoBehaviour, IEnemy
 
     public void OnDetectPlayer()
     {
-
+        
     }
 
     public void OnPlayerRequest(PlayerController playerController)
     {
-        _isMoving = false;
-        StartCoroutine(CheckPlayerStay());
+        if (_canDoubleJumpCount > 0)
+        {
+            _canDoubleJumpCount--;
+            StartCoroutine(FlyIntoPlayer());
+        } else
+        {
+            _isMoving = false;
+            StartCoroutine(CheckPlayerStay());
+        }
     }
 
     public void OnWinning()
@@ -233,12 +240,14 @@ public class BirdController : MonoBehaviour, IEnemy
         IsWin = true;
         SetActiveMood();
         CloseCollider();
+        _canDoubleJumpCount = 1;
         //player.CanDoubleJump();
         StartCoroutine(FlyIntoPlayer());
     }
 
     public void OnPlayerMissed()
     {
+        _isMoving = false;
     }
 
 }

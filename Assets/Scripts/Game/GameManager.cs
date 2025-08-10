@@ -186,6 +186,7 @@ public class GameManager : MonoBehaviour
     private void OnPlayerLose()
     {
         songWheelController.OnPlayerLose();
+        Player.detection.OnPayerLose();
     }
 
     private void OnPlayerWin()

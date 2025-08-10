@@ -59,6 +59,7 @@ public class PlayerDetection : MonoBehaviour
     public void OnPayerLose()
     {
         IsPlaying = false;
+        currentEnemy.OnPlayerMissed();
     }
     private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
     {
