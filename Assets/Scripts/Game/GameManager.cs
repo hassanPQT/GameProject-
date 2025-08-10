@@ -1,8 +1,6 @@
 using Game.Scripts.Gameplay;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
-using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
@@ -27,7 +25,6 @@ public class GameManager : MonoBehaviour
 
     private List<int> _directionNumberList;
     public float Timer;
-    public bool IsWinToStopEnemy;
     public bool IsInputEnable;
     public bool IsStop3s => _awaitingPlayerSelect;
     public float ModifyTimeout = 1;
@@ -94,7 +91,6 @@ public class GameManager : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
-        IsWinToStopEnemy = false;
         IsInputEnable = true;
         _currentDirectionIndex = 6;
         _userPositivePoint = 3;
@@ -122,13 +118,14 @@ public class GameManager : MonoBehaviour
         HandleKeyboardInput();
     }
 
-    public void OnEnemySignal(SongDirection[] dir, IEnemy enemy)
+    public void OnEnemySignal(SongDirection[] dir)
     {
         _targetDir = dir;
-        StartCoroutine(WaitForInput(enemy));
+        Player.detection.IsPlaying = true;
+        StartCoroutine(WaitForInput());
     }
 
-    private IEnumerator WaitForInput(IEnemy enemy)
+    private IEnumerator WaitForInput()
     {
         _awaitingPlayerSelect = true;
         Timer = 0f;
@@ -173,6 +170,9 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerResult(bool success)
     {
+        _awaitingPlayerSelect = false;
+        IsInputEnable = true;
+
         if (success)
         {
             OnPlayerWin();
@@ -185,22 +185,14 @@ public class GameManager : MonoBehaviour
 
     private void OnPlayerLose()
     {
-        Player.OnPayerLose();
         songWheelController.OnPlayerLose();
-        _awaitingPlayerSelect = false;
-        IsInputEnable = true;
-        OnPlayerLoseEncounter();
     }
 
     private void OnPlayerWin()
     {
         Debug.Log("Đúng! Enemy bị cảm hóa.");
-        Player.OnPlayerWin();
+        Player.detection.OnPlayerWin();
         songWheelController.OnPlayerWin();
-        _awaitingPlayerSelect = false;
-        IsWinToStopEnemy = true;
-        IsInputEnable = true;
-        OnPlayerWinEncounter();
     }
 
     private void HandleKeyboardInput()

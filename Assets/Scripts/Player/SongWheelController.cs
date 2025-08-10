@@ -74,10 +74,10 @@ public class SongWheelController : MonoBehaviour
     private void UpdateAnimation()
     {
         UpdateSelection();
-        if (GameManager.Instance.Player.IsPlaying)
-        {
-            PlayerCountDownAnimation();
-        }
+        //if (GameManager.Instance.Player.IsPlaying)
+        //{
+        //    PlayerCountDownAnimation();
+        //}
     }
 
     private void OnSelectSongWheel()

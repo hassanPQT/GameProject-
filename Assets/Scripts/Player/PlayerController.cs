@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -9,7 +10,7 @@ namespace Game.Scripts.Gameplay
         private static readonly int IsJump = Animator.StringToHash("isJump");
         private static readonly int IsRun = Animator.StringToHash("isRun");
         private static readonly int IsGiveUp = Animator.StringToHash("isGiveUp");
-
+        public PlayerDetection detection;
 
         [Header("Movement")]
         [SerializeField] private float _moveSpeed = 5f;
@@ -22,9 +23,8 @@ namespace Game.Scripts.Gameplay
 
 
         [Header("State")]
-        public bool IsPlaying = false;
         private bool _checkDoubleJump = false;
-
+        public bool CheckDoubleJump => _checkDoubleJump;
 
         [Header("Invincibility")]
         [SerializeField] private GameObject _visualObject;
@@ -33,19 +33,17 @@ namespace Game.Scripts.Gameplay
         [SerializeField] private Rigidbody2D _rb;
         [SerializeField] private Animator _animator;
         private bool _isGrounded;
-        private bool _isInvincible;
-        private bool _isPaused;
-        private bool _endCoroutine;
+        private bool _isStop;
         [SerializeField]  private bool _canRun;
         [SerializeField] private bool _isRunning;
         private int _jumpCount;
         private int _maxJumpCount;
 
-        private IEnemy currentEnemy;
         //  private CameraFollowObject _cameraFollowObject;
 
         private void Start()
         {
+            detection = GetComponent<PlayerDetection>();
             GAME_STAT.PLAYER_SPEED = _moveSpeed;  
             _canRun = false;
         }
@@ -55,7 +53,6 @@ namespace Game.Scripts.Gameplay
         }
         private void Update()
         {
-            DetectEnemy();
             CheckGround();
             _animator.SetBool(IsJump, !_isGrounded);
         }
@@ -63,7 +60,7 @@ namespace Game.Scripts.Gameplay
         public void PlayGiveUpAnimation()
         {
             _animator.SetTrigger(IsGiveUp);
-            _isPaused = true;
+            _isStop = true;
         }
 
         private void CheckGround()
@@ -74,7 +71,7 @@ namespace Game.Scripts.Gameplay
 
         public void Move(Vector2 input)
         {
-            if (_isPaused) return;
+            if (_isStop) return;
 
             if (float.IsNaN(input.x) || float.IsNaN(input.y)) return; // Không hợp lệ
 
@@ -92,19 +89,19 @@ namespace Game.Scripts.Gameplay
         public void Run(bool value)
         {
             if (!_canRun) return;
-
             _runModifier = value ? 1.5f : 1 ;
         }
         public void Jump()
         {
-            if (_isPaused) return;
+            if (_isStop) return;
             if (_jumpCount <= _maxJumpCount && _isGrounded)
             {
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce);
                 _jumpCount++;
+                if (_checkDoubleJump)
+                    StartCoroutine(DoubleJump());
             }
-            if (_checkDoubleJump)
-                StartCoroutine(DoubleJump());
+   
         }
 
         public IEnumerator DoubleJump()
@@ -116,79 +113,13 @@ namespace Game.Scripts.Gameplay
                 if (_jumpCount <= _maxJumpCount)
                     _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce + 2.5f);
                 _maxJumpCount--;
-                //IsSignaling = false;
-                //GameManager.Instance.IsWin = false;
                 _checkDoubleJump = false;
             }
         }
-
-
-        private void DetectEnemy()
+        public void StopPlayer()
         {
-            if (IsPlaying) return;
-            Collider2D[] hits = GetEnemies();
-
-            foreach (var hit in hits)
-            {
-                var enemy = hit.GetComponent<IEnemy>();
-                if (enemy != null)
-                {
-                    if (enemy.IsWin) continue;
-                    currentEnemy = enemy;
-                    StartPlay();
-                }
-            }
-        }
-
-        private Collider2D[] GetEnemies()
-        {
-            float detectRadius = 3.5f;
-            LayerMask enemyLayer = LayerMask.GetMask("Flying");
-            DrawDebugCircle(transform.position, detectRadius, Color.red);
-            Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, enemyLayer);
-            return hits;
-        }
-
-        private void StartPlay()
-        {
-            IsPlaying = true;
-            StopPlayer();
-            currentEnemy.OnPlayerRequest();
-        }
-        public void OnPlayerWin()
-        {
-            IsPlaying = false;
-            currentEnemy.IsWin = true;
-        }
-        public void OnPayerLose()
-        {
-            IsPlaying = false;
-        }
-        private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
-        {
-            float angle = 0f;
-            Vector3 lastPoint = center + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
-            for (int i = 1; i <= segments; i++)
-            {
-                angle += 2 * Mathf.PI / segments;
-                Vector3 nextPoint = center + new Vector3(Mathf.Cos(angle), Mathf.Sin(angle), 0) * radius;
-                Debug.DrawLine(lastPoint, nextPoint, color, 0.01f);
-                lastPoint = nextPoint;
-            }
-        }
-
-        private void OnTriggerEnter2D(Collider2D other)
-        {
-            // Add trigger logic here if needed
-        }
-
-
-        private void StopPlayer()
-        {
-          
+            _isStop = true;
             GameManager.Instance.IsInputEnable = false;
-            //if (!_groundCheck)
-                //_rb.linearVelocityY = 10f;
             _rb.linearVelocityX = 0f;
             _animator.SetBool(IsRun, false);
            
@@ -199,9 +130,20 @@ namespace Game.Scripts.Gameplay
             Debug.Log("move speed" + _moveSpeed);
         }
 
-       
+        public void UnStop()
+        {
+            _isStop = false;
+        }
 
+        public void CanDoubleJump()
+        {
+            _checkDoubleJump = true;
+        }
 
+        public void LockDoubleJump()
+        {
+            _checkDoubleJump = false;
+        }
     }
 
 

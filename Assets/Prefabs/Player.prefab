@@ -152,7 +152,8 @@ GameObject:
   - component: {fileID: 7276426050938312471}
   - component: {fileID: 56709050551967339}
   - component: {fileID: 108943612536164267}
-  - component: {fileID: 2738988328621163954}
+  - component: {fileID: 8229706812272110659}
+  - component: {fileID: 4872509637568443709}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -241,7 +242,7 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0.5}
   m_Size: {x: 0.5, y: 1}
   m_Direction: 0
---- !u!114 &2738988328621163954
+--- !u!114 &8229706812272110659
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -250,22 +251,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 8390359257631525335}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3310e7a38ec0a3e4780fe37f9f6dd5c2, type: 3}
+  m_Script: {fileID: 11500000, guid: 92d80099bc25cac47ba504ca64346c1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 4
+  detection: {fileID: 4872509637568443709}
+  _moveSpeed: 5
   _modifierSpeed: 1
   _runModifier: 1
-  _jumpForce: 20
+  _jumpForce: 10
   _groundCheck: {fileID: 3938350930498520604}
   _groundCheckRadius: 0.2
   _groundLayer:
     serializedVersion: 2
     m_Bits: 8
-  IsSignaling: 0
-  _visualObject: {fileID: 8390359257631525335}
+  _visualObject: {fileID: 0}
   _invincibleDuration: 1
   _rb: {fileID: 56709050551967339}
   _animator: {fileID: 3801703037524951286}
-  _canRun: 0
+  _canRun: 1
   _isRunning: 0
+--- !u!114 &4872509637568443709
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390359257631525335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 33cc0ead01b27534c8ea4870652e30e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsPlaying: 0
