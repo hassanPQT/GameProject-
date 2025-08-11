@@ -726,32 +726,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &7010101619332661077
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5420540156653808934}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8b0e96779bd4996448cef1fe5a3c3f1a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _wheelRect: {fileID: 5667466533476282462}
-  _slices:
-  - {fileID: 327334720607432505}
-  - {fileID: 4121065845466713194}
-  - {fileID: 851951580602265972}
-  - {fileID: 7889912009808331375}
-  - {fileID: 2895042645150115014}
-  - {fileID: 2969341077785511404}
-  - {fileID: 6292658695877758334}
-  - {fileID: 127260684385508544}
-  _playerController: {fileID: 0}
-  _gameManager: {fileID: 0}
-  _animator: {fileID: 0}
-  _offsetY: 150
 --- !u!114 &532351788404468127
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,8 +763,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _wheelRect: {fileID: 0}
   _slices: []
+  _playerController: {fileID: 0}
   _gameManager: {fileID: 0}
   _animator: {fileID: 0}
+  _offsetY: 60
+  _songWheelTimeForDisplay: 3000
 --- !u!1 &5818610400710830729
 GameObject:
   m_ObjectHideFlags: 0

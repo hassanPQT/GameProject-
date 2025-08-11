@@ -3,7 +3,7 @@
 public interface IEnemy
 {
     bool IsWin { get; set; }
-    void OnDetectPlayer();
+    void OnDetectPlayer(PlayerController playerController);
     void OnPlayerRequest(PlayerController playerController);
     void OnWinning();
     void OnPlayerMissed();
