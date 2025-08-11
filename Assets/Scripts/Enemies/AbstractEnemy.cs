@@ -85,6 +85,11 @@ public class AbstractEnemy : MonoBehaviour, IEnemy, IListener
 
     public virtual void Play()
     {
+        var direction = signal.SignalRandomDirection(_moveDistance, _moveDuration);
+        if (direction != null)
+        {
+            Singal?.Invoke(direction);
+        }
     }
 
     public void Playing()

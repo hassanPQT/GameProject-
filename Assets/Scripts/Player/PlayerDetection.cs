@@ -6,7 +6,6 @@ public class PlayerDetection : MonoBehaviour
     private PlayerController playerController;
     private AbstractEnemy currentEnemy;
     private SongDirection[] _targetDir;
-    //public bool IsPlaying = false;
     private void Awake()
     {
         playerController = GetComponent<PlayerController>();
@@ -83,16 +82,15 @@ public class PlayerDetection : MonoBehaviour
     }
     public void OnPlayerWin()
     {
-        //IsPlaying = false;
         playerController.movement.UnStop();
         currentEnemy.OnWinning();
     }
     public void OnPayerLose()
     {
-        //IsPlaying = false;
+        Debug.Log("lose play");
+
         currentEnemy.OnPlayerMissed();
         currentEnemy.Singal = null;
-        currentEnemy = null;
     }
     private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
     {

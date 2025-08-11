@@ -60,14 +60,6 @@ public class SongWheelController : MonoBehaviour
             OpenSongWheel();
         }
 
-        //if (GameManager.Instance._awaitingPlayerSelect && GameManager.Instance.Timer != _songWheelTime)
-        //{
-        //    if (_songWheelTimeForDisplay <= 0)
-        //        _songWheelTimeForDisplay = 4950;
-        //    _songWheelTimeForDisplay -= (int)(Time.deltaTime * 1000f * 0.5f);
-        //}
-
-
         if (_wheelActive)
         {
             UpdateAnimation();
@@ -82,7 +74,7 @@ public class SongWheelController : MonoBehaviour
         {
             CloseSongWheel();
         }
-
+        
     }
 
     private void UpdateAnimation()

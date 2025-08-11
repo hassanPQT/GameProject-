@@ -99,8 +99,7 @@ public class EnemyController : AbstractEnemy
     public override void OnPlayerRequest(PlayerController playerController)
     {
         playerController.movement.StopPlayer();
-        var directions = signal.SignalRandomDirection(_moveDistance, _moveDuration);
-        Singal?.Invoke(directions);
+        Play();
     }
 
     public override void OnWinning()
@@ -113,7 +112,6 @@ public class EnemyController : AbstractEnemy
     public override void OnPlayerMissed()
     {
         GameManager.Instance.OnPlayerLoseEncounter();
-        var directions = signal.SignalRandomDirection(_moveDistance, _moveDuration);
-        Singal?.Invoke(directions);
+        Play();
     }
 }

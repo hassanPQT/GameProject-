@@ -9,11 +9,13 @@ public class EnemySignal : MonoBehaviour
     [SerializeField] private GameObject[] signalEffectPrefab;
     [SerializeField] private float _effectDuration = 0.5f;
     [SerializeField] private float _effectMaxScale = 1.5f;
-    [SerializeField] private IEnemy m_Enemy;
+    [SerializeField] private IEnemy m_Enemy => GetComponent<IEnemy>();
     public SongDirection[] _currentDir;
   
     public SongDirection[] SignalRandomDirection( float moveDistance, float moveDuration)
     {
+
+        if (m_Enemy.IsMoving) return null; 
         Debug.Log("`  SignalRandomDirection.");
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)

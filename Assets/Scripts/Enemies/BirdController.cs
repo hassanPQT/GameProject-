@@ -67,11 +67,6 @@ public class BirdController : AbstractEnemy
         }
         
     }
-    public override void Play()
-    {
-        var direction = signal.SignalRandomDirection(_moveDistance, _moveDuration);
-        Singal?.Invoke(direction);
-    }
 
     public IEnumerator FlyIntoPlayer()
     {
@@ -91,7 +86,7 @@ public class BirdController : AbstractEnemy
         }
 
         player.movement.LockDoubleJump();
-        StartCoroutine(ReturnToStartPoint());
+        //StartCoroutine(ReturnToStartPoint());
     }
     private IEnumerator ReturnToStartPoint()
     {
@@ -104,12 +99,20 @@ public class BirdController : AbstractEnemy
         if (_canDoubleJumpCount > 0)
         {
             _canDoubleJumpCount--;
-            StartCoroutine(FlyIntoPlayer());
-        } else
-        {
-            _isMoving = false;
-            StartCoroutine(CheckPlayerStay(playerController));
+            FlyIntoPlayer();
         }
+        else {
+            if (transform.position != startPoint)
+            {
+                StartCoroutine(ReturnToStartPoint());
+            }
+            else
+            {
+                _isMoving = false;
+                StartCoroutine(CheckPlayerStay(playerController));
+            }
+        }
+
     }
 
     public override void OnWinning()
@@ -127,6 +130,7 @@ public class BirdController : AbstractEnemy
     public override void OnPlayerMissed()
     {
         _isMoving = false;
+        Play();
     }
 
 }
