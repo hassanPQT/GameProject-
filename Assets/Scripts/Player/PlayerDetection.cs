@@ -29,8 +29,15 @@ public class PlayerDetection : MonoBehaviour
 
     private void DetectEnemy()
     {
-        if (currentEnemy != null) return;
-        Collider2D[] hits = GetEnemies();
+        if (currentEnemy != null)
+        {
+            if (Vector2.Distance(transform.position, currentEnemy._startPoint) > 10)
+            {
+                currentEnemy = null;
+            }
+            return;
+        }
+            Collider2D[] hits = GetEnemies();
 
         foreach (var hit in hits)
         {
@@ -46,7 +53,10 @@ public class PlayerDetection : MonoBehaviour
         }
 
     }
-
+    public bool IsPlaying()
+    {
+        return currentEnemy != null;
+    }
     private void OnDetectEnemy(AbstractEnemy enemy)
     {
         currentEnemy = enemy;

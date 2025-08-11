@@ -13,7 +13,7 @@ public class AbstractEnemy : MonoBehaviour, IEnemy, IListener
 
     [SerializeField] protected EnemySignal signal;
     [SerializeField] protected bool _isMoving = true;
-    protected Vector3 _startPoint;
+    public Vector3 _startPoint;
     public Action<SongDirection[]> Singal;
     protected bool _hasDetected;
 
