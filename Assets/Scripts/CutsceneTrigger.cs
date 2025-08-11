@@ -16,7 +16,6 @@ public class CutsceneTrigger : MonoBehaviour
 
         triggered = true;
         // truyền enemy transform (bạn có thể set in inspector)
-        Transform enemy = transform; // hoặc reference tới enemy transform
-        cutsceneController.StartCutscene(enemy);
+        cutsceneController.StartCutscene();
     }
 }

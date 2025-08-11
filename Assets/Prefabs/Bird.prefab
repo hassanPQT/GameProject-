@@ -187,6 +187,7 @@ GameObject:
   - component: {fileID: 5104600208690460459}
   - component: {fileID: 59408760269452253}
   - component: {fileID: 6413797091245560435}
+  - component: {fileID: 8286325344057733945}
   m_Layer: 6
   m_Name: Bird
   m_TagString: Bird
@@ -319,7 +320,7 @@ MonoBehaviour:
   _moveSpeed: 5
   happyMood: {fileID: 1266009361450674525}
   angryMood: {fileID: 0}
-  signal: {fileID: 0}
+  signal: {fileID: 8286325344057733945}
   _isMoving: 1
   hoverHeight: 1.5
 --- !u!95 &6413797091245560435
@@ -344,6 +345,24 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8286325344057733945
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7654380842053291657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e49e70c353277045a52a6f1b7675a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalEffectPrefab:
+  - {fileID: 523066984549928988, guid: dc2a3b489c8817a4bbfda32f8d1f45d2, type: 3}
+  - {fileID: 1954892852599833047, guid: bc3c2edd9032bb947a3d729e5e5ca545, type: 3}
+  _effectDuration: 0.5
+  _effectMaxScale: 1.5
+  _isMoving: 1
 --- !u!1 &7992207523348716513
 GameObject:
   m_ObjectHideFlags: 0

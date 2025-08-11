@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 536532320822951210}
   - component: {fileID: 5104600208690460459}
   - component: {fileID: 5075100679752431148}
+  - component: {fileID: 1429708307970658268}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -165,13 +166,28 @@ MonoBehaviour:
   _moveDistance: 2
   _moveDuration: 0.3
   _moveSpeed: 5
-  _moveDurationForSongWheel: 0.25
-  _moveDistanceForSongWheel: 1
   happyMood: {fileID: 8865363520394706316}
   angryMood: {fileID: 6595923016238384284}
-  signalEffectPrefab: []
+  signal: {fileID: 1429708307970658268}
+  _isMoving: 1
+--- !u!114 &1429708307970658268
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7654380842053291657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e49e70c353277045a52a6f1b7675a4d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  signalEffectPrefab:
+  - {fileID: 523066984549928988, guid: dc2a3b489c8817a4bbfda32f8d1f45d2, type: 3}
+  - {fileID: 1954892852599833047, guid: bc3c2edd9032bb947a3d729e5e5ca545, type: 3}
   _effectDuration: 0.5
   _effectMaxScale: 1.5
+  _isMoving: 1
 --- !u!1001 &1349585634418294410
 PrefabInstance:
   m_ObjectHideFlags: 0

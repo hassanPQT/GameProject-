@@ -43,17 +43,18 @@ public class CutsceneController : MonoBehaviour
     public Transform birdTransform;           // reference tới bird transform trong scene
     public GameObject birdSadEmotion;         // object (child) hiển thị sad emotion (ex: biểu tượng)
     public Vector3 birdLandOffset = new Vector3(0f, -1.2f, 0f); // offset so với vị trí hiện tại (hạ xuống)
-    public float waitBeforeBird = 6f;         // thời gian chờ trước khi chim hạ xuống
+    private float waitBeforeBird = 10f;         // thời gian chờ trước khi chim hạ xuống
     public float birdFlyDownTime = 0.8f;      // thời gian chim bay xuống
     public float birdWobbleDuration = 2f;     // thời gian wobble (lung lay)
     public float birdWobbleStrength = 8f;     // cường độ wobble (độ xoay)
     public Ease birdEase = Ease.InOutQuad;
 
     [Header("Dialog (Bird)")]
-    public string birdDialogLine1 = "Thắc mắc con chim đó sao buồn nhỉ";
-    public string birdDialogLine2 = "Sao con chim này im lặng vậy nhỉ, mình có thể làm cho nó vui lên không";
+    private string birdDialogLine1 = "I wonder why that bird looks a bit sad";
+    public string birdDialog = "...";
+    private string birdDialogLine2 = "Why is this bird so quiet? Can I sing to cheer it up?";
     public float dialogFadeTime = 0.18f;
-    public float dialogHoldTime = 1.8f;
+    public float dialogHoldTime = 3f;
 
 
     // internal state
@@ -101,24 +102,26 @@ public class CutsceneController : MonoBehaviour
     /// <summary>
     /// Public method to start cutscene. Pass enemy transform and the position2.
     /// </summary>
-    public void StartCutscene(Transform enemy)
+    public void StartCutscene()
     {
         if (_isPlaying) return;
 
-        enemyTransform = enemy;
         StartCoroutine(CutsceneRoutine());
     }
 
-    public void StartCutscene2(Transform bird)
+    public void StartCutscene2()
     {
         if (_isPlaying) return;
 
-        birdTransform = bird;
         StartCoroutine(CutsceneRoutine2());
     }
 
     private IEnumerator CutsceneRoutine2()
     {
+        // 3) chờ trước khi bird bay xuống
+        yield return new WaitForSeconds(waitBeforeBird);
+
+        player.GetComponent<PlayerController>().StopPlayer();
 
         // 1) disable player input & freeze physics
         if (playerController != null) { _wasPlayerControllerEnabled = playerController.enabled; playerController.enabled = false; }
@@ -126,8 +129,7 @@ public class CutsceneController : MonoBehaviour
 
         //if (pauseEnemiesDuringCutscene) PauseAllEnemies(true);
 
-        // 3) chờ trước khi bird bay xuống
-        yield return new WaitForSeconds(waitBeforeBird);
+
 
         // 4) bird flies down (simulate nặng nề bằng ease In + small delay)
         Vector3 targetPos = birdTransform.position + birdLandOffset;
@@ -143,6 +145,8 @@ public class CutsceneController : MonoBehaviour
 
         yield return shake.WaitForCompletion();
 
+        dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition = new Vector2(50, 90);
+        Vector2 temp = dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition; // save position
         // 6) Show dialog line 1
         if (dialogCanvasGroup != null && dialogText != null)
         {
@@ -155,9 +159,29 @@ public class CutsceneController : MonoBehaviour
         }
         else yield return new WaitForSeconds(dialogHoldTime);
 
+        // Show dialog
+        if (dialogCanvasGroup != null && dialogText != null)
+        {
+            if (birdSadEmotion != null) birdSadEmotion.SetActive(false); // hide sad emotion
+
+            dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition = new Vector2(-150, 100);
+
+            dialogText.text = birdDialog;
+            dialogCanvasGroup.DOKill();
+            dialogCanvasGroup.DOFade(1f, dialogFadeTime);
+            yield return new WaitForSeconds(dialogHoldTime);
+            dialogCanvasGroup.DOFade(0f, dialogFadeTime);
+            yield return new WaitForSeconds(dialogFadeTime);
+        }
+        else yield return new WaitForSeconds(dialogHoldTime);
+
         // 7) Show dialog line 2
         if (dialogCanvasGroup != null && dialogText != null)
         {
+            if (birdSadEmotion != null) birdSadEmotion.SetActive(true); // hide sad emotion
+
+            dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition = temp; // restore position
+
             dialogText.text = birdDialogLine2;
             dialogCanvasGroup.DOKill();
             dialogCanvasGroup.DOFade(1f, dialogFadeTime);
@@ -172,6 +196,7 @@ public class CutsceneController : MonoBehaviour
         if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
         //if (pauseEnemiesDuringCutscene) PauseAllEnemies(false);
 
+        player.GetComponent<PlayerController>().UnStop();
         _isPlaying = false;
     }
 

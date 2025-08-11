@@ -27,13 +27,22 @@ public class AbstractEnemy : MonoBehaviour, IEnemy
             angryMood.SetActive(value);
         }
     }
-    public void SetActiveMood(bool value)
+    protected void SetActiveMood(bool value)
     {
         if (happyMood != null)
         {
             happyMood.SetActive(value);
         }
     }
+
+    protected void SetUnHappyMood(bool value)
+    {
+        if (angryMood != null)
+        {
+            angryMood.SetActive(value);
+        }
+    }
+
     protected void DetectPlayer()
     {
 
