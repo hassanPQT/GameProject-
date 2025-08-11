@@ -7,6 +7,7 @@ using Cinemachine;
 using UnityEditor.Rendering;
 using Unity.Play.Publisher.Editor;
 using Game.Scripts.Gameplay;
+using System;
 public class CutsceneController : MonoBehaviour
 {
     [Header("References")]
@@ -20,7 +21,6 @@ public class CutsceneController : MonoBehaviour
 
     [Header("Cutscene Targets")]
     public Transform enemyTransform;        // optional, or pass in method
-    public Transform positionAfter;         // Position2: nơi player đứng sau cutscene
     public GameObject sword;                // sprite thanh kiếm trong scene
     public Transform playerHandPoint;       // vị trí trên player nơi sword đến (hand)
 
@@ -39,6 +39,23 @@ public class CutsceneController : MonoBehaviour
     public bool pauseEnemiesDuringCutscene = true;
     public KeyCode skipKey = KeyCode.Space;
 
+    [Header("StartCutscene2 (Bird)")]
+    public Transform birdTransform;           // reference tới bird transform trong scene
+    public GameObject birdSadEmotion;         // object (child) hiển thị sad emotion (ex: biểu tượng)
+    public Vector3 birdLandOffset = new Vector3(0f, -1.2f, 0f); // offset so với vị trí hiện tại (hạ xuống)
+    public float waitBeforeBird = 6f;         // thời gian chờ trước khi chim hạ xuống
+    public float birdFlyDownTime = 0.8f;      // thời gian chim bay xuống
+    public float birdWobbleDuration = 2f;     // thời gian wobble (lung lay)
+    public float birdWobbleStrength = 8f;     // cường độ wobble (độ xoay)
+    public Ease birdEase = Ease.InOutQuad;
+
+    [Header("Dialog (Bird)")]
+    public string birdDialogLine1 = "Thắc mắc con chim đó sao buồn nhỉ";
+    public string birdDialogLine2 = "Sao con chim này im lặng vậy nhỉ, mình có thể làm cho nó vui lên không";
+    public float dialogFadeTime = 0.18f;
+    public float dialogHoldTime = 1.8f;
+
+
     // internal state
     private Rigidbody2D _playerRb;
     private bool _wasPlayerControllerEnabled;
@@ -48,6 +65,15 @@ public class CutsceneController : MonoBehaviour
 
     private void Awake()
     {
+        if(player == null)
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+            if (player == null)
+            {
+                Debug.LogError("Player GameObject not found. Make sure it has the 'Player' tag assigned.");
+            }
+        }
+
         if (player != null)
             _playerRb = player.GetComponent<Rigidbody2D>();
 
@@ -75,13 +101,78 @@ public class CutsceneController : MonoBehaviour
     /// <summary>
     /// Public method to start cutscene. Pass enemy transform and the position2.
     /// </summary>
-    public void StartCutscene(Transform enemy, Transform posAfter)
+    public void StartCutscene(Transform enemy)
     {
         if (_isPlaying) return;
 
         enemyTransform = enemy;
-        positionAfter = posAfter;
         StartCoroutine(CutsceneRoutine());
+    }
+
+    public void StartCutscene2(Transform bird)
+    {
+        if (_isPlaying) return;
+
+        birdTransform = bird;
+        StartCoroutine(CutsceneRoutine2());
+    }
+
+    private IEnumerator CutsceneRoutine2()
+    {
+
+        // 1) disable player input & freeze physics
+        if (playerController != null) { _wasPlayerControllerEnabled = playerController.enabled; playerController.enabled = false; }
+        if (_playerRb != null) { _playerRb.linearVelocity = Vector2.zero; _playerRb.bodyType = RigidbodyType2D.Kinematic; }
+
+        //if (pauseEnemiesDuringCutscene) PauseAllEnemies(true);
+
+        // 3) chờ trước khi bird bay xuống
+        yield return new WaitForSeconds(waitBeforeBird);
+
+        // 4) bird flies down (simulate nặng nề bằng ease In + small delay)
+        Vector3 targetPos = birdTransform.position + birdLandOffset;
+        yield return birdTransform.DOMove(targetPos, birdFlyDownTime).SetEase(birdEase).WaitForCompletion();
+
+        // 5) play wobble / lung lay: dùng rotate shake
+        // Đổi sang local rotation nếu cần, ở đây ta sử dụng DOShakeRotation
+        Tween wobbleTween = birdTransform.DORotate(new Vector3(0, 0, 0), 0.01f); // dummy để ensure type
+        wobbleTween.Kill(); // kill asap - we will launch DOShakeRotation
+        Tween shake = birdTransform.DOShakeRotation(birdWobbleDuration, new Vector3(0, 0, birdWobbleStrength), 10, 90, false);
+        // Active sad emotion object (ví dụ: speech bubble hoặc sprite)
+        if (birdSadEmotion != null) birdSadEmotion.SetActive(true);
+
+        yield return shake.WaitForCompletion();
+
+        // 6) Show dialog line 1
+        if (dialogCanvasGroup != null && dialogText != null)
+        {
+            dialogText.text = birdDialogLine1;
+            dialogCanvasGroup.DOKill();
+            dialogCanvasGroup.DOFade(1f, dialogFadeTime);
+            yield return new WaitForSeconds(dialogHoldTime);
+            dialogCanvasGroup.DOFade(0f, dialogFadeTime);
+            yield return new WaitForSeconds(dialogFadeTime);
+        }
+        else yield return new WaitForSeconds(dialogHoldTime);
+
+        // 7) Show dialog line 2
+        if (dialogCanvasGroup != null && dialogText != null)
+        {
+            dialogText.text = birdDialogLine2;
+            dialogCanvasGroup.DOKill();
+            dialogCanvasGroup.DOFade(1f, dialogFadeTime);
+            yield return new WaitForSeconds(dialogHoldTime);
+            dialogCanvasGroup.DOFade(0f, dialogFadeTime);
+            yield return new WaitForSeconds(dialogFadeTime);
+        }
+        else yield return new WaitForSeconds(dialogHoldTime);
+
+        // 10) restore states
+        if (_playerRb != null) _playerRb.bodyType = RigidbodyType2D.Dynamic;
+        if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
+        //if (pauseEnemiesDuringCutscene) PauseAllEnemies(false);
+
+        _isPlaying = false;
     }
 
     private IEnumerator CutsceneRoutine()
@@ -119,9 +210,9 @@ public class CutsceneController : MonoBehaviour
             if (enemyCamera != null) enemyCamera.Priority = 10;
         }
 
-        // 2. pause enemies if needed
-        if (pauseEnemiesDuringCutscene)
-            PauseAllEnemies(true);
+        //// 2. pause enemies if needed
+        //if (pauseEnemiesDuringCutscene)
+        //    PauseAllEnemies(true);
 
         if (sword != null && playerHandPoint != null)
         {
@@ -171,10 +262,12 @@ public class CutsceneController : MonoBehaviour
 
 
             // Drop the sword
+            dialogText2.text = "You did it, yay! But you still can not hold a spear:v";
             dialogText2.gameObject.SetActive(false); // hide second text if not used
             sword.transform.SetParent(null, true);
             sword.transform.DOMove(groundPos, pickupDropTime).SetEase(Ease.InBounce);
             yield return new WaitForSeconds(pickupDropTime);
+            dialogText2.text = "";
             player.GetComponent<PlayerController>().UnStop();
         }
 
@@ -203,10 +296,6 @@ public class CutsceneController : MonoBehaviour
             yield return new WaitForSeconds(0.3f);
         }
 
-        // 5. Teleport player to positionAfter (Position2)
-        if (positionAfter != null)
-            player.transform.position = positionAfter.position;
-
         // 6. restore player control and physics
         if (_playerRb != null) _playerRb.bodyType = RigidbodyType2D.Dynamic;
         if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
@@ -219,19 +308,19 @@ public class CutsceneController : MonoBehaviour
         _isPlaying = false;
     }
 
-    private void PauseAllEnemies(bool pause)
-    {
-        // very simple implementation: find all EnemyController and enable/disable
-        var enemies = FindObjectsOfType<MonoBehaviour>(); // filter for your enemy class
-        foreach (var e in enemies)
-        {
-            // replace "EnemyController" with your actual enemy script type
-            if (e.GetType().Name == "EnemyController")
-            {
-                e.enabled = !pause;
-            }
-        }
-    }
+    //private void PauseAllEnemies(bool pause)
+    //{
+    //    // very simple implementation: find all EnemyController and enable/disable
+    //    var enemies = FindObjectsOfType<MonoBehaviour>(); // filter for your enemy class
+    //    foreach (var e in enemies)
+    //    {
+    //        // replace "EnemyController" with your actual enemy script type
+    //        if (e.GetType().Name == "EnemyController")
+    //        {
+    //            e.enabled = !pause;
+    //        }
+    //    }
+    //}
 
     private void EndCutsceneImmediate()
     {
@@ -247,15 +336,11 @@ public class CutsceneController : MonoBehaviour
             dialogCanvasGroup.alpha = 0f;
 
         // restore physics and input
-        if (_playerRb != null) _playerRb.isKinematic = false;
+        if (_playerRb != null) _playerRb.bodyType = RigidbodyType2D.Dynamic;
         if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
 
-        if (pauseEnemiesDuringCutscene)
-            PauseAllEnemies(false);
-
-        // teleport player to positionAfter as fallback
-        if (positionAfter != null)
-            player.transform.position = positionAfter.position;
+        //if (pauseEnemiesDuringCutscene)
+        //    PauseAllEnemies(false);
 
         _isPlaying = false;
     }
