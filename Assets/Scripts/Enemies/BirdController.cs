@@ -115,8 +115,10 @@ public class BirdController : AbstractEnemy
 
     public override void OnWinning()
     {
+
         IsWin = true;
         SetActiveMood(true);
+        SetUnHappyMood(false);
         AutoDelay();
         CloseCollider();
         _canDoubleJumpCount = 1;

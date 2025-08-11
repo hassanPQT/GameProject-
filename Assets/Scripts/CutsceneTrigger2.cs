@@ -14,7 +14,6 @@ public class CutsceneTrigger2 : MonoBehaviour
 
         Debug.Log("Cutscene triggered for MapDesign 2");
         triggered2 = true;
-        Transform bird = transform; // hoặc reference tới enemy transform
-        cutsceneController.StartCutscene2(bird);
+        cutsceneController.StartCutscene2();
     }
 }
