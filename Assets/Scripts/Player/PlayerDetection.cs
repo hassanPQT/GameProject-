@@ -1,4 +1,5 @@
 using Game.Scripts.Gameplay;
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -9,6 +10,11 @@ public class PlayerDetection : MonoBehaviour
     private PlayerController playerController;
     private AbstractEnemy currentEnemy;
     private SongDirection[] _targetDir;
+
+    public float TimeOut;
+    private float _inputTimeout = 10f;
+    private bool _awaitingInput;
+
     private bool _selected;
 
     private void Awake()
@@ -86,10 +92,16 @@ public class PlayerDetection : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, enemyLayer);
         return hits;
     }
+
     public void SelectSongWheel(int[] sliceIndex)
     {
         _selected = true;
         bool result = CheckCondition(sliceIndex);
+        OnPlayerResult(result);
+    }
+
+    private void OnPlayerResult(bool result)
+    {
         if (result)
         {
             OnPlayerWin();
@@ -132,6 +144,8 @@ public class PlayerDetection : MonoBehaviour
     public void OnPayerLose()
     {
         Debug.Log("lose play");
+
+        if (currentEnemy == null) return;
         currentEnemy.OnPlayerMissed();
     }
     private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)

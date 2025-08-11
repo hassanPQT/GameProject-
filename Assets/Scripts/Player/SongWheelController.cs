@@ -2,6 +2,7 @@
 using Game.Scripts.Gameplay;
 using System.Collections.Generic;
 using System.Threading;
+using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -60,6 +61,14 @@ public class SongWheelController : MonoBehaviour
             OpenSongWheel();
         }
 
+        if (_playerController.detection.IsPlaying() && _playerController.detection.TimeOut != 10)
+        {
+            if (_songWheelTimeForDisplay <= 0)
+                _songWheelTimeForDisplay = 4950;
+            _songWheelTimeForDisplay -= (int)(Time.deltaTime * 1000 * 0.5f); // Giảm thời gian mỗi giây
+        }
+
+
         if (_wheelActive)
         {
             UpdateAnimation();
@@ -74,14 +83,14 @@ public class SongWheelController : MonoBehaviour
         {
             CloseSongWheel();
         }
-        
+
     }
 
     private void UpdateAnimation()
     {
         UpdateSelection();
         PlayerCountDownAnimation();
-        
+
     }
 
     private void SelectSongWheel()
@@ -91,7 +100,7 @@ public class SongWheelController : MonoBehaviour
         {
             _selectSlices.Add(_currentSlice);
         }
-        if ( _selectSlices.Count == 2)
+        if (_selectSlices.Count == 2)
         {
             _playerController.detection.SelectSongWheel(_selectSlices.ToArray());
             _selectSlices.Clear();
@@ -118,6 +127,8 @@ public class SongWheelController : MonoBehaviour
             float targetFill = Mathf.Clamp01((float)_songWheelTimeForDisplay / 4950f);
             _currentFillAmount = Mathf.Lerp(_currentFillAmount, targetFill, Time.deltaTime * 8f); // 8f is smoothing speed
             timerImage.fillAmount = _currentFillAmount;
+            if (timerImage.fillAmount == 1)
+                timerImage.fillAmount = 0;
             Debug.Log($"Timer for fillAmount: {_songWheelTimeForDisplay} ms");
         }
     }

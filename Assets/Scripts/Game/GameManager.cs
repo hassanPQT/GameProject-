@@ -32,7 +32,7 @@ public class GameManager : MonoBehaviour
     //private int _userPositivePoint = 3;
 
     private List<int> _directionNumberList;
-    public float Timer;
+    //public float Timer;
     public bool IsInputEnable;
     //public bool IsStop3s => _awaitingPlayerSelect;
     //public float ModifyTimeout = 1;
