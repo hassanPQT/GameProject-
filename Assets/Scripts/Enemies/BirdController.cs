@@ -6,10 +6,7 @@ using UnityEngine;
 public class BirdController : AbstractEnemy
 {
     [SerializeField] private float hoverHeight = 1.5f;
-
-
     private int _canDoubleJumpCount = 2;
-    public bool IsMoving => _isMoving;  
     private Vector3 startPoint;
     protected override void Start()
     {
@@ -49,13 +46,14 @@ public class BirdController : AbstractEnemy
    
     private IEnumerator CheckPlayerStay(PlayerController playerController)
     {
+        Debug.Log("here is check stay");
         bool isStay = true;
         float timer = 0f;
         var temp = 3;
         while (timer < temp)
         {
             var dis = Vector2.Distance(playerController.transform.position, transform.position);
-            if (dis > 4)
+            if (dis >  10)
             {
                 isStay = false;
             }
@@ -65,33 +63,34 @@ public class BirdController : AbstractEnemy
         
         if (isStay)
         {
-           signal.SignalRandomDirection(_moveDistance, _moveDuration);
+            Play();
         }
-        else
-        {
-            _isMoving = true;
-        }
+        
+    }
+    public override void Play()
+    {
+        var direction = signal.SignalRandomDirection(_moveDistance, _moveDuration);
+        Singal?.Invoke(direction);
     }
 
-    
     public IEnumerator FlyIntoPlayer()
     {
         Vector3 offset = Vector3.up * hoverHeight;
         var player = GameManager.Instance.Player;
-        player.CanDoubleJump();
+        player.movement.CanDoubleJump();
         
         float timer = 0f;
         while(timer < 5f)
         {
             timer += Time.deltaTime;
             Vector3 targetPos = player.transform.position + offset;
-            if (!player.CheckDoubleJump)
+            if (!player.movement.CheckDoubleJump)
                 break;
             transform.position = Vector3.Lerp(transform.position, targetPos, _moveSpeed * Time.deltaTime);
             yield return null;
         }
 
-        player.LockDoubleJump();
+        player.movement.LockDoubleJump();
         StartCoroutine(ReturnToStartPoint());
     }
     private IEnumerator ReturnToStartPoint()

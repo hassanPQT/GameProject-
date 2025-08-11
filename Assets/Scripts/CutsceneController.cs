@@ -121,7 +121,7 @@ public class CutsceneController : MonoBehaviour
         // 3) chờ trước khi bird bay xuống
         yield return new WaitForSeconds(waitBeforeBird);
 
-        player.GetComponent<PlayerController>().StopPlayer();
+        player.GetComponent<PlayerController>().movement.StopPlayer();
 
         // 1) disable player input & freeze physics
         if (playerController != null) { _wasPlayerControllerEnabled = playerController.enabled; playerController.enabled = false; }
@@ -196,14 +196,14 @@ public class CutsceneController : MonoBehaviour
         if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
         //if (pauseEnemiesDuringCutscene) PauseAllEnemies(false);
 
-        player.GetComponent<PlayerController>().UnStop();
+        player.GetComponent<PlayerController>().movement.UnStop();
         _isPlaying = false;
     }
 
     private IEnumerator CutsceneRoutine()
     {
         _camera.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, 2f);
-        player.GetComponent<PlayerController>().StopPlayer();
+        player.GetComponent<PlayerController>().movement.StopPlayer();
         _isPlaying = true;
 
         // 1. Switch camera to enemy
@@ -293,7 +293,7 @@ public class CutsceneController : MonoBehaviour
             sword.transform.DOMove(groundPos, pickupDropTime).SetEase(Ease.InBounce);
             yield return new WaitForSeconds(pickupDropTime);
             dialogText2.text = "";
-            player.GetComponent<PlayerController>().UnStop();
+            player.GetComponent<PlayerController>().movement.UnStop();
         }
 
 

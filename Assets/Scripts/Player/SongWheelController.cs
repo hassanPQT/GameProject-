@@ -1,10 +1,7 @@
 ﻿using DG.Tweening;
 using Game.Scripts.Gameplay;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -16,7 +13,6 @@ public class SongWheelController : MonoBehaviour
     [SerializeField] private RectTransform _wheelRect;
     [SerializeField] private Image[] _slices;
     [SerializeField] PlayerController _playerController;
-    [SerializeField] private GameManager _gameManager;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _offsetY = 60f; // Khoảng cách dọc từ vị trí của người chơi đến bánh xe
 
@@ -64,12 +60,12 @@ public class SongWheelController : MonoBehaviour
             OpenSongWheel();
         }
 
-        if (GameManager.Instance._awaitingPlayerSelect && GameManager.Instance.Timer != _songWheelTime)
-        {
-            if (_songWheelTimeForDisplay <= 0)
-                _songWheelTimeForDisplay = 4950;
-            _songWheelTimeForDisplay -= (int)(Time.deltaTime * 1000f * 0.5f);
-        }
+        //if (GameManager.Instance._awaitingPlayerSelect && GameManager.Instance.Timer != _songWheelTime)
+        //{
+        //    if (_songWheelTimeForDisplay <= 0)
+        //        _songWheelTimeForDisplay = 4950;
+        //    _songWheelTimeForDisplay -= (int)(Time.deltaTime * 1000f * 0.5f);
+        //}
 
 
         if (_wheelActive)
@@ -79,7 +75,7 @@ public class SongWheelController : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            OnSelectSongWheel();
+            SelectSongWheel();
         }
 
         if (Input.GetMouseButtonUp(1))
@@ -92,23 +88,20 @@ public class SongWheelController : MonoBehaviour
     private void UpdateAnimation()
     {
         UpdateSelection();
-        if (GameManager.Instance._awaitingPlayerSelect && GameManager.Instance.Timer != _songWheelTime)
-        {
-            PlayerCountDownAnimation();
-        }
+        PlayerCountDownAnimation();
+        
     }
 
-    private void OnSelectSongWheel()
+    private void SelectSongWheel()
     {
         if (!_wheelActive) return;
         if (_slices[_currentSlice].gameObject.activeSelf)
         {
             _selectSlices.Add(_currentSlice);
         }
-        if (_gameManager != null && _selectSlices.Count == 2)
+        if ( _selectSlices.Count == 2)
         {
-
-            _gameManager.OnSongWheelSelect(_selectSlices.ToArray());
+            _playerController.detection.SelectSongWheel(_selectSlices.ToArray());
             _selectSlices.Clear();
         }
     }

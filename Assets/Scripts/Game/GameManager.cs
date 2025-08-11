@@ -1,9 +1,14 @@
 using Game.Scripts.Gameplay;
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+
+
+public enum GameState
+{
+
+
+}
 
 public class GameManager : MonoBehaviour
 {
@@ -13,26 +18,24 @@ public class GameManager : MonoBehaviour
     public SongWheelController songWheelController;
 
 
-    [SerializeField] private UIManager uiManager;
-    [SerializeField] private PlayerController PlayerPrf;
-    [SerializeField] private Transform startPoint;
     [SerializeField] private MoodBarController moodBar;
+    [SerializeField] private UIManager uiManager;
+    [SerializeField] private Transform PlayerPrf;
+    [SerializeField] private Transform startPoint;
     [SerializeField] private float moodDeltaOnWin = 0.15f;
     [SerializeField] private float moodDeltaOnLose = 0.15f;
     [SerializeField] private float _inputTimeout = 10f;
 
 
-    public bool _awaitingPlayerSelect;
-    private SongDirection[] _targetDir;
-    private int _userPositivePoint = 3;
-    private bool _isGameEnd;
-    private bool _isGamePaused;
+    //public bool _awaitingPlayerSelect;
+    //private SongDirection[] _targetDir;
+    //private int _userPositivePoint = 3;
 
     private List<int> _directionNumberList;
     public float Timer;
     public bool IsInputEnable;
-    public bool IsStop3s => _awaitingPlayerSelect;
-    public float ModifyTimeout = 1;
+    //public bool IsStop3s => _awaitingPlayerSelect;
+    //public float ModifyTimeout = 1;
     public int[] DirectionNumber => _directionNumberList.ToArray();
     private int _currentDirectionIndex;
 
@@ -55,7 +58,10 @@ public class GameManager : MonoBehaviour
         InitializedPlayer();
         SetupDirectionNumbers();
     }
-
+    public SongDirection GetRandomSongDirection()
+    {
+        return (SongDirection)DirectionNumber[UnityEngine.Random.Range(0, DirectionNumber.Length)];
+    }
     private void InitializedPlayer()
     {
         Debug.Log("init player");
@@ -72,7 +78,7 @@ public class GameManager : MonoBehaviour
         // Nếu không tìm thấy Player, tạo mới
         if (Player == null)
         {
-            Player = Instantiate(PlayerPrf, startPoint.position, startPoint.rotation);
+            Player = Instantiate(PlayerPrf, startPoint.position, startPoint.rotation).GetComponent<PlayerController>();
             Debug.Log("Player instantiated at: " + startPoint.position);
         }
         else
@@ -86,11 +92,10 @@ public class GameManager : MonoBehaviour
 
     private void InitializedStatus()
     {
-        _isGamePaused = false;
         InputManager.Instance.LockCursor();
         IsInputEnable = true;
         _currentDirectionIndex = 6;
-        _userPositivePoint = 3;
+        //_userPositivePoint = 3;
     }
 
     private void OnEnable()
@@ -154,134 +159,28 @@ public class GameManager : MonoBehaviour
         _currentDirectionIndex--;
     }
 
-    private void Update()
-    {
-        if (_isGamePaused || _isGameEnd) return;
-        HandleKeyboardInput();
-    }
-
-    public void OnEnemySignal(SongDirection[] dir)
-    {
-        _targetDir = dir;
-        Player.detection.IsPlaying = true;
-        StartCoroutine(WaitForInput());
-    }
-
-    private IEnumerator WaitForInput()
-    {
-        _awaitingPlayerSelect = true;
-        Timer = 0f;
-        var temp = _inputTimeout * ModifyTimeout;
-        while (Timer < temp)
-        {
-            Timer += Time.deltaTime ;
-            yield return null;
-        }
-
-        // het count down ma player chua select
-        if (_awaitingPlayerSelect)
-        {
-            OnPlayerResult(false);
-            _awaitingPlayerSelect = false;
-        }
-    }
-
-    public bool OnSongWheelSelect(int[] sliceIndex)
-    {
-        if (!_awaitingPlayerSelect) return false;
-
-        bool correct = sliceIndex.Length == 2 && _targetDir != null && sliceIndex.Length == _targetDir.Length;
-        if (correct)
-        {
-            for (int i = 0; i < sliceIndex.Length; i++)
-            {
-                if (sliceIndex[i] != (int)_targetDir[i])
-                {
-                    correct = false;
-                    break;
-                }
-            }
-        }
-
-
-        OnPlayerResult(correct);
-        _awaitingPlayerSelect = false;
-
-        return correct;
-    }
-
-    private void OnPlayerResult(bool success)
-    {
-        _awaitingPlayerSelect = false;
-        IsInputEnable = true;
-
-        if (success)
-        {
-            OnPlayerWin();
-        }
-        else
-        {
-            OnPlayerLose();
-        }
-    }
-
-    private void OnPlayerLose()
-    {
-        songWheelController.OnPlayerLose();
-        Player.detection.OnPayerLose();
-    }
-
-    private void OnPlayerWin()
-    {
-        Debug.Log("Đúng! Enemy bị cảm hóa.");
-        Player.detection.OnPlayerWin();
-        songWheelController.OnPlayerWin();
-    }
-
-    private void HandleKeyboardInput()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-            InputManager.Instance.UnlockCursor();
-        Player.Run(Input.GetKey(KeyCode.LeftShift));
-        if (!IsInputEnable)
-            return;
-
-        float horizontal = Input.GetAxisRaw("Horizontal");
-        Vector2 input = new Vector2(horizontal, 0f);
-        Player.Move(input);
-
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.W))
-            Player.Jump();
-    }
-
-    public void TakeDamage(int i)
-    {
-        _userPositivePoint--;
-        if (_userPositivePoint == 0)
-            ShowFailGame();
-    }
-
-    public void ShowFailGame()
-    {
-        if (_isGameEnd) return;
-        _isGameEnd = true;
-        PauseGame();
-    }
-
-
-
     public void PauseGame()
     {
-        _isGamePaused = true;
+        foreach (var listener in _listenerList)
+        {
+            listener.Pause();
+        }
     }
     public void GameLose()
     {
-        PauseGame();
         InputManager.Instance.GameLose();
-        Player.PlayGiveUpAnimation();
         uiManager.ShowLoseUI();
+        PauseGame();
+        foreach (var listener in _listenerList)
+        {
+            listener.GameLose();
+        }
+        //Player.movement.PlayGiveUpAnimation();
     }
-    public void ResumeGame() => _isGamePaused = false;
+    public void ResumeGame()
+    {
+        
+    }
 
     internal void GameRestart()
     {

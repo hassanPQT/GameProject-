@@ -1,6 +1,5 @@
 using DG.Tweening;
 using Game.Scripts.Gameplay;
-using System;
 using System.Collections;
 using UnityEngine;
 
@@ -10,7 +9,6 @@ public class EnemyController : AbstractEnemy
     private Vector3 _leftPos, _rightPos, _startPos;
     private bool _isMovingInDirection = false;
     public bool IsMovingInDirection => _isMovingInDirection;
-
     protected override void Start()
     {
         base.Start();
@@ -39,7 +37,7 @@ public class EnemyController : AbstractEnemy
 
     private IEnumerator MoveBackAndForth()
     {
-        while (_isMoving)
+        while (!_hasDetected)
         {
             yield return MoveToPosition(_leftPos);
             yield return MoveToPosition(_rightPos);
@@ -100,14 +98,22 @@ public class EnemyController : AbstractEnemy
 
     public override void OnPlayerRequest(PlayerController playerController)
     {
-        playerController.StopPlayer();
-        signal.SignalRandomDirection( _moveDistance, _moveDuration);
+        playerController.movement.StopPlayer();
+        var directions = signal.SignalRandomDirection(_moveDistance, _moveDuration);
+        Singal?.Invoke(directions);
     }
 
     public override void OnWinning()
     {
+        GameManager.Instance.OnPlayerWinEncounter();
         StopMovement();
         SetAngryMood(false);
         SetActiveMood(true);
+    }
+    public override void OnPlayerMissed()
+    {
+        GameManager.Instance.OnPlayerLoseEncounter();
+        var directions = signal.SignalRandomDirection(_moveDistance, _moveDuration);
+        Singal?.Invoke(directions);
     }
 }

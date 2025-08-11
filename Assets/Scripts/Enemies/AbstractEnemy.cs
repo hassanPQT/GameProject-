@@ -1,7 +1,8 @@
 using Game.Scripts.Gameplay;
+using System;
 using UnityEngine;
 
-public class AbstractEnemy : MonoBehaviour, IEnemy
+public class AbstractEnemy : MonoBehaviour, IEnemy, IListener
 {
 
     [SerializeField] protected float _moveDistance = 2f;
@@ -13,13 +14,18 @@ public class AbstractEnemy : MonoBehaviour, IEnemy
     [SerializeField] protected EnemySignal signal;
     [SerializeField] protected bool _isMoving = true;
     protected Vector3 _startPoint;
+    public Action<SongDirection[]> Singal;
+    protected bool _hasDetected;
 
     protected virtual void Start()
     {
+        _hasDetected = false;
         _startPoint = transform.position;
         IsWin = false;
     }
     public bool IsWin { get ; set ; }
+    public bool IsMoving { get => _isMoving; set => _isMoving = value; }
+
     public void SetAngryMood(bool value)
     {
         if (angryMood != null)
@@ -45,7 +51,8 @@ public class AbstractEnemy : MonoBehaviour, IEnemy
 
     protected void DetectPlayer()
     {
-
+        if (_hasDetected) return;
+        _hasDetected = true;
         float detectRadius = 4f;
         LayerMask playerLayer = LayerMask.GetMask("Player");
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, playerLayer);
@@ -65,6 +72,7 @@ public class AbstractEnemy : MonoBehaviour, IEnemy
 
     public virtual void OnPlayerMissed()
     {
+
     }
 
     public virtual void OnPlayerRequest(PlayerController playerController)
@@ -72,6 +80,26 @@ public class AbstractEnemy : MonoBehaviour, IEnemy
     }
 
     public virtual void OnWinning()
+    {
+    }
+
+    public virtual void Play()
+    {
+    }
+
+    public void Playing()
+    {
+    }
+
+    public void Pause()
+    {
+    }
+
+    public void GameWin()
+    {
+    }
+
+    public void GameLose()
     {
     }
 }

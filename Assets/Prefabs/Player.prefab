@@ -185,6 +185,7 @@ GameObject:
   - component: {fileID: 108943612536164267}
   - component: {fileID: 8229706812272110659}
   - component: {fileID: 4872509637568443709}
+  - component: {fileID: 3751975417905561065}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -287,21 +288,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   detection: {fileID: 4872509637568443709}
-  _moveSpeed: 5
-  _modifierSpeed: 1
-  _runModifier: 1
-  _jumpForce: 20
-  _groundCheck: {fileID: 3938350930498520604}
-  _groundCheckRadius: 0.2
-  _groundLayer:
-    serializedVersion: 2
-    m_Bits: 8
-  _visualObject: {fileID: 0}
-  _invincibleDuration: 1
-  _rb: {fileID: 56709050551967339}
-  _animator: {fileID: 3801703037524951286}
-  _canRun: 1
-  _isRunning: 0
+  movement: {fileID: 3751975417905561065}
 --- !u!114 &4872509637568443709
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -315,3 +302,28 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   IsPlaying: 0
+--- !u!114 &3751975417905561065
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8390359257631525335}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7666f449ee6f0f14c8e9428a06e1d252, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _moveSpeed: 5
+  _modifierSpeed: 1
+  _runModifier: 1
+  _jumpForce: 10
+  _groundCheck: {fileID: 3938350930498520604}
+  _groundCheckRadius: 0.2
+  _groundLayer:
+    serializedVersion: 2
+    m_Bits: 8
+  _canRun: 0
+  _rb: {fileID: 56709050551967339}
+  _animator: {fileID: 3801703037524951286}
+  _isRunning: 0

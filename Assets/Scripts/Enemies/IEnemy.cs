@@ -2,7 +2,9 @@
 
 public interface IEnemy
 {
+    bool IsMoving { get; set; }
     bool IsWin { get; set; }
+
     void OnDetectPlayer(PlayerController playerController);
     void OnPlayerRequest(PlayerController playerController);
     void OnWinning();

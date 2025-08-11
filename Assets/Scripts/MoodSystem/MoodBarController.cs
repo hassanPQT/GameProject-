@@ -44,7 +44,7 @@ public class MoodBarController : MonoBehaviour
     private void HandleHigh()
     {
         ChangeMoodImage.sprite = moodFillImage[1]; // 90% mood
-        playerController.UnlockRun();
+        playerController.movement.UnlockRun();
         ApplyEffects(_moodValue);
     }
 
@@ -132,7 +132,7 @@ public class MoodBarController : MonoBehaviour
         SongWheelTimeModifier = 0.5f + amount;         // max +50% time
         Debug.Log(MovementSpeedModifier + " " + SongWheelTimeModifier);
         //GameManager.Instance.ModifyTimeout = SongWheelTimeModifier;
-        playerController.SetModifierSpeed(MovementSpeedModifier);
+        playerController.movement.SetModifierSpeed(MovementSpeedModifier);
         // Bạn có thể broadcast event hoặc gán trực tiếp cho player / UI
     }
 

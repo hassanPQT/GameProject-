@@ -9,21 +9,17 @@ public class EnemySignal : MonoBehaviour
     [SerializeField] private GameObject[] signalEffectPrefab;
     [SerializeField] private float _effectDuration = 0.5f;
     [SerializeField] private float _effectMaxScale = 1.5f;
-    [SerializeField] public bool _isMoving = true;
-    private IEnemy m_Enemy;
-    private SongDirection[] _currentDir;
-    public bool SignalRandomDirection( float moveDistance, float moveDuration)
+    [SerializeField] private IEnemy m_Enemy;
+    public SongDirection[] _currentDir;
+  
+    public SongDirection[] SignalRandomDirection( float moveDistance, float moveDuration)
     {
-        if (_isMoving) return true;
-        Debug.Log("`  SignalRandomDirection` called in BirdController.");
-
+        Debug.Log("`  SignalRandomDirection.");
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)
-            _currentDir[i] = (SongDirection)GameManager.Instance.DirectionNumber[UnityEngine.Random.Range(0, GameManager.Instance.DirectionNumber.Length)];
-
-        GameManager.Instance.OnEnemySignal(_currentDir);
+            _currentDir[i] =  GameManager.Instance.GetRandomSongDirection();
         StartCoroutine(MoveInDirection(_currentDir, moveDistance, moveDuration));
-        return true;
+        return _currentDir;
     }
     private Vector3 DirectionToVector(SongDirection dir)
     {
@@ -33,10 +29,11 @@ public class EnemySignal : MonoBehaviour
     }
     private IEnumerator MoveInDirection(SongDirection[] dir, float moveDistance, float moveDuration)
     {
-        _isMoving = true;
+        //m_Enemy.IsMoving = true;
         yield return new WaitForSeconds(2f);
         foreach (var d in dir)
         {
+            Debug.Log("SHow signal");
             ShowSignalEffect(d, moveDistance);
             yield return new WaitForSeconds(_effectDuration * 0.5f);
 
@@ -44,24 +41,13 @@ public class EnemySignal : MonoBehaviour
             Vector3 start = transform.position;
             Vector3 end = start + dirVec * moveDistance;
 
-            float t = 0f;
-            while (t < moveDuration)
-            {
-                t += Time.deltaTime * 1.8f;
-                transform.position = Vector3.Lerp(start, end, t / moveDuration);
-                yield return null;
-            }
+            Sequence move = DOTween.Sequence();
 
-            t = 0;
-            while (t < moveDuration)
-            {
-                t += Time.deltaTime * 1.8f;
-                transform.position = Vector3.Lerp(end, start, t / moveDuration);
-                yield return null;
-            }
-            yield return new WaitForSeconds(0.5f);
+            move.Append(transform.DOMove(end, moveDuration/2).SetEase(Ease.OutSine));
+            move.Append(transform.DOMove(start, moveDuration/2).SetEase(Ease.OutSine));
+
+            yield return new WaitForSeconds(moveDuration + 0.5f);
         }
-        _isMoving = false;
     }
     private void ShowSignalEffect(SongDirection dir, float moveDistance)
     {
