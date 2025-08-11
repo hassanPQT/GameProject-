@@ -1,4 +1,6 @@
 using Game.Scripts.Gameplay;
+using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerDetection : MonoBehaviour
@@ -6,6 +8,11 @@ public class PlayerDetection : MonoBehaviour
     private PlayerController playerController;
     private AbstractEnemy currentEnemy;
     private SongDirection[] _targetDir;
+
+    public float TimeOut;
+    private float _inputTimeout = 10f;
+    private bool _awaitingInput;
+
     private void Awake()
     {
         playerController = GetComponent<PlayerController>();
@@ -28,13 +35,39 @@ public class PlayerDetection : MonoBehaviour
                 if (enemy.IsWin) continue;
                 else
                 {
-                    currentEnemy = enemy;
-                    currentEnemy.Singal += x => _targetDir = x;
-                    StartPlay();
+                    OnPlayerDetection(enemy);
                 }
             }
         }
 
+    }
+
+    private void OnPlayerDetection(AbstractEnemy enemy)
+    {
+        currentEnemy = enemy;
+        currentEnemy.Singal += x => _targetDir = x;
+        _awaitingInput = true;
+        StartPlay();
+        StartCoroutine(WaitForInput());
+    }
+
+    public bool IsPlaying()
+    {
+        return currentEnemy != null;
+    }
+
+    private IEnumerator WaitForInput()
+    {
+        TimeOut = 0f;
+        while (_awaitingInput && TimeOut < _inputTimeout)
+        {
+            Debug.Log("TimeOut: " + TimeOut);
+            TimeOut += Time.deltaTime;
+            yield return null;
+        }
+
+        if (_awaitingInput)
+            OnPlayerResult(false);
     }
 
     private Collider2D[] GetEnemies()
@@ -45,9 +78,17 @@ public class PlayerDetection : MonoBehaviour
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, enemyLayer);
         return hits;
     }
+
     public void SelectSongWheel(int[] sliceIndex)
     {
+        if (!_awaitingInput) return;
+        _awaitingInput = false;
         bool result = CheckCondition(sliceIndex);
+        OnPlayerResult(result);
+    }
+
+    private void OnPlayerResult(bool result)
+    {
         if (result)
         {
             OnPlayerWin();
@@ -89,6 +130,7 @@ public class PlayerDetection : MonoBehaviour
     {
         Debug.Log("lose play");
 
+        if (currentEnemy == null) return;
         currentEnemy.OnPlayerMissed();
         currentEnemy.Singal = null;
     }
