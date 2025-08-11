@@ -14,8 +14,7 @@ public class EnemySignal : MonoBehaviour
   
     public SongDirection[] SignalRandomDirection( float moveDistance, float moveDuration)
     {
-
-        if (m_Enemy.IsMoving) return null; 
+        if (m_Enemy.IsMoving || m_Enemy.IsWin) return null; 
         Debug.Log("`  SignalRandomDirection.");
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)
@@ -32,7 +31,7 @@ public class EnemySignal : MonoBehaviour
     private IEnumerator MoveInDirection(SongDirection[] dir, float moveDistance, float moveDuration)
     {
         //m_Enemy.IsMoving = true;
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(0.5f);
         foreach (var d in dir)
         {
             Debug.Log("SHow signal");

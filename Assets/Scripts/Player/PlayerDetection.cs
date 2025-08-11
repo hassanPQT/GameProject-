@@ -1,13 +1,19 @@
 using Game.Scripts.Gameplay;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDetection : MonoBehaviour
 {
+    [SerializeField] Image _awaitImage;
     private PlayerController playerController;
     private AbstractEnemy currentEnemy;
     private SongDirection[] _targetDir;
+    private bool _selected;
+
     private void Awake()
     {
+        _awaitImage.gameObject.SetActive(false);
         playerController = GetComponent<PlayerController>();
     }
     private void Update()
@@ -28,15 +34,50 @@ public class PlayerDetection : MonoBehaviour
                 if (enemy.IsWin) continue;
                 else
                 {
-                    currentEnemy = enemy;
-                    currentEnemy.Singal += x => _targetDir = x;
-                    StartPlay();
+                    OnDetectEnemy(enemy);
                 }
             }
         }
 
     }
 
+    private void OnDetectEnemy(AbstractEnemy enemy)
+    {
+        currentEnemy = enemy;
+        currentEnemy.Singal += x => OnEnemySignal(x);
+        StartPlay();
+    }
+
+    private void OnEnemySignal(SongDirection[] songDirection)
+    {
+        Debug.Log("on signal");
+        _targetDir = songDirection;
+        Debug.Log("asd" + currentEnemy.Singal.Method.Name);
+        StartCoroutine(AwaitInput(10));
+    }
+    private IEnumerator AwaitInput(float timeOut)
+    {
+        _awaitImage.gameObject.SetActive(true);
+        _awaitImage.color = Color.white;
+        float t = 0;  
+        while (t < timeOut)
+        {
+            if (_selected) break;
+            _awaitImage.fillAmount = 1 - t / timeOut;
+            if (t/timeOut > 0.5f)
+            {
+                _awaitImage.color = Color.red;
+            }
+            t += Time.deltaTime;
+            yield return null;
+        }
+
+        _awaitImage.gameObject.SetActive(false);
+        if (!_selected)
+        {
+            OnPayerLose();
+        }
+    }
     private Collider2D[] GetEnemies()
     {
         float detectRadius = 3.5f;
@@ -47,6 +88,7 @@ public class PlayerDetection : MonoBehaviour
     }
     public void SelectSongWheel(int[] sliceIndex)
     {
+        _selected = true;
         bool result = CheckCondition(sliceIndex);
         if (result)
         {
@@ -84,13 +126,13 @@ public class PlayerDetection : MonoBehaviour
     {
         playerController.movement.UnStop();
         currentEnemy.OnWinning();
+        currentEnemy = null;
+        //_selected = false;
     }
     public void OnPayerLose()
     {
         Debug.Log("lose play");
-
         currentEnemy.OnPlayerMissed();
-        currentEnemy.Singal = null;
     }
     private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
     {

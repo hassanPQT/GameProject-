@@ -12,6 +12,7 @@ public class EnemyController : AbstractEnemy
     protected override void Start()
     {
         base.Start();
+        _hasDetected = false;
         SetPositionToMove();
         StartCoroutine(MoveBackAndForth());
         SetAngryMood(true);

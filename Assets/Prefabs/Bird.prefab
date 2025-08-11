@@ -297,7 +297,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -362,7 +362,7 @@ MonoBehaviour:
   - {fileID: 1954892852599833047, guid: bc3c2edd9032bb947a3d729e5e5ca545, type: 3}
   _effectDuration: 0.5
   _effectMaxScale: 1.5
-  _isMoving: 1
+  _currentDir: 
 --- !u!1 &7992207523348716513
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,12 +6,12 @@ using UnityEngine;
 public class BirdController : AbstractEnemy
 {
     [SerializeField] private float hoverHeight = 1.5f;
-    private int _canDoubleJumpCount = 2;
+    private int _helperCount = 2;
     private Vector3 startPoint;
     protected override void Start()
     {
         base.Start();
-        _canDoubleJumpCount = 0;
+        _helperCount = 0;
         startPoint = transform.position;
         _isMoving = false;
         IsWin = false;
@@ -22,6 +22,7 @@ public class BirdController : AbstractEnemy
     {
         await System.Threading.Tasks.Task.Delay(6000);
         SetActiveMood(false);
+        IsWin = false;
     }
 
     public void CloseCollider()
@@ -70,8 +71,10 @@ public class BirdController : AbstractEnemy
 
     public IEnumerator FlyIntoPlayer()
     {
+        _helperCount--;
         Vector3 offset = Vector3.up * hoverHeight;
         var player = GameManager.Instance.Player;
+        Debug.Log("can jump");
         player.movement.CanDoubleJump();
         
         float timer = 0f;
@@ -86,7 +89,6 @@ public class BirdController : AbstractEnemy
         }
 
         player.movement.LockDoubleJump();
-        //StartCoroutine(ReturnToStartPoint());
     }
     private IEnumerator ReturnToStartPoint()
     {
@@ -96,40 +98,41 @@ public class BirdController : AbstractEnemy
     }
     public override void OnPlayerRequest(PlayerController playerController)
     {
-        if (_canDoubleJumpCount > 0)
+        if (_helperCount > 0)
         {
-            _canDoubleJumpCount--;
-            FlyIntoPlayer();
+            Debug.Log(_helperCount + " Helper");
+            _helperCount--;
+            playerController.detection.OnPlayerWin();
         }
         else {
-            if (transform.position != startPoint)
-            {
-                StartCoroutine(ReturnToStartPoint());
-            }
-            else
-            {
-                _isMoving = false;
-                StartCoroutine(CheckPlayerStay(playerController));
-            }
+            Debug.Log("check check 0");
+            _helperCount = 2;
+            StartCoroutine(ReturnToStartPoint());
+            StartCoroutine(CheckPlayerStay(playerController));    
         }
 
     }
 
     public override void OnWinning()
     {
+        //_helperCount = 2;
+        HelperPlayer();
+    }
 
+    private void HelperPlayer()
+    {
         IsWin = true;
         SetActiveMood(true);
         SetUnHappyMood(false);
         AutoDelay();
         CloseCollider();
-        _canDoubleJumpCount = 1;
         StartCoroutine(FlyIntoPlayer());
     }
 
     public override void OnPlayerMissed()
     {
         _isMoving = false;
+        
         Play();
     }
 
