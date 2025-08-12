@@ -13,7 +13,7 @@ public class AbstractEnemy : MonoBehaviour, IEnemy, IListener
 
     [SerializeField] protected EnemySignal signal;
     [SerializeField] protected bool _isMoving = true;
-    protected Vector3 _startPoint;
+    public Vector3 _startPoint;
     public Action<SongDirection[]> Singal;
     protected bool _hasDetected;
 
@@ -52,7 +52,6 @@ public class AbstractEnemy : MonoBehaviour, IEnemy, IListener
     protected void DetectPlayer()
     {
         if (_hasDetected) return;
-        _hasDetected = true;
         float detectRadius = 4f;
         LayerMask playerLayer = LayerMask.GetMask("Player");
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, detectRadius, playerLayer);
@@ -61,6 +60,7 @@ public class AbstractEnemy : MonoBehaviour, IEnemy, IListener
         {
             if (hit.CompareTag("Player"))
             {
+                _hasDetected = true;
                 OnDetectPlayer(hit.GetComponent<PlayerController>());
                 return;
             }

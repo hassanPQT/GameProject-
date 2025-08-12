@@ -2,9 +2,11 @@ using Game.Scripts.Gameplay;
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerDetection : MonoBehaviour
 {
+    [SerializeField] Image _awaitImage;
     private PlayerController playerController;
     private AbstractEnemy currentEnemy;
     private SongDirection[] _targetDir;
@@ -13,8 +15,11 @@ public class PlayerDetection : MonoBehaviour
     private float _inputTimeout = 10f;
     private bool _awaitingInput;
 
+    private bool _selected;
+
     private void Awake()
     {
+        _awaitImage.gameObject.SetActive(false);
         playerController = GetComponent<PlayerController>();
     }
     private void Update()
@@ -24,8 +29,15 @@ public class PlayerDetection : MonoBehaviour
 
     private void DetectEnemy()
     {
-        if (currentEnemy != null) return;
-        Collider2D[] hits = GetEnemies();
+        if (currentEnemy != null)
+        {
+            if (Vector2.Distance(transform.position, currentEnemy._startPoint) > 10)
+            {
+                currentEnemy = null;
+            }
+            return;
+        }
+            Collider2D[] hits = GetEnemies();
 
         foreach (var hit in hits)
         {
@@ -35,41 +47,53 @@ public class PlayerDetection : MonoBehaviour
                 if (enemy.IsWin) continue;
                 else
                 {
-                    OnPlayerDetection(enemy);
+                    OnDetectEnemy(enemy);
                 }
             }
         }
 
     }
-
-    private void OnPlayerDetection(AbstractEnemy enemy)
-    {
-        currentEnemy = enemy;
-        currentEnemy.Singal += x => _targetDir = x;
-        _awaitingInput = true;
-        StartPlay();
-        StartCoroutine(WaitForInput());
-    }
-
     public bool IsPlaying()
     {
         return currentEnemy != null;
     }
-
-    private IEnumerator WaitForInput()
+    private void OnDetectEnemy(AbstractEnemy enemy)
     {
-        TimeOut = 0f;
-        while (_awaitingInput && TimeOut < _inputTimeout)
+        currentEnemy = enemy;
+        currentEnemy.Singal += x => OnEnemySignal(x);
+        StartPlay();
+    }
+
+    private void OnEnemySignal(SongDirection[] songDirection)
+    {
+        Debug.Log("on signal");
+        _targetDir = songDirection;
+        Debug.Log("asd" + currentEnemy.Singal.Method.Name);
+        StartCoroutine(AwaitInput(10));
+    }
+    private IEnumerator AwaitInput(float timeOut)
+    {
+        _awaitImage.gameObject.SetActive(true);
+        _awaitImage.color = Color.white;
+        float t = 0;  
+        while (t < timeOut)
         {
-            Debug.Log("TimeOut: " + TimeOut);
-            TimeOut += Time.deltaTime;
+            if (_selected) break;
+            _awaitImage.fillAmount = 1 - t / timeOut;
+            if (t/timeOut > 0.5f)
+            {
+                _awaitImage.color = Color.red;
+            }
+            t += Time.deltaTime;
             yield return null;
         }
 
-        if (_awaitingInput)
-            OnPlayerResult(false);
+        _awaitImage.gameObject.SetActive(false);
+        if (!_selected)
+        {
+            OnPayerLose();
+        }
     }
-
     private Collider2D[] GetEnemies()
     {
         float detectRadius = 3.5f;
@@ -81,8 +105,7 @@ public class PlayerDetection : MonoBehaviour
 
     public void SelectSongWheel(int[] sliceIndex)
     {
-        if (!_awaitingInput) return;
-        _awaitingInput = false;
+        _selected = true;
         bool result = CheckCondition(sliceIndex);
         OnPlayerResult(result);
     }
@@ -125,6 +148,8 @@ public class PlayerDetection : MonoBehaviour
     {
         playerController.movement.UnStop();
         currentEnemy.OnWinning();
+        currentEnemy = null;
+        //_selected = false;
     }
     public void OnPayerLose()
     {
@@ -132,7 +157,6 @@ public class PlayerDetection : MonoBehaviour
 
         if (currentEnemy == null) return;
         currentEnemy.OnPlayerMissed();
-        currentEnemy.Singal = null;
     }
     private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
     {
