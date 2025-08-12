@@ -9,6 +9,7 @@ public class EnemyController : AbstractEnemy
     private Vector3 _leftPos, _rightPos, _startPos;
     private bool _isMovingInDirection = false;
     public bool IsMovingInDirection => _isMovingInDirection;
+    [SerializeField] private AudioClip enemySfx;
     protected override void Start()
     {
         base.Start();
@@ -112,7 +113,29 @@ public class EnemyController : AbstractEnemy
     }
     public override void OnPlayerMissed()
     {
+        _isMoving = false;
         GameManager.Instance.OnPlayerLoseEncounter();
+        Play();
+        StartCoroutine(ShakeBird());
+        AudioManager.Instance.PlaySFX(enemySfx);
+    }
+
+    
+
+    private IEnumerator ShakeBird()
+    {
+        // Shake parameters
+        float duration = 1f;
+        float strength = 0.2f;
+        int vibrato = 20;
+
+        // Use DOTween's DOShakePosition for shaking effect
+        transform.DOShakePosition(duration, strength, vibrato)
+            .SetEase(Ease.Linear);
+
+        // Wait for the shake to finish
+        yield return new WaitForSeconds(duration);
+
         Play();
     }
 }
