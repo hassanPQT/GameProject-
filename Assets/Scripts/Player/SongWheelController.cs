@@ -96,6 +96,7 @@ public class SongWheelController : MonoBehaviour
     private void SelectSongWheel()
     {
         if (!_wheelActive) return;
+        if (!_playerController.detection.IsPlaying()) return;
         if (_slices[_currentSlice].gameObject.activeSelf)
         {
             _selectSlices.Add(_currentSlice);

@@ -1,3 +1,4 @@
+using DG.Tweening;
 using Game.Scripts.Gameplay;
 using System;
 using UnityEngine;
@@ -85,6 +86,12 @@ public class AbstractEnemy : MonoBehaviour, IEnemy, IListener
 
     public virtual void Play()
     {
+       
+        transform.DOKill();
+        if (transform.position.y - _startPoint.y > 3)
+        {
+            transform.DOMove(_startPoint, 0.2f).SetEase(Ease.Linear);
+        }
         var direction = signal.SignalRandomDirection(_moveDistance, _moveDuration);
         if (direction != null)
         {
