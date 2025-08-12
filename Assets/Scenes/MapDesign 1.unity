@@ -13309,6 +13309,10 @@ PrefabInstance:
       propertyPath: _awaitImage
       value: 
       objectReference: {fileID: 1555652464}
+    - target: {fileID: 4872509637568443709, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
+      propertyPath: _songWheelController
+      value: 
+      objectReference: {fileID: 2046783319}
     - target: {fileID: 7276426050938312471, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
       propertyPath: m_LocalPosition.x
       value: 110.2

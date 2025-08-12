@@ -8,6 +8,7 @@ using UnityEngine.UI;
 public class PlayerDetection : MonoBehaviour
 {
     [SerializeField] Image _awaitImage;
+    [SerializeField] private SongWheelController _songWheelController;
     private PlayerController playerController;
     private AbstractEnemy currentEnemy;
     private SongDirection[] _targetDir;
@@ -157,6 +158,7 @@ public class PlayerDetection : MonoBehaviour
     {
         _isPlaying = false;
         playerController.movement.UnStop();
+        _songWheelController.OnPlayerWin();
         currentEnemy.OnWinning();
         currentEnemy = null;
         //_selected = false;
@@ -167,6 +169,7 @@ public class PlayerDetection : MonoBehaviour
         // add state player
         // delay 1 2 s
         //
+        _songWheelController.OnPlayerLose();
         if (currentEnemy == null) return;
         currentEnemy.OnPlayerMissed();
     }

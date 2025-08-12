@@ -25,7 +25,7 @@ public class SongWheelController : MonoBehaviour
     public int _songWheelTimeForDisplay = 3000;
     private CancellationTokenSource _cts;
     private List<int> _selectSlices = new();
-    private int[] _lastSelectedSlices;
+    //private int[] _lastSelectedSlices;
     private bool _wheelActive;
     private int _currentSlice = -1;
     private Vector2[] _sliceSize;
@@ -117,8 +117,6 @@ public class SongWheelController : MonoBehaviour
         if (_selectSlices.Count == 2)
         {
             _playerController.detection.SelectSongWheel(_selectSlices.ToArray());
-            _lastSelectedSlices = _selectSlices.ToArray(); // Save before clearing
-            _selectSlices.Clear();
         }
     }
     private void OpenSongWheel()
@@ -237,24 +235,26 @@ public class SongWheelController : MonoBehaviour
     {
         Debug.Log("HighLightSongNote started");
 
+        int[] _lastSelectedSlices = null;
+        if (_selectSlices.Count == 2)
+        {
+            _lastSelectedSlices = _selectSlices.ToArray();
+
+        }
         if (_lastSelectedSlices == null || _lastSelectedSlices.Length == 0)
         {
             Debug.LogWarning("HighLightSongNote: _lastSelectedSlices is null or empty");
             yield break;
         }
 
-        foreach (int sliceIndex in _lastSelectedSlices)
+        for (int i = 0; i < _lastSelectedSlices.Length; i++)
         {
-            Debug.Log($"HighLightSongNote: Highlighting sliceIndex {sliceIndex}");
-            if (sliceIndex < 0 || sliceIndex >= _songNotes.Length)
-            {
-                Debug.LogWarning($"HighLightSongNote: sliceIndex {sliceIndex} out of range");
-                continue;
-            }
+            int sliceIndex = _lastSelectedSlices[i];
+
             Color highlightColor = GetColorByDirection(sliceIndex);
-            if (_songNotes[sliceIndex].gameObject.activeSelf)
+            if (_songNotes[i].gameObject.activeSelf)
             {
-                _songNotes[sliceIndex].color = highlightColor;
+                _songNotes[i].color = highlightColor;
                 Debug.Log($"HighLightSongNote: Set color {highlightColor} for songNote {sliceIndex}");
             }
             else
@@ -262,6 +262,7 @@ public class SongWheelController : MonoBehaviour
                 Debug.LogWarning($"HighLightSongNote: songNote {sliceIndex} is not active");
             }
         }
+
 
         yield return new WaitForSeconds(1);
 
@@ -275,8 +276,8 @@ public class SongWheelController : MonoBehaviour
                 Debug.Log($"HighLightSongNote: Reset color for songNote {i}");
             }
         }
-        _lastSelectedSlices = null;
         Debug.Log("HighLightSongNote finished");
+        _selectSlices.Clear(); // Xóa danh sách đã chọn sau khi hoàn thành
     }
 
     private Color GetColorByDirection(int dir)
@@ -298,6 +299,22 @@ public class SongWheelController : MonoBehaviour
         if (ColorUtility.TryParseHtmlString(hex, out color))
             return color;
         return Color.white;
+    }
+
+    private void TurnOfSongNotesWhenLost()
+    {
+        Debug.Log("HighLightSongNote: Resetting song notes color and hiding wheelRectForBirdEnemy");
+        _wheelRectForBirdEnemy.gameObject.SetActive(false);
+        for (int i = 0; i < _songNotes.Length; i++)
+        {
+            if (_songNotes[i].gameObject.activeSelf)
+            {
+                _songNotes[i].color = Color.white;
+                Debug.Log($"HighLightSongNote: Reset color for songNote {i}");
+            }
+        }
+        Debug.Log("HighLightSongNote finished");
+        _selectSlices.Clear(); // Xóa danh sách đã chọn sau khi hoàn thành
     }
 
     private void HighlightSlice(int slice)
@@ -353,6 +370,7 @@ public class SongWheelController : MonoBehaviour
     }
     public void OnPlayerLose()
     {
+        TurnOfSongNotesWhenLost();
         _songWheelTimeForDisplay = 4950;
         for (int i = 0; i < _slices.Length; i++)
         {
