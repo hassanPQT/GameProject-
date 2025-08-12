@@ -1,6 +1,7 @@
 using Game.Scripts.Gameplay;
 using System;
 using System.Collections;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,7 +15,7 @@ public class PlayerDetection : MonoBehaviour
     public float TimeOut;
     private float _inputTimeout = 10f;
     private bool _awaitingInput;
-
+    private bool _isPlaying;
     private bool _selected;
 
     private void Awake()
@@ -37,7 +38,7 @@ public class PlayerDetection : MonoBehaviour
             }
             return;
         }
-            Collider2D[] hits = GetEnemies();
+         Collider2D[] hits = GetEnemies();
 
         foreach (var hit in hits)
         {
@@ -55,10 +56,11 @@ public class PlayerDetection : MonoBehaviour
     }
     public bool IsPlaying()
     {
-        return currentEnemy != null;
+        return _isPlaying;
     }
     private void OnDetectEnemy(AbstractEnemy enemy)
     {
+        _isPlaying = true;
         currentEnemy = enemy;
         currentEnemy.Singal += x => OnEnemySignal(x);
         StartPlay();
@@ -66,6 +68,7 @@ public class PlayerDetection : MonoBehaviour
 
     private void OnEnemySignal(SongDirection[] songDirection)
     {
+        _isPlaying = true;
         Debug.Log("on signal");
         _targetDir = songDirection;
         Debug.Log("asd" + currentEnemy.Singal.Method.Name);
@@ -146,6 +149,7 @@ public class PlayerDetection : MonoBehaviour
     }
     public void OnPlayerWin()
     {
+        _isPlaying = false;
         playerController.movement.UnStop();
         currentEnemy.OnWinning();
         currentEnemy = null;
@@ -153,11 +157,14 @@ public class PlayerDetection : MonoBehaviour
     }
     public void OnPayerLose()
     {
-        Debug.Log("lose play");
-
+        _isPlaying = false;
+        // add state player
+        // delay 1 2 s
+        //
         if (currentEnemy == null) return;
         currentEnemy.OnPlayerMissed();
     }
+
     private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
     {
         float angle = 0f;
