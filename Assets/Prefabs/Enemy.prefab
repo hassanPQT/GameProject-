@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _moveDistance: 2
-  _moveDuration: 0.3
+  _moveDuration: 1
   _moveSpeed: 5
   happyMood: {fileID: 8865363520394706316}
   angryMood: {fileID: 6595923016238384284}

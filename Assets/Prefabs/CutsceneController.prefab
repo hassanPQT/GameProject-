@@ -16,7 +16,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &9125860366178487874
 Transform:
   m_ObjectHideFlags: 0
@@ -64,13 +64,10 @@ MonoBehaviour:
   birdTransform: {fileID: 0}
   birdSadEmotion: {fileID: 0}
   birdLandOffset: {x: 0, y: -1.2, z: 0}
-  waitBeforeBird: 6
   birdFlyDownTime: 0.8
   birdWobbleDuration: 2
   birdWobbleStrength: 8
   birdEase: 7
-  birdDialogLine1: "Th\u1EAFc m\u1EAFc con chim \u0111\xF3 sao bu\u1ED3n nh\u1EC9"
-  birdDialogLine2: "Sao con chim n\xE0y im l\u1EB7ng v\u1EADy nh\u1EC9, m\xECnh c\xF3
-    th\u1EC3 l\xE0m cho n\xF3 vui l\xEAn kh\xF4ng"
+  birdDialog: ...
   dialogFadeTime: 0.18
   dialogHoldTime: 1.8
