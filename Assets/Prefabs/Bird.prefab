@@ -315,8 +315,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cafa86669b321ed4aa3b3943351c84a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveDistance: 2
-  _moveDuration: 0.2
+  _moveDistance: 1.25
+  _moveDuration: 0.75
   _moveSpeed: 5
   happyMood: {fileID: 1266009361450674525}
   angryMood: {fileID: 0}
@@ -358,9 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e49e70c353277045a52a6f1b7675a4d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  signalEffectPrefab:
-  - {fileID: 523066984549928988, guid: dc2a3b489c8817a4bbfda32f8d1f45d2, type: 3}
-  - {fileID: 1954892852599833047, guid: bc3c2edd9032bb947a3d729e5e5ca545, type: 3}
+  signalEffectPrefab: {fileID: 523066984549928988, guid: 20542d4a5bc81b2428a0fa9b46d56374, type: 3}
   _effectDuration: 0.5
   _effectMaxScale: 1.5
   _currentDir: 

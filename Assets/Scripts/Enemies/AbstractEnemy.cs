@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class AbstractEnemy : MonoBehaviour, IEnemy, IListener
 {
-
     [SerializeField] protected float _moveDistance = 2f;
     [SerializeField] protected float _moveDuration = 0.3f;
     [SerializeField] protected float _moveSpeed = 5f;

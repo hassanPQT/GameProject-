@@ -1,5 +1,6 @@
 ﻿using DG.Tweening;
 using Game.Scripts.Gameplay;
+using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
 using Unity.Jobs;
@@ -12,7 +13,10 @@ public class SongWheelController : MonoBehaviour
 
     [Header("UI")]
     [SerializeField] private RectTransform _wheelRect;
+    [SerializeField] private RectTransform _wheelRectForBirdEnemy;
     [SerializeField] private Image[] _slices;
+    [SerializeField] private Image[] _songNotes;
+    [SerializeField] private Sprite[] _songNoteSprites;
     [SerializeField] PlayerController _playerController;
     [SerializeField] private Animator _animator;
     [SerializeField] private float _offsetY = 60f; // Khoảng cách dọc từ vị trí của người chơi đến bánh xe
@@ -21,6 +25,7 @@ public class SongWheelController : MonoBehaviour
     public int _songWheelTimeForDisplay = 3000;
     private CancellationTokenSource _cts;
     private List<int> _selectSlices = new();
+    private int[] _lastSelectedSlices;
     private bool _wheelActive;
     private int _currentSlice = -1;
     private Vector2[] _sliceSize;
@@ -51,6 +56,14 @@ public class SongWheelController : MonoBehaviour
     private void FixedUpdate()
     {
         Synchron();
+        EnemyBirdSynchron();
+    }
+
+    private void EnemyBirdSynchron()
+    {
+        if(_playerController.detection.GetCurrentEnemy() == null) return;
+        var positionOnScreen = Camera.main.WorldToScreenPoint(_playerController.detection.GetCurrentEnemy().transform.position);
+        _wheelRectForBirdEnemy.position = positionOnScreen;
     }
 
     private void Update()
@@ -67,7 +80,6 @@ public class SongWheelController : MonoBehaviour
                 _songWheelTimeForDisplay = 4950;
             _songWheelTimeForDisplay -= (int)(Time.deltaTime * 1000 * 0.5f); // Giảm thời gian mỗi giây
         }
-
 
         if (_wheelActive)
         {
@@ -100,10 +112,12 @@ public class SongWheelController : MonoBehaviour
         if (_slices[_currentSlice].gameObject.activeSelf)
         {
             _selectSlices.Add(_currentSlice);
+            AppearSongNotes();
         }
         if (_selectSlices.Count == 2)
         {
             _playerController.detection.SelectSongWheel(_selectSlices.ToArray());
+            _lastSelectedSlices = _selectSlices.ToArray(); // Save before clearing
             _selectSlices.Clear();
         }
     }
@@ -128,9 +142,13 @@ public class SongWheelController : MonoBehaviour
             float targetFill = Mathf.Clamp01((float)_songWheelTimeForDisplay / 4950f);
             _currentFillAmount = Mathf.Lerp(_currentFillAmount, targetFill, Time.deltaTime * 8f); // 8f is smoothing speed
             timerImage.fillAmount = _currentFillAmount;
-            if (timerImage.fillAmount == 1)
+            if (!_playerController.detection.IsPlaying())
+            {
                 timerImage.fillAmount = 0;
-            Debug.Log($"Timer for fillAmount: {_songWheelTimeForDisplay} ms");
+            }
+            else if (timerImage.fillAmount == 1)
+                timerImage.fillAmount = 0;
+            //Debug.Log($"Timer for fillAmount: {_songWheelTimeForDisplay} ms");
         }
     }
 
@@ -198,6 +216,90 @@ public class SongWheelController : MonoBehaviour
         }
     }
 
+    private void AppearSongNotes()
+    {
+        for (int i = 0; i < _songNotes.Length; i++)
+        {
+            if (_songNotes[i].gameObject.activeSelf)
+            {
+                _songNotes[i].sprite = _songNoteSprites[Random.Range(0, _songNoteSprites.Length)];
+            }
+        }
+        _wheelRectForBirdEnemy.gameObject.SetActive(true);
+        _wheelRectForBirdEnemy.localScale = Vector3.zero;
+
+        // Animation mở bánh xe
+        _wheelRectForBirdEnemy.DOScale(1f, 0.2f)
+            .SetEase(Ease.OutBack).OnComplete(() => { _wheelActive = true; });
+    }
+
+    private IEnumerator HighLightSongNote()
+    {
+        Debug.Log("HighLightSongNote started");
+
+        if (_lastSelectedSlices == null || _lastSelectedSlices.Length == 0)
+        {
+            Debug.LogWarning("HighLightSongNote: _lastSelectedSlices is null or empty");
+            yield break;
+        }
+
+        foreach (int sliceIndex in _lastSelectedSlices)
+        {
+            Debug.Log($"HighLightSongNote: Highlighting sliceIndex {sliceIndex}");
+            if (sliceIndex < 0 || sliceIndex >= _songNotes.Length)
+            {
+                Debug.LogWarning($"HighLightSongNote: sliceIndex {sliceIndex} out of range");
+                continue;
+            }
+            Color highlightColor = GetColorByDirection(sliceIndex);
+            if (_songNotes[sliceIndex].gameObject.activeSelf)
+            {
+                _songNotes[sliceIndex].color = highlightColor;
+                Debug.Log($"HighLightSongNote: Set color {highlightColor} for songNote {sliceIndex}");
+            }
+            else
+            {
+                Debug.LogWarning($"HighLightSongNote: songNote {sliceIndex} is not active");
+            }
+        }
+
+        yield return new WaitForSeconds(1);
+
+        Debug.Log("HighLightSongNote: Resetting song notes color and hiding wheelRectForBirdEnemy");
+        _wheelRectForBirdEnemy.gameObject.SetActive(false);
+        for (int i = 0; i < _songNotes.Length; i++)
+        {
+            if (_songNotes[i].gameObject.activeSelf)
+            {
+                _songNotes[i].color = Color.white;
+                Debug.Log($"HighLightSongNote: Reset color for songNote {i}");
+            }
+        }
+        _lastSelectedSlices = null;
+        Debug.Log("HighLightSongNote finished");
+    }
+
+    private Color GetColorByDirection(int dir)
+    {
+        string hex;
+        switch (dir)
+        {
+            case 0: hex = "#138a94"; break;      // Xanh
+            case 7: hex = "#6f4cdc"; break;      // Xanh ngọc
+            case 6: hex = "#d44aca"; break;      // Xanh dương
+            case 5: hex = "#704edd"; break;      // Tím
+            case 4: hex = "#09afde"; break;      // Đỏ
+            case 3: hex = "#60d4a0"; break;      // Vàng
+            case 2: hex = "#85ce41"; break;      // Trắng xám
+            case 1: hex = "#c8c011"; break;      // Xám
+            default: hex = "#FFFFFF"; break;      // Trắng
+        }
+        Color color;
+        if (ColorUtility.TryParseHtmlString(hex, out color))
+            return color;
+        return Color.white;
+    }
+
     private void HighlightSlice(int slice)
     {
         for (int i = 0; i < _slices.Length; i++)
@@ -239,6 +341,7 @@ public class SongWheelController : MonoBehaviour
 
     public void OnPlayerWin()
     {
+        StartCoroutine(HighLightSongNote());
         _songWheelTimeForDisplay = 4950;
         for (int i = 0; i < _slices.Length; i++)
         {

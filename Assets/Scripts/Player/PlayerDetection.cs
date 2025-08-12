@@ -58,6 +58,12 @@ public class PlayerDetection : MonoBehaviour
     {
         return _isPlaying;
     }
+
+    public GameObject GetCurrentEnemy()
+    {
+        return currentEnemy?.gameObject;
+    }
+
     private void OnDetectEnemy(AbstractEnemy enemy)
     {
         _isPlaying = true;
@@ -71,7 +77,7 @@ public class PlayerDetection : MonoBehaviour
         _isPlaying = true;
         Debug.Log("on signal");
         _targetDir = songDirection;
-        Debug.Log("asd" + currentEnemy.Singal.Method.Name);
+        //Debug.Log("asd" + currentEnemy.Singal.Method.Name);
         StartCoroutine(AwaitInput(10));
     }
     private IEnumerator AwaitInput(float timeOut)

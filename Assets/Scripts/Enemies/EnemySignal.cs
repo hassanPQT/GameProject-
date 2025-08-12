@@ -69,7 +69,7 @@ public class EnemySignal : MonoBehaviour
         fx.transform.localScale = Vector3.zero;
         var sr = fx.GetComponent<SpriteRenderer>();
         if (sr != null)
-            sr.color = new Color(1f, 1f, 1f, 1f);
+            sr.color = GetColorByDirection(dir);
 
         // Tween pop-in and fade-out
         Sequence seq = DOTween.Sequence();
@@ -77,6 +77,27 @@ public class EnemySignal : MonoBehaviour
         seq.Append(fx.transform.DOScale(_effectMaxScale * 1.2f, _effectDuration * 0.2f).SetEase(Ease.Linear));
         seq.Join(sr.DOFade(0f, _effectDuration).SetEase(Ease.Linear));
         seq.OnComplete(() => Destroy(fx));
+    }
+
+    private Color GetColorByDirection(SongDirection dir)
+    {
+        string hex;
+        switch (dir)
+        {
+            case SongDirection.Up: hex = "#138a94"; break;      // Xanh
+            case SongDirection.UpRight: hex = "#6f4cdc"; break;      // Xanh ngọc
+            case SongDirection.Right: hex = "#d44aca"; break;      // Xanh dương
+            case SongDirection.DownRight: hex = "#704edd"; break;      // Tím
+            case SongDirection.Down: hex = "#09afde"; break;      // Đỏ
+            case SongDirection.DownLeft: hex = "#60d4a0"; break;      // Vàng
+            case SongDirection.Left: hex = "#85ce41"; break;      // Trắng xám
+            case SongDirection.UpLeft: hex = "#c8c011"; break;      // Xám
+            default: hex = "#FFFFFF"; break;      // Trắng
+        }
+        Color color;
+        if (ColorUtility.TryParseHtmlString(hex, out color))
+            return color;
+        return Color.white;
     }
 
 }
