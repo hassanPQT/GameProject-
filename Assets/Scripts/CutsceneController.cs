@@ -288,11 +288,11 @@ public class CutsceneController : MonoBehaviour
 
             // Drop the sword
             dialogText2.text = "You did it, yay! But you still can not hold a spear:v";
-            dialogText2.gameObject.SetActive(false); // hide second text if not used
             sword.transform.SetParent(null, true);
             sword.transform.DOMove(groundPos, pickupDropTime).SetEase(Ease.InBounce);
             yield return new WaitForSeconds(pickupDropTime);
             dialogText2.text = "";
+            dialogText2.gameObject.SetActive(false); // hide second text if not used
             player.GetComponent<PlayerController>().movement.UnStop();
         }
 
