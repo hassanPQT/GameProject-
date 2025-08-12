@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
     public PlayerController Player;
     public SongWheelController songWheelController;
 
-
+    [SerializeField] private AudioClip Bgm;
     [SerializeField] private MoodBarController moodBar;
     [SerializeField] private UIManager uiManager;
     [SerializeField] private Transform PlayerPrf;
@@ -54,6 +54,7 @@ public class GameManager : MonoBehaviour
     }
     private void Start()
     {
+        AudioManager.Instance.PlayMusic(Bgm);
         InitializedStatus();
         InitializedPlayer();
         SetupDirectionNumbers();

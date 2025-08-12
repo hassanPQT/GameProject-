@@ -6,6 +6,7 @@ using UnityEngine;
 public class BirdController : AbstractEnemy
 {
     [SerializeField] private float hoverHeight = 1.5f;
+    [SerializeField] private AudioClip birdSfx;
     private int _helperCount = 2;
     private Vector3 startPoint;
     protected override void Start()
@@ -132,8 +133,26 @@ public class BirdController : AbstractEnemy
     public override void OnPlayerMissed()
     {
         _isMoving = false;
-        
-        Play();
+
+        // Shake the bird for ~1 second
+        StartCoroutine(ShakeBird());
+        AudioManager.Instance.PlaySFX(birdSfx);
     }
 
+    private IEnumerator ShakeBird()
+    {
+        // Shake parameters
+        float duration = 1f;
+        float strength = 0.2f;
+        int vibrato = 20;
+
+        // Use DOTween's DOShakePosition for shaking effect
+        transform.DOShakePosition(duration, strength, vibrato)
+            .SetEase(Ease.Linear);
+
+        // Wait for the shake to finish
+        yield return new WaitForSeconds(duration);
+
+        Play();
+    }
 }
