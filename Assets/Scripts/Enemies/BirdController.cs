@@ -9,6 +9,7 @@ public class BirdController : AbstractEnemy
     [SerializeField] private AudioClip birdSfx;
     private int _helperCount = 2;
     private Vector3 startPoint;
+
     protected override void Start()
     {
         base.Start();

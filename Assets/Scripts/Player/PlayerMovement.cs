@@ -16,6 +16,11 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask _groundLayer;
     public bool _canRun;
 
+    // --- NEW: Feather particle prefab & settings ---
+    [Header("Feather Effect")]
+    [SerializeField] private ParticleSystem _featherParticlePrefab;
+    [SerializeField] private AudioClip _jumpSFX;
+
     [Header("State")]
     private bool _checkDoubleJump = false;
     public bool CheckDoubleJump => _checkDoubleJump;
@@ -93,7 +98,22 @@ public class PlayerMovement : MonoBehaviour
         {
             _maxJumpCount++;
             if (_jumpCount <= _maxJumpCount)
+            {
                 _rb.linearVelocity = new Vector2(_rb.linearVelocity.x, _jumpForce + 2.5f);
+
+                // Play feather particle at a specific position (e.g., player's feet)
+                if (_featherParticlePrefab != null)
+                {
+                    ParticleSystem feather = Instantiate(
+                        _featherParticlePrefab,
+                        transform.position + Vector3.up * 2f, // adjust offset as needed
+                        Quaternion.identity
+                    );
+                    feather.Play();
+                    Destroy(feather.gameObject, feather.main.duration);
+                }
+                AudioManager.Instance.PlaySFX(_jumpSFX);
+            }
             _maxJumpCount--;
             _checkDoubleJump = false;
         }

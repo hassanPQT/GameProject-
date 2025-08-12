@@ -13435,9 +13435,17 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 3751975417905561065, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
+      propertyPath: _jumpSFX
+      value: 
+      objectReference: {fileID: 8300000, guid: a0633a830bbcad94e946bcccd73de36b, type: 3}
+    - target: {fileID: 3751975417905561065, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
       propertyPath: _jumpForce
       value: 15
       objectReference: {fileID: 0}
+    - target: {fileID: 3751975417905561065, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
+      propertyPath: _featherParticlePrefab
+      value: 
+      objectReference: {fileID: 4739451312953584698, guid: d901641399269634d8fc2941af3c5fcb, type: 3}
     - target: {fileID: 4872509637568443709, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
       propertyPath: _awaitImage
       value: 
