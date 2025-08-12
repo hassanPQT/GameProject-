@@ -55,8 +55,15 @@ public class EnemySignal : MonoBehaviour
     {
         if (signalEffectPrefab == null || signalEffectPrefab.Length == 0) return;
 
+        // Calculate spawn position
         Vector3 spawnPos = transform.position + DirectionToVector(dir) * (moveDistance + 1);
-        GameObject fx = Instantiate(signalEffectPrefab[UnityEngine.Random.Range(0, signalEffectPrefab.Length)], spawnPos, Quaternion.identity);
+
+        // Calculate rotation angle based on SongDirection
+        float angleDeg = (int)dir * 45f - 90f;
+        Quaternion rotation = Quaternion.Euler(0f, 0f, angleDeg);
+
+        // Instantiate with rotation
+        GameObject fx = Instantiate(signalEffectPrefab, spawnPos, rotation);
 
         // Reset scale and alpha
         fx.transform.localScale = Vector3.zero;
