@@ -6,7 +6,7 @@ public class EnemySignal : MonoBehaviour
 {
 
     [Header("Signal Effect")]
-    [SerializeField] private GameObject[] signalEffectPrefab;
+    [SerializeField] private GameObject signalEffectPrefab;
     [SerializeField] private float _effectDuration = 0.5f;
     [SerializeField] private float _effectMaxScale = 1.5f;
     [SerializeField] private IEnemy m_Enemy => GetComponent<IEnemy>();
@@ -53,7 +53,7 @@ public class EnemySignal : MonoBehaviour
     }
     private void ShowSignalEffect(SongDirection dir, float moveDistance)
     {
-        if (signalEffectPrefab == null || signalEffectPrefab.Length == 0) return;
+        if (signalEffectPrefab == null) return;
 
         // Calculate spawn position
         Vector3 spawnPos = transform.position + DirectionToVector(dir) * (moveDistance + 1);
