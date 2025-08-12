@@ -88,7 +88,7 @@ public class PlayerMovement : MonoBehaviour
 
     public IEnumerator DoubleJump()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.5f);
         if (!_isGrounded)
         {
             _maxJumpCount++;
