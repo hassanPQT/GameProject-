@@ -14,6 +14,7 @@ public class PlayerDetection : MonoBehaviour
     private SongDirection[] _targetDir;
 
     public float TimeOut;
+    [SerializeField] private float timeOutCountDown;
     private bool _isPlaying;
     private bool _selected;
 
@@ -26,6 +27,11 @@ public class PlayerDetection : MonoBehaviour
     private void Update()
     {
         DetectEnemy();
+    }
+
+    public float GetTimeOutCountDown()
+    {
+        return timeOutCountDown;
     }
 
     public void SetTimeOut(float setTime)
@@ -94,7 +100,8 @@ public class PlayerDetection : MonoBehaviour
     {
         _awaitImage.gameObject.SetActive(true);
         _awaitImage.color = Color.white;
-        float t = 0;  
+        float t = 0;
+        timeOutCountDown = t;
         while (t < TimeOut)
         {
             if (_selected) break;
@@ -104,6 +111,7 @@ public class PlayerDetection : MonoBehaviour
                 _awaitImage.color = Color.red;
             }
             t += Time.deltaTime;
+            timeOutCountDown = t;
             Debug.Log("Awaiting input: " + t);
             yield return null;
         }
