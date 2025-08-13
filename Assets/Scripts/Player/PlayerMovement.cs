@@ -122,9 +122,10 @@ public class PlayerMovement : MonoBehaviour
     public void StopPlayer()
     {
         _isStop = true;
-        GameManager.Instance.IsInputEnable = false;
         _rb.linearVelocityX = 0f;
         _animator.SetBool(IsRun, false);
+        if (GameManager.Instance == null) return;
+        GameManager.Instance.IsInputEnable = false;
     }
     private void HandleKeyboardInput()
     {
