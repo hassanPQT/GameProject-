@@ -264,7 +264,7 @@ public class CutsceneController : MonoBehaviour
                 // Giữ chuột phải để giảm thời gian
                 if (!reduced && Input.GetMouseButton(1))
                 {
-                    dialogText2.text = "Now hold right move and click left mouse to any direction you want:D";
+                    dialogText2.text = "Now hold \"Right Mouse\" and click \"Left Mouse\" to any direction you want:D";
 
                     if (holdTime - timer > 1f)
                     {
@@ -294,6 +294,7 @@ public class CutsceneController : MonoBehaviour
             player.GetComponent<PlayerController>().movement.UnStop();
         }
 
+        if (_playerRb != null) _playerRb.bodyType = RigidbodyType2D.Dynamic;
 
         // Show dialog
         if (dialogCanvasGroup != null && dialogText != null)
@@ -314,7 +315,6 @@ public class CutsceneController : MonoBehaviour
             }
             // fade out
             dialogCanvasGroup.DOFade(0f, 0.2f);
-            yield return new WaitForSeconds(0.2f);
         }
         else
         {
@@ -322,7 +322,6 @@ public class CutsceneController : MonoBehaviour
         }
 
         // 6. restore player control and physics
-        if (_playerRb != null) _playerRb.bodyType = RigidbodyType2D.Dynamic;
         if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
 
         //// 7. resume enemies

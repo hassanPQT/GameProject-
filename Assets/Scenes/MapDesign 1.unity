@@ -12324,7 +12324,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use A, W ,D to move and jump
+  m_text: Use A, W, D to move and jump
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -13678,6 +13678,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 778482345}
     - target: {fileID: 4758379652309843232, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
+      propertyPath: moodDeltaOnWin
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758379652309843232, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
+      propertyPath: moodDeltaOnLose
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4758379652309843232, guid: 697571640534c8744bf138e43b5c7bbe, type: 3}
       propertyPath: songWheelController
       value: 
       objectReference: {fileID: 2046783319}
@@ -14552,6 +14560,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5582371709656589232, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5983792215979925267, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_IsActive
       value: 1
@@ -14583,6 +14595,10 @@ PrefabInstance:
     - target: {fileID: 8748550977126810581, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166830342151483956, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: m_text
+      value: Use "Right Mouse" to open wheels
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
