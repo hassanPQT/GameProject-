@@ -54,7 +54,7 @@ public class PlayerDetection : MonoBehaviour
             }
             return;
         }
-         Collider2D[] hits = GetEnemies();
+        Collider2D[] hits = GetEnemies();
 
         foreach (var hit in hits)
         {
@@ -106,7 +106,7 @@ public class PlayerDetection : MonoBehaviour
         {
             if (_selected) break;
             _awaitImage.fillAmount = 1 - t / timeOut;
-            if (t/timeOut > 0.5f)
+            if (t / timeOut > 0.5f)
             {
                 _awaitImage.color = Color.red;
             }
@@ -149,6 +149,8 @@ public class PlayerDetection : MonoBehaviour
         {
             OnPayerLose();
         }
+        //reset _selected
+        _selected = false;
     }
 
     private bool CheckCondition(int[] sliceIndex)
@@ -175,6 +177,7 @@ public class PlayerDetection : MonoBehaviour
     }
     public void OnPlayerWin()
     {
+        StopAllCoroutines();
         _isPlaying = false;
         playerController.movement.UnStop();
         _songWheelController.OnPlayerWin();
@@ -184,6 +187,9 @@ public class PlayerDetection : MonoBehaviour
     }
     public void OnPayerLose()
     {
+        StopAllCoroutines();
+        _selected = false;
+        StartCoroutine(AwaitInput(TimeOut));
         _isPlaying = false;
         // add state player
         // delay 1 2 s
