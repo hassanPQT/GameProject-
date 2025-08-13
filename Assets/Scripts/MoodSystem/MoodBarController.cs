@@ -129,16 +129,16 @@ public class MoodBarController : MonoBehaviour
     {
         // Ví dụ: khi mood cao: tăng speed, tăng thời gian chọn
         MovementSpeedModifier = 0.5f + amount;        // max +50% speed
-        SongWheelTimeModifier = 0.5f + amount;         // max +50% time
+        SongWheelTimeModifier = 0.5f + amount + playerController.detection.GetTimeOut();         // max +20% time
         Debug.Log(MovementSpeedModifier + " " + SongWheelTimeModifier);
-        //GameManager.Instance.ModifyTimeout = SongWheelTimeModifier;
+        playerController.detection.SetTimeOut(SongWheelTimeModifier);
         playerController.movement.SetModifierSpeed(MovementSpeedModifier);
         // Bạn có thể broadcast event hoặc gán trực tiếp cho player / UI
     }
 
     private void OnMoodMax()
     {
-        songWheelController.ModifierSongWheelTime(1 + _moodValue - 0.5f);
+        //songWheelController.ModifierSongWheelTime(1 + _moodValue - 0.5f);
         GameManager.Instance.songWheelController.ActivateNewSongWheel();
         GameManager.Instance.AddMoreRandomSongWheelNumbers();
         //playerController.UnlockRun();

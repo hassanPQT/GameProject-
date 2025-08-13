@@ -14,19 +14,28 @@ public class PlayerDetection : MonoBehaviour
     private SongDirection[] _targetDir;
 
     public float TimeOut;
-    private float _inputTimeout = 10f;
-    private bool _awaitingInput;
     private bool _isPlaying;
     private bool _selected;
 
     private void Awake()
     {
+        TimeOut = 10;
         _awaitImage.gameObject.SetActive(false);
         playerController = GetComponent<PlayerController>();
     }
     private void Update()
     {
         DetectEnemy();
+    }
+
+    public void SetTimeOut(float setTime)
+    {
+        TimeOut = setTime;
+    }
+
+    public float GetTimeOut()
+    {
+        return TimeOut;
     }
 
     private void DetectEnemy()
@@ -79,14 +88,14 @@ public class PlayerDetection : MonoBehaviour
         Debug.Log("on signal");
         _targetDir = songDirection;
         //Debug.Log("asd" + currentEnemy.Singal.Method.Name);
-        StartCoroutine(AwaitInput(10));
+        StartCoroutine(AwaitInput(TimeOut));
     }
     private IEnumerator AwaitInput(float timeOut)
     {
         _awaitImage.gameObject.SetActive(true);
         _awaitImage.color = Color.white;
         float t = 0;  
-        while (t < timeOut)
+        while (t < TimeOut)
         {
             if (_selected) break;
             _awaitImage.fillAmount = 1 - t / timeOut;
@@ -95,13 +104,15 @@ public class PlayerDetection : MonoBehaviour
                 _awaitImage.color = Color.red;
             }
             t += Time.deltaTime;
+            Debug.Log("Awaiting input: " + t);
             yield return null;
         }
 
         _awaitImage.gameObject.SetActive(false);
         if (!_selected)
         {
-            OnPayerLose();
+            Debug.Log("time out");
+            OnPlayerResult(false);
         }
     }
     private Collider2D[] GetEnemies()
