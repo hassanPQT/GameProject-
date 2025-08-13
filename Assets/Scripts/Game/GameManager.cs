@@ -109,8 +109,13 @@ public class GameManager : MonoBehaviour
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 
-    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    private  void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
+        if (mode == LoadSceneMode.Additive)
+        {
+            // Ví dụ: bỏ qua các scene load thêm
+            return;
+        }
         // Giả sử Player, Canvas, MoodBar đều có tag hoặc có thể FindObjectOfType
         StopAllCoroutines();
         Player = FindAnyObjectByType<PlayerController>();
