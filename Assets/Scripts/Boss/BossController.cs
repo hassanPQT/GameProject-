@@ -14,8 +14,11 @@ public class BossController : MonoBehaviour
 
     public void OnDetectPlayer(PlayerController playerController)
     {
-            
         // cutscene or animation some thong else
+        
+    
+
+        /// 
         model.enabled = true;
         // stop player va them effect 
         playerController.movement.StopPlayer();

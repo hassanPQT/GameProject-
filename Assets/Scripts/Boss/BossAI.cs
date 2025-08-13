@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
-   [SerializeField]  private ParticleSystem _dirVFX;
+   [SerializeField]  private Transform left;
+   [SerializeField]  private Transform leftUP;
+   [SerializeField]  private Transform leftDown;
+
+    private Vector2 _currentDir;
     private void Awake()
     {
-        _dirVFX.gameObject.SetActive(false);
+        left.gameObject.SetActive(false);
+        leftUP.gameObject.SetActive(false);
+        leftDown.gameObject.SetActive(false);
     }
-    private bool _isPlaying;
+    private bool _bossDefeated;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private readonly Vector2[] attackDir = new Vector2[] {
         Vector2.left, 
@@ -19,17 +25,20 @@ public class BossAI : MonoBehaviour
     private Vector2 _attackDir;
     public async void StartGameLoop(PlayerController playerController, PushBackEffect backEffect)
     {
-        _isPlaying = true;
-        _dirVFX.gameObject.SetActive(true);
-        while (_isPlaying)
+        _bossDefeated = false;
+        while (!_bossDefeated)
         {
             await PushBackPlayer(playerController, GetRandomAttackDir(), backEffect);
         }
-        backEffect.enabled = false;
+
+        if (backEffect != null)
+        {
+            backEffect.enabled = false;
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _isPlaying = false;
+        _bossDefeated = true;
     }
     private Vector2 GetRandomAttackDir()
     {
@@ -39,22 +48,48 @@ public class BossAI : MonoBehaviour
 
     private async Task PushBackPlayer(PlayerController player, Vector2 dir, PushBackEffect backEffect)
     {
-        // show animation background
-        if (dir == Vector2.left)
+        if (_currentDir != dir)
         {
-            _dirVFX.transform.rotation = Quaternion.Euler(0, -90, 0);
-        }
-        if (dir == Vector2.left + Vector2.up)
-        {
-            _dirVFX.transform.rotation = Quaternion.Euler(-45, -90, 0);
-        }
-        if (dir == Vector2.left + Vector2.down)
-        {
-            _dirVFX.transform.rotation = Quaternion.Euler(45, -90, 0);
+            _currentDir = dir;
+            // show animation background
+            if (dir == Vector2.left)
+            {
+                UpdateUI(0);
+            }
+            if (dir == Vector2.left + Vector2.up)
+            {
+                UpdateUI(1);
 
+            }
+            if (dir == Vector2.left + Vector2.down)
+            {
+                UpdateUI(2);
+            }
+            backEffect.BossDirection = dir;
         }
-        backEffect.BossDirection = dir;
-
         await Task.Delay(3000);
+    }
+
+    private void UpdateUI(int number)
+    {
+        left.gameObject.SetActive(false);
+        leftUP.gameObject.SetActive(false);
+        leftDown.gameObject.SetActive(false);
+        switch (number)
+        {
+            case 0:
+                left.gameObject.SetActive(true); break;
+            case 1:
+                leftUP.gameObject.SetActive(true); break;
+            case 2:
+                leftDown.gameObject.SetActive(true); break;
+            default:
+                break;
+        }
+    }
+
+    private void OnDisable()
+    {
+        _bossDefeated = true;
     }
 }

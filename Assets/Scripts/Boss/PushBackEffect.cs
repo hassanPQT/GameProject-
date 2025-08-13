@@ -4,7 +4,7 @@ public class PushBackEffect : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private float _timer;
-    private float _timeOut = 2f;
+    private float _timeOut = 4f;
 
     public Vector2 BossDirection {  get; set; }
     public Vector2 PlayerDirection {  get; set; }
