@@ -33,7 +33,7 @@ public class CameraZoneTrigger : MonoBehaviour
 
                 nextSceneCamera.SetActive(true);
                 nextSceneCamera.GetComponent<CinemachineVirtualCamera>().Follow = player.transform;
-               // currentCamera.SetActive(false);
+                currentCamera.SetActive(false);
                 CameraManager.SwitchCamera(nextSceneCamera.GetComponent<CinemachineVirtualCamera>());
                 isActive = !isActive;
             }

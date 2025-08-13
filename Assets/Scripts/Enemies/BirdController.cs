@@ -56,7 +56,7 @@ public class BirdController : AbstractEnemy
         while (timer < temp)
         {
             var dis = Vector2.Distance(playerController.transform.position, transform.position);
-            if (dis >  10)
+            if (dis > 25)
             {
                 isStay = false;
             }
@@ -80,7 +80,7 @@ public class BirdController : AbstractEnemy
         player.movement.CanDoubleJump();
         
         float timer = 0f;
-        while(timer < 5f)
+        while(timer < 10f)
         {
             timer += Time.deltaTime;
             Vector3 targetPos = player.transform.position + offset;

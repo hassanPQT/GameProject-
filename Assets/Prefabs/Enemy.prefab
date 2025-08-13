@@ -163,8 +163,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db790588f83c45408f2c5e2f3aa6da3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveDistance: 2
-  _moveDuration: 1
+  _moveDistance: 1.5
+  _moveDuration: 1.2
   _moveSpeed: 5
   happyMood: {fileID: 8865363520394706316}
   angryMood: {fileID: 6595923016238384284}

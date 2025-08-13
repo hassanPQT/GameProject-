@@ -1,13 +1,10 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using Cinemachine;
-using UnityEditor.Rendering;
-using Unity.Play.Publisher.Editor;
 using Game.Scripts.Gameplay;
-using System;
+
 public class CutsceneController : MonoBehaviour
 {
     [Header("References")]
@@ -120,7 +117,7 @@ public class CutsceneController : MonoBehaviour
     {
         // 3) chờ trước khi bird bay xuống
         yield return new WaitForSeconds(waitBeforeBird);
-
+        birdTransform.gameObject.GetComponent<CircleCollider2D>().enabled = true;
         player.GetComponent<PlayerController>().movement.StopPlayer();
 
         // 1) disable player input & freeze physics
@@ -145,7 +142,7 @@ public class CutsceneController : MonoBehaviour
 
         yield return shake.WaitForCompletion();
 
-        dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition = new Vector2(50, 90);
+        dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition = new Vector2(50, 40);
         Vector2 temp = dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition; // save position
         // 6) Show dialog line 1
         if (dialogCanvasGroup != null && dialogText != null)
@@ -164,7 +161,7 @@ public class CutsceneController : MonoBehaviour
         {
             if (birdSadEmotion != null) birdSadEmotion.SetActive(false); // hide sad emotion
 
-            dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition = new Vector2(-150, 100);
+            dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition = new Vector2(-150, 50);
 
             dialogText.text = birdDialog;
             dialogCanvasGroup.DOKill();
@@ -192,6 +189,7 @@ public class CutsceneController : MonoBehaviour
         else yield return new WaitForSeconds(dialogHoldTime);
 
         // 10) restore states
+        if (birdSadEmotion != null) birdSadEmotion.SetActive(false); // hide sad emotion
         if (_playerRb != null) _playerRb.bodyType = RigidbodyType2D.Dynamic;
         if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
         //if (pauseEnemiesDuringCutscene) PauseAllEnemies(false);
@@ -289,26 +287,28 @@ public class CutsceneController : MonoBehaviour
             // Drop the sword
             dialogText2.text = "You did it, yay! But you still can not hold a spear:v";
             sword.transform.SetParent(null, true);
+            yield return new WaitForSeconds(2.5f);
             sword.transform.DOMove(groundPos, pickupDropTime).SetEase(Ease.InBounce);
-            yield return new WaitForSeconds(pickupDropTime);
             dialogText2.text = "";
             dialogText2.gameObject.SetActive(false); // hide second text if not used
             player.GetComponent<PlayerController>().movement.UnStop();
         }
 
 
-        // 4. Show dialog
+        // Show dialog
         if (dialogCanvasGroup != null && dialogText != null)
         {
             dialogCanvasGroup.DOKill();
             // fade in
             dialogCanvasGroup.DOFade(1f, 0.2f);
-            // wait either time or until player presses a key
+            // wait either time or until player presses a key (after 3.5s)
             float t = 0f;
             bool dismissed = false;
+            float minKeyDelay = 3.5f; // minimum time before allowing key press
+
             while (t < dialogShowTime && !dismissed)
             {
-                if (Input.anyKeyDown) dismissed = true; // allow quick skip of dialog
+                if (t >= minKeyDelay && Input.anyKeyDown) dismissed = true; // allow quick skip of dialog after delay
                 t += Time.deltaTime;
                 yield return null;
             }

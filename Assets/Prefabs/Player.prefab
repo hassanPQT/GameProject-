@@ -497,7 +497,7 @@ MonoBehaviour:
   _moveSpeed: 5
   _modifierSpeed: 1
   _runModifier: 1
-  _jumpForce: 15
+  _jumpForce: 18
   _groundCheck: {fileID: 3938350930498520604}
   _groundCheckRadius: 0.2
   _groundLayer:

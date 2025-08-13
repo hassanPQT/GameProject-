@@ -216,7 +216,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3834213099099659317, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 101.72
+      value: 74.61
       objectReference: {fileID: 0}
     - target: {fileID: 3834213099099659317, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
       propertyPath: m_LocalPosition.y
@@ -260,8 +260,32 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
       propertyPath: _sceneToLoad.Array.size
-      value: 1
+      value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[1]._sceneName
+      value: MapDesign3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[2]._sceneName
+      value: MapDesign4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[3]._sceneName
+      value: Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[1]._sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: f28980fad78cb7e45929f8f0254cf3a7, type: 3}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[2]._sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 0483df73a822c5c4ead89a8e6db22ef5, type: 3}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[3]._sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: cb2816bfc9470e74ab17a9119a856cc6, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -12541,7 +12565,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2657942440411875817, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 112.7
+      value: 108.13
       objectReference: {fileID: 0}
     - target: {fileID: 2657942440411875817, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
       propertyPath: m_LocalPosition.y
@@ -13062,6 +13086,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3751975417905561065, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
+      propertyPath: _moveSpeed
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4872509637568443709, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
       propertyPath: _songWheelController
       value: 
@@ -14529,6 +14557,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6822992963829865169, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: _offsetY
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 6822992963829865169, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: _animator
       value: 
       objectReference: {fileID: 1951916106}
@@ -14579,7 +14611,7 @@ GameObject:
   - component: {fileID: 1991645309}
   - component: {fileID: 1991645308}
   m_Layer: 0
-  m_Name: VC2
+  m_Name: VC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
