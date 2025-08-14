@@ -13148,7 +13148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7654380842053291657, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -14037,11 +14037,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1194738972 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2657942440411875817, guid: 26eb0db211b84264caeeaec10a507b0a, type: 3}
-  m_PrefabInstance: {fileID: 179756916}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1200779916
 GameObject:
   m_ObjectHideFlags: 0
@@ -15835,7 +15830,7 @@ Transform:
   m_GameObject: {fileID: 1895360685}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -206.79797, y: -12.104269, z: -25.965807}
+  m_LocalPosition: {x: -30.299995, y: 2.0200002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16364,6 +16359,10 @@ PrefabInstance:
       propertyPath: m_FillOrigin
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7762149467413671864, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: m_Alpha
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8748550977126810581, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -16391,10 +16390,7 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 9133147893162150152, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 2137311788}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
 --- !u!95 &1951916106 stripped
 Animator:
@@ -16768,7 +16764,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5696668297585577075, guid: cc014d5b336e86d47a107e2612d5bfef, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 9125860366178487874, guid: cc014d5b336e86d47a107e2612d5bfef, type: 3}
       propertyPath: m_LocalPosition.x
@@ -16898,3 +16894,4 @@ SceneRoots:
   - {fileID: 589707723}
   - {fileID: 1853295627}
   - {fileID: 437115530}
+  - {fileID: 785932376}
