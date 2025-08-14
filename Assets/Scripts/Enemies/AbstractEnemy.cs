@@ -3,7 +3,7 @@ using Game.Scripts.Gameplay;
 using System;
 using UnityEngine;
 
-public class AbstractEnemy : MonoBehaviour, IEnemy, IListener
+public class AbstractEnemy : MonoBehaviour, IEnemy
 {
     [SerializeField] protected float _moveDistance = 2f;
     [SerializeField] protected float _moveDuration = 0.3f;
@@ -96,21 +96,5 @@ public class AbstractEnemy : MonoBehaviour, IEnemy, IListener
         {
             Singal?.Invoke(direction);
         }
-    }
-
-    public void Playing()
-    {
-    }
-
-    public void Pause()
-    {
-    }
-
-    public void GameWin()
-    {
-    }
-
-    public void GameLose()
-    {
     }
 }

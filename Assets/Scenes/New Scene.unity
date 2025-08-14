@@ -4931,6 +4931,45 @@ PrefabInstance:
     - target: {fileID: 71817056601836060, guid: cf28820b7cfcab347aaf72bbda1f01d0, type: 3}
       propertyPath: ShapeModule.m_Scale.y
       value: 50
+    - target: {fileID: 1150225888864787106, guid: 69d8a6a44cfee7b4593ca8e4a06d229c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1150225888864787106, guid: 69d8a6a44cfee7b4593ca8e4a06d229c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494200713889446241, guid: 69d8a6a44cfee7b4593ca8e4a06d229c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494200713889446241, guid: 69d8a6a44cfee7b4593ca8e4a06d229c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494200713889446241, guid: 69d8a6a44cfee7b4593ca8e4a06d229c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.27059805
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494200713889446241, guid: 69d8a6a44cfee7b4593ca8e4a06d229c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0.27059805
+      objectReference: {fileID: 0}
+    - target: {fileID: 1494200713889446241, guid: 69d8a6a44cfee7b4593ca8e4a06d229c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -45
+      objectReference: {fileID: 0}
+    - target: {fileID: 2915836303698337416, guid: 69d8a6a44cfee7b4593ca8e4a06d229c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971259565090211050, guid: 69d8a6a44cfee7b4593ca8e4a06d229c, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2971259565090211050, guid: 69d8a6a44cfee7b4593ca8e4a06d229c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 71817056601836060, guid: cf28820b7cfcab347aaf72bbda1f01d0, type: 3}
       propertyPath: InitialModule.startLifetime.scalar
