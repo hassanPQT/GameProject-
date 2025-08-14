@@ -64,7 +64,7 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   PlayerPrf: {fileID: 7276426050938312471, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
   startPoint: {fileID: 7276426050938312471, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
-  moodDeltaOnWin: 0.1
-  moodDeltaOnLose: 0.2
+  moodDeltaOnWin: 0.2
+  moodDeltaOnLose: 0.1
   _inputTimeout: 10
   IsInputEnable: 0

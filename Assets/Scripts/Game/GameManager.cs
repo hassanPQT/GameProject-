@@ -44,10 +44,11 @@ public class GameManager : MonoBehaviour
     {
         if (Instance == null)
         {
-            
+
             Instance = this;
             DontDestroyOnLoad(gameObject);
-        } else if (Instance != this)
+        }
+        else if (Instance != this)
         {
             Destroy(gameObject);
         }
@@ -59,6 +60,7 @@ public class GameManager : MonoBehaviour
         InitializedPlayer();
         SetupDirectionNumbers();
     }
+
     public SongDirection GetRandomSongDirection()
     {
         return (SongDirection)DirectionNumber[UnityEngine.Random.Range(0, DirectionNumber.Length)];
@@ -73,7 +75,7 @@ public class GameManager : MonoBehaviour
         }
 
         startPoint = GameObject.FindWithTag("StartPoint").transform;
-        
+
         Debug.Log(startPoint.position.ToString());
 
         // Nếu không tìm thấy Player, tạo mới
@@ -130,8 +132,8 @@ public class GameManager : MonoBehaviour
     }
     public void ReleaseListener(IListener listener)
     {
-        if (_listenerList.Contains(listener)) 
-        _listenerList.Remove(listener);
+        if (_listenerList.Contains(listener))
+            _listenerList.Remove(listener);
     }
     // khi player win một lượt đấu
     public void OnPlayerWinEncounter()
@@ -180,7 +182,7 @@ public class GameManager : MonoBehaviour
     }
     public void ResumeGame()
     {
-        
+
     }
 
     internal void GameRestart()

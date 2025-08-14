@@ -7,7 +7,7 @@ public class BirdController : AbstractEnemy
 {
     [SerializeField] private float hoverHeight = 1.5f;
     [SerializeField] private AudioClip birdSfx;
-    private int _helperCount = 2;
+    private int _helperCount;
     private Vector3 startPoint;
 
     protected override void Start()
@@ -41,12 +41,12 @@ public class BirdController : AbstractEnemy
         enabled = true;
     }
 
- 
+
     private void Update()
     {
         DetectPlayer();
     }
-   
+
     private IEnumerator CheckPlayerStay(PlayerController playerController)
     {
         Debug.Log("here is check stay");
@@ -56,19 +56,19 @@ public class BirdController : AbstractEnemy
         while (timer < temp)
         {
             var dis = Vector2.Distance(playerController.transform.position, transform.position);
-            if (dis > 25)
+            if (dis > 5)
             {
                 isStay = false;
             }
             timer += Time.deltaTime;
             yield return null;
         }
-        
+
         if (isStay)
         {
             Play();
         }
-        
+
     }
 
     public IEnumerator FlyIntoPlayer()
@@ -78,23 +78,40 @@ public class BirdController : AbstractEnemy
         var player = GameManager.Instance.Player;
         Debug.Log("can jump");
         player.movement.CanDoubleJump();
-        
+
         float timer = 0f;
-        while(timer < 10f)
+        while (timer < 10f)
         {
             timer += Time.deltaTime;
+            //Debug.Log("timer: " + timer);
             Vector3 targetPos = player.transform.position + offset;
             if (!player.movement.CheckDoubleJump)
+            {
                 break;
+            }
             transform.position = Vector3.Lerp(transform.position, targetPos, _moveSpeed * Time.deltaTime);
             yield return null;
+        }
+
+        if (!player.movement.CheckDoubleJump)
+        {
+            //follow player for 2s  
+            float timer2 = 0f;
+            while (timer2 < 2f)
+            {
+                timer2 += Time.deltaTime;
+                //Debug.Log("timer: " + timer);
+                Vector3 targetPos = player.transform.position + offset;
+                transform.position = Vector3.Lerp(transform.position, targetPos, _moveSpeed * Time.deltaTime);
+                yield return null;
+            }
         }
 
         player.movement.LockDoubleJump();
     }
     private IEnumerator ReturnToStartPoint()
     {
-        transform.DOMove(startPoint, 2f).SetEase(Ease.InSine);
+        transform.DOMove(transform.position, 2f).SetEase(Ease.InOutSine);
         yield return new WaitForSeconds(2f);
         IsWin = false;
     }
@@ -102,15 +119,15 @@ public class BirdController : AbstractEnemy
     {
         if (_helperCount > 0)
         {
-            Debug.Log(_helperCount + " Helper");
-            _helperCount--;
+            //Debug.Log(_helperCount + " Helper");
             playerController.detection.OnPlayerWin();
         }
-        else {
+        else
+        {
             Debug.Log("check check 0");
             _helperCount = 2;
             StartCoroutine(ReturnToStartPoint());
-            StartCoroutine(CheckPlayerStay(playerController));    
+            StartCoroutine(CheckPlayerStay(playerController));
         }
 
     }
@@ -123,6 +140,7 @@ public class BirdController : AbstractEnemy
 
     private void HelperPlayer()
     {
+        Debug.Log("Helper Player");
         IsWin = true;
         SetActiveMood(true);
         SetUnHappyMood(false);

@@ -20,13 +20,19 @@ public class PlayerDetection : MonoBehaviour
 
     private void Awake()
     {
-        TimeOut = 10;
+        TimeOut = 15;
         _awaitImage.gameObject.SetActive(false);
         playerController = GetComponent<PlayerController>();
     }
     private void Update()
     {
         DetectEnemy();
+        if (TimeOut<=1)
+        {
+            GameManager.Instance.GameLose();
+            StopAllCoroutines();
+
+        }
     }
 
     public float GetTimeOutCountDown()
@@ -100,17 +106,17 @@ public class PlayerDetection : MonoBehaviour
     {
         _awaitImage.gameObject.SetActive(true);
         _awaitImage.color = Color.white;
-        float t = 0;
+        float t = timeOut; // Start from timeOut
         timeOutCountDown = t;
-        while (t < TimeOut)
+        while (t > 0 && timeOutCountDown > 0)
         {
             if (_selected) break;
-            _awaitImage.fillAmount = 1 - t / timeOut;
-            if (t / timeOut > 0.5f)
+            _awaitImage.fillAmount = t / timeOut;
+            if (t / timeOut < 0.5f)
             {
                 _awaitImage.color = Color.red;
             }
-            t += Time.deltaTime;
+            t -= Time.deltaTime;
             timeOutCountDown = t;
             Debug.Log("Awaiting input: " + t);
             yield return null;

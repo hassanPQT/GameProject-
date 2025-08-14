@@ -50,6 +50,8 @@ MonoBehaviour:
     _sceneName: MapDesign2
   - _sceneAsset: {fileID: 102900000, guid: f28980fad78cb7e45929f8f0254cf3a7, type: 3}
     _sceneName: MapDesign3
+  - _sceneAsset: {fileID: 102900000, guid: 0483df73a822c5c4ead89a8e6db22ef5, type: 3}
+    _sceneName: MapDesign4
   _sceneToUnLoad: []
 --- !u!61 &6407647299233987544
 BoxCollider2D:

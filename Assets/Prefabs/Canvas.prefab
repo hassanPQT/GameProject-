@@ -933,8 +933,7 @@ MonoBehaviour:
   - {fileID: 137657204263096705, guid: db7437d3af59cd648b4858e0b650eab2, type: 3}
   _playerController: {fileID: 0}
   _animator: {fileID: 0}
-  _offsetY: 180
-  _songWheelTimeForDisplay: 4950
+  _offsetY: 100
 --- !u!1 &5462660645515558949
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,7 +1074,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Use right mouse to open wheels
+  m_text: Use "Right Mouse" to open wheels
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1620,7 +1619,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.078431375
+      value: 0.039215688
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -1730,7 +1729,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.13725491
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillAmount
@@ -1742,7 +1741,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillOrigin
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -1860,7 +1859,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.078431375
+      value: 0.039215688
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -2124,7 +2123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.13725491
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillAmount
@@ -2136,7 +2135,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillOrigin
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -2258,7 +2257,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.13725491
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillAmount
@@ -2270,7 +2269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillOrigin
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -2392,7 +2391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.13725491
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillAmount
@@ -2404,7 +2403,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillOrigin
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -2522,7 +2521,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.078431375
+      value: 0.039215688
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -2628,7 +2627,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.078431375
+      value: 0.039215688
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -2734,7 +2733,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.078431375
+      value: 0.039215688
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -2844,7 +2843,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.13725491
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillAmount
@@ -2856,7 +2855,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillOrigin
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -2978,7 +2977,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.13725491
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillAmount
@@ -2990,7 +2989,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillOrigin
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -3112,7 +3111,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 568394903641900868, guid: 62ad5e5ba1eceba46a525e7ac54443ae, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7104450834639752380, guid: 62ad5e5ba1eceba46a525e7ac54443ae, type: 3}
       propertyPath: m_Pivot.x
@@ -3214,7 +3213,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.078431375
+      value: 0.039215688
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -3324,7 +3323,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.13725491
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillAmount
@@ -3336,7 +3335,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillOrigin
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -3454,7 +3453,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.078431375
+      value: 0.039215688
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x
@@ -3564,7 +3563,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.078431375
+      value: 0.039215688
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.b
@@ -3686,7 +3685,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Color.a
-      value: 0.13725491
+      value: 0.19607843
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillAmount
@@ -3698,7 +3697,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 146920082877563220, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_FillOrigin
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3390058909621346958, guid: 7bfd336eb51f12b4c97aeed15b6d1a2f, type: 3}
       propertyPath: m_Pivot.x

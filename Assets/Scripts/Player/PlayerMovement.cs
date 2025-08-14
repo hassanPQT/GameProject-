@@ -119,6 +119,10 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
+    public bool GetCheckGround()
+    {
+        return _isGrounded;
+    }
     public void StopPlayer()
     {
         _isStop = true;

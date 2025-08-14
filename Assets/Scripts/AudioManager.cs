@@ -26,6 +26,8 @@ public class AudioManager : MonoBehaviour
     public void PlayMusic(AudioClip clip)
     {
         musicSource.clip = clip;
+        //setup volume
+        musicSource.volume = 0.75f; // Set volume to 50% (adjust as needed)
         musicSource.Play();
     }
 

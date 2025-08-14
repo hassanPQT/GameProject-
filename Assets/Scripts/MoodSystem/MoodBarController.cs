@@ -17,11 +17,11 @@ public class MoodBarController : MonoBehaviour
     public float MovementSpeedModifier { get; private set; } = 1f;
     public float SongWheelTimeModifier { get; private set; } = 1f;
 
-    private float _moodValue;   
+    private float _moodValue;
 
     private void Awake()
     {
-        
+
         _moodValue = Mathf.Clamp01(startValue);
         UpdateUI();
     }
@@ -31,21 +31,22 @@ public class MoodBarController : MonoBehaviour
         ChangeMoodImage.sprite = moodFillImage[0]; // 100% mood
         OnMoodMax();
         ApplyEffects(_moodValue);
+        ApplyEffectForTimeWin();
     }
 
     private void HandleCritical()
     {
         ChangeMoodImage.sprite = moodFillImage[0]; // 90% mood
         ApplyEffects(_moodValue);
-
-
+        ApplyEffectForTimeWin();
     }
 
     private void HandleHigh()
     {
-        ChangeMoodImage.sprite = moodFillImage[1]; // 90% mood
+        ChangeMoodImage.sprite = moodFillImage[1]; // 75% mood
         playerController.movement.UnlockRun();
         ApplyEffects(_moodValue);
+        ApplyEffectForTimeWin();
     }
 
 
@@ -55,13 +56,12 @@ public class MoodBarController : MonoBehaviour
         //ChangeMoodImage.sprite = moodFillImage[2]; // 50% mood
         ChangeMoodImage.sprite = moodFillImage[2]; // 50% mood
         ApplyEffects(_moodValue);
-
     }
     private void HandleLow()
     {
         ChangeMoodImage.sprite = moodFillImage[3]; // 30% mood
         ApplyEffects(_moodValue);
-
+        ApplyEffectForTimeLose();
     }
 
     private void HandleEmpty()
@@ -69,6 +69,7 @@ public class MoodBarController : MonoBehaviour
         ChangeMoodImage.sprite = moodFillImage[moodFillImage.Length - 1]; // 0% mood
         ApplyEffects(_moodValue);
         OnMoodMin();
+        ApplyEffectForTimeLose();
     }
     #endregion
     /// <summary> Tăng mood thêm delta (0→1) </summary>
@@ -100,6 +101,7 @@ public class MoodBarController : MonoBehaviour
                 HandleLow();
                 break;
             case < 0.5f:
+                ApplyEffectForTimeLose();
                 break;
             case var _ when Mathf.Approximately(_moodValue, 0.5f):
                 HandleMedium();
@@ -118,7 +120,7 @@ public class MoodBarController : MonoBehaviour
         }
     }
 
-    
+
     private void UpdateUI()
     {
         if (moodSlider != null)
@@ -129,11 +131,18 @@ public class MoodBarController : MonoBehaviour
     {
         // Ví dụ: khi mood cao: tăng speed, tăng thời gian chọn
         MovementSpeedModifier = 0.5f + amount;        // max +50% speed
-        SongWheelTimeModifier = 0.5f + amount + playerController.detection.GetTimeOut();         // max +20% time
-        Debug.Log(MovementSpeedModifier + " " + SongWheelTimeModifier);
-        playerController.detection.SetTimeOut(SongWheelTimeModifier);
         playerController.movement.SetModifierSpeed(MovementSpeedModifier);
         // Bạn có thể broadcast event hoặc gán trực tiếp cho player / UI
+    }
+
+    private void ApplyEffectForTimeWin()
+    {
+        playerController.detection.SetTimeOut(playerController.detection.GetTimeOut() + 2);
+    }
+
+    private void ApplyEffectForTimeLose()
+    {
+        playerController.detection.SetTimeOut(playerController.detection.GetTimeOut() - 2);
     }
 
     private void OnMoodMax()
@@ -147,6 +156,6 @@ public class MoodBarController : MonoBehaviour
     private void OnMoodMin()
     {
         GameManager.Instance.GameLose();
-        
+
     }
 }

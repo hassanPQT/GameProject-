@@ -40,7 +40,7 @@ public class CutsceneController : MonoBehaviour
     public Transform birdTransform;           // reference tới bird transform trong scene
     public GameObject birdSadEmotion;         // object (child) hiển thị sad emotion (ex: biểu tượng)
     public Vector3 birdLandOffset = new Vector3(0f, -1.2f, 0f); // offset so với vị trí hiện tại (hạ xuống)
-    private float waitBeforeBird = 10f;         // thời gian chờ trước khi chim hạ xuống
+    private float waitBeforeBird = 5f;         // thời gian chờ trước khi chim hạ xuống
     public float birdFlyDownTime = 0.8f;      // thời gian chim bay xuống
     public float birdWobbleDuration = 2f;     // thời gian wobble (lung lay)
     public float birdWobbleStrength = 8f;     // cường độ wobble (độ xoay)
@@ -85,16 +85,16 @@ public class CutsceneController : MonoBehaviour
             dialogCanvasGroup.alpha = 0f;
     }
 
-    private void Update()
-    {
-        if (_isPlaying && Input.GetKeyDown(skipKey))
-        {
-            // Skip cutscene; stop all tweens and restore
-            StopAllCoroutines();
-            DOTween.KillAll();
-            EndCutsceneImmediate();
-        }
-    }
+    //private void Update()
+    //{
+    //    if (_isPlaying && Input.GetKeyDown(skipKey))
+    //    {
+    //        // Skip cutscene; stop all tweens and restore
+    //        StopAllCoroutines();
+    //        DOTween.KillAll();
+    //        EndCutsceneImmediate();
+    //    }
+    //}
 
     /// <summary>
     /// Public method to start cutscene. Pass enemy transform and the position2.
@@ -122,7 +122,17 @@ public class CutsceneController : MonoBehaviour
 
         // 1) disable player input & freeze physics
         if (playerController != null) { _wasPlayerControllerEnabled = playerController.enabled; playerController.enabled = false; }
-        if (_playerRb != null) { _playerRb.linearVelocity = Vector2.zero; _playerRb.bodyType = RigidbodyType2D.Kinematic; }
+        if (_playerRb != null) 
+        { _playerRb.linearVelocity = Vector2.zero;
+            // Wait until _grounded is true
+
+            while (!player.GetComponent<PlayerController>().movement.GetCheckGround())
+            {
+                yield return null; // Wait for next frame
+            }
+
+            _playerRb.bodyType = RigidbodyType2D.Kinematic; 
+        }
 
         //if (pauseEnemiesDuringCutscene) PauseAllEnemies(true);
 
