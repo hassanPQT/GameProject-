@@ -1,13 +1,14 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Threading.Tasks;
+using UnityEngine;
 
 public class PushBackEffect : MonoBehaviour
 {
     private Rigidbody2D _rb;
-    private float _timer;
-    private float _timeOut = 4f;
+    [SerializeField] private float _timeOut = 2f;
 
-    public Vector2 BossDirection {  get; set; }
-    public Vector2 PlayerDirection {  get; set; }
+    public Vector2 BossDirection { get; set; }
+    public Vector2 PlayerDirection { get; set; }
     public float Force { get; set; }
     private void OnEnable()
     {
@@ -15,15 +16,24 @@ public class PushBackEffect : MonoBehaviour
         BossDirection = Vector2.left;
         PlayerDirection = Vector2.zero;
         Force = 1f;
+        StartCoroutine(StartEffect());
+
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    private void FixedUpdate()
+
+    private IEnumerator StartEffect()
     {
-        ApplyMovementEffect();
+        while (enabled)
+        {
+            _rb.linearVelocityX = -Force;
+            yield return new WaitForSeconds(_timeOut);
+        }
     }
+
     private void Update()
     {
         HandleInputAndDirection();
+        ApplyMovementEffect();
     }
 
     private void ApplyMovementEffect()
@@ -32,9 +42,6 @@ public class PushBackEffect : MonoBehaviour
         Vector2 totalDirection = PlayerDirection + BossDirection;
         if (totalDirection != Vector2.zero)
         {
-            //_hasPlaying = false;
-            _rb.linearVelocityX = -Force;
-            //return;
         }
         else
         {
@@ -47,13 +54,7 @@ public class PushBackEffect : MonoBehaviour
         // Kiểm tra điều kiện đầu vào
         bool isInputActive = (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) &&
                             Input.GetMouseButton(1) &&
-                            Input.GetMouseButton(0) &&
-                            Time.time - _timer < _timeOut;
-
-        if (Input.GetMouseButtonDown(0))
-        {
-            _timer = Time.time;
-        }
+                            Input.GetMouseButton(0);
 
         if (isInputActive)
         {
@@ -103,5 +104,5 @@ public class PushBackEffect : MonoBehaviour
         else
             return Vector2.zero;
     }
-   
+
 }
