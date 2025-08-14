@@ -1,6 +1,6 @@
 using Game.Scripts.Gameplay;
 using System.Collections;
-using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossAI : MonoBehaviour
@@ -16,10 +16,10 @@ public class BossAI : MonoBehaviour
         leftUP.gameObject.SetActive(false);
         leftDown.gameObject.SetActive(false);
 
-        BossTrigger.OnEnter += StartGameLoop;
-        //BossTrigger.OnExit += () => StartCoroutine(StartGameLoop());
+        BossTrigger.OnEnter += () => _playing = true;
+        BossTrigger.OnExit += () => _playing = false;
     }
-    private bool _bossDefeated;
+    private bool _playing;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private readonly Vector2[] attackDir = new Vector2[] {
         Vector2.left, 
@@ -28,21 +28,21 @@ public class BossAI : MonoBehaviour
     };
     private Vector2 _attackDir;
 
-    private void StartGameLoop(PlayerController controller, PushBackEffect pushBackEffect)
+    public void StartGameLoop(PlayerController controller)
     {
+        var pushBackEffect = controller.AddComponent<PushBackEffect>();
         StartCoroutine(GameLoop(controller, pushBackEffect));
     }
     public IEnumerator GameLoop(PlayerController playerController, PushBackEffect backEffect)
     {
-        _bossDefeated = false;
-        while (!_bossDefeated)
+        while (_playing)
         {
             yield return PushBackPlayer(playerController, GetRandomAttackDir(), backEffect);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        _bossDefeated = true;
+        _playing = true;
     }
     private Vector2 GetRandomAttackDir()
     {
@@ -52,6 +52,8 @@ public class BossAI : MonoBehaviour
 
     private IEnumerator PushBackPlayer(PlayerController player, Vector2 dir, PushBackEffect backEffect)
     {
+        yield return new WaitForSeconds(3);
+
         if (_currentDir != dir)
         {
             _currentDir = dir;
@@ -71,7 +73,6 @@ public class BossAI : MonoBehaviour
             }
             backEffect.BossDirection = dir;
         }
-        yield return new WaitForSeconds(3);
     }
 
     public void UpdateUI(int number)

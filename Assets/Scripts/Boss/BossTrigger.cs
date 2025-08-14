@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class BossTrigger : MonoBehaviour
 {
-    public static Action<PlayerController, PushBackEffect> OnEnter;
+    public static Action OnEnter;
     public static Action OnExit;
     public enum TriggerState {
     
@@ -32,7 +32,7 @@ public class BossTrigger : MonoBehaviour
                         effect = player.AddComponent<PushBackEffect>();
                     }
                     effect.enabled = true;
-                    OnEnter?.Invoke(player, effect);
+                    OnEnter?.Invoke();
                     break;
                 case TriggerState.Exit:
                     if (effect == null)

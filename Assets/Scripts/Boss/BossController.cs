@@ -32,6 +32,7 @@ public class BossController : MonoBehaviour
         camPlayerToBoss.gameObject.SetActive(true);
 
         bossAI.UpdateUI(0);
+        bossAI.StartGameLoop(playerController);
         var pushback = playerController.transform.DOMoveX(playerController.transform.position.x - 40f, 1f);
         yield return pushback.WaitForCompletion();
         bossTrigger.gameObject.SetActive(true);
