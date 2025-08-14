@@ -11,11 +11,6 @@ public class CutsceneController : MonoBehaviour
     public GameObject player;
     public MonoBehaviour playerController; // script điều khiển player (enable/disable)
 
-    [Header("Cinemachine Cameras")]
-    public Camera _camera;
-    public CinemachineVirtualCamera playerCamera;
-    public CinemachineVirtualCamera enemyCamera;
-
     [Header("Cutscene Targets")]
     public Transform enemyTransform;        // optional, or pass in method
     public GameObject sword;                // sprite thanh kiếm trong scene
@@ -210,18 +205,18 @@ public class CutsceneController : MonoBehaviour
 
     private IEnumerator CutsceneRoutine()
     {
-        _camera.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, 2f);
+        //_camera.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, 2f);
         player.GetComponent<PlayerController>().movement.StopPlayer();
         _isPlaying = true;
 
-        // 1. Switch camera to enemy
-        if (enemyCamera != null && enemyTransform != null)
-        {
-            enemyCamera.Priority = 20; // Higher than playerCamera
-            Debug.Log($"Switching camera to enemy: {enemyCamera.Priority}");
-            if (playerCamera != null) playerCamera.Priority = 10;
-            yield return new WaitForSeconds(5f); // Focus on enemy for 5 seconds
-        }
+        //// 1. Switch camera to enemy
+        //if (enemyCamera != null && enemyTransform != null)
+        //{
+        //    enemyCamera.Priority = 20; // Higher than playerCamera
+        //    Debug.Log($"Switching camera to enemy: {enemyCamera.Priority}");
+        //    if (playerCamera != null) playerCamera.Priority = 10;
+        //    yield return new WaitForSeconds(5f); // Focus on enemy for 5 seconds
+        //}
 
 
         // 1. disable player input and freeze physics
@@ -236,12 +231,12 @@ public class CutsceneController : MonoBehaviour
             _playerRb.bodyType = RigidbodyType2D.Kinematic;
         }
 
-        // 2. Switch camera back to player
-        if (playerCamera != null && player != null)
-        {
-            playerCamera.Priority = 20;
-            if (enemyCamera != null) enemyCamera.Priority = 10;
-        }
+        //// 2. Switch camera back to player
+        //if (playerCamera != null && player != null)
+        //{
+        //    playerCamera.Priority = 20;
+        //    if (enemyCamera != null) enemyCamera.Priority = 10;
+        //}
 
         //// 2. pause enemies if needed
         //if (pauseEnemiesDuringCutscene)
@@ -338,7 +333,7 @@ public class CutsceneController : MonoBehaviour
         //if (pauseEnemiesDuringCutscene)
         //    PauseAllEnemies(false);
 
-        _camera.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.Cut, 0f);
+        //_camera.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.Cut, 0f);
         _isPlaying = false;
     }
 

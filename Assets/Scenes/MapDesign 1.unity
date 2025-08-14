@@ -15826,7 +15826,7 @@ Transform:
   m_GameObject: {fileID: 1895360685}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -207.84378, y: -12.12361, z: -25.965807}
+  m_LocalPosition: {x: -30.299995, y: 2.0200002, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -16157,7 +16157,7 @@ PrefabInstance:
       objectReference: {fileID: 1388807687}
     - target: {fileID: 1112394792809240264, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Color.a
-      value: 0.29411766
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 1112394792809240264, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_FillMethod
@@ -16185,7 +16185,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2505935728601188137, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Color.a
-      value: 0.29411766
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 2505935728601188137, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_FillMethod
@@ -16197,7 +16197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3318273246904044825, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Color.a
-      value: 0.29411766
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 3318273246904044825, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_FillMethod
@@ -16209,7 +16209,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3514602757975816022, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Color.a
-      value: 0.29411766
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 3514602757975816022, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_FillMethod
@@ -16341,7 +16341,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5662252841405185719, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Color.a
-      value: 0.29411766
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 5662252841405185719, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_FillMethod
@@ -16353,7 +16353,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5848891394817766384, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Color.a
-      value: 0.29411766
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 5848891394817766384, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_FillMethod
@@ -16377,7 +16377,7 @@ PrefabInstance:
       objectReference: {fileID: 1388807687}
     - target: {fileID: 6866633239172408914, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Color.a
-      value: 0.29411766
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 6866633239172408914, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_FillMethod
@@ -16409,7 +16409,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8980759005235598533, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Color.a
-      value: 0.29411766
+      value: 0.33333334
       objectReference: {fileID: 0}
     - target: {fileID: 8980759005235598533, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_FillMethod
@@ -16451,7 +16451,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1991645308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16679,7 +16679,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5835203093562126805, guid: 43320d925b2ed934a87d73c32cadec5e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 92.16
+      value: 104.3
       objectReference: {fileID: 0}
     - target: {fileID: 5835203093562126805, guid: 43320d925b2ed934a87d73c32cadec5e, type: 3}
       propertyPath: m_LocalPosition.y

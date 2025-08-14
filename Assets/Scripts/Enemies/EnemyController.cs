@@ -115,9 +115,15 @@ public class EnemyController : AbstractEnemy
     {
         _isMoving = false;
         GameManager.Instance.OnPlayerLoseEncounter();
-        Play();
         StartCoroutine(ShakeBird());
         AudioManager.Instance.PlaySFX(enemySfx);
+        StartCoroutine(WaitPlay());
+    }
+
+    private IEnumerator WaitPlay()
+    {
+        yield return new WaitForSeconds(1f);
+        Play();
     }
 
     
