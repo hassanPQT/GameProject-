@@ -1,4 +1,5 @@
 using Game.Scripts.Gameplay;
+using System.Collections;
 using System.Threading.Tasks;
 using UnityEngine;
 
@@ -14,6 +15,9 @@ public class BossAI : MonoBehaviour
         left.gameObject.SetActive(false);
         leftUP.gameObject.SetActive(false);
         leftDown.gameObject.SetActive(false);
+
+        BossTrigger.OnEnter += StartGameLoop;
+        //BossTrigger.OnExit += () => StartCoroutine(StartGameLoop());
     }
     private bool _bossDefeated;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -23,17 +27,17 @@ public class BossAI : MonoBehaviour
         Vector2.left + Vector2.down,
     };
     private Vector2 _attackDir;
-    public async void StartGameLoop(PlayerController playerController, PushBackEffect backEffect)
+
+    private void StartGameLoop(PlayerController controller, PushBackEffect pushBackEffect)
+    {
+        StartCoroutine(GameLoop(controller, pushBackEffect));
+    }
+    public IEnumerator GameLoop(PlayerController playerController, PushBackEffect backEffect)
     {
         _bossDefeated = false;
         while (!_bossDefeated)
         {
-            await PushBackPlayer(playerController, GetRandomAttackDir(), backEffect);
-        }
-
-        if (backEffect != null)
-        {
-            backEffect.enabled = false;
+            yield return PushBackPlayer(playerController, GetRandomAttackDir(), backEffect);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -46,7 +50,7 @@ public class BossAI : MonoBehaviour
         return _attackDir;
     }
 
-    private async Task PushBackPlayer(PlayerController player, Vector2 dir, PushBackEffect backEffect)
+    private IEnumerator PushBackPlayer(PlayerController player, Vector2 dir, PushBackEffect backEffect)
     {
         if (_currentDir != dir)
         {
@@ -67,10 +71,10 @@ public class BossAI : MonoBehaviour
             }
             backEffect.BossDirection = dir;
         }
-        await Task.Delay(3000);
+        yield return new WaitForSeconds(3);
     }
 
-    private void UpdateUI(int number)
+    public void UpdateUI(int number)
     {
         left.gameObject.SetActive(false);
         leftUP.gameObject.SetActive(false);
@@ -86,10 +90,5 @@ public class BossAI : MonoBehaviour
             default:
                 break;
         }
-    }
-
-    private void OnDisable()
-    {
-        _bossDefeated = true;
     }
 }
