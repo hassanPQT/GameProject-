@@ -40,10 +40,6 @@ public class BossAI : MonoBehaviour
             yield return PushBackPlayer(playerController, GetRandomAttackDir(), backEffect);
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        _playing = true;
-    }
     private Vector2 GetRandomAttackDir()
     {
         _attackDir = attackDir[Random.Range(0, attackDir.Length)];

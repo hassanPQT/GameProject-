@@ -31,15 +31,11 @@ public class GameManager : MonoBehaviour
     //private SongDirection[] _targetDir;
     //private int _userPositivePoint = 3;
 
-    private List<int> _directionNumberList;
     //public float Timer;
     public bool IsInputEnable;
     //public bool IsStop3s => _awaitingPlayerSelect;
     //public float ModifyTimeout = 1;
-    public int[] DirectionNumber => _directionNumberList.ToArray();
-    private int _currentDirectionIndex;
 
-    private List<IListener> _listenerList = new List<IListener>();
     private void Awake()
     {
         if (Instance == null)
@@ -58,12 +54,6 @@ public class GameManager : MonoBehaviour
         AudioManager.Instance.PlayMusic(Bgm);
         InitializedStatus();
         InitializedPlayer();
-        SetupDirectionNumbers();
-    }
-
-    public SongDirection GetRandomSongDirection()
-    {
-        return (SongDirection)DirectionNumber[UnityEngine.Random.Range(0, DirectionNumber.Length)];
     }
     private void InitializedPlayer()
     {
@@ -97,7 +87,6 @@ public class GameManager : MonoBehaviour
     {
         InputManager.Instance.LockCursor();
         IsInputEnable = true;
-        _currentDirectionIndex = 6;
         //_userPositivePoint = 3;
     }
 
@@ -123,7 +112,6 @@ public class GameManager : MonoBehaviour
         Player = FindAnyObjectByType<PlayerController>();
         InitializedPlayer();
         InitializedStatus();
-        SetupDirectionNumbers();
         uiManager = FindAnyObjectByType<UIManager>();
 
         songWheelController = FindAnyObjectByType<SongWheelController>();
@@ -131,16 +119,6 @@ public class GameManager : MonoBehaviour
         // Gán thêm nếu cần…
     }
 
-    public void AddListener(IListener listener)
-    {
-        _listenerList.Add(listener);
-    }
-    public void ReleaseListener(IListener listener)
-    {
-        if (_listenerList.Contains(listener))
-            _listenerList.Remove(listener);
-    }
-    // khi player win một lượt đấu
     public void OnPlayerWinEncounter()
     {
         moodBar.IncreaseMood(moodDeltaOnWin);
@@ -152,37 +130,10 @@ public class GameManager : MonoBehaviour
         moodBar.DecreaseMood(moodDeltaOnLose);
     }
 
-    private void SetupDirectionNumbers()
-    {
-        _directionNumberList = new List<int>();
-        _directionNumberList.Add(0);
-        _directionNumberList.Add(7);
-    }
-
-    public void AddMoreRandomSongWheelNumbers()
-    {
-        if (_currentDirectionIndex == 0)
-            return;
-        _directionNumberList.Add(_currentDirectionIndex);
-        _currentDirectionIndex--;
-    }
-
-    public void PauseGame()
-    {
-        foreach (var listener in _listenerList)
-        {
-            listener.Pause();
-        }
-    }
     public void GameLose()
     {
         InputManager.Instance.GameLose();
         uiManager.ShowLoseUI();
-        PauseGame();
-        foreach (var listener in _listenerList)
-        {
-            listener.GameLose();
-        }
         //Player.movement.PlayGiveUpAnimation();
     }
     public void ResumeGame()
