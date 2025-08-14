@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            SceneManager.LoadScene("Boss"); 
+            SceneManager.LoadScene("Boss");
         }
     }
 }

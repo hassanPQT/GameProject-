@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class EnemySignal : MonoBehaviour
 {
-
     [Header("Signal Effect")]
     [SerializeField] private GameObject signalEffectPrefab;
     [SerializeField] private float _effectDuration = 0.5f;
@@ -18,7 +17,7 @@ public class EnemySignal : MonoBehaviour
         Debug.Log("`  SignalRandomDirection.");
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)
-            _currentDir[i] =  GameManager.Instance.GetRandomSongDirection();
+            _currentDir[i] =  SongWheelManager.Instance.GetRandomSongDirection();
         StartCoroutine(MoveInDirection(_currentDir, moveDistance, moveDuration));
         return _currentDir;
     }
@@ -48,7 +47,7 @@ public class EnemySignal : MonoBehaviour
             move.Append(transform.DOMove(end, moveDuration/2).SetEase(Ease.OutSine));
             move.Append(transform.DOMove(start, moveDuration/2).SetEase(Ease.OutSine));
 
-            yield return new WaitForSeconds(moveDuration + 0.5f);
+            yield return move.WaitForCompletion();
         }
         m_Enemy.IsMoving = false;
     }

@@ -156,6 +156,7 @@ public class PlayerMovement : MonoBehaviour
     public void UnStop()
     {
         _isStop = false;
+        if (GameManager.Instance != null)
         GameManager.Instance.IsInputEnable = true;
     }
 
