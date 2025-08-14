@@ -258,6 +258,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: 'SceneLoadTrigger '
       objectReference: {fileID: 0}
+    - target: {fileID: 6302434972630348651, guid: 2a9de27fd28d37a488ac42896ab60500, type: 3}
+      propertyPath: _sceneToLoad.Array.data[2]._sceneAsset
+      value: 
+      objectReference: {fileID: 102900000, guid: 9914d67acc79cf744a5e9cf91d230c53, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
