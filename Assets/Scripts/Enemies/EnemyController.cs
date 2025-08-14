@@ -100,7 +100,7 @@ public class EnemyController : AbstractEnemy
 
     public override void OnPlayerRequest(PlayerController playerController)
     {
-        playerController.movement.StopPlayer();
+        //playerController.movement.StopPlayer();
         Play();
     }
 

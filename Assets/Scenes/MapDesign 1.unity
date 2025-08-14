@@ -779,7 +779,7 @@ Transform:
   m_GameObject: {fileID: 437115528}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 106.841484, y: 1.5, z: 0}
+  m_LocalPosition: {x: 89, y: 1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -13102,13 +13102,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1429708307970658268, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2657942440411875817, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 108.13
+      value: 106.62
       objectReference: {fileID: 0}
     - target: {fileID: 2657942440411875817, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2657942440411875817, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -13140,6 +13144,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2657942440411875817, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5075100679752431148, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5104600208690460459, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
+      propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7654380842053291657, guid: 0f0bf087f61f9694d8f2ddcb6e95adf0, type: 3}
@@ -14398,6 +14410,10 @@ PrefabInstance:
       propertyPath: _songWheelController
       value: 
       objectReference: {fileID: 2046783319}
+    - target: {fileID: 6070511385175772194, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7276426050938312471, guid: 907f81a8675c83f4aa0b3b5214bb3058, type: 3}
       propertyPath: m_LocalPosition.x
       value: 110.2
@@ -15438,8 +15454,8 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: ff05665b9dd476b4b8ac562e406f9e30, type: 3}
+  m_SortingOrder: 4
+  m_Sprite: {fileID: -8924104929561480963, guid: e3a6502b232f896439596b06bf89b951, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -15458,13 +15474,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818967392}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0.7359789, w: 0.67700446}
-  m_LocalPosition: {x: 91.86, y: 0.17, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7431448, w: 0.6691307}
+  m_LocalPosition: {x: 103.3, y: 0.21, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 94.78}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -96}
 --- !u!1 &1852072755
 GameObject:
   m_ObjectHideFlags: 0
@@ -16155,6 +16171,14 @@ PrefabInstance:
       propertyPath: playerController
       value: 
       objectReference: {fileID: 1388807687}
+    - target: {fileID: 1014244417911815841, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 131.0008
+      objectReference: {fileID: 0}
+    - target: {fileID: 1014244417911815841, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 1.3354
+      objectReference: {fileID: 0}
     - target: {fileID: 1112394792809240264, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Color.a
       value: 0.33333334
@@ -16182,6 +16206,19 @@ PrefabInstance:
     - target: {fileID: 1837522232732774241, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194573742354737314, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: m_text
+      value: No way... The sword was too heavy, i can only sing. What should I do
+        ?
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194573742354737314, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: m_fontSize
+      value: 14.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 2194573742354737314, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 14.5
       objectReference: {fileID: 0}
     - target: {fileID: 2505935728601188137, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Color.a
@@ -16389,7 +16426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7762149467413671864, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_Alpha
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8748550977126810581, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_AnchorMax.y
@@ -16418,6 +16455,10 @@ PrefabInstance:
     - target: {fileID: 8980759005235598533, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
       propertyPath: m_FillOrigin
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9166830342151483956, guid: ef0ce0151882b6846986724a1fcfa977, type: 3}
+      propertyPath: m_text
+      value: Use "Right Mouse" to open Song Wheels
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -16679,7 +16720,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5835203093562126805, guid: 43320d925b2ed934a87d73c32cadec5e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 104.3
+      value: 102.57
       objectReference: {fileID: 0}
     - target: {fileID: 5835203093562126805, guid: 43320d925b2ed934a87d73c32cadec5e, type: 3}
       propertyPath: m_LocalPosition.y
