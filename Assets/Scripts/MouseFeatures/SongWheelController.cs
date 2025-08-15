@@ -3,7 +3,6 @@ using Game.Scripts.Gameplay;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
-using Unity.Jobs;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,12 +17,10 @@ public class SongWheelController : MonoBehaviour
     [SerializeField] private Image[] _songNotes;
     [SerializeField] private Sprite[] _songNoteSprites;
     [SerializeField] PlayerController _playerController;
-    [SerializeField] private Animator _animator;
     [SerializeField] private float _offsetY = 60f; // Khoảng cách dọc từ vị trí của người chơi đến bánh xe
 
     //private int _songWheelTime = 3000;
     //public int _songWheelTimeForDisplay = 3000;
-    private CancellationTokenSource _cts;
     private List<int> _selectSlices = new();
     //private int[] _lastSelectedSlices;
     private bool _wheelActive;
@@ -31,12 +28,6 @@ public class SongWheelController : MonoBehaviour
     private Vector2[] _sliceSize;
     private int newSongWheelNumber;
     private float _currentFillAmount = 1f; // Add this field to your class
-
-    private void Awake()
-    {
-        _wheelRect.localScale = Vector3.zero;
-        //GAME_STAT.SONG_WHEEL_TIME = _songWheelTime;
-    }
 
     private void Start()
     {
@@ -112,6 +103,7 @@ public class SongWheelController : MonoBehaviour
     {
         if (!_wheelActive) return;
         if (!_playerController.detection.IsPlaying()) return;
+
         if (_slices[_currentSlice].gameObject.activeSelf)
         {
             _selectSlices.Add(_currentSlice);
@@ -119,7 +111,8 @@ public class SongWheelController : MonoBehaviour
         }
         if (_selectSlices.Count == 2)
         {
-            _playerController.detection.SelectSongWheel(_selectSlices.ToArray());
+            Debug.Log("send data to player");
+            _playerController.detection.OnSelectSongWheel(_selectSlices.ToArray());
         }
     }
     private void OpenSongWheel()
@@ -163,7 +156,7 @@ public class SongWheelController : MonoBehaviour
     }
     public void ActivateWheel()
     {
-        _animator.SetBool(IsSing, true);
+        //_animator.SetBool(IsSing, true);
         _wheelRect.gameObject.SetActive(true);
         _wheelRect.position = new Vector2(Screen.width / 2f, Screen.height / 2f);
         _wheelRect.localScale = Vector3.zero;
@@ -172,13 +165,9 @@ public class SongWheelController : MonoBehaviour
         _wheelRect.DOScale(1f, 0.2f)
             .SetEase(Ease.OutBack).OnComplete(() => { _wheelActive = true; });
     }
-    //public void ModifierSongWheelTime(float mult)
-    //{
-    //    _songWheelTime = (int)(GAME_STAT.SONG_WHEEL_TIME * mult);
-    //}
+  
     public void ReleaseWheel()
     {
-        _animator.SetBool(IsSing, false);
         _wheelRect.DOScale(0f, 0.15f).SetEase(Ease.InBack)
             .OnComplete(() =>
             {
@@ -306,17 +295,17 @@ public class SongWheelController : MonoBehaviour
 
     private void TurnOfSongNotesWhenLost()
     {
-        Debug.Log("HighLightSongNote: Resetting song notes color and hiding wheelRectForBirdEnemy");
+        //Debug.Log("HighLightSongNote: Resetting song notes color and hiding wheelRectForBirdEnemy");
         _wheelRectForBirdEnemy.gameObject.SetActive(false);
         for (int i = 0; i < _songNotes.Length; i++)
         {
             if (_songNotes[i].gameObject.activeSelf)
             {
                 _songNotes[i].color = Color.white;
-                Debug.Log($"HighLightSongNote: Reset color for songNote {i}");
+                //Debug.Log($"HighLightSongNote: Reset color for songNote {i}");
             }
         }
-        Debug.Log("HighLightSongNote finished");
+        //Debug.Log("HighLightSongNote finished");
         _selectSlices.Clear(); // Xóa danh sách đã chọn sau khi hoàn thành
     }
 
@@ -351,14 +340,6 @@ public class SongWheelController : MonoBehaviour
                 _slices[i].GetComponent<RectTransform>().sizeDelta = _sliceSize[i];
         }
     }
-
-    private void OnDestroy()
-    {
-        _cts?.Cancel();
-        _cts?.Dispose();
-        _cts = null; // Tránh sử dụng lại
-    }
-
     public void OnPlayerWin()
     {
         StartCoroutine(HighLightSongNote());

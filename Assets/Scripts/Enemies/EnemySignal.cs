@@ -8,18 +8,19 @@ public class EnemySignal : MonoBehaviour
     [SerializeField] private GameObject signalEffectPrefab;
     [SerializeField] private float _effectDuration = 0.5f;
     [SerializeField] private float _effectMaxScale = 1.5f;
-    [SerializeField] private IEnemy m_Enemy => GetComponent<IEnemy>();
     public SongDirection[] _currentDir;
   
-    public SongDirection[] SignalRandomDirection( float moveDistance, float moveDuration)
+    public SongDirection[] GetSongDirection()
     {
-        if (m_Enemy.IsMoving || m_Enemy.IsWin) return null; 
-        Debug.Log("`  SignalRandomDirection.");
         _currentDir = new SongDirection[2];
         for (int i = 0; i < _currentDir.Length; i++)
-            _currentDir[i] =  SongWheelManager.Instance.GetRandomSongDirection();
-        StartCoroutine(MoveInDirection(_currentDir, moveDistance, moveDuration));
+            _currentDir[i] = SongWheelManager.Instance.GetRandomSongDirection();
         return _currentDir;
+    }
+    public IEnumerator SignalRandomDirection(float moveDistance, float moveDuration)
+    {
+        Debug.Log("enemy move");
+        yield return (MoveInDirection(_currentDir, moveDistance, moveDuration));
     }
     private Vector3 DirectionToVector(SongDirection dir)
     {
@@ -28,9 +29,7 @@ public class EnemySignal : MonoBehaviour
         return new Vector3(Mathf.Cos(angleRad), Mathf.Sin(angleRad), 0f).normalized;
     }
     private IEnumerator MoveInDirection(SongDirection[] dir, float moveDistance, float moveDuration)
-    {
-        m_Enemy.IsMoving = true;
-        
+    {        
         yield return new WaitForSeconds(0.5f);
         foreach (var d in dir)
         {
@@ -49,7 +48,6 @@ public class EnemySignal : MonoBehaviour
 
             yield return move.WaitForCompletion();
         }
-        m_Enemy.IsMoving = false;
     }
     private void ShowSignalEffect(SongDirection dir, float moveDistance)
     {

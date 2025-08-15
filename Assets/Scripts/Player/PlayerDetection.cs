@@ -30,7 +30,7 @@ public class PlayerDetection : MonoBehaviour
         if (TimeOut<=1)
         {
             GameManager.Instance.GameLose();
-            StopAllCoroutines();
+            //StopAllCoroutines();
 
         }
     }
@@ -88,19 +88,20 @@ public class PlayerDetection : MonoBehaviour
 
     private void OnDetectEnemy(AbstractEnemy enemy)
     {
-        _isPlaying = true;
         currentEnemy = enemy;
-        currentEnemy.Singal += x => OnEnemySignal(x);
-        StartPlay();
+        currentEnemy.Singal += x => StartCoroutine(OnEnemySignal(x));
+
+        if (_isPlaying) return;
+        StartCoroutine(StartPlay());
     }
 
-    private void OnEnemySignal(SongDirection[] songDirection)
+    private IEnumerator OnEnemySignal(SongDirection[] songDirection)
     {
+        //_selected = true;
         _isPlaying = true;
-        Debug.Log("on signal");
         _targetDir = songDirection;
-        //Debug.Log("asd" + currentEnemy.Singal.Method.Name);
-        StartCoroutine(AwaitInput(TimeOut));
+        Debug.Log("on signal dir: " + songDirection[1]);
+        yield return AwaitInput(TimeOut);
     }
     private IEnumerator AwaitInput(float timeOut)
     {
@@ -118,16 +119,12 @@ public class PlayerDetection : MonoBehaviour
             }
             t -= Time.deltaTime;
             timeOutCountDown = t;
-            Debug.Log("Awaiting input: " + t);
             yield return null;
         }
 
         _awaitImage.gameObject.SetActive(false);
-        if (!_selected)
-        {
-            Debug.Log("time out");
-            OnPlayerResult(false);
-        }
+        OnPlayerResult(false);
+       
     }
     private Collider2D[] GetEnemies()
     {
@@ -138,29 +135,35 @@ public class PlayerDetection : MonoBehaviour
         return hits;
     }
 
-    public void SelectSongWheel(int[] sliceIndex)
+    public void OnSelectSongWheel(int[] sliceIndex)
     {
         _selected = true;
         bool result = CheckCondition(sliceIndex);
+        Debug.Log("check result: "+result);
         OnPlayerResult(result);
     }
 
     private void OnPlayerResult(bool result)
     {
+        if (!_selected)
+        {
+            return;
+        }
         if (result)
         {
             OnPlayerWin();
         }
         else
         {
+            Debug.Log("On plyaer lose");
             OnPayerLose();
         }
-        //reset _selected
         _selected = false;
     }
 
     private bool CheckCondition(int[] sliceIndex)
     {
+        //if (_targetDir == null) return ;
         bool correct = sliceIndex.Length == 2 && _targetDir != null && sliceIndex.Length == _targetDir.Length;
         if (correct)
         {
@@ -176,14 +179,16 @@ public class PlayerDetection : MonoBehaviour
         return correct;
     }
 
-    private void StartPlay()
+    private IEnumerator  StartPlay()
     {
         Debug.Log("start play");
-        currentEnemy?.OnPlayerRequest(playerController);
+        yield return currentEnemy?.OnPlayerRequest(playerController);
     }
     public void OnPlayerWin()
     {
         StopAllCoroutines();
+
+        //_targetDir.;
         _isPlaying = false;
         playerController.movement.UnStop();
         _songWheelController.OnPlayerWin();
@@ -194,15 +199,13 @@ public class PlayerDetection : MonoBehaviour
     public void OnPayerLose()
     {
         StopAllCoroutines();
+        _targetDir = null;
         _selected = false;
-        StartCoroutine(AwaitInput(TimeOut));
         _isPlaying = false;
-        // add state player
-        // delay 1 2 s
-        //
         _songWheelController.OnPlayerLose();
         if (currentEnemy == null) return;
-        currentEnemy.OnPlayerMissed();
+        Debug.Log("On enemy lose");
+        StartCoroutine(currentEnemy.OnPlayerMissed());
     }
 
     private void DrawDebugCircle(Vector3 center, float radius, Color color, int segments = 32)
