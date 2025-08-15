@@ -245,12 +245,19 @@ public class CutsceneController : MonoBehaviour
             anim.SetBool("isRun", true);
 
             // Player chạy tới enemy
-            yield return player.transform.DOMove(new Vector2(107, 0.004999876f), 3)
+            yield return player.transform.DOMove(new Vector2(106.5f, 0.004999876f), 3)
                 .SetEase(Ease.Linear)
                 .WaitForCompletion();
 
             // Dừng animation chạy
             anim.SetBool("isRun", false);
+
+            //enemy di chuyển sang bên trái đẩy nhẹ thanh kiếm ra khỏi tay player
+            Vector3 originalPos = enemyTransform.position;
+            Vector3 leftPos = originalPos + Vector3.left * 1.5f;
+            Sequence seq = DOTween.Sequence();
+            seq.Append(enemyTransform.DOMove(leftPos, 0.25f).SetEase(Ease.Linear));
+            seq.Append(enemyTransform.DOMove(originalPos, 0.25f).SetEase(Ease.Linear));
 
             // Kiếm rớt khỏi tay player
             sword.transform.SetParent(null);
@@ -339,7 +346,7 @@ public class CutsceneController : MonoBehaviour
             // Drop the sword
             dialogText2.text = "You did it, yay! Now use your sing to redeem enemy and help anyone happy:D";
             sword.transform.SetParent(null, true);
-            yield return new WaitForSeconds(2.5f);
+            yield return new WaitForSeconds(4);
             dialogText2.text = "";
             dialogText2.gameObject.SetActive(false); // hide second text if not used
             player.GetComponent<PlayerController>().movement.UnStop();

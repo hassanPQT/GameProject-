@@ -131,6 +131,10 @@ public class PlayerMovement : MonoBehaviour
         if (GameManager.Instance == null) return;
         GameManager.Instance.IsInputEnable = false;
     }
+    public void StopMoving()
+    {
+        this.enabled = false;
+    }
     private void HandleKeyboardInput()
     {
         if (Input.GetKeyDown(KeyCode.Escape))

@@ -5,12 +5,16 @@ using UnityEngine;
 
 public class BossController : MonoBehaviour
 {
+    private static readonly int IsAttack = Animator.StringToHash("isAttack");
+    private static readonly int IsDie = Animator.StringToHash("isDie");
+
     [SerializeField] private Transform camBossToPlayer;
     [SerializeField] private Transform camPlayerToBoss;
     [SerializeField] private Transform bossTrigger;
     [SerializeField] private Transform position;
     [SerializeField] private SpriteRenderer model;
     [SerializeField] private BossAI bossAI;
+    [SerializeField] private float pushLeght = 20f;
 
     private void Start()
     {
@@ -24,6 +28,7 @@ public class BossController : MonoBehaviour
 
     private IEnumerator DetectProcess(PlayerController playerController)
     {
+        playerController.movement.StopMoving();
         model.enabled = true;
         playerController.movement.StopPlayer();
         playerController.movement.enabled = false;
@@ -33,7 +38,7 @@ public class BossController : MonoBehaviour
 
         bossAI.UpdateUI(0);
         bossAI.StartGameLoop(playerController);
-        var pushback = playerController.transform.DOMoveX(playerController.transform.position.x - 40f, 1f);
+        var pushback = playerController.transform.DOMoveX(playerController.transform.position.x - pushLeght, 1f);
         yield return pushback.WaitForCompletion();
         bossTrigger.gameObject.SetActive(true);
         playerController.movement.enabled = true;

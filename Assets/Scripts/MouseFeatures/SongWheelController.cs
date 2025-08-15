@@ -11,6 +11,7 @@ public class SongWheelController : MonoBehaviour
     private static readonly int IsSing = Animator.StringToHash("isSing");
 
     [Header("UI")]
+    [SerializeField] private Animator _animator;
     [SerializeField] private RectTransform _wheelRect;
     [SerializeField] private RectTransform _wheelRectForBirdEnemy;
     [SerializeField] private Image[] _slices;
@@ -118,12 +119,14 @@ public class SongWheelController : MonoBehaviour
     private void OpenSongWheel()
     {
         if (_wheelActive) return;
+        _animator.SetBool(IsSing, true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         ActivateWheel();
     }
     private void CloseSongWheel()
     {
+        _animator.SetBool(IsSing, false);
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
         ReleaseWheel();

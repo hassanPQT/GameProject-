@@ -127,7 +127,7 @@ public class EnemyController : AbstractEnemy
 
     private IEnumerator ShakeBird()
     {
-        StopAllCoroutines();
+        //StopAllCoroutines();
         // Shake parameters
         float duration = 1f;
         float strength = 0.2f;
@@ -135,8 +135,7 @@ public class EnemyController : AbstractEnemy
 
         // Use DOTween's DOShakePosition for shaking effect
         yield return transform.DOShakePosition(duration, strength, vibrato)
-            .SetEase(Ease.Linear);
-        //yield return new WaitForSeconds(1f);
+            .SetEase(Ease.Linear).WaitForCompletion();
         AudioManager.Instance.PlaySFX(enemySfx);
 
         yield return Play();

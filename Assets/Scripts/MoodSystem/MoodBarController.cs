@@ -112,7 +112,7 @@ public class MoodBarController : MonoBehaviour
             case <= 0.9f:
                 HandleCritical();
                 break;
-            case var _ when Mathf.Approximately(_moodValue, 0.9f):
+            case > 0.9f:
                 HandleFull();
                 break;
             default:

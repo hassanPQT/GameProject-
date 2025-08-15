@@ -30,7 +30,7 @@ public class EnemySignal : MonoBehaviour
     }
     private IEnumerator MoveInDirection(SongDirection[] dir, float moveDistance, float moveDuration)
     {        
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(1);
         foreach (var d in dir)
         {
             Debug.Log("SHow signal");
