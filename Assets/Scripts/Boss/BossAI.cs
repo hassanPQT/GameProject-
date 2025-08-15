@@ -1,52 +1,43 @@
-using Game.Scripts.Gameplay;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
    [SerializeField]  private Transform left;
    [SerializeField]  private Transform leftUP;
-   [SerializeField]  private Transform leftDown;
 
     private Vector2 _currentDir;
     private void Awake()
     {
         left.gameObject.SetActive(false);
         leftUP.gameObject.SetActive(false);
-        leftDown.gameObject.SetActive(false);
 
-        BossTrigger.OnEnter += () => _playing = true;
-        BossTrigger.OnExit += () => _playing = false;
+        BossTrigger.OnEnter += () => StartCoroutine(EnterPlay());
+        BossTrigger.OnExit += () =>  StopCoroutine(EnterPlay());
     }
-    private bool _playing;
+    private IEnumerator EnterPlay()
+    {
+        while (true)
+        {
+            var Push = FindFirstObjectByType<PushBackEffect>();
+            yield return UpdateUI(GetRandomAttackDir(),Push);
+        }
+        
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private readonly Vector2[] attackDir = new Vector2[] {
         Vector2.left, 
         Vector2.left + Vector2.up,
-        Vector2.left + Vector2.down,
     };
     private Vector2 _attackDir;
 
-    public void StartGameLoop(PlayerController controller)
-    {
-        var pushBackEffect = controller.AddComponent<PushBackEffect>();
-        StartCoroutine(GameLoop(controller, pushBackEffect));
-    }
-    public IEnumerator GameLoop(PlayerController playerController, PushBackEffect backEffect)
-    {
-        while (_playing)
-        {
-            yield return PushBackPlayer(playerController, GetRandomAttackDir(), backEffect);
-        }
-    }
     private Vector2 GetRandomAttackDir()
     {
         _attackDir = attackDir[Random.Range(0, attackDir.Length)];
         return _attackDir;
     }
 
-    private IEnumerator PushBackPlayer(PlayerController player, Vector2 dir, PushBackEffect backEffect)
+    private IEnumerator UpdateUI(Vector2 dir, PushBackEffect backEffect)
     {
         yield return new WaitForSeconds(3);
 
@@ -63,10 +54,6 @@ public class BossAI : MonoBehaviour
                 UpdateUI(1);
 
             }
-            if (dir == Vector2.left + Vector2.down)
-            {
-                UpdateUI(2);
-            }
             backEffect.BossDirection = dir;
         }
     }
@@ -75,15 +62,13 @@ public class BossAI : MonoBehaviour
     {
         left.gameObject.SetActive(false);
         leftUP.gameObject.SetActive(false);
-        leftDown.gameObject.SetActive(false);
         switch (number)
         {
             case 0:
                 left.gameObject.SetActive(true); break;
             case 1:
                 leftUP.gameObject.SetActive(true); break;
-            case 2:
-                leftDown.gameObject.SetActive(true); break;
+           
             default:
                 break;
         }

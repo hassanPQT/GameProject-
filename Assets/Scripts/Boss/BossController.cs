@@ -8,17 +8,18 @@ public class BossController : MonoBehaviour
     private static readonly int IsAttack = Animator.StringToHash("isAttack");
     private static readonly int IsDie = Animator.StringToHash("isDie");
 
-    [SerializeField] private Transform camBossToPlayer;
-    [SerializeField] private Transform camPlayerToBoss;
+
+    private Animator animator;
+    [SerializeField] private Transform bossEnterTrigger;
     [SerializeField] private Transform bossTrigger;
     [SerializeField] private Transform position;
-    [SerializeField] private SpriteRenderer model;
     [SerializeField] private BossAI bossAI;
     [SerializeField] private float pushLeght = 20f;
+    [SerializeField] private float pushTime = 3f;
 
     private void Start()
     {
-        model.enabled = false;
+        animator = GetComponent<Animator>();
     }
 
     public void OnDetectPlayer(PlayerController playerController)
@@ -29,17 +30,17 @@ public class BossController : MonoBehaviour
     private IEnumerator DetectProcess(PlayerController playerController)
     {
         playerController.movement.StopMoving();
-        model.enabled = true;
+        animator.SetBool(IsDie, true);
         playerController.movement.StopPlayer();
         playerController.movement.enabled = false;
         yield return CutScence();
-        camBossToPlayer.gameObject.SetActive(true);
-        camPlayerToBoss.gameObject.SetActive(true);
+        bossEnterTrigger.gameObject.SetActive(true);
 
         bossAI.UpdateUI(0);
-        bossAI.StartGameLoop(playerController);
-        var pushback = playerController.transform.DOMoveX(playerController.transform.position.x - pushLeght, 1f);
-        yield return pushback.WaitForCompletion();
+        yield return playerController.transform.DOMoveX(playerController.transform.position.x - pushLeght, pushTime);
+        
+
+
         bossTrigger.gameObject.SetActive(true);
         playerController.movement.enabled = true;
         playerController.movement.UnStop();

@@ -23,7 +23,7 @@ public class PushBackEffect : MonoBehaviour
 
     private IEnumerator StartEffect()
     {
-        while (enabled)
+        while (enabled && _rb != null)
         {
             _rb.linearVelocityX = -Force;
             yield return new WaitForSeconds(_timeOut);

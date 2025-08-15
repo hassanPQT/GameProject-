@@ -20,27 +20,42 @@ public class BossTrigger : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             var player = collision.GetComponent<PlayerController>();
-            var effect = player.GetComponent<PushBackEffect>();
+            var effect = collision.GetComponent<PushBackEffect>() ?? collision.AddComponent<PushBackEffect>();
             switch (state)
             {
                 case TriggerState.None:
                     controller.OnDetectPlayer(player);
                     break;
                 case TriggerState.Enter:
-                    if (effect == null)
-                    {
-                        effect = player.AddComponent<PushBackEffect>();
-                    }
                     effect.enabled = true;
+                    player.movement.StopPlayer();
+                    player.movement.enabled = false;
                     OnEnter?.Invoke();
                     break;
                 case TriggerState.Exit:
-                    if (effect == null)
-                    {
-                        effect = player.AddComponent<PushBackEffect>();
-                    }
+                    Debug.Log("exit");
                     OnExit?.Invoke();
+                    player.movement.enabled = true;
+                    player.movement.UnStop();
                     effect.enabled = false;
+                    break;
+
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("exit collider");
+
+            switch (state)
+            {
+                case TriggerState.Enter:
+                    break;
+                case TriggerState.Exit:
+                    state = TriggerState.Enter;
                     break;
 
             }
