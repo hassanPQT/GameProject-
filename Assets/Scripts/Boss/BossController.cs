@@ -1,6 +1,7 @@
 using DG.Tweening;
 using Game.Scripts.Gameplay;
 using System.Collections;
+using TMPro;
 using UnityEngine;
 
 public class BossController : MonoBehaviour
@@ -37,13 +38,22 @@ public class BossController : MonoBehaviour
         bossEnterTrigger.gameObject.SetActive(true);
 
         bossAI.UpdateUI(0);
-        yield return playerController.transform.DOMoveX(playerController.transform.position.x - pushLeght, pushTime);
-        
+        yield return playerController.transform.DOMoveX(playerController.transform.position.x - pushLeght, pushTime).WaitForCompletion();
 
+        var dialog = GameObject.Find("DialogPanel").GetComponent<CanvasGroup>();
+        dialog.alpha = 1f;
+        dialog.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(50, 75);
+        dialog.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "So cold, maybe i can sing to make him happy, i can do this!!";
 
         bossTrigger.gameObject.SetActive(true);
         playerController.movement.enabled = true;
         playerController.movement.UnStop();
+
+        yield return new WaitForSeconds(4f);
+        dialog.alpha = 0f;
+
+        var instruction = GameObject.Find("Instruction");
+        instruction.GetComponent<CanvasGroup>().alpha = 1f;
     }
     private IEnumerator CutScence()
     {

@@ -3,8 +3,9 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
-   [SerializeField]  private Transform left;
-   [SerializeField]  private Transform leftUP;
+    [SerializeField] private Transform left;
+    [SerializeField] private Transform leftUP;
+    [SerializeField] private GameObject winUI;
 
     private Vector2 _currentDir;
     private void Awake()
@@ -13,7 +14,7 @@ public class BossAI : MonoBehaviour
         leftUP.gameObject.SetActive(false);
 
         BossTrigger.OnEnter += () => StartCoroutine(EnterPlay());
-        BossTrigger.OnExit += () =>  StopAllCoroutines();
+        BossTrigger.OnExit += () => StopAllCoroutines();
     }
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -21,6 +22,7 @@ public class BossAI : MonoBehaviour
         {
             Time.timeScale = 0;
             Debug.Log("You Winn");
+            winUI.SetActive(true);
         }
     }
     private IEnumerator EnterPlay()
@@ -28,13 +30,13 @@ public class BossAI : MonoBehaviour
         while (true)
         {
             var Push = FindFirstObjectByType<PushBackEffect>();
-            yield return UpdateUI(GetRandomAttackDir(),Push);
+            yield return UpdateUI(GetRandomAttackDir(), Push);
         }
-        
+
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private readonly Vector2[] attackDir = new Vector2[] {
-        Vector2.left, 
+        Vector2.left,
         Vector2.left + Vector2.up,
     };
     private Vector2 _attackDir;
@@ -76,7 +78,7 @@ public class BossAI : MonoBehaviour
                 left.gameObject.SetActive(true); break;
             case 1:
                 leftUP.gameObject.SetActive(true); break;
-           
+
             default:
                 break;
         }

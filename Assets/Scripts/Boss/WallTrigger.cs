@@ -13,4 +13,9 @@ public class WallTrigger : MonoBehaviour
             GetComponent<Collider2D>().isTrigger = false;
         }
     }
+
+    public void Exit()
+    {
+        Application.Quit();
+    }
 }

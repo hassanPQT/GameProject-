@@ -56,6 +56,9 @@ public class PushBackEffect : MonoBehaviour
                             Input.GetMouseButton(1) &&
                             Input.GetMouseButton(0);
 
+        var instruction = GameObject.Find("Instruction");
+        instruction.GetComponent<CanvasGroup>().alpha = 0f;
+
         if (isInputActive)
         {
             PlayerDirection = GetClosestDirection(CalculateDirectionToMouse());

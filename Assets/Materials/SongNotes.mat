@@ -68,6 +68,7 @@ Material:
     m_Floats:
     - PixelSnap: 0
     - _EnableExternalAlpha: 0
+    - _GlowAnimation: 0.185
     - _ZWrite: 0
     m_Colors:
     - _Color: {r: 3.6, g: 3.6, b: 3.6, a: 1}

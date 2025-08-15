@@ -167,7 +167,7 @@ public class CutsceneController : MonoBehaviour
         {
             if (birdSadEmotion != null) birdSadEmotion.SetActive(false); // hide sad emotion
 
-            dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition = new Vector2(-150, 50);
+            dialogCanvasGroup.GetComponent<RectTransform>().anchoredPosition = new Vector2(-130, 50);
 
             dialogText.text = birdDialog;
             dialogCanvasGroup.DOKill();
@@ -264,7 +264,7 @@ public class CutsceneController : MonoBehaviour
 
             float duration = 2f;
             Vector3 start = player.transform.position;
-            Vector3 end = start - new Vector3(10f, 0);
+            Vector3 end = start - new Vector3(13f, 0);
 
             // Song song: xoay kiếm liên tục
             Tween rotateTween = sword.transform.DORotate(
