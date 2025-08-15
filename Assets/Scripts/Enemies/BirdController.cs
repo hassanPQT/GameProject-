@@ -66,7 +66,7 @@ public class BirdController : AbstractEnemy
 
         if (isStay)
         {
-            Play();
+            yield return Play();
         }
 
     }
@@ -115,7 +115,7 @@ public class BirdController : AbstractEnemy
         yield return new WaitForSeconds(2f);
         IsWin = false;
     }
-    public override void OnPlayerRequest(PlayerController playerController)
+    public override IEnumerator OnPlayerRequest(PlayerController playerController)
     {
         if (_helperCount > 0)
         {
@@ -126,8 +126,8 @@ public class BirdController : AbstractEnemy
         {
             Debug.Log("check check 0");
             _helperCount = 2;
-            StartCoroutine(ReturnToStartPoint());
-            StartCoroutine(CheckPlayerStay(playerController));
+            yield return ReturnToStartPoint();
+            yield return CheckPlayerStay(playerController);
         }
 
     }
@@ -149,12 +149,10 @@ public class BirdController : AbstractEnemy
         StartCoroutine(FlyIntoPlayer());
     }
 
-    public override void OnPlayerMissed()
+    public override IEnumerator OnPlayerMissed()
     {
         _isMoving = false;
-
-        // Shake the bird for ~1 second
-        StartCoroutine(ShakeBird());
+        yield return ShakeBird();
         AudioManager.Instance.PlaySFX(birdSfx);
     }
 
@@ -172,6 +170,7 @@ public class BirdController : AbstractEnemy
         // Wait for the shake to finish
         yield return new WaitForSeconds(duration);
 
-        Play();
+        yield return Play();
     }
+
 }

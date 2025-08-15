@@ -1,4 +1,5 @@
-﻿using Game.Scripts.Gameplay;
+﻿using DG.Tweening;
+using Game.Scripts.Gameplay;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -107,6 +108,8 @@ public class GameManager : MonoBehaviour
             // Ví dụ: bỏ qua các scene load thêm
             return;
         }
+        Time.timeScale = 1;
+
         // Giả sử Player, Canvas, MoodBar đều có tag hoặc có thể FindObjectOfType
         StopAllCoroutines();
         Player = FindAnyObjectByType<PlayerController>();
@@ -133,6 +136,8 @@ public class GameManager : MonoBehaviour
     public void GameLose()
     {
         InputManager.Instance.GameLose();
+        DOTween.KillAll();
+        Time.timeScale = 0;
         uiManager.ShowLoseUI();
         //Player.movement.PlayGiveUpAnimation();
     }

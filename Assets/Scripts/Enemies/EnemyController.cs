@@ -94,14 +94,13 @@ public class EnemyController : AbstractEnemy
     {
         _isMoving = false;
         StopCoroutine(MoveBackAndForth());
-        Debug.Log("Enemy detected player, stopping movement.");
         MoveBackToFirstPosition();
     }
 
-    public override void OnPlayerRequest(PlayerController playerController)
+    public override IEnumerator OnPlayerRequest(PlayerController playerController)
     {
-        playerController.movement.StopPlayer();
-        Play();
+        //playerController.movement.StopPlayer();
+        yield return Play();
     }
 
     public override void OnWinning()
@@ -111,37 +110,35 @@ public class EnemyController : AbstractEnemy
         SetAngryMood(false);
         SetActiveMood(true);
     }
-    public override void OnPlayerMissed()
+    public override IEnumerator OnPlayerMissed()
     {
         _isMoving = false;
         GameManager.Instance.OnPlayerLoseEncounter();
-        StartCoroutine(ShakeBird());
-        AudioManager.Instance.PlaySFX(enemySfx);
-        StartCoroutine(WaitPlay());
+        yield return ShakeBird();
     }
 
-    private IEnumerator WaitPlay()
-    {
-        yield return new WaitForSeconds(1f);
-        Play();
-    }
+    //private IEnumerator WaitPlay()
+    //{
+    //    yield return new WaitForSeconds(1f);
+    //    yield return Play();
+    //}
 
     
 
     private IEnumerator ShakeBird()
     {
+        StopAllCoroutines();
         // Shake parameters
         float duration = 1f;
         float strength = 0.2f;
         int vibrato = 20;
 
         // Use DOTween's DOShakePosition for shaking effect
-        transform.DOShakePosition(duration, strength, vibrato)
+        yield return transform.DOShakePosition(duration, strength, vibrato)
             .SetEase(Ease.Linear);
+        //yield return new WaitForSeconds(1f);
+        AudioManager.Instance.PlaySFX(enemySfx);
 
-        // Wait for the shake to finish
-        yield return new WaitForSeconds(duration);
-
-        Play();
+        yield return Play();
     }
 }

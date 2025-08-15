@@ -1,9 +1,10 @@
 using DG.Tweening;
 using Game.Scripts.Gameplay;
 using System;
+using System.Collections;
 using UnityEngine;
 
-public class AbstractEnemy : MonoBehaviour, IEnemy
+public abstract class AbstractEnemy : MonoBehaviour
 {
     [SerializeField] protected float _moveDistance = 2f;
     [SerializeField] protected float _moveDuration = 0.3f;
@@ -70,31 +71,28 @@ public class AbstractEnemy : MonoBehaviour, IEnemy
     {
     }
 
-    public virtual void OnPlayerMissed()
-    {
+    public abstract IEnumerator OnPlayerMissed();
 
-    }
-
-    public virtual void OnPlayerRequest(PlayerController playerController)
-    {
-    }
+    public abstract IEnumerator OnPlayerRequest(PlayerController playerController);
 
     public virtual void OnWinning()
     {
+        StopAllCoroutines();
     }
 
-    public virtual void Play()
+    public virtual IEnumerator Play()
     {
-       
+        Debug.Log("Playyyyy");
         transform.DOKill();
         if (transform.position.y - _startPoint.y > 3)
         {
-            transform.DOMove(_startPoint, 0.2f).SetEase(Ease.Linear);
+            yield return  transform.DOMove(_startPoint, 0.2f).SetEase(Ease.Linear);
         }
-        var direction = signal.SignalRandomDirection(_moveDistance, _moveDuration);
+        var direction = signal.GetSongDirection();
         if (direction != null)
         {
             Singal?.Invoke(direction);
+            StartCoroutine(signal.SignalRandomDirection(_moveDistance, _moveDuration)); 
         }
     }
 }
