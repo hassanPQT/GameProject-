@@ -7,10 +7,8 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     private static readonly int IsAttack = Animator.StringToHash("isAttack");
-    private static readonly int IsDie = Animator.StringToHash("isDie");
 
-
-    private Animator animator;
+    [SerializeField] private Animator animator;
     [SerializeField] private Transform bossEnterTrigger;
     [SerializeField] private Transform bossTrigger;
     [SerializeField] private Transform position;
@@ -20,7 +18,7 @@ public class BossController : MonoBehaviour
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
     }
 
     public void OnDetectPlayer(PlayerController playerController)
@@ -31,14 +29,12 @@ public class BossController : MonoBehaviour
     private IEnumerator DetectProcess(PlayerController playerController)
     {
         playerController.movement.StopMoving();
-        animator.SetBool(IsDie, true);
         playerController.movement.StopPlayer();
         playerController.movement.enabled = false;
         yield return CutScence();
         bossEnterTrigger.gameObject.SetActive(true);
 
-        bossAI.UpdateUI(0);
-        yield return playerController.transform.DOMoveX(playerController.transform.position.x - pushLeght, pushTime).WaitForCompletion();
+        yield return PushPlayerBack(playerController);
 
         var dialog = GameObject.Find("DialogPanel").GetComponent<CanvasGroup>();
         dialog.alpha = 1f;
@@ -55,6 +51,14 @@ public class BossController : MonoBehaviour
         var instruction = GameObject.Find("Instruction");
         instruction.GetComponent<CanvasGroup>().alpha = 1f;
     }
+
+    private IEnumerator PushPlayerBack(PlayerController playerController)
+    {
+        bossAI.UpdateUI(0);
+        animator.SetBool(IsAttack, true);
+        yield return playerController.transform.DOMoveX(playerController.transform.position.x - pushLeght, pushTime).WaitForCompletion();
+    }
+
     private IEnumerator CutScence()
     {
         var sequence = DOTween.Sequence();

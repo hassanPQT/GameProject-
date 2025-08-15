@@ -3,6 +3,10 @@ using UnityEngine;
 
 public class BossAI : MonoBehaviour
 {
+    private static readonly int IsDie = Animator.StringToHash("isDie");
+    private static readonly int IsAttack = Animator.StringToHash("isAttack");
+
+    [SerializeField] private Animator animator;
     [SerializeField] private Transform left;
     [SerializeField] private Transform leftUP;
     [SerializeField] private GameObject winUI;
@@ -20,11 +24,20 @@ public class BossAI : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Time.timeScale = 0;
-            Debug.Log("You Winn");
-            winUI.SetActive(true);
+            StartCoroutine(EndGame());
         }
     }
+
+    private IEnumerator EndGame()
+    {
+        animator.SetBool(IsDie, true);
+        animator.SetBool(IsAttack, false);
+        yield return new WaitForSeconds(2f);
+        Time.timeScale = 0;
+        Debug.Log("You Winn");
+        winUI.SetActive(true);
+    }
+
     private IEnumerator EnterPlay()
     {
         while (true)
