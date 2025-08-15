@@ -28,7 +28,7 @@ public class BossTrigger : MonoBehaviour
                     break;
                 case TriggerState.Enter:
                     effect.enabled = true;
-                    player.movement.StopPlayer();
+                    //player.movement.StopPlayer();
                     player.movement.enabled = false;
                     OnEnter?.Invoke();
                     break;
@@ -36,7 +36,7 @@ public class BossTrigger : MonoBehaviour
                     Debug.Log("exit");
                     OnExit?.Invoke();
                     player.movement.enabled = true;
-                    player.movement.UnStop();
+                    //player.movement.UnStop();
                     effect.enabled = false;
                     break;
 

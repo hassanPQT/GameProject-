@@ -13,7 +13,15 @@ public class BossAI : MonoBehaviour
         leftUP.gameObject.SetActive(false);
 
         BossTrigger.OnEnter += () => StartCoroutine(EnterPlay());
-        BossTrigger.OnExit += () =>  StopCoroutine(EnterPlay());
+        BossTrigger.OnExit += () =>  StopAllCoroutines();
+    }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Time.timeScale = 0;
+            Debug.Log("You Winn");
+        }
     }
     private IEnumerator EnterPlay()
     {
