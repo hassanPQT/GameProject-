@@ -7,7 +7,6 @@ using UnityEngine.UI;
 
 public class PlayerDetection : MonoBehaviour
 {
-    [SerializeField] Image _awaitImage;
     [SerializeField] private SongWheelController _songWheelController;
     private PlayerController playerController;
     private AbstractEnemy currentEnemy;
@@ -21,7 +20,6 @@ public class PlayerDetection : MonoBehaviour
     private void Awake()
     {
         TimeOut = 15;
-        _awaitImage.gameObject.SetActive(false);
         playerController = GetComponent<PlayerController>();
     }
     private void Update()
@@ -101,28 +99,25 @@ public class PlayerDetection : MonoBehaviour
         _isPlaying = true;
         _targetDir = songDirection;
         Debug.Log("on signal dir: " + songDirection[1]);
-        yield return AwaitInput(TimeOut);
+        yield return null;
+        //yield return AwaitInput(TimeOut);
     }
     private IEnumerator AwaitInput(float timeOut)
     {
-        _awaitImage.gameObject.SetActive(true);
-        _awaitImage.color = Color.white;
         float t = timeOut; // Start from timeOut
         timeOutCountDown = t;
         while (t > 0 && timeOutCountDown > 0)
         {
             if (_selected) break;
-            _awaitImage.fillAmount = t / timeOut;
             if (t / timeOut < 0.5f)
             {
-                _awaitImage.color = Color.red;
             }
             t -= Time.deltaTime;
             timeOutCountDown = t;
             yield return null;
         }
 
-        _awaitImage.gameObject.SetActive(false);
+        //_awaitImage.gameObject.SetActive(false);
         OnPlayerResult(false);
        
     }

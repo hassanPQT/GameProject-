@@ -61,6 +61,7 @@ public abstract class AbstractEnemy : MonoBehaviour
         {
             if (hit.CompareTag("Player"))
             {
+                Debug.Log("Detected player: " + hit.name);
                 _hasDetected = true;
                 OnDetectPlayer(hit.GetComponent<PlayerController>());
                 return;
@@ -91,6 +92,8 @@ public abstract class AbstractEnemy : MonoBehaviour
         var direction = signal.GetSongDirection();
         if (direction != null)
         {
+            Debug.Log("Playyyyy on signal");
+
             Singal?.Invoke(direction);
             StartCoroutine(signal.SignalRandomDirection(_moveDistance, _moveDuration)); 
         }
