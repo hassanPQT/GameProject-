@@ -58,7 +58,7 @@ public class CutsceneController : MonoBehaviour
 
     private void Awake()
     {
-        if(player == null)
+        if (player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
             if (player == null)
@@ -117,8 +117,9 @@ public class CutsceneController : MonoBehaviour
 
         // 1) disable player input & freeze physics
         if (playerController != null) { _wasPlayerControllerEnabled = playerController.enabled; playerController.enabled = false; }
-        if (_playerRb != null) 
-        { _playerRb.linearVelocity = Vector2.zero;
+        if (_playerRb != null)
+        {
+            _playerRb.linearVelocity = Vector2.zero;
             // Wait until _grounded is true
 
             while (!player.GetComponent<PlayerController>().movement.GetCheckGround())
@@ -126,7 +127,7 @@ public class CutsceneController : MonoBehaviour
                 yield return null; // Wait for next frame
             }
 
-            _playerRb.bodyType = RigidbodyType2D.Kinematic; 
+            _playerRb.bodyType = RigidbodyType2D.Kinematic;
         }
 
         //if (pauseEnemiesDuringCutscene) PauseAllEnemies(true);
@@ -205,18 +206,8 @@ public class CutsceneController : MonoBehaviour
 
     private IEnumerator CutsceneRoutine()
     {
-        //_camera.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.EaseInOut, 2f);
         player.GetComponent<PlayerController>().movement.StopPlayer();
         _isPlaying = true;
-
-        //// 1. Switch camera to enemy
-        //if (enemyCamera != null && enemyTransform != null)
-        //{
-        //    enemyCamera.Priority = 20; // Higher than playerCamera
-        //    Debug.Log($"Switching camera to enemy: {enemyCamera.Priority}");
-        //    if (playerCamera != null) playerCamera.Priority = 10;
-        //    yield return new WaitForSeconds(5f); // Focus on enemy for 5 seconds
-        //}
 
 
         // 1. disable player input and freeze physics
@@ -231,17 +222,6 @@ public class CutsceneController : MonoBehaviour
             _playerRb.bodyType = RigidbodyType2D.Kinematic;
         }
 
-        //// 2. Switch camera back to player
-        //if (playerCamera != null && player != null)
-        //{
-        //    playerCamera.Priority = 20;
-        //    if (enemyCamera != null) enemyCamera.Priority = 10;
-        //}
-
-        //// 2. pause enemies if needed
-        //if (pauseEnemiesDuringCutscene)
-        //    PauseAllEnemies(true);
-
         if (sword != null && playerHandPoint != null)
         {
             yield return new WaitForSeconds(2f); // wait a bit before picking up
@@ -254,16 +234,83 @@ public class CutsceneController : MonoBehaviour
             yield return s.WaitForCompletion();
 
             // Attach sword to player's hand
-            dialogText2.gameObject.SetActive(true); // hide second text if not used
             sword.transform.SetParent(playerHandPoint, true);
             sword.transform.localPosition = Vector3.zero;
 
+            //player move to enemy with sword, when go to enemy position then the sword was flung away and player stop
+
+            Animator anim = player.transform.GetChild(0).gameObject.GetComponent<Animator>();
+
+            // Bật animation chạy
+            anim.SetBool("isRun", true);
+
+            // Player chạy tới enemy
+            yield return player.transform.DOMove(new Vector2(107, 0.004999876f), 3)
+                .SetEase(Ease.Linear)
+                .WaitForCompletion();
+
+            // Dừng animation chạy
+            anim.SetBool("isRun", false);
+
+            // Kiếm rớt khỏi tay player
+            sword.transform.SetParent(null);
+
+            float duration = 2f;
+            Vector3 start = player.transform.position;
+            Vector3 end = start - new Vector3(10f, 0);
+
+            // Song song: xoay kiếm liên tục
+            Tween rotateTween = sword.transform.DORotate(
+                new Vector3(0, 0, 360f), 0.5f, RotateMode.FastBeyond360 // xoay 360 trong 2s (chậm hơn)
+            ).SetLoops(-1, LoopType.Restart).SetEase(Ease.Linear); // xoay vô hạn
+
+            yield return DOVirtual.Float(0f, 1f, duration, t =>
+            {
+                // Lerp vị trí ngang
+                Vector3 pos = Vector3.Lerp(start, end, t);
+                // Thêm parabol theo Y
+                float height = 7f; // độ cao
+                pos.y += height * (1 - (2 * t - 1) * (2 * t - 1)); // công thức parabola
+                sword.transform.position = pos;
+            }).WaitForCompletion();
+
+            rotateTween.Kill(); // dừng xoay kiếm
+
+
+
+            // Show dialog
+            if (dialogCanvasGroup != null && dialogText != null)
+            {
+                dialogCanvasGroup.DOKill();
+                // fade in
+                dialogCanvasGroup.DOFade(1f, 0.5f);
+                // wait either time or until player presses a key (after 3.5s)
+                float t = 0f;
+                bool dismissed = false;
+                float minKeyDelay = 3.5f; // minimum time before allowing key press
+
+                while (t < dialogShowTime && !dismissed)
+                {
+                    if (t >= minKeyDelay && Input.anyKeyDown) dismissed = true; // allow quick skip of dialog after delay
+                    t += Time.deltaTime;
+                    yield return null;
+                }
+                // fade out
+                dialogCanvasGroup.DOFade(0f, 0.5f);
+            }
+            else
+            {
+                yield return new WaitForSeconds(0.3f);
+            }
+
+            yield return new WaitForSeconds(1); // wait a bit before next step
+            GameManager.Instance.IsInputEnable = true;
             // Wait until you want to drop the sword (replace with your own condition)
             // Example: wait for dialog to finish
             float holdTime = 20f;
             float timer = 0f;
             bool reduced = false;
-
+            dialogText2.gameObject.SetActive(true); // hide second text if not used
             while (timer < holdTime)
             {
                 // Giữ chuột phải để giảm thời gian
@@ -290,10 +337,9 @@ public class CutsceneController : MonoBehaviour
 
 
             // Drop the sword
-            dialogText2.text = "You did it, yay! But you still can not hold a spear:v";
+            dialogText2.text = "You did it, yay! Now use your sing to redeem enemy and help anyone happy:D";
             sword.transform.SetParent(null, true);
             yield return new WaitForSeconds(2.5f);
-            sword.transform.DOMove(groundPos, pickupDropTime).SetEase(Ease.InBounce);
             dialogText2.text = "";
             dialogText2.gameObject.SetActive(false); // hide second text if not used
             player.GetComponent<PlayerController>().movement.UnStop();
@@ -301,55 +347,16 @@ public class CutsceneController : MonoBehaviour
 
         if (_playerRb != null) _playerRb.bodyType = RigidbodyType2D.Dynamic;
 
-        // Show dialog
-        if (dialogCanvasGroup != null && dialogText != null)
-        {
-            dialogCanvasGroup.DOKill();
-            // fade in
-            dialogCanvasGroup.DOFade(1f, 0.2f);
-            // wait either time or until player presses a key (after 3.5s)
-            float t = 0f;
-            bool dismissed = false;
-            float minKeyDelay = 3.5f; // minimum time before allowing key press
-
-            while (t < dialogShowTime && !dismissed)
-            {
-                if (t >= minKeyDelay && Input.anyKeyDown) dismissed = true; // allow quick skip of dialog after delay
-                t += Time.deltaTime;
-                yield return null;
-            }
-            // fade out
-            dialogCanvasGroup.DOFade(0f, 0.2f);
-        }
-        else
-        {
-            yield return new WaitForSeconds(0.3f);
-        }
-
         // 6. restore player control and physics
         if (playerController != null) playerController.enabled = _wasPlayerControllerEnabled;
 
-        //// 7. resume enemies
-        //if (pauseEnemiesDuringCutscene)
-        //    PauseAllEnemies(false);
+        // 7. resume enemies
+        enemyTransform.gameObject.GetComponent<CircleCollider2D>().enabled = true; // enable collider again
+        enemyTransform.gameObject.GetComponent<EnemyController>().enabled = true; // enable collider again
+        enemyTransform.gameObject.GetComponent<EnemySignal>().enabled = true; // enable collider again
 
-        //_camera.GetComponent<CinemachineBrain>().m_DefaultBlend = new CinemachineBlendDefinition(CinemachineBlendDefinition.Style.Cut, 0f);
         _isPlaying = false;
     }
-
-    //private void PauseAllEnemies(bool pause)
-    //{
-    //    // very simple implementation: find all EnemyController and enable/disable
-    //    var enemies = FindObjectsOfType<MonoBehaviour>(); // filter for your enemy class
-    //    foreach (var e in enemies)
-    //    {
-    //        // replace "EnemyController" with your actual enemy script type
-    //        if (e.GetType().Name == "EnemyController")
-    //        {
-    //            e.enabled = !pause;
-    //        }
-    //    }
-    //}
 
     private void EndCutsceneImmediate()
     {
