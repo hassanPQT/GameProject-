@@ -12,8 +12,6 @@ public class BossCameraController : MonoBehaviour
     [SerializeField] CinemachineTargetGroup _preTargetGroup;
     [SerializeField] CinemachineTargetGroup _bossTargetGroup;
 
-
-
     [SerializeField] Transform _preTransform;
     [SerializeField] float _preWeight = 1f;
     [SerializeField] float _preRadius = 1f;

@@ -36,17 +36,17 @@ public class BossController : MonoBehaviour
 
         yield return PushPlayerBack(playerController);
 
-        var dialog = GameObject.Find("DialogPanel").GetComponent<CanvasGroup>();
-        dialog.alpha = 1f;
-        dialog.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(50, 75);
-        dialog.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "So cold, maybe i can sing to make him happy, i can do this!!";
+        //var dialog = GameObject.Find("DialogPanel").GetComponent<CanvasGroup>();
+        //dialog.alpha = 1f;
+        //dialog.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(50, 75);
+        //dialog.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "So cold, maybe i can sing to make him happy, i can do this!!";
 
         bossTrigger.gameObject.SetActive(true);
         playerController.movement.enabled = true;
-        playerController.movement.UnStop();
+        //playerController.movement.UnStop();
 
         yield return new WaitForSeconds(4f);
-        dialog.alpha = 0f;
+        //dialog.alpha = 0f;
 
         var instruction = GameObject.Find("Instruction");
         instruction.GetComponent<CanvasGroup>().alpha = 1f;

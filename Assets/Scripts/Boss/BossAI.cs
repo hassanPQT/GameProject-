@@ -33,6 +33,7 @@ public class BossAI : MonoBehaviour
         animator.SetBool(IsDie, true);
         animator.SetBool(IsAttack, false);
         yield return new WaitForSeconds(2f);
+        InputManager.Instance.GameLose();
         Time.timeScale = 0;
         Debug.Log("You Winn");
         winUI.SetActive(true);

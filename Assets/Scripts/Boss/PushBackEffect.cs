@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Threading.Tasks;
+using TMPro;
 using UnityEngine;
 
 public class PushBackEffect : MonoBehaviour
@@ -15,7 +16,7 @@ public class PushBackEffect : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>() ?? GetComponentInChildren<Rigidbody2D>();
         BossDirection = Vector2.left;
         PlayerDirection = Vector2.zero;
-        Force = 1f;
+        Force = 0.8f;
         StartCoroutine(StartEffect());
 
     }
@@ -54,18 +55,19 @@ public class PushBackEffect : MonoBehaviour
         // Kiểm tra điều kiện đầu vào
         bool isInputActive = (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) &&
                             Input.GetMouseButton(1) &&
-                            Input.GetMouseButton(0);
-
-        var instruction = GameObject.Find("Instruction");
-        instruction.GetComponent<CanvasGroup>().alpha = 0f;
+                            Input.GetMouseButtonDown(0);
 
         if (isInputActive)
         {
+            var instruction = GameObject.Find("Instruction");
+            instruction.GetComponent<CanvasGroup>().alpha = 0;
             PlayerDirection = GetClosestDirection(CalculateDirectionToMouse());
             Debug.Log("has playing " + PlayerDirection);
+            Force = 1.8f;
         }
         else
         {
+            Force = 0.8f;
             PlayerDirection = Vector2.zero;
         }
     }

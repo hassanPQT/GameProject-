@@ -100,7 +100,7 @@ public class PlayerDetection : MonoBehaviour
         _targetDir = songDirection;
         Debug.Log("on signal dir: " + songDirection[1]);
         yield return null;
-        //yield return AwaitInput(TimeOut);
+        yield return AwaitInput(TimeOut);
     }
     private IEnumerator AwaitInput(float timeOut)
     {
@@ -109,9 +109,6 @@ public class PlayerDetection : MonoBehaviour
         while (t > 0 && timeOutCountDown > 0)
         {
             if (_selected) break;
-            if (t / timeOut < 0.5f)
-            {
-            }
             t -= Time.deltaTime;
             timeOutCountDown = t;
             yield return null;
