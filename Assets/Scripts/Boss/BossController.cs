@@ -7,9 +7,9 @@ using UnityEngine;
 public class BossController : MonoBehaviour
 {
     private static readonly int IsAttack = Animator.StringToHash("isAttack");
+    private BossCameraController _bossCameraController;
 
     [SerializeField] private Animator animator;
-    [SerializeField] private Transform bossEnterTrigger;
     [SerializeField] private Transform bossTrigger;
     [SerializeField] private Transform position;
     [SerializeField] private BossAI bossAI;
@@ -18,6 +18,7 @@ public class BossController : MonoBehaviour
 
     private void Start()
     {
+        _bossCameraController = FindFirstObjectByType<BossCameraController>();
         //animator = GetComponent<Animator>();
     }
 
@@ -32,16 +33,16 @@ public class BossController : MonoBehaviour
         playerController.movement.StopPlayer();
         playerController.movement.enabled = false;
         yield return CutScence();
-        bossEnterTrigger.gameObject.SetActive(true);
 
         yield return PushPlayerBack(playerController);
 
+        _bossCameraController.ChangeState( BossCameraController.State.Boss);
         //var dialog = GameObject.Find("DialogPanel").GetComponent<CanvasGroup>();
         //dialog.alpha = 1f;
         //dialog.gameObject.GetComponent<RectTransform>().anchoredPosition = new Vector2(50, 75);
         //dialog.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "So cold, maybe i can sing to make him happy, i can do this!!";
 
-        bossTrigger.gameObject.SetActive(true);
+        StartCoroutine(bossAI.EnterPlay());
         playerController.movement.enabled = true;
         //playerController.movement.UnStop();
 

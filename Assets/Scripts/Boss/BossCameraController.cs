@@ -2,7 +2,7 @@ using Cinemachine;
 using Game.Scripts.Gameplay;
 using UnityEngine;
 
-public class BossCameraController : MonoBehaviour
+public partial class BossCameraController : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera _camNormal;
     [SerializeField] CinemachineVirtualCamera _camPreboss;
@@ -21,13 +21,6 @@ public class BossCameraController : MonoBehaviour
     [SerializeField] private Transform _boss;
     [SerializeField] float _bossWeight = 1f;
     [SerializeField] float _bossRadius = 1f;
-    public enum State
-    {
-        Normal,
-        Preboss,
-        Cutscence,
-        Boss,
-    }
     private void Awake()
     {
         _player = FindFirstObjectByType<PlayerController>().transform;
