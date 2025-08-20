@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5696668297585577075
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9125860366178487874}
+  - component: {fileID: 5321884962067799473}
+  m_Layer: 0
+  m_Name: CutsceneController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9125860366178487874
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696668297585577075}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 167.59096, y: -13.61344, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &5321884962067799473
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5696668297585577075}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bbe6ae836f56b5488036131248d8d0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 0}
+  playerController: {fileID: 0}
+  _camera: {fileID: 0}
+  playerCamera: {fileID: 0}
+  enemyCamera: {fileID: 0}
+  enemyTransform: {fileID: 0}
+  sword: {fileID: 0}
+  playerHandPoint: {fileID: 0}
+  dialogCanvasGroup: {fileID: 0}
+  dialogText: {fileID: 0}
+  dialogText2: {fileID: 0}
+  pickupRiseTime: 1
+  pickupDropTime: 1
+  holdSwordTime: 10
+  dialogShowTime: 4
+  pauseEnemiesDuringCutscene: 1
+  skipKey: 32
+  birdTransform: {fileID: 0}
+  birdSadEmotion: {fileID: 0}
+  birdLandOffset: {x: 0, y: -1.2, z: 0}
+  birdFlyDownTime: 0.8
+  birdWobbleDuration: 2
+  birdWobbleStrength: 8
+  birdEase: 7
+  birdDialog: ...
+  dialogFadeTime: 0.18
+  dialogHoldTime: 1.8

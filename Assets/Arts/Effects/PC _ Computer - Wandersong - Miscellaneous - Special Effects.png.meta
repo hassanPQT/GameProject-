@@ -1,0 +1,4697 @@
+fileFormatVersion: 2
+guid: db7437d3af59cd648b4858e0b650eab2
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: 4357585043738093188
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_0
+  - first:
+      213: 7749285138475346290
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_1
+  - first:
+      213: -8426789933945698371
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_2
+  - first:
+      213: 4717024133948816905
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_3
+  - first:
+      213: -2027818454626245048
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_4
+  - first:
+      213: -4108256360787004662
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_5
+  - first:
+      213: -5726370224389539042
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_6
+  - first:
+      213: -2456712599066233073
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_7
+  - first:
+      213: -8478384289791364563
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_8
+  - first:
+      213: 6386758605592037608
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_9
+  - first:
+      213: -2903060663493611820
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_10
+  - first:
+      213: -6593038116209991267
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_11
+  - first:
+      213: -6515866764282928709
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_12
+  - first:
+      213: 2831434756821333234
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_13
+  - first:
+      213: 2954732325994482991
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_14
+  - first:
+      213: -1298609405514241890
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_15
+  - first:
+      213: 7951111677889611473
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_16
+  - first:
+      213: 4484190347514683764
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_17
+  - first:
+      213: 4090657633876536516
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_18
+  - first:
+      213: 8402210187023288023
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_19
+  - first:
+      213: -4625048882931556344
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_20
+  - first:
+      213: -6170793758436299022
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_21
+  - first:
+      213: -5276580068669814079
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_22
+  - first:
+      213: 6607117012231423695
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_23
+  - first:
+      213: -281887677808975992
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_24
+  - first:
+      213: 5334844954002487462
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_25
+  - first:
+      213: 6956448977139735534
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_26
+  - first:
+      213: 2287024428281893081
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_27
+  - first:
+      213: 5124359170508549249
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_28
+  - first:
+      213: 6556581279432180845
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_29
+  - first:
+      213: 6765625925549840907
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_30
+  - first:
+      213: -4284034041476787700
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_31
+  - first:
+      213: -1012957317591254610
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_32
+  - first:
+      213: -8479233378392758117
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_33
+  - first:
+      213: -1650262908522130766
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_34
+  - first:
+      213: 137657204263096705
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_35
+  - first:
+      213: 7303299329954650745
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_36
+  - first:
+      213: -8502192935694926644
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_37
+  - first:
+      213: 2341960265987004222
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_38
+  - first:
+      213: 2596148855314420140
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_39
+  - first:
+      213: -5681432602268397508
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_40
+  - first:
+      213: -1349663499940824601
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_41
+  - first:
+      213: -3811010400966070267
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_42
+  - first:
+      213: -5902341927079290114
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_43
+  - first:
+      213: 786607620307457035
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_44
+  - first:
+      213: -1057422579223788785
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_45
+  - first:
+      213: -6503701843958469671
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_46
+  - first:
+      213: 8310987673677949339
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_47
+  - first:
+      213: -7411009800887882516
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_48
+  - first:
+      213: 711522413055665028
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_49
+  - first:
+      213: 1503429434476126423
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_50
+  - first:
+      213: 286689036932037033
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_51
+  - first:
+      213: 7802710284730366133
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_52
+  - first:
+      213: 912060406653999930
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_53
+  - first:
+      213: -5322837379775082474
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_54
+  - first:
+      213: -628172891504874974
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_55
+  - first:
+      213: 3410779476133700417
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_56
+  - first:
+      213: -7715660809360213894
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_57
+  - first:
+      213: 6403408136647424055
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_58
+  - first:
+      213: -4167847370854644222
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_59
+  - first:
+      213: -7762845889230862356
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_60
+  - first:
+      213: -7942666341891650252
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_61
+  - first:
+      213: 560517138914779391
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_62
+  - first:
+      213: -7579565958220044678
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_63
+  - first:
+      213: 837007827848564461
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_64
+  - first:
+      213: -5511709352874620457
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_65
+  - first:
+      213: 245384709588000280
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_66
+  - first:
+      213: 5375317834162473172
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_67
+  - first:
+      213: 6308643282456218238
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_68
+  - first:
+      213: 1111475389834091831
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_69
+  - first:
+      213: 6892645384791199510
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_70
+  - first:
+      213: 7796931746703135064
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_71
+  - first:
+      213: -269765845504065774
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_72
+  - first:
+      213: -6792698328916487486
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_73
+  - first:
+      213: 8316471699772955659
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_74
+  - first:
+      213: -249330835479071257
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_75
+  - first:
+      213: -4442407394337890920
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_76
+  - first:
+      213: -3561342679233068640
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_77
+  - first:
+      213: -8932231834707394026
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_78
+  - first:
+      213: 864409218327113762
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_79
+  - first:
+      213: 4919787815573692571
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_80
+  - first:
+      213: 8817034280383620951
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_81
+  - first:
+      213: -3581897032587651461
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_82
+  - first:
+      213: 4023818053286473977
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_83
+  - first:
+      213: 8468599474499268421
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_84
+  - first:
+      213: 7782248305896702635
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_85
+  - first:
+      213: -852124547164500197
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_86
+  - first:
+      213: 3488492296812185865
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_87
+  - first:
+      213: 1313508059124128276
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_88
+  - first:
+      213: 6026292521504710565
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_89
+  - first:
+      213: -6155849873675301879
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_90
+  - first:
+      213: 1203332694382241991
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_91
+  - first:
+      213: -2076870203077720573
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_92
+  - first:
+      213: -5803853509902031263
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_93
+  - first:
+      213: -7114230644546997573
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_94
+  - first:
+      213: -2117453323922388786
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_95
+  - first:
+      213: 4824987570042962650
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_96
+  - first:
+      213: -2199735693845864498
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_97
+  - first:
+      213: 443755294125117552
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_98
+  - first:
+      213: 7408399770471832873
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_99
+  - first:
+      213: -677732869953847945
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_100
+  - first:
+      213: 8334801952672994530
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_101
+  - first:
+      213: 1947943607757734876
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_102
+  - first:
+      213: 5078300165919069251
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_103
+  - first:
+      213: 6169142351174912434
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_104
+  - first:
+      213: -6567639802681442853
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_105
+  - first:
+      213: 6017632427952576131
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_106
+  - first:
+      213: 1018583755321383762
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_107
+  - first:
+      213: 2915960282022100118
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_108
+  - first:
+      213: -8967232106309381187
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_109
+  - first:
+      213: -8639848321680478769
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_110
+  - first:
+      213: -3089968441111364296
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_111
+  - first:
+      213: 7581661627977536024
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_112
+  - first:
+      213: -616300843849073024
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_113
+  - first:
+      213: 1482588681549205078
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_114
+  - first:
+      213: -7975004644616395574
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_115
+  - first:
+      213: -5552472689229419057
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_116
+  - first:
+      213: 2066909414956877614
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_117
+  - first:
+      213: 5092355863955006467
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_118
+  - first:
+      213: -2909447053897472907
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_119
+  - first:
+      213: 350266858069584998
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_120
+  - first:
+      213: -9060259463988263479
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_121
+  - first:
+      213: -2695876526259236699
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_122
+  - first:
+      213: -1134216428844838350
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_123
+  - first:
+      213: -8125451024455377345
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_124
+  - first:
+      213: 1290308977194089168
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_125
+  - first:
+      213: -5100733694494276599
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_126
+  - first:
+      213: -4669177948358620514
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_127
+  - first:
+      213: -2174648244659091430
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_128
+  - first:
+      213: -7669399598210864956
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_129
+  - first:
+      213: 3604291587339103700
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_130
+  - first:
+      213: -6875607975121031303
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_131
+  - first:
+      213: 8257884381726321310
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_132
+  - first:
+      213: -6378554635445908251
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_133
+  - first:
+      213: 6174538297496027398
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_134
+  - first:
+      213: -2917792666367366556
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_135
+  - first:
+      213: -2973308690747363617
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_136
+  - first:
+      213: -3207962545645719233
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_137
+  - first:
+      213: -7310151800551396700
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_138
+  - first:
+      213: -4869894664798942058
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_139
+  - first:
+      213: 7018441006477093119
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_140
+  - first:
+      213: -6047736982508465126
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_141
+  - first:
+      213: 2184887319149872843
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_142
+  - first:
+      213: -5748015103499672458
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_143
+  - first:
+      213: 3542193096660484116
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_144
+  - first:
+      213: -3597833902202637866
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_145
+  - first:
+      213: 1692160116525275412
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_146
+  - first:
+      213: 3765028754506509132
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_147
+  - first:
+      213: -8723417046782000313
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_148
+  - first:
+      213: 5626102700935569465
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_149
+  - first:
+      213: -7742025563455034070
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_150
+  - first:
+      213: -8961250456410450015
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_151
+  - first:
+      213: -7049999539136560298
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_152
+  - first:
+      213: 2066374951546680527
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_153
+  - first:
+      213: -3550715684146424756
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_154
+  - first:
+      213: 4686075750746318802
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_155
+  - first:
+      213: -7995307502280445228
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_156
+  - first:
+      213: 4444297508169202938
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_157
+  - first:
+      213: 5952115412670967316
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_158
+  - first:
+      213: 6612182318669462259
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_159
+  - first:
+      213: 2966321826948311335
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_160
+  - first:
+      213: -1769097511503162259
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_161
+  - first:
+      213: -4378006304703216836
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_162
+  - first:
+      213: -5912547225099277306
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_163
+  - first:
+      213: -6655721014643944214
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_164
+  - first:
+      213: -9194861396913351733
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_165
+  - first:
+      213: -8302082284242284320
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_166
+  - first:
+      213: -2105941330971985927
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_167
+  - first:
+      213: -2170844509302239870
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_168
+  - first:
+      213: 4310671659171794585
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_169
+  - first:
+      213: 2719238776857939033
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_170
+  - first:
+      213: 3990290821353256847
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_171
+  - first:
+      213: -4778016148891888539
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_172
+  - first:
+      213: 1716843442688968195
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_173
+  - first:
+      213: -380194929717476759
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_174
+  - first:
+      213: 5636333613237557139
+    second: PC _ Computer - Wandersong - Miscellaneous - Special Effects_175
+  externalObjects: {}
+  serializedVersion: 13
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+    flipGreenChannel: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMipmapLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 264
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 0
+  platformSettings:
+  - serializedVersion: 4
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 4096
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 0
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WindowsStoreApps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_0
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 3616
+        width: 257
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48660928280497c30800000000000000
+      internalID: 4357585043738093188
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_1
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 3682
+        width: 63
+        height: 63
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2796906a6cdfa8b60800000000000000
+      internalID: 7749285138475346290
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_2
+      rect:
+        serializedVersion: 2
+        x: 373
+        y: 3616
+        width: 74
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db7445eb3370e0b80800000000000000
+      internalID: -8426789933945698371
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_3
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 3616
+        width: 74
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90eb6fc357c367140800000000000000
+      internalID: 4717024133948816905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_4
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 3253
+        width: 502
+        height: 502
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 846650ffbddbbd3e0800000000000000
+      internalID: -2027818454626245048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_5
+      rect:
+        serializedVersion: 2
+        x: 1041
+        y: 3347
+        width: 374
+        height: 406
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a033d093b9a8cf6c0800000000000000
+      internalID: -4108256360787004662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_6
+      rect:
+        serializedVersion: 2
+        x: 1421
+        y: 3241
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e1b33eade98d780b0800000000000000
+      internalID: -5726370224389539042
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_7
+      rect:
+        serializedVersion: 2
+        x: 1773
+        y: 3069
+        width: 163
+        height: 136
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f073e6948e008edd0800000000000000
+      internalID: -2456712599066233073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_8
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 3608
+        width: 66
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d22bbb9a86ab65a80800000000000000
+      internalID: -8478384289791364563
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_9
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 3471
+        width: 210
+        height: 139
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8e88b700d1352a850800000000000000
+      internalID: 6386758605592037608
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_10
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 3471
+        width: 130
+        height: 130
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dead0725b146b7d0800000000000000
+      internalID: -2903060663493611820
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_11
+      rect:
+        serializedVersion: 2
+        x: 429
+        y: 3535
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d9161b4c3c2d084a0800000000000000
+      internalID: -6593038116209991267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_12
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 3337
+        width: 128
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb1642f43bdf295a0800000000000000
+      internalID: -6515866764282928709
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_13
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 3335
+        width: 130
+        height: 129
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2f4b705e8e64b4720800000000000000
+      internalID: 2831434756821333234
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_14
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 3460
+        width: 65
+        height: 69
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f2dc3494561510920800000000000000
+      internalID: 2954732325994482991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_15
+      rect:
+        serializedVersion: 2
+        x: 430
+        y: 3383
+        width: 30
+        height: 49
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e98a75240a96afde0800000000000000
+      internalID: -1298609405514241890
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_16
+      rect:
+        serializedVersion: 2
+        x: 453
+        y: 3427
+        width: 42
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1d6021ab1f5085e60800000000000000
+      internalID: 7951111677889611473
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_17
+      rect:
+        serializedVersion: 2
+        x: 466
+        y: 3398
+        width: 45
+        height: 23
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 47129d0ec5b0b3e30800000000000000
+      internalID: 4484190347514683764
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_18
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 3071
+        width: 258
+        height: 257
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4cc63fcd17fe4c830800000000000000
+      internalID: 4090657633876536516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_19
+      rect:
+        serializedVersion: 2
+        x: 423
+        y: 3179
+        width: 20
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d601b5f5a5aa9470800000000000000
+      internalID: 8402210187023288023
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_20
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 3181
+        width: 15
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8002c08ab8680dfb0800000000000000
+      internalID: -4625048882931556344
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_21
+      rect:
+        serializedVersion: 2
+        x: 478
+        y: 3168
+        width: 49
+        height: 26
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2fee43e55cfec5aa0800000000000000
+      internalID: -6170793758436299022
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_22
+      rect:
+        serializedVersion: 2
+        x: 482
+        y: 3185
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1ca87025262d5c6b0800000000000000
+      internalID: -5276580068669814079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_23
+      rect:
+        serializedVersion: 2
+        x: 509
+        y: 3185
+        width: 14
+        height: 20
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc68e77aae131bb50800000000000000
+      internalID: 6607117012231423695
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_24
+      rect:
+        serializedVersion: 2
+        x: 533
+        y: 3168
+        width: 49
+        height: 44
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 88fd2a986a8861cf0800000000000000
+      internalID: -281887677808975992
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_25
+      rect:
+        serializedVersion: 2
+        x: 588
+        y: 3168
+        width: 49
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6a87a1f683d290a40800000000000000
+      internalID: 5334844954002487462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_26
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 3167
+        width: 57
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: eeb1b84ec754a8060800000000000000
+      internalID: 6956448977139735534
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_28
+      rect:
+        serializedVersion: 2
+        x: 705
+        y: 3176
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18c6dabf3816d1740800000000000000
+      internalID: 5124359170508549249
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_29
+      rect:
+        serializedVersion: 2
+        x: 777
+        y: 3176
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6408857fe7adfa50800000000000000
+      internalID: 6556581279432180845
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_30
+      rect:
+        serializedVersion: 2
+        x: 849
+        y: 3176
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0a5297fee454ed50800000000000000
+      internalID: 6765625925549840907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_31
+      rect:
+        serializedVersion: 2
+        x: 921
+        y: 3176
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c025810bcbd0c84c0800000000000000
+      internalID: -4284034041476787700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_32
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 3141
+        width: 146
+        height: 45
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ea93750cfa041f1f0800000000000000
+      internalID: -1012957317591254610
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_33
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 3167
+        width: 41
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b98a341da26b35a80800000000000000
+      internalID: -8479233378392758117
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_34
+      rect:
+        serializedVersion: 2
+        x: 1541
+        y: 3164
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b2198fc0a61919e0800000000000000
+      internalID: -1650262908522130766
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_35
+      rect:
+        serializedVersion: 2
+        x: 1641
+        y: 3071
+        width: 126
+        height: 122
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 18110e87f7e09e100800000000000000
+      internalID: 137657204263096705
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_36
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 3168
+        width: 51
+        height: 10
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97a9b4acb088a5560800000000000000
+      internalID: 7303299329954650745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_37
+      rect:
+        serializedVersion: 2
+        x: 643
+        y: 3071
+        width: 136
+        height: 89
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ccc71105294220a80800000000000000
+      internalID: -8502192935694926644
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_38
+      rect:
+        serializedVersion: 2
+        x: 785
+        y: 3071
+        width: 132
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e371c342470508020800000000000000
+      internalID: 2341960265987004222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_39
+      rect:
+        serializedVersion: 2
+        x: 923
+        y: 3071
+        width: 132
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ca19d0101af570420800000000000000
+      internalID: 2596148855314420140
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_40
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 3071
+        width: 132
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c301876562f7721b0800000000000000
+      internalID: -5681432602268397508
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_41
+      rect:
+        serializedVersion: 2
+        x: 1199
+        y: 3071
+        width: 132
+        height: 99
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e977b79238054de0800000000000000
+      internalID: -1349663499940824601
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_42
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 3071
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 500391f5b329c1bc0800000000000000
+      internalID: -3811010400966070267
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_43
+      rect:
+        serializedVersion: 2
+        x: 493
+        y: 3072
+        width: 66
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: efa5b8d0a4ba61ea0800000000000000
+      internalID: -5902341927079290114
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_44
+      rect:
+        serializedVersion: 2
+        x: 613
+        y: 3076
+        width: 66
+        height: 56
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b049a0a86779aea00800000000000000
+      internalID: 786607620307457035
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_45
+      rect:
+        serializedVersion: 2
+        x: 1337
+        y: 3071
+        width: 150
+        height: 64
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f0383e344c74351f0800000000000000
+      internalID: -1057422579223788785
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_46
+      rect:
+        serializedVersion: 2
+        x: 1497
+        y: 3123
+        width: 27
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9db6dc981a53eb5a0800000000000000
+      internalID: -6503701843958469671
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_47
+      rect:
+        serializedVersion: 2
+        x: 1546
+        y: 3124
+        width: 37
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b996936714f865370800000000000000
+      internalID: 8310987673677949339
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_48
+      rect:
+        serializedVersion: 2
+        x: 565
+        y: 3075
+        width: 42
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ceca32fe9ddc62990800000000000000
+      internalID: -7411009800887882516
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_49
+      rect:
+        serializedVersion: 2
+        x: 1493
+        y: 3071
+        width: 142
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 48369e76dd5dfd900800000000000000
+      internalID: 711522413055665028
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_50
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 2807
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d0e0daea114dd410800000000000000
+      internalID: 1503429434476126423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_51
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 2807
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9a9355ff8268af300800000000000000
+      internalID: 286689036932037033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_52
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 2807
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5b8f3a6d9abc84c60800000000000000
+      internalID: 7802710284730366133
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_53
+      rect:
+        serializedVersion: 2
+        x: 949
+        y: 2551
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a3b5f488b1a48ac00800000000000000
+      internalID: 912060406653999930
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_54
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 2586
+        width: 441
+        height: 479
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 610d55dca9b7126b0800000000000000
+      internalID: -5322837379775082474
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_55
+      rect:
+        serializedVersion: 2
+        x: 157
+        y: 2543
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 22a625855184847f0800000000000000
+      internalID: -628172891504874974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_56
+      rect:
+        serializedVersion: 2
+        x: 421
+        y: 2543
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 143642accd5855f20800000000000000
+      internalID: 3410779476133700417
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_57
+      rect:
+        serializedVersion: 2
+        x: 685
+        y: 2543
+        width: 258
+        height: 258
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a787eaa8f577ce490800000000000000
+      internalID: -7715660809360213894
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_58
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 2401
+        width: 171
+        height: 179
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73837b806c97dd850800000000000000
+      internalID: 6403408136647424055
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_59
+      rect:
+        serializedVersion: 2
+        x: 158
+        y: 2085
+        width: 802
+        height: 452
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 206c92ef5e4d826c0800000000000000
+      internalID: -4167847370854644222
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_60
+      rect:
+        serializedVersion: 2
+        x: 966
+        y: 2085
+        width: 802
+        height: 452
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ce70b460bc4d44490800000000000000
+      internalID: -7762845889230862356
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_61
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 2215
+        width: 152
+        height: 180
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 43dc81a4b0bf5c190800000000000000
+      internalID: -7942666341891650252
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_62
+      rect:
+        serializedVersion: 2
+        x: 68
+        y: 1073
+        width: 1005
+        height: 1005
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff0a88b3e5b57c700800000000000000
+      internalID: 560517138914779391
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_63
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1894
+        width: 279
+        height: 185
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a76a6a45be8ffc690800000000000000
+      internalID: -7579565958220044678
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_64
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 2038
+        width: 42
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: dee822d4f26ad9b00800000000000000
+      internalID: 837007827848564461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_65
+      rect:
+        serializedVersion: 2
+        x: 1432
+        y: 2037
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7d9c5bcbb897283b0800000000000000
+      internalID: -5511709352874620457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_66
+      rect:
+        serializedVersion: 2
+        x: 1484
+        y: 2037
+        width: 37
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 81e1e40e718c76300800000000000000
+      internalID: 245384709588000280
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_67
+      rect:
+        serializedVersion: 2
+        x: 1536
+        y: 2037
+        width: 27
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d8831c2717f89a40800000000000000
+      internalID: 5375317834162473172
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_68
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 2035
+        width: 139
+        height: 174
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e7a057904adcc8750800000000000000
+      internalID: 6308643282456218238
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_69
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 1991
+        width: 42
+        height: 38
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 73d56ab6af0cc6f00800000000000000
+      internalID: 1111475389834091831
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_70
+      rect:
+        serializedVersion: 2
+        x: 1432
+        y: 1989
+        width: 42
+        height: 41
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61f073b657897af50800000000000000
+      internalID: 6892645384791199510
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_71
+      rect:
+        serializedVersion: 2
+        x: 1480
+        y: 1989
+        width: 42
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 851d43c1d14443c60800000000000000
+      internalID: 7796931746703135064
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_72
+      rect:
+        serializedVersion: 2
+        x: 1528
+        y: 1993
+        width: 42
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 21f723e8469914cf0800000000000000
+      internalID: -269765845504065774
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_73
+      rect:
+        serializedVersion: 2
+        x: 1384
+        y: 1941
+        width: 59
+        height: 42
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2c21b8eebdc7bb1a0800000000000000
+      internalID: -6792698328916487486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_74
+      rect:
+        serializedVersion: 2
+        x: 1471
+        y: 1938
+        width: 59
+        height: 39
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b0c5e89c2fa0a6370800000000000000
+      internalID: 8316471699772955659
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_75
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1526
+        width: 176
+        height: 362
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7e5f7b71de23a8cf0800000000000000
+      internalID: -249330835479071257
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_76
+      rect:
+        serializedVersion: 2
+        x: 1281
+        y: 1526
+        width: 289
+        height: 362
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 89ddbe003066952c0800000000000000
+      internalID: -4442407394337890920
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_77
+      rect:
+        serializedVersion: 2
+        x: 1576
+        y: 1526
+        width: 383
+        height: 362
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0a100e8b3b1939ec0800000000000000
+      internalID: -3561342679233068640
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_78
+      rect:
+        serializedVersion: 2
+        x: 1099
+        y: 1158
+        width: 281
+        height: 362
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 61284d8a8765a0480800000000000000
+      internalID: -8932231834707394026
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_79
+      rect:
+        serializedVersion: 2
+        x: 1386
+        y: 1158
+        width: 170
+        height: 359
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 220f5feaa9ffefb00800000000000000
+      internalID: 864409218327113762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_80
+      rect:
+        serializedVersion: 2
+        x: 1562
+        y: 1107
+        width: 214
+        height: 405
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b90a09db3f8964440800000000000000
+      internalID: 4919787815573692571
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_81
+      rect:
+        serializedVersion: 2
+        x: 1590
+        y: 1512
+        width: 33
+        height: 6
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 75725be96f56c5a70800000000000000
+      internalID: 8817034280383620951
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_82
+      rect:
+        serializedVersion: 2
+        x: 1782
+        y: 1158
+        width: 231
+        height: 362
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b76569660ab8a4ec0800000000000000
+      internalID: -3581897032587651461
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_83
+      rect:
+        serializedVersion: 2
+        x: 1999
+        y: 1511
+        width: 35
+        height: 9
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f0b1fa433977d730800000000000000
+      internalID: 4023818053286473977
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_84
+      rect:
+        serializedVersion: 2
+        x: 1163
+        y: 1118
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 54fa69e7a52868570800000000000000
+      internalID: 8468599474499268421
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_85
+      rect:
+        serializedVersion: 2
+        x: 1188
+        y: 1107
+        width: 21
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ba2cbd22a99100c60800000000000000
+      internalID: 7782248305896702635
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_86
+      rect:
+        serializedVersion: 2
+        x: 1213
+        y: 1118
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: b1f8ed53d35ac24f0800000000000000
+      internalID: -852124547164500197
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_87
+      rect:
+        serializedVersion: 2
+        x: 1229
+        y: 1118
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9094d29d24d996030800000000000000
+      internalID: 3488492296812185865
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_88
+      rect:
+        serializedVersion: 2
+        x: 1255
+        y: 1118
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41ad4b9de948a3210800000000000000
+      internalID: 1313508059124128276
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_89
+      rect:
+        serializedVersion: 2
+        x: 1279
+        y: 1118
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5af91e0ae11b1a350800000000000000
+      internalID: 6026292521504710565
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_90
+      rect:
+        serializedVersion: 2
+        x: 1307
+        y: 1118
+        width: 17
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 90c43fca727029aa0800000000000000
+      internalID: -6155849873675301879
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_91
+      rect:
+        serializedVersion: 2
+        x: 1325
+        y: 1118
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 7c86443c5b813b010800000000000000
+      internalID: 1203332694382241991
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_92
+      rect:
+        serializedVersion: 2
+        x: 1341
+        y: 1118
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 30685f4dd897d23e0800000000000000
+      internalID: -2076870203077720573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_93
+      rect:
+        serializedVersion: 2
+        x: 1368
+        y: 1118
+        width: 35
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 166a2ed9bf1947fa0800000000000000
+      internalID: -5803853509902031263
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_94
+      rect:
+        serializedVersion: 2
+        x: 1417
+        y: 1118
+        width: 25
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bb2f39debec254d90800000000000000
+      internalID: -7114230644546997573
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_95
+      rect:
+        serializedVersion: 2
+        x: 1447
+        y: 1118
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ec8c22fab6b4d92e0800000000000000
+      internalID: -2117453323922388786
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_96
+      rect:
+        serializedVersion: 2
+        x: 1463
+        y: 1118
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ad2061e81acc5f240800000000000000
+      internalID: 4824987570042962650
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_97
+      rect:
+        serializedVersion: 2
+        x: 1487
+        y: 1107
+        width: 24
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ecfd1988a08f871e0800000000000000
+      internalID: -2199735693845864498
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_98
+      rect:
+        serializedVersion: 2
+        x: 1525
+        y: 1118
+        width: 20
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 070d681c619882600800000000000000
+      internalID: 443755294125117552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_99
+      rect:
+        serializedVersion: 2
+        x: 1547
+        y: 1118
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 92d1f01075cefc660800000000000000
+      internalID: 7408399770471832873
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_100
+      rect:
+        serializedVersion: 2
+        x: 1572
+        y: 1118
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77d7bc9ab853896f0800000000000000
+      internalID: -677732869953847945
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_101
+      rect:
+        serializedVersion: 2
+        x: 1596
+        y: 1118
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2e45e4e573a2ba370800000000000000
+      internalID: 8334801952672994530
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_102
+      rect:
+        serializedVersion: 2
+        x: 1621
+        y: 1118
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: cd384eef36c780b10800000000000000
+      internalID: 1947943607757734876
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_103
+      rect:
+        serializedVersion: 2
+        x: 1647
+        y: 1118
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 344d96c481fb97640800000000000000
+      internalID: 5078300165919069251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_104
+      rect:
+        serializedVersion: 2
+        x: 1672
+        y: 1118
+        width: 22
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2b9499a68423d9550800000000000000
+      internalID: 6169142351174912434
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_105
+      rect:
+        serializedVersion: 2
+        x: 1726
+        y: 1118
+        width: 43
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bddb474756e0bd4a0800000000000000
+      internalID: -6567639802681442853
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_106
+      rect:
+        serializedVersion: 2
+        x: 1768
+        y: 1118
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3861cf87fcce28350800000000000000
+      internalID: 6017632427952576131
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_107
+      rect:
+        serializedVersion: 2
+        x: 1793
+        y: 1118
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 25b1aed578cb22e00800000000000000
+      internalID: 1018583755321383762
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_108
+      rect:
+        serializedVersion: 2
+        x: 1819
+        y: 1118
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69c33155d62977820800000000000000
+      internalID: 2915960282022100118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_109
+      rect:
+        serializedVersion: 2
+        x: 1845
+        y: 1118
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: db393f4e8edfd8380800000000000000
+      internalID: -8967232106309381187
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_110
+      rect:
+        serializedVersion: 2
+        x: 1870
+        y: 1118
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcdeaf03ab7191880800000000000000
+      internalID: -8639848321680478769
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_111
+      rect:
+        serializedVersion: 2
+        x: 1885
+        y: 1118
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 83db36cf21a3e15d0800000000000000
+      internalID: -3089968441111364296
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_112
+      rect:
+        serializedVersion: 2
+        x: 1906
+        y: 1118
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 8129fcec419773960800000000000000
+      internalID: 7581661627977536024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_113
+      rect:
+        serializedVersion: 2
+        x: 1933
+        y: 1118
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 08e3a97d5a57277f0800000000000000
+      internalID: -616300843849073024
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_114
+      rect:
+        serializedVersion: 2
+        x: 1958
+        y: 1107
+        width: 24
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 65e41cffc86339410800000000000000
+      internalID: 1482588681549205078
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_115
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 533
+        width: 441
+        height: 565
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ac4ac837787135190800000000000000
+      internalID: -7975004644616395574
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_116
+      rect:
+        serializedVersion: 2
+        x: 1194
+        y: 1059
+        width: 19
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fcd2c65e187a1f2b0800000000000000
+      internalID: -5552472689229419057
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_117
+      rect:
+        serializedVersion: 2
+        x: 1217
+        y: 1059
+        width: 22
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e274a6579232fac10800000000000000
+      internalID: 2066909414956877614
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_118
+      rect:
+        serializedVersion: 2
+        x: 1242
+        y: 1059
+        width: 12
+        height: 27
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3046ae48daeaba640800000000000000
+      internalID: 5092355863955006467
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_119
+      rect:
+        serializedVersion: 2
+        x: 1262
+        y: 1059
+        width: 22
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 57462a3c1519f97d0800000000000000
+      internalID: -2909447053897472907
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_120
+      rect:
+        serializedVersion: 2
+        x: 1320
+        y: 1059
+        width: 24
+        height: 33
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 66c64d30ad56cd400800000000000000
+      internalID: 350266858069584998
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_121
+      rect:
+        serializedVersion: 2
+        x: 1346
+        y: 1059
+        width: 15
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9c5cb14550e734280800000000000000
+      internalID: -9060259463988263479
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_122
+      rect:
+        serializedVersion: 2
+        x: 1362
+        y: 1059
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5a0110e2592569ad0800000000000000
+      internalID: -2695876526259236699
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_123
+      rect:
+        serializedVersion: 2
+        x: 1387
+        y: 1059
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2329a44da247240f0800000000000000
+      internalID: -1134216428844838350
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_124
+      rect:
+        serializedVersion: 2
+        x: 1413
+        y: 1059
+        width: 23
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f3ed08ff7599c3f80800000000000000
+      internalID: -8125451024455377345
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_125
+      rect:
+        serializedVersion: 2
+        x: 1438
+        y: 1059
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0dab62cad2918e110800000000000000
+      internalID: 1290308977194089168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_126
+      rect:
+        serializedVersion: 2
+        x: 1469
+        y: 1059
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9048dcdcabd8639b0800000000000000
+      internalID: -5100733694494276599
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_127
+      rect:
+        serializedVersion: 2
+        x: 1495
+        y: 1059
+        width: 23
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9a4ff2f46fb33fb0800000000000000
+      internalID: -4669177948358620514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_128
+      rect:
+        serializedVersion: 2
+        x: 1520
+        y: 1059
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a180ba971f812d1e0800000000000000
+      internalID: -2174648244659091430
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_129
+      rect:
+        serializedVersion: 2
+        x: 1549
+        y: 1059
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4c82e1c13b1d09590800000000000000
+      internalID: -7669399598210864956
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_130
+      rect:
+        serializedVersion: 2
+        x: 1575
+        y: 1059
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4dda6423a14050230800000000000000
+      internalID: 3604291587339103700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_131
+      rect:
+        serializedVersion: 2
+        x: 1600
+        y: 1059
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 97f6114a9fee490a0800000000000000
+      internalID: -6875607975121031303
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_132
+      rect:
+        serializedVersion: 2
+        x: 1625
+        y: 1059
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: e9a2b01d716e99270800000000000000
+      internalID: 8257884381726321310
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_133
+      rect:
+        serializedVersion: 2
+        x: 1651
+        y: 1059
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 5ec43d5aa52da77a0800000000000000
+      internalID: -6378554635445908251
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_134
+      rect:
+        serializedVersion: 2
+        x: 1676
+        y: 1059
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 601cb421edd50b550800000000000000
+      internalID: 6174538297496027398
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_135
+      rect:
+        serializedVersion: 2
+        x: 1701
+        y: 1052
+        width: 8
+        height: 14
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 46aeee0770be187d0800000000000000
+      internalID: -2917792666367366556
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_136
+      rect:
+        serializedVersion: 2
+        x: 1725
+        y: 1059
+        width: 22
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fdeeb60cf7facb6d0800000000000000
+      internalID: -2973308690747363617
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_137
+      rect:
+        serializedVersion: 2
+        x: 1752
+        y: 1059
+        width: 20
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f31770eaf070b73d0800000000000000
+      internalID: -3207962545645719233
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_138
+      rect:
+        serializedVersion: 2
+        x: 1774
+        y: 1059
+        width: 16
+        height: 31
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4aaa3f11baf1d8a90800000000000000
+      internalID: -7310151800551396700
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_139
+      rect:
+        serializedVersion: 2
+        x: 1803
+        y: 1059
+        width: 32
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 69cc61baa98aa6cb0800000000000000
+      internalID: -4869894664798942058
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_140
+      rect:
+        serializedVersion: 2
+        x: 1839
+        y: 1059
+        width: 18
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ff82a1cf8e2866160800000000000000
+      internalID: 7018441006477093119
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_141
+      rect:
+        serializedVersion: 2
+        x: 1870
+        y: 1059
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a141796b14f121ca0800000000000000
+      internalID: -6047736982508465126
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_142
+      rect:
+        serializedVersion: 2
+        x: 1896
+        y: 1059
+        width: 28
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc60f24d077425e10800000000000000
+      internalID: 2184887319149872843
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_143
+      rect:
+        serializedVersion: 2
+        x: 1927
+        y: 1059
+        width: 21
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6746258b7b2fa30b0800000000000000
+      internalID: -5748015103499672458
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_144
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 609
+        width: 514
+        height: 438
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4100a44aad5682130800000000000000
+      internalID: 3542193096660484116
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_145
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 533
+        width: 514
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 6d1ba5ac02de11ec0800000000000000
+      internalID: -3597833902202637866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_146
+      rect:
+        serializedVersion: 2
+        x: 1502
+        y: 533
+        width: 329
+        height: 514
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 419929819a2cb7710800000000000000
+      internalID: 1692160116525275412
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_147
+      rect:
+        serializedVersion: 2
+        x: 1867
+        y: 981
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c4bed7944b1104430800000000000000
+      internalID: 3765028754506509132
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_148
+      rect:
+        serializedVersion: 2
+        x: 1909
+        y: 981
+        width: 66
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 743c8f22a6230f680800000000000000
+      internalID: -8723417046782000313
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_149
+      rect:
+        serializedVersion: 2
+        x: 1981
+        y: 981
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 930612f199ee31e40800000000000000
+      internalID: 5626102700935569465
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_150
+      rect:
+        serializedVersion: 2
+        x: 1869
+        y: 909
+        width: 34
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: a2de440e4ccce8490800000000000000
+      internalID: -7742025563455034070
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_151
+      rect:
+        serializedVersion: 2
+        x: 1909
+        y: 909
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 1a7195a403e33a380800000000000000
+      internalID: -8961250456410450015
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_152
+      rect:
+        serializedVersion: 2
+        x: 1981
+        y: 909
+        width: 34
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 653091b85ce592e90800000000000000
+      internalID: -7049999539136560298
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_153
+      rect:
+        serializedVersion: 2
+        x: 1867
+        y: 868
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: fc474bff11d3dac10800000000000000
+      internalID: 2066374951546680527
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_154
+      rect:
+        serializedVersion: 2
+        x: 1909
+        y: 869
+        width: 66
+        height: 34
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c445b04d5e259bec0800000000000000
+      internalID: -3550715684146424756
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_155
+      rect:
+        serializedVersion: 2
+        x: 1981
+        y: 868
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 2d76ec14119480140800000000000000
+      internalID: 4686075750746318802
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_156
+      rect:
+        serializedVersion: 2
+        x: 1837
+        y: 765
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 4d2fe880036fa0190800000000000000
+      internalID: -7995307502280445228
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_157
+      rect:
+        serializedVersion: 2
+        x: 1909
+        y: 765
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: afc349a69015dad30800000000000000
+      internalID: 4444297508169202938
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_158
+      rect:
+        serializedVersion: 2
+        x: 1981
+        y: 765
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 41e6162ae692a9250800000000000000
+      internalID: 5952115412670967316
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_159
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 796
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3fa796639c033cb50800000000000000
+      internalID: 6612182318669462259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_160
+      rect:
+        serializedVersion: 2
+        x: 1837
+        y: 693
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 729edb04cfd7a2920800000000000000
+      internalID: 2966321826948311335
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_161
+      rect:
+        serializedVersion: 2
+        x: 1909
+        y: 693
+        width: 66
+        height: 66
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: d6493d5bf27e277e0800000000000000
+      internalID: -1769097511503162259
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_162
+      rect:
+        serializedVersion: 2
+        x: 1981
+        y: 724
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: c338eb726723e33c0800000000000000
+      internalID: -4378006304703216836
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_163
+      rect:
+        serializedVersion: 2
+        x: 2011
+        y: 693
+        width: 36
+        height: 35
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 60c6c32ff9962fda0800000000000000
+      internalID: -5912547225099277306
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_164
+      rect:
+        serializedVersion: 2
+        x: 15
+        y: 75
+        width: 514
+        height: 452
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: ae49b0e200122a3a0800000000000000
+      internalID: -6655721014643944214
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_165
+      rect:
+        serializedVersion: 2
+        x: 535
+        y: 38
+        width: 514
+        height: 489
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: bc31706a64a456080800000000000000
+      internalID: -9194861396913351733
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_166
+      rect:
+        serializedVersion: 2
+        x: 1127
+        y: 359
+        width: 95
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 0e0dca7162419cc80800000000000000
+      internalID: -8302082284242284320
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_167
+      rect:
+        serializedVersion: 2
+        x: 1292
+        y: 401
+        width: 37
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 9f7f999648136c2e0800000000000000
+      internalID: -2105941330971985927
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_168
+      rect:
+        serializedVersion: 2
+        x: 1400
+        y: 360
+        width: 95
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 28dce60ab6c9fd1e0800000000000000
+      internalID: -2170844509302239870
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_169
+      rect:
+        serializedVersion: 2
+        x: 1573
+        y: 90
+        width: 514
+        height: 437
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 99e474cf80592db30800000000000000
+      internalID: 4310671659171794585
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_170
+      rect:
+        serializedVersion: 2
+        x: 1055
+        y: 252
+        width: 126
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 95cc51aa24dacb520800000000000000
+      internalID: 2719238776857939033
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_171
+      rect:
+        serializedVersion: 2
+        x: 1191
+        y: 150
+        width: 241
+        height: 241
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: f87334d4c5c506730800000000000000
+      internalID: 3990290821353256847
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_172
+      rect:
+        serializedVersion: 2
+        x: 1441
+        y: 253
+        width: 126
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 564183aa0a311bdb0800000000000000
+      internalID: -4778016148891888539
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_173
+      rect:
+        serializedVersion: 2
+        x: 1128
+        y: 86
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3064f60d30473d710800000000000000
+      internalID: 1716843442688968195
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_174
+      rect:
+        serializedVersion: 2
+        x: 1293
+        y: 15
+        width: 37
+        height: 126
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 96209ccc9b649baf0800000000000000
+      internalID: -380194929717476759
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: PC _ Computer - Wandersong - Miscellaneous - Special Effects_175
+      rect:
+        serializedVersion: 2
+        x: 1401
+        y: 87
+        width: 94
+        height: 96
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 3975e940f87483e40800000000000000
+      internalID: 5636333613237557139
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    customData: 
+    physicsShape: []
+    bones: []
+    spriteID: db47674f75e2af4488edd9dea3bd5c87
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    spriteCustomMetadata:
+      entries: []
+    nameFileIdTable:
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_0: 4357585043738093188
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_1: 7749285138475346290
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_10: -2903060663493611820
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_100: -677732869953847945
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_101: 8334801952672994530
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_102: 1947943607757734876
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_103: 5078300165919069251
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_104: 6169142351174912434
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_105: -6567639802681442853
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_106: 6017632427952576131
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_107: 1018583755321383762
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_108: 2915960282022100118
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_109: -8967232106309381187
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_11: -6593038116209991267
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_110: -8639848321680478769
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_111: -3089968441111364296
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_112: 7581661627977536024
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_113: -616300843849073024
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_114: 1482588681549205078
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_115: -7975004644616395574
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_116: -5552472689229419057
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_117: 2066909414956877614
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_118: 5092355863955006467
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_119: -2909447053897472907
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_12: -6515866764282928709
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_120: 350266858069584998
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_121: -9060259463988263479
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_122: -2695876526259236699
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_123: -1134216428844838350
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_124: -8125451024455377345
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_125: 1290308977194089168
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_126: -5100733694494276599
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_127: -4669177948358620514
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_128: -2174648244659091430
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_129: -7669399598210864956
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_13: 2831434756821333234
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_130: 3604291587339103700
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_131: -6875607975121031303
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_132: 8257884381726321310
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_133: -6378554635445908251
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_134: 6174538297496027398
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_135: -2917792666367366556
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_136: -2973308690747363617
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_137: -3207962545645719233
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_138: -7310151800551396700
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_139: -4869894664798942058
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_14: 2954732325994482991
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_140: 7018441006477093119
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_141: -6047736982508465126
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_142: 2184887319149872843
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_143: -5748015103499672458
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_144: 3542193096660484116
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_145: -3597833902202637866
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_146: 1692160116525275412
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_147: 3765028754506509132
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_148: -8723417046782000313
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_149: 5626102700935569465
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_15: -1298609405514241890
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_150: -7742025563455034070
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_151: -8961250456410450015
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_152: -7049999539136560298
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_153: 2066374951546680527
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_154: -3550715684146424756
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_155: 4686075750746318802
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_156: -7995307502280445228
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_157: 4444297508169202938
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_158: 5952115412670967316
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_159: 6612182318669462259
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_16: 7951111677889611473
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_160: 2966321826948311335
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_161: -1769097511503162259
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_162: -4378006304703216836
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_163: -5912547225099277306
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_164: -6655721014643944214
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_165: -9194861396913351733
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_166: -8302082284242284320
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_167: -2105941330971985927
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_168: -2170844509302239870
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_169: 4310671659171794585
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_17: 4484190347514683764
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_170: 2719238776857939033
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_171: 3990290821353256847
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_172: -4778016148891888539
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_173: 1716843442688968195
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_174: -380194929717476759
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_175: 5636333613237557139
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_18: 4090657633876536516
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_19: 8402210187023288023
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_2: -8426789933945698371
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_20: -4625048882931556344
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_21: -6170793758436299022
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_22: -5276580068669814079
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_23: 6607117012231423695
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_24: -281887677808975992
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_25: 5334844954002487462
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_26: 6956448977139735534
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_27: 2287024428281893081
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_28: 5124359170508549249
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_29: 6556581279432180845
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_3: 4717024133948816905
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_30: 6765625925549840907
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_31: -4284034041476787700
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_32: -1012957317591254610
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_33: -8479233378392758117
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_34: -1650262908522130766
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_35: 137657204263096705
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_36: 7303299329954650745
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_37: -8502192935694926644
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_38: 2341960265987004222
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_39: 2596148855314420140
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_4: -2027818454626245048
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_40: -5681432602268397508
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_41: -1349663499940824601
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_42: -3811010400966070267
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_43: -5902341927079290114
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_44: 786607620307457035
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_45: -1057422579223788785
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_46: -6503701843958469671
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_47: 8310987673677949339
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_48: -7411009800887882516
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_49: 711522413055665028
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_5: -4108256360787004662
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_50: 1503429434476126423
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_51: 286689036932037033
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_52: 7802710284730366133
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_53: 912060406653999930
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_54: -5322837379775082474
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_55: -628172891504874974
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_56: 3410779476133700417
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_57: -7715660809360213894
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_58: 6403408136647424055
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_59: -4167847370854644222
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_6: -5726370224389539042
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_60: -7762845889230862356
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_61: -7942666341891650252
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_62: 560517138914779391
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_63: -7579565958220044678
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_64: 837007827848564461
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_65: -5511709352874620457
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_66: 245384709588000280
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_67: 5375317834162473172
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_68: 6308643282456218238
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_69: 1111475389834091831
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_7: -2456712599066233073
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_70: 6892645384791199510
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_71: 7796931746703135064
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_72: -269765845504065774
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_73: -6792698328916487486
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_74: 8316471699772955659
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_75: -249330835479071257
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_76: -4442407394337890920
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_77: -3561342679233068640
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_78: -8932231834707394026
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_79: 864409218327113762
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_8: -8478384289791364563
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_80: 4919787815573692571
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_81: 8817034280383620951
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_82: -3581897032587651461
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_83: 4023818053286473977
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_84: 8468599474499268421
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_85: 7782248305896702635
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_86: -852124547164500197
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_87: 3488492296812185865
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_88: 1313508059124128276
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_89: 6026292521504710565
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_9: 6386758605592037608
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_90: -6155849873675301879
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_91: 1203332694382241991
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_92: -2076870203077720573
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_93: -5803853509902031263
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_94: -7114230644546997573
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_95: -2117453323922388786
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_96: 4824987570042962650
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_97: -2199735693845864498
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_98: 443755294125117552
+      PC _ Computer - Wandersong - Miscellaneous - Special Effects_99: 7408399770471832873
+  mipmapLimitGroupName: 
+  pSDRemoveMatte: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
